@@ -85,6 +85,42 @@ done
 echo "Kallisto quantification complete."
 ```
 
+# Creating count matrix 
 
+```{bash}
+pwd
+```
+
+```{bash}
+perl /home/shared/trinityrnaseq-v2.12.0/util/abundance_estimates_to_matrix.pl \
+--est_method kallisto \
+    --gene_trans_map none \
+    --out_prefix ../analyses/03-kallisto/kallisto_20240118 \
+    --name_sample_by_basedir \
+     ../analyses/03-kallisto/*/abundance.tsv
+```
+
+```{bash}     
+head ../analyses/03-kallisto/kallisto_20240118.isoform.counts.matrix
+```
+
+```{r}
+countmatrix <- read.delim("../analyses/03-kallisto/kallisto_20240118.isoform.counts.matrix", header = TRUE, sep = '\t')
+rownames(countmatrix) <- countmatrix$X
+countmatrix <- countmatrix[,-1]
+head(countmatrix)
+```
+
+```{r}
+countmatrix <- round(countmatrix, 0)
+head(countmatrix)
+```
+
+write out count matrix (not rounded):
+```{r}
+#write.table(countmatrix, "../data/kallisto_count_matrix_rounded.tab", quote = FALSE, sep = '\t')
+
+````
+Wrote out 2024-01-18
 
 
