@@ -4,3 +4,32 @@ output: html_document
 date: "2024-01-18"
 ---
 Rmd to use `DESeq2` to get differential gene expression between different treatment groups from Summer 2021 _Pycnpoodia helianthoides_ SSWD Challenge Experiments. RNAseq data is from _Pycnopodia helianthoides_ coelomocytes (immune cells).
+
+
+```{r}
+sessionInfo()
+```
+
+Load packages:
+```{r}
+library(DESeq2)
+library(tidyverse)
+library(pheatmap)
+library(RColorBrewer)
+library(data.table)
+library(ggplot2)
+```
+
+# Read in count matrix from comparing the 2021 _Pycnopodia helianthoides_ coelomocyte RNAseq libraries with the 2023 _Pycnopodia helianthoides_ genome gene list FASTA:  
+```{r}
+countmatrix <- read.delim("../data/kallisto_count_matrix_rounded.tab", header = TRUE, sep = '\t')
+head(countmatrix)
+```
+26581 rows (genes) with 32 columns (libraries). 
+
+## QUESTION 
+When done with the 2015 Phel transcriptome, it was 29476 genes... is genome smaller list because it's more fine-tuned to _Pycnopodia helianthoides_ whereas the _de novo_ assembled transcriptome included some incidental non-host transcripts? 
+
+
+
+
