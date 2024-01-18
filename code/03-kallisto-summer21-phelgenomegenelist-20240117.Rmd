@@ -2,3 +2,89 @@
 title: "kallisto-summer21-phelgenomegenelist"
 output: html_document
 ---
+Run this on Raven. 
+
+Rmd to align summer 2021 trimmed and QC'ed _Pycnopodia helianthoides_ coelomocyte RNAseq libraries to the _Pycnopodia helianthoides_ genome gene list that Steven got. 
+
+Genome: Lauren M Schiebelhut, Melissa B DeBiasse, Lars Gabriel, Katharina J Hoff, Michael N Dawson, A reference genome for ecological restoration of the sunflower sea star, Pycnopodia helianthoides, Journal of Heredity, 2023;, esad054, https://doi.org/10.1093/jhered/esad054
+
+Can't use the genome fasta because it contains introns. `HISAT2` is able to handle those, but `kallisto` is not, so I'll be using a fasta of the genes. 
+
+# Confirm `kallisto` location on Raven:
+```{bash}
+/home/shared/kallisto/kallisto
+```
+
+## Print working directory
+```{bash}
+pwd
+```
+
+# Make the 2023 *P. helianthoides* fasta of genes an index:
+Get the fasta of genes on Raven: 
+
+```{bash}
+/home/shared/kallisto_linux-v0.50.1/kallisto index \
+-t 40 \
+-i /home/shared/8TB_HDD_02/graceac9/GitHub/paper-pycno-sswd-2021/code/2023_phel_genomefasta.index \
+/home/shared/8TB_HDD_02/graceac9/GitHub/project-pycno-sizeclass-2022/data/augustus.hints.codingseq
+```
+
+# Get `quant` info:
+
+```{bash}
+/home/shared/kallisto/kallisto \
+quant
+```
+
+I want all kallisto files to go into: 
+
+`project-pycno-sizeclass-2021/analyses/03-kallisto`
+
+Trimmed summer 2021 RNAseq reads live: `/home/shared/8TB_HDD_02/graceac9/data/pycno2021`
+
+```{bash}
+pwd
+```
+
+```{bash}
+#list all files in directory, get count of how many files
+DATA_DIRECTORY="../../../data/pycno2021"
+ls -1 "$DATA_DIRECTORY"/*.fq.gz | wc -l
+```
+Should be 64 --> two files per each of the 32 libraries. 
+
+# Kallisto quanitification 
+```{bash}
+# Set the paths
+DATA_DIRECTORY="../../../data/pycno2021"
+KALLISTO_INDEX="2023_phel_genomefasta.index"
+OUTPUT_DIRECTORY="../analyses/03-kallisto"
+
+pwd
+echo $DATA_DIRECTORY
+
+# Iterate over all .fq.gz files in the data directory
+for FILE in "$DATA_DIRECTORY"/*_R1_001.fastq.gz.fastp-trim.20220810.fq.gz; do
+    # Extract the base name of the file for naming the output folder
+    BASENAME=$(basename "$FILE" _R1_001.fastq.gz.fastp-trim.20220810.fq.gz)
+
+    # Create output directory for this sample3
+    SAMPLE_OUTPUT="$OUTPUT_DIRECTORY/$BASENAME"
+    mkdir -p "$SAMPLE_OUTPUT"
+
+    # Run Kallisto quantification
+    /home/shared/kallisto_linux-v0.50.1/kallisto quant \
+    -i "$KALLISTO_INDEX" \
+    -o "$SAMPLE_OUTPUT" \
+    -t 40 \
+    "$DATA_DIRECTORY"/"$BASENAME"_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
+    "$DATA_DIRECTORY"/"$BASENAME"_R2_001.fastq.gz.fastp-trim.20220810.fq.gz
+done
+
+echo "Kallisto quantification complete."
+```
+
+
+
+
