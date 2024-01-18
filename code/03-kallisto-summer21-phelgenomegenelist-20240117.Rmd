@@ -116,7 +116,11 @@ countmatrix <- round(countmatrix, 0)
 head(countmatrix)
 ```
 
+write out count matrix (not rounded):
+```{r}
+#write.table(countmatrix, "../data/kallisto_count_matrix_rounded.tab", quote = FALSE, sep = '\t')
 
-
+````
+Wrote out 2024-01-18
 
 
