@@ -1,0 +1,6 @@
+---
+title: "04-deseq2"
+output: html_document
+date: "2024-01-18"
+---
+Rmd to use `DESeq2` to get differential gene expression between different treatment groups from Summer 2021 _Pycnpoodia helianthoides_ SSWD Challenge Experiments. RNAseq data is from _Pycnopodia helianthoides_ coelomocytes (immune cells).
