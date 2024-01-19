@@ -1,33 +1,33 @@
-﻿library_ID,star_ID,star_radius_cm,star_diameter_cm,most_recent_inoc_date,sample_date,experiment_number,treatment_group,experiment_day,disease_sign,sample_month,sample_day,sample_year,sample_date,star_death_month,star_death_day,star_death_year,star_death_date,most-recent-inoc.type_at_sampling_time,inoc_month,inoc_day,inoc_year,,exposure_history_before_experiment2_start,paired_sample,total_RNA_ng,sample_vol_ul,RNA_conc_ng.ul,RIN,notes
-PSC_19,H16,24,48,9/23/21,9/23/21,,,,,9,23,2021,9/23/21,9,24,2021,9/24/21,heat-killed,9,23,2021,,tank-exposure,n,434.7,23,18.9,NA,died before got unfiltered inoculum
-PSC_23,H15,19,38,9/23/21,9/26/21,,,,,9,26,2021,9/26/21,9,27,2021,9/27/21,heat-killed,9,23,2021,,tank-exposure,n,648.6,23,28.2,NA,died before got unfiltered inoculum
-PSC_24,E13,18,36,9/23/21,9/27/21,,,,,9,27,2021,9/27/21,9,28,2021,9/28/21,0.45 LIVE,9,23,2021,,tank-exposure,n,1288,23,56,NA,injected with 0.45 live inoc 23 Sept (sampled before injected with heat-killed live inoc on 5 Oct 21)
-PSC_34,E12,23,46,9/23/21,10/2/21,,,,,10,2,2021,10/2/21,10,18,2021,10/18/21,0.45 LIVE,9,23,2021,,tank-exposure,H,884,13,68,NA,injected with 0.45 live inoc 23 Sept (sampled before injected with heat-killed live inoc on 5 Oct 21)
-PSC_35,H12,21,42,9/23/21,10/2/21,,,,,10,2,2021,10/2/21,10,2,2021,10/2/21,heat-killed,9,23,2021,,tank-exposure,H,780,13,60,NA,died before got unfiltered inoculum
-PSC_36,E05,28,56,9/23/21,10/2/21,,,,,10,2,2021,10/2/21,10,3,2021,10/3/21,unfiltered LIVE ,9,23,2021,,experiment 1 live inoc - never showed disease signs,B,1896,12,158,NA,DEAD 5 OCT 21 used in prelim experiment: given live inoc - survived
-PSC_37,H05,25,50,9/23/21,10/2/21,,,,,10,2,2021,10/2/21,10,18,2021,10/18/21,heat-killed,9,23,2021,,unexposed,B,1300,12,100,1,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21
-PSC_38,E04,18,36,9/23/21,10/2/21,,,,,10,2,2021,10/2/21,10,2,2021,10/2/21,unfiltered LIVE ,9,23,2021,,experiment 1 live inoc - never showed disease signs,A,858,13,66,NA,DEAD 2 OCT 21 used in prelim experiment: given live inoc - survived
-PSC_39,H04,16,32,9/23/21,10/2/21,,,,,10,2,2021,10/2/21,10,16,2021,10/16/21,heat-killed,9,23,2021,,unexposed,A,936,12,72,3.6,used in prelim experiment: given heat-killed inoc - in experiment 2 --> unfiltered inoculum --> 5 Oct 21; still heat-killed at this point??
-PSC_40,E01,30,60,9/23/21,10/2/21,,,,,10,2,2021,10/2/21,10,3,2021,10/3/21,unfiltered LIVE ,9,23,2021,,experiment 1 live inoc - never showed disease signs,n,403,12,31,NA,DEAD 3 OCT 21 used in prelim experiment: given live inoc - survived
-PSC_42,H03,25,50,9/23/21,10/3/21,,,,,10,3,2021,10/3/21,10,18,2021,10/18/21,heat-killed,9,23,2021,,unexposed,n,1346.8,14,96.2,8.3,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21
-PSC_43,E02,20,40,9/23/21,10/3/21,,,,,10,3,2021,10/3/21,10,5,2021,10/5/21,unfiltered LIVE ,9,23,2021,,experiment 1 live inoc - never showed disease signs,n,1321.6,13,94.4,7.9,DEAD 5 OCT 21 used in prelim experiment: given live inoc - survived --> this star used for inoculate for 5 Oct 21
-PSC_48,E14,14,28,10/5/21,10/7/21,,,,,10,7,2021,10/7/21,10,18,2021,10/18/21,heat-killed,10,5,2021,,tank-exposure,n,1105,12,85,2.4,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21
-PSC_49,E16,25,50,10/5/21,10/7/21,,,,,10,7,2021,10/7/21,10,18,2021,10/18/21,heat-killed,10,5,2021,,tank-exposure,n,310.8,14,22.2,NA,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21
-PSC_52,E11,15,30,10/5/21,10/14/21,,,,,10,14,2021,10/14/21,10,18,2021,10/18/21,heat-killed,10,5,2021,,unexposed,n,270.2,14,19.3,NA,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21
-PSC_54,E18 ,12,24,10/5/21,10/14/21,,,,,10,14,2021,10/14/21,10,18,2021,10/18/21,heat-killed,10,5,2021,,unexposed,n,1512,13,108,NA,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21
-PSC_56,E06,17,34,10/5/21,10/14/21,,,,,10,14,2021,10/14/21,10,18,2021,10/18/21,heat-killed,10,5,2021,,unexposed,C,425.6,14,30.4,NA,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21
-PSC_57,H06,16,32,10/5/21,10/14/21,,,,,10,14,2021,10/14/21,10,16,2021,10/16/21,unfiltered LIVE ,10,5,2021,,unexposed,C,492.7,13,37.9,NA,10/5/21 live inoc
-PSC_58,H05,25,50,10/5/21,10/14/21,,,,,10,14,2021,10/14/21,10,18,2021,10/18/21,unfiltered LIVE ,10,5,2021,,unexposed,n,2443,13,174.5,NA,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21
-PSC_59,H01,23,46,10/5/21,10/14/21,,,,,10,14,2021,10/14/21,10,16,2021,10/16/21,unfiltered LIVE ,10,5,2021,,unexposed,n,432.6,14,30.9,NA,used in prelim experiment: given heat-killed inoc - in experiment 2 --> unfiltered inoculum --> 5 Oct 21
-PSC_61,E09,13,26,10/5/21,10/15/21,,,,,10,15,2021,10/15/21,10,18,2021,10/18/21,heat-killed,10,5,2021,,unexposed,F,2069.2,13,147.8,9.7,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21
-PSC_63,H03,25,50,10/5/21,10/15/21,,,,,10,15,2021,10/15/21,10,18,2021,10/18/21,unfiltered LIVE ,10,5,2021,,unexposed,n,1073.8,14,76.7,NA,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21
-PSC_64,H05,25,50,10/5/21,10/15/21,,,,,10,15,2021,10/15/21,10,18,2021,10/18/21,unfiltered LIVE ,10,5,2021,,unexposed,n,1366.4,14,97.6,NA,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21
-PSC_67,H09,15,30,10/5/21,10/15/21,,,,,10,15,2021,10/15/21,10,16,2021,10/16/21,unfiltered LIVE ,10,5,2021,,unexposed,F,442.4,14,31.6,NA,10/5/21 live inoc
-PSC_69,H04,16,32,10/5/21,10/15/21,,,,,10,15,2021,10/15/21,10,16,2021,10/16/21,unfiltered LIVE ,10,5,2021,,unexposed,n,301,14,21.5,NA,used in prelim experiment: given heat-killed inoc - in experiment 2 --> unfiltered inoculum --> 5 Oct 21
-PSC_71,H18,14,28,10/5/21,10/15/21,,,,,10,15,2021,10/15/21,10,15,2021,10/15/21,unfiltered LIVE ,10,5,2021,,unexposed,n,350,14,25,NA,10/5/21 live inoc
-PSC_73,H03,25,50,10/5/21,10/16/21,,,,,10,16,2021,10/16/21,10,18,2021,10/18/21,unfiltered LIVE ,10,5,2021,,unexposed,n,299.6,14,21.4,NA,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21
-PSC_75,H08,24,48,10/5/21,10/16/21,,,,,10,16,2021,10/16/21,10,18,2021,10/18/21,unfiltered LIVE ,10,5,2021,,unexposed,n,285.6,14,20.4,NA,10/5/21 live inoc
-PSC_76,E10,26,52,10/5/21,10/17/21,,,,,10,17,2021,10/17/21,10,18,2021,10/18/21,heat-killed,10,5,2021,,unexposed,G,478.8,14,34.2,NA,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21
-PSC_78,H10,25,50,10/5/21,10/17/21,,,,,10,17,2021,10/17/21,10,18,2021,10/18/21,unfiltered LIVE ,10,5,2021,,unexposed,G,387.8,14,27.7,NA,10/5/21 live inoc
-PSC_81,E07,16,32,10/5/21,10/18/21,,,,,10,18,2021,10/18/21,10,18,2021,10/18/21,heat-killed,10,5,2021,,unexposed,E,589.4,14,42.1,NA,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21
-PSC_83,H07,15,30,10/5/21,10/18/21,,,,,10,18,2021,10/18/21,10,18,2021,10/18/21,unfiltered LIVE ,10,5,2021,,unexposed,E,263.2,14,18.8,NA,10/5/21 live inoc
+﻿library_ID,star_ID,star_collection_date,star_collection_location,star_radius_cm,star_diameter_cm,most_recent_inoc_date,sample_date,experiment_number,exposure_history,days_since_tank_exposure,treatment_group,experiment_day,disease_sign,number_arms_dropped,number_arm_twist,number_arms_crossed,star_death_date,notes,,,,,,,,,notes2
+PSC_19,H16,second collection,DallasBank,24,48,9/23/21,9/23/21,2,tankexposed,,control,0,armdrop,2,0,0,9/24/21,died before got unfiltered inoculum,,,,,,,,,
+PSC_23,H15,second collection,DallasBank,19,38,9/23/21,9/26/21,2,tankexposed,,control,3,armdrop,2,1,0,9/27/21,died before got unfiltered inoculum,,,,,,,,,
+PSC_24,E13,second collection,DallasBank,18,36,9/23/21,9/27/21,2,tankexposed,,0.45live,4,armdrop,2,0,0,9/28/21,injected with 0.45 live inoc 23 Sept (sampled before injected with heat-killed live inoc on 5 Oct 21),,,,,,,,,
+PSC_34,H12,second collection,DallasBank,23,46,9/23/21,10/2/21,2,tankexposed,,0.45live,9,armtwist,0,1,0,10/18/21,injected with 0.45 live inoc 23 Sept (sampled before injected with heat-killed live inoc on 5 Oct 21),,,,,,,,,
+PSC_35,E05,,,21,42,9/23/21,10/2/21,2,na,na,unfilteredlive,9,armdrop,6,0,0,10/3/21,died before got unfiltered inoculum,,,,,,,,,
+PSC_36,E04,,,28,56,9/23/21,10/2/21,2,na,na,unfilteredlive,9,armdrop,9,0,0,10/3/21,DEAD 5 OCT 21 used in prelim experiment: given live inoc - survived,,,,,,,,,
+PSC_37,E01,,,25,50,9/23/21,10/2/21,2,na,na,unfilteredlive,9,armdrop,1,2,0,10/18/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21,,,,,,,,,
+PSC_38,E12,second collection,DallasBank,18,36,9/23/21,10/2/21,2,na,na,0.45live,9,NA,0,0,0,10/2/21,DEAD 2 OCT 21 used in prelim experiment: given live inoc - survived,,,,,,,,,
+PSC_39,H05,,,16,32,9/23/21,10/2/21,2,na,na,control,9,NA,0,0,0,10/16/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> unfiltered inoculum --> 5 Oct 21; still heat-killed at this point??,,,,,,,,,arm twisted around wound
+PSC_40,H04,,,30,60,9/23/21,10/2/21,2,na,na,control,9,NA,0,0,0,10/3/21,DEAD 3 OCT 21 used in prelim experiment: given live inoc - survived,,,,,,,,,
+PSC_42,H03,,,25,50,9/23/21,10/3/21,2,na,na,control,9,NA,0,0,0,10/18/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21,,,,,,,,,
+PSC_43,E02,,,20,40,9/23/21,10/3/21,2,na,na,unfilteredlive,10,armdrop,1,1,0,10/5/21,DEAD 5 OCT 21 used in prelim experiment: given live inoc - survived --> this star used for inoculate for 5 Oct 21,,,,,,,,,
+PSC_48,E14,,,14,28,10/5/21,10/7/21,?,na,na,0.45live,,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21,,,,,,,,,
+PSC_49,E16,,,25,50,10/5/21,10/7/21,?,na,na,0.45live,,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21,,,,,,,,,
+PSC_52,E11,,SanJuanIsland,15,30,10/5/21,10/14/21,3,0.45live,na,control,9,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21,,,,,,,,,
+PSC_54,E18 ,,,12,24,10/5/21,10/14/21,3,0.45live,na,control,9,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21,,,,,,,,,
+PSC_56,E06,,,17,34,10/5/21,10/14/21,3,0.45live,na,control,9,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21,,,,,,,,,
+PSC_57,H06,,SanJuanIsland,16,32,10/5/21,10/14/21,3,na,na,unfilteredlive,9,armdrop,2,0,0,10/16/21,10/5/21 live inoc,,,,,,,,,
+PSC_58,H05,,,25,50,10/5/21,10/14/21,3,na,na,control,9,NA,0,0,0,10/18/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21,,,,,,,,,
+PSC_59,H01,,,23,46,10/5/21,10/14/21,3,na,na,unfilteredlive,9,armtwist,0,6,0,10/16/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> unfiltered inoculum --> 5 Oct 21,,,,,,,,,also uneven turgor and stretching; unsure exact number of twisted arms
+PSC_61,E09,,,13,26,10/5/21,10/15/21,3,0.45live,na,control,10,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21,,,,,,,,,
+PSC_63,H03,,,25,50,10/5/21,10/15/21,3,na,na,control,10,NA,0,0,0,10/18/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21,,,,,,,,,
+PSC_64,H05,,,25,50,10/5/21,10/15/21,3,na,na,control,10,NA,0,0,0,10/18/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21,,,,,,,,,
+PSC_67,H09,,,15,30,10/5/21,10/15/21,3,na,na,unfilteredlive,10,armdrop,2,0,0,10/16/21,10/5/21 live inoc,,,,,,,,,
+PSC_69,H04,,,16,32,10/5/21,10/15/21,3,na,na,unfilteredlive,10,armdrop,4,12+,0,10/16/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> unfiltered inoculum --> 5 Oct 21,,,,,,,,,
+PSC_71,H18,,,14,28,10/5/21,10/15/21,3,na,na,unfilteredlive,10,armdrop,14,~6,0,10/15/21,10/5/21 live inoc,,,,,,,,,second set of arm drops
+PSC_73,H03,,,25,50,10/5/21,10/16/21,3,na,na,control,11,NA,0,0,0,10/18/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21,,,,,,,,,
+PSC_75,H08,,,24,48,10/5/21,10/16/21,3,na,na,unfilteredlive,11,armdrop,1,0,0,10/18/21,10/5/21 live inoc,,,,,,,,,some arm curling
+PSC_76,E10,,,26,52,10/5/21,10/17/21,3,0.45live,na,control,12,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21,,,,,,,,,
+PSC_78,H10,,,25,50,10/5/21,10/17/21,3,na,na,unfilteredlive,12,armdrop,1,0,0,10/18/21,10/5/21 live inoc,,,,,,,,,
+PSC_81,E07,first collection,DallasBank,16,32,10/5/21,10/18/21,3,0.45live,na,control,13,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21,,,,,,,,,
+PSC_83,H07,,,15,30,10/5/21,10/18/21,3,na,na,unfilteredlive,13,armcross,0,0,6,10/18/21,censored 10/18/21,,,,,,,,,
