@@ -18,14 +18,7 @@ library(pheatmap)
 library(RColorBrewer)
 library(data.table)
 library(ggplot2)
-library(adonis2)
-```
-
-```{r}
-if (!require("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
-BiocManager::install("adonis2")
+library(vegan)
 ```
 
 
@@ -115,10 +108,7 @@ permanova.expB <- adonis2(scale(vsd.transpose.df[c(2:26582)]) %>%
 permanova.expB #Significant influence of all factors
 ``` 
 
-```{r}
-#broom::tidy(permanova.convad) %>%
-#  write.csv("../analyses/08-deseq2/7controlV7armdrop_Permanova_results.csv", quote = FALSE) #Save PERMANOVA output
-```
+
 
 
 
