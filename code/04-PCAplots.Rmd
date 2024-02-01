@@ -3,7 +3,7 @@ title: "04-PCAplots"
 output: html_document
 date: "2024-02-01"
 ---
-Rmd to use `DESeq2` to get differential gene expression between different treatment groups from Summer 2021 _Pycnpoodia helianthoides_ SSWD Challenge Experiments. RNAseq data is from _Pycnopodia helianthoides_ coelomocytes (immune cells).
+Rmd to create PCA plots to look for any preliminary effects of treatment, etc., on star gene expression in preparation for `DESEq2`. Gene counts were gotten from aligning libraries to the gene list FASTA using `kallisto`. 
 
 
 ```{r}
@@ -18,9 +18,18 @@ library(pheatmap)
 library(RColorBrewer)
 library(data.table)
 library(ggplot2)
+library(adonis2)
 ```
 
-# Read in count matrix from comparing the 2021 _Pycnopodia helianthoides_ coelomocyte RNAseq libraries with the 2023 _Pycnopodia helianthoides_ genome gene list FASTA:  
+```{r}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("adonis2")
+```
+
+
+# Read in rounded count matrix from comparing the 2021 _Pycnopodia helianthoides_ coelomocyte RNAseq libraries with the 2023 _Pycnopodia helianthoides_ genome gene list FASTA:  
 ```{r}
 countmatrix <- read.delim("../data/kallisto_count_matrix_rounded.tab", header = TRUE, sep = '\t')
 head(countmatrix)
@@ -29,6 +38,87 @@ head(countmatrix)
 
 ## QUESTION 
 When done with the 2015 Phel transcriptome, it was 29476 genes... is genome smaller list because it's more fine-tuned to _Pycnopodia helianthoides_ whereas the _de novo_ assembled transcriptome included some incidental non-host transcripts? 
+
+
+# Subset all data from what we'll call Experiment B (stars that were incoulated with a treatment October 5, 2024)
+n = 18      
+Exposed --> n = 8 (8 samples from 8 stars)    
+Control --> n = 10 (10 samples, from 8 stars ... 2 stars have two sample time points)    
+
+
+```{r}
+expB <- select(countmatrix, "PSC.56", "PSC.81", "PSC.61", "PSC.76", "PSC.52", "PSC.54", "PSC.63", "PSC.73", "PSC.58", "PSC.64", "PSC.57", "PSC.59", "PSC.67", "PSC.69", "PSC.71", "PSC.75", "PSC.78", "PSC.83")
+head(expB)
+```
+
+## Make a dataframe for PCA comparison:
+```{r}
+colData <- data.frame(condition=factor(c("control", "control", "control", "control", "control", "control", "control", "control", "control", "control", "exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "exposed")),
+                      type=factor(rep("paired-end",18)))
+rownames(colData) <- colnames(expB)
+dds <- DESeqDataSetFromMatrix(countData = expB,
+                              colData = colData,
+                              design = ~ condition)
+```
+
+```{r}
+dds <- DESeq(dds)
+res <- results(dds)
+res <- res[order(rownames(res)), ]
+```
+
+From [Bioconductor `DESeq2` Vignette](http://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html):     
+```{r}
+vsd <- vst(dds, blind=FALSE)
+rld <- rlog(dds, blind=FALSE)
+head(assay(vsd), 3)
+```
+
+```{r}
+plot <- plotPCA(vsd, intgroup=c("condition", "type"))
+nudge <- position_nudge(y = 5)
+plot + geom_text(aes(label = name), position = nudge)
+```
+Create a permanova plot to get statistical significance if any:
+transpose the vsd data so that the genes are the columns and the rows (n=14) are the libraries 
+```{r}
+vsd.transpose <- t(assay(vsd))
+head(vsd.transpose)
+```
+
+vsd.transpose is currently a matrix, but adonis2 needs it to be a data frame. Make it into a dataframe:
+```{r}
+vsd.transpose.df=as.data.frame(vsd.transpose)
+head(vsd.transpose.df)
+```
+make rownames into a column called LibraryID:
+```{r}
+library(tibble)
+vsd.transpose.df <- tibble::rownames_to_column(vsd.transpose.df, "LibraryID")
+head(vsd.transpose.df)
+```
+
+Add columns to dataframe to explain the libraries:
+```{r}
+vsd.transpose.df$condition <- c("control", "control", "control", "control", "control", "control", "control", "control", "control", "control", "exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "exposed")
+head(vsd.transpose.df)
+```
+
+
+
+
+
+run a permanova to get significance:
+```{r}
+permanova.expB <- adonis2(scale(vsd.transpose.df[c(2:26582)]) %>%
+                       replace(is.na(.), 0) ~ condition, data = vsd.transpose.df, method = "eu")  
+permanova.expB #Significant influence of all factors
+``` 
+
+```{r}
+#broom::tidy(permanova.convad) %>%
+#  write.csv("../analyses/08-deseq2/7controlV7armdrop_Permanova_results.csv", quote = FALSE) #Save PERMANOVA output
+```
 
 
 
