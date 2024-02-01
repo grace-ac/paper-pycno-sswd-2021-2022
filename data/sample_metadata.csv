@@ -11,8 +11,8 @@ PSC_39,H05,,,16,32,9/23/21,10/2/21,2,na,na,control,9,NA,0,0,0,10/16/21,used in p
 PSC_40,H04,,,30,60,9/23/21,10/2/21,2,na,na,control,9,NA,0,0,0,10/3/21,DEAD 3 OCT 21 used in prelim experiment: given live inoc - survived,,,,,,,,,
 PSC_42,H03,,,25,50,9/23/21,10/3/21,2,na,na,control,9,NA,0,0,0,10/18/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21,,,,,,,,,
 PSC_43,E02,,,20,40,9/23/21,10/3/21,2,na,na,unfilteredlive,10,armdrop,1,1,0,10/5/21,DEAD 5 OCT 21 used in prelim experiment: given live inoc - survived --> this star used for inoculate for 5 Oct 21,,,,,,,,,
-PSC_48,E14,,,14,28,10/5/21,10/7/21,2,0.45live,na,0.45live,12,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21;not used in last experiment - released nito water table,,,,,,,,,
-PSC_49,E16,,,25,50,10/5/21,10/7/21,2,0.45live,na,0.45live,12,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21;not used in last experiment - released nito water table,,,,,,,,,
+PSC_48,E14,,,14,28,10/5/21,10/7/21,2,na,na,0.45live,12,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21;not used in last experiment - released nito water table,,,,,,,,,
+PSC_49,E16,,,25,50,10/5/21,10/7/21,2,na,na,0.45live,12,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21;not used in last experiment - released nito water table,,,,,,,,,
 PSC_52,E11,,SanJuanIsland,15,30,10/5/21,10/14/21,3,0.45live,na,control,9,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21,,,,,,,,,arm twisted around wound
 PSC_54,E18 ,,,12,24,10/5/21,10/14/21,3,0.45live,na,control,9,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21,,,,,,,,,
 PSC_56,E06,,,17,34,10/5/21,10/14/21,3,0.45live,na,control,9,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21,,,,,,,,,
