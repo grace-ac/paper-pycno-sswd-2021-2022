@@ -109,7 +109,86 @@ permanova.expB #Significant influence of all factors
 ``` 
 
 
+# CLEAR R ENVIRONMENT
+
+# Compare controls from Experiment B, pre-exposed by 0.45um filtered live inoculate from Experiment A and not pre-exposed
+n =10 libraries; 8 individual stars (6 pre-exposed, 2 not). The two stars that were not pre-exposed have two sampling time points each. 
+
+## Read in rounded count matrix from comparing the 2021 _Pycnopodia helianthoides_ coelomocyte RNAseq libraries with the 2023 _Pycnopodia helianthoides_ genome gene list FASTA:  
+```{r}
+countmatrix <- read.delim("../data/kallisto_count_matrix_rounded.tab", header = TRUE, sep = '\t')
+head(countmatrix)
+```
+
+## subset libraries from Experiment B that are controls:
+```{r}
+expBcontrols <- select(countmatrix, "PSC.56", "PSC.81", "PSC.61", "PSC.76", "PSC.52", "PSC.54", "PSC.63", "PSC.73", "PSC.58", "PSC.64")
+head(expBcontrols)
+```
+
+## Make a dataframe for PCA comparison:
+```{r}
+colData <- data.frame(condition=factor(c("pre-exposed", "pre-exposed", "pre-exposed", "pre-exposed", "pre-exposed", "pre-exposed", "not-pre-exposed", "not-pre-exposed", "not-pre-exposed", "not-pre-exposed")),
+                      type=factor(rep("paired-end",10)))
+rownames(colData) <- colnames(expBcontrols)
+dds <- DESeqDataSetFromMatrix(countData = expBcontrols,
+                              colData = colData,
+                              design = ~ condition)
+```
+
+```{r}
+dds <- DESeq(dds)
+res <- results(dds)
+res <- res[order(rownames(res)), ]
+```
+
+From [Bioconductor `DESeq2` Vignette](http://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html):     
+```{r}
+vsd <- vst(dds, blind=FALSE)
+rld <- rlog(dds, blind=FALSE)
+head(assay(vsd), 3)
+```
+
+```{r}
+plot <- plotPCA(vsd, intgroup=c("condition", "type"))
+nudge <- position_nudge(y = 5)
+plot + geom_text(aes(label = name), position = nudge)
+```
+
+Create a permanova plot to get statistical significance if any:
+transpose the vsd data so that the genes are the columns and the rows (n=14) are the libraries 
+```{r}
+vsd.transpose <- t(assay(vsd))
+head(vsd.transpose)
+```
+
+vsd.transpose is currently a matrix, but adonis2 needs it to be a data frame. Make it into a dataframe:
+```{r}
+vsd.transpose.df=as.data.frame(vsd.transpose)
+head(vsd.transpose.df)
+```
+make rownames into a column called LibraryID:
+```{r}
+library(tibble)
+vsd.transpose.df <- tibble::rownames_to_column(vsd.transpose.df, "LibraryID")
+head(vsd.transpose.df)
+```
+
+Add columns to dataframe to explain the libraries:
+```{r}
+vsd.transpose.df$condition <- c("pre-exposed", "pre-exposed", "pre-exposed", "pre-exposed", "pre-exposed", "pre-exposed", "not-pre-exposed", "not-pre-exposed", "not-pre-exposed", "not-pre-exposed")
+head(vsd.transpose.df)
+```
 
 
+
+
+
+run a permanova to get significance:
+```{r}
+permanova.expBcontrols <- adonis2(scale(vsd.transpose.df[c(2:26582)]) %>%
+                       replace(is.na(.), 0) ~ condition, data = vsd.transpose.df, method = "eu")  
+permanova.expBcontrols #Significant influence of all factors
+``` 
 
 
