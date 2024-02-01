@@ -1,6 +1,6 @@
 ﻿library_ID,star_ID,star_collection_date,star_collection_location,star_radius_cm,star_diameter_cm,most_recent_inoc_date,sample_date,experiment_number,exposure_history,days_since_tank_exposure,treatment_group,experiment_day,disease_sign,number_arms_dropped,number_arm_twist,number_arms_crossed,star_death_date,notes,,,,,,,,,notes2
-PSC_19,H16,second collection,DallasBank,24,48,9/23/21,9/23/21,2,tankexposed,,control,0,armdrop,2,0,0,9/24/21,died before got unfiltered inoculum,,,,,,,,,
-PSC_23,H15,second collection,DallasBank,19,38,9/23/21,9/26/21,2,tankexposed,,control,3,armdrop,2,1,0,9/27/21,died before got unfiltered inoculum,,,,,,,,,
+PSC_19,H16,second collection,DallasBank,24,48,9/23/21,9/23/21,na,tankexposed,,na,0,armdrop,2,0,0,9/24/21,died before got unfiltered inoculum,,,,,,,,,
+PSC_23,H15,second collection,DallasBank,19,38,9/23/21,9/26/21,2,tankexposed,,control,3,armdrop,2,1,0,9/27/21,injected with heat-killed 9/23/21,,,,,,,,,
 PSC_24,E13,second collection,DallasBank,18,36,9/23/21,9/27/21,2,tankexposed,,0.45live,4,armdrop,2,0,0,9/28/21,injected with 0.45 live inoc 23 Sept (sampled before injected with heat-killed live inoc on 5 Oct 21),,,,,,,,,
 PSC_34,H12,second collection,DallasBank,23,46,9/23/21,10/2/21,2,tankexposed,,0.45live,9,armtwist,0,1,0,10/18/21,injected with 0.45 live inoc 23 Sept (sampled before injected with heat-killed live inoc on 5 Oct 21),,,,,,,,,
 PSC_35,E05,,,21,42,9/23/21,10/2/21,2,na,na,unfilteredlive,9,armdrop,6,0,0,10/3/21,died before got unfiltered inoculum,,,,,,,,,
