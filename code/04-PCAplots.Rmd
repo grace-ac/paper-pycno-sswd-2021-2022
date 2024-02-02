@@ -353,6 +353,3 @@ permanova.expB <- adonis2(scale(vsd.transpose.df[c(2:26582)]) %>%
 permanova.expB #Significant influence of all factors
 ``` 
 
-
-
-
