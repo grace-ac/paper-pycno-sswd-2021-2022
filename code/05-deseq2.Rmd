@@ -21,7 +21,7 @@ countmatrix <- read.delim("../data/kallisto_count_matrix_rounded.tab", header = 
 head(countmatrix)
 ```
 
-# Subset the libraries from "Experiment B" - stars that were part of the final experiment that were injected with their inoculate (either unfiltered raw tissue homogenate from a wasting adult _Pycnopodia helianthoides_, or a heat-killed raw tissue homogenate from a wasting adult _Pycnopodia helianthoides_). 
+# Subset the libraries from "Experiment B" - stars that were part of the final experiment that were injected with their inoculate (either unfiltered raw tissue homogenate from a wasting adult _Pycnopodia helianthoides_, or a heat-killed raw tissue homogenate from a wasting adult _Pycnopodia helianthoides_). Stars H03 and H05 had two time points as controls, so I picked one of each so that it's a balanced 8 vs 8 comparison.      
 
 | library_ID | star_ID | previous_exposure           | treatment         | sample_date | experiment_day |
 |------------|---------|-----------------------------|-------------------|-------------|----------------|
