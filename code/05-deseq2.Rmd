@@ -15,7 +15,7 @@ library(data.table)
 library(ggplot2)
 ```
 
-# load rounded count matrix of all 32 coelomocyte RNAseq libraries: 
+# load rounded count matrix of all 32 coelomocyte RNAseq libraries with genome gene list FASTA alignment: 
 ```{r}
 countmatrix <- read.delim("../data/kallisto_count_matrix_rounded.tab", header = TRUE, sep = '\t')
 head(countmatrix)
@@ -105,6 +105,90 @@ Wrote out 2024-02-02.
 ```
 
 
+# CLEAR ENVIRONMENT: Next - Experiment A Stars at Arm Drop vs Control/Healthy 
+## load rounded count matrix of all 32 coelomocyte RNAseq libraries with genome gene list FASTA alignment: 
+```{r}
+countmatrix <- read.delim("../data/kallisto_count_matrix_rounded.tab", header = TRUE, sep = '\t')
+head(countmatrix)
+```
+
+## Subset libraries from Experiment A: 
+| library_ID | star_ID | previous_exposure | treatment      | sample_date | experiment_day |
+|------------|---------|-------------------|----------------|-------------|----------------|
+| PSC.19     | H16     | tank_exposure     | na             | 9/23/21     | na             |
+| PSC.23     | H15     | tank_exposure     | control        | 9/26/21     | 3              |
+| PSC.24     | E13     | tank_exposure     | 0.45live       | 9/27/21     | 4              |
+| PSC.34     | H12     | tank_exposure     | 0.45live       | 10/2/21     | 9              |
+| PSC.35     | E05     | na                | unfilteredlive | 10/2/21     | 9              |
+| PSC.36     | E04     | na                | unfilteredlive | 10/2/21     | 9              |
+| PSC.37     | E01     | na                | unfilteredlive | 10/2/21     | 9              |
+| PSC.38     | E12     | na                | 0.45live       | 10/2/21     | 9              |
+| PSC.39     | H05     | na                | control        | 10/2/21     | 9              |
+| PSC.40     | H04     | na                | control        | 10/2/21     | 9              |
+| PSC.42     | H03     | na                | control        | 10/3/21     | 9              |
+| PSC.43     | E02     | na                | unfilteredlive | 10/3/21     | 10             |
+| PSC.48     | E14     | na                | 0.45live       | 10/7/21     | 12             |
+| PSC.49     | E16     | na                | 0.45live       | 10/7/21     | 12             |
+
+```{r}
+expA <- select(countmatrix, "PSC.19", "PSC.23", "PSC.24", "PSC.34", "PSC.35", "PSC.36", "PSC.37", "PSC.38", "PSC.39", "PSC.40", "PSC.42", "PSC.43", "PSC.48", "PSC.49")
+head(expA)
+```
+
+Make a data frame for the comparison:    
+"Exposed" will mean stars that have dropped arms, and "Control" will mean stars that are healthy, regardless of their treatment group as specified in above sample table. 
+```{r}
+colData <- data.frame(condition=factor(c("exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "control", "control", "control", "control", "exposed", "control", "control")),
+                      type=factor(rep("paired-end",14)))
+rownames(colData) <- colnames(expA)
+dds <- DESeqDataSetFromMatrix(countData = expA,
+                              colData = colData,
+                              design = ~ condition)
+```
+
+```{r}
+dds <- DESeq(dds)
+res <- results(dds)
+res <- res[order(rownames(res)), ]
+```
+
+From [Bioconductor `DESeq2` Vignette](http://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html):     
+```{r}
+vsd <- vst(dds, blind=FALSE)
+rld <- rlog(dds, blind=FALSE)
+head(assay(vsd), 3)
+```
 
 
+```{r}
+plot <- plotPCA(vsd, intgroup=c("condition"))
+nudge <- position_nudge(y = 4)
+plot + geom_text(aes(label = name), position = nudge)
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res[!is.na(res$padj) & res$padj <= 0.05, ])
+```
+4093 DEGs
+
+```{r}
+control_v_exposed_fig <- res
+# The main plot
+plot(control_v_exposed_fig$baseMean, control_v_exposed_fig$log2FoldChange, pch=20, cex=0.45, ylim=c(-15, 15), log="x", col="darkgray",
+     main="Control vs Exposed (pval </= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+control_v_exposed_fig.sig <- res[!is.na(res$padj) & res$padj <= 0.05, ]
+points(control_v_exposed_fig.sig$baseMean, control_v_exposed_fig.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
+
+Write out list of those 4093 DEGs:
+Wrote out 2024-02-09. 
+```{r}
+#write.table(control_v_exposed_fig.sig, "../analyses/05-deseq2/expA_DEGlist_armdrop-exposed_v_healthy-control.tab", sep = "\t", row.names = T, quote = FALSE, col.names = TRUE)
+```
 
