@@ -281,8 +281,98 @@ abline(h=c(-1,1), col="blue")
 ```
 
 
-
 ## Experiment A: Unfiltered Live vs. Control (uvc)
+```{r}
+uvc <- select(countmatrix, "PSC.23", "PSC.35", "PSC.36", "PSC.37", "PSC.39", "PSC.40", "PSC.42", "PSC.43")
+head(uvc)
+```
+
+Make a data frame for the comparison: 
+"exposed" is unfiltered homogenate, and "control" is heat-kille
+```{r}
+colDatauvc <- data.frame(condition=factor(c("control", "exposed", "exposed", "exposed", "control", "control", "control", "exposed")),
+                      type=factor(rep("paired-end", 8)))
+rownames(colDatauvc) <- colnames(uvc)
+ddsuvc <- DESeqDataSetFromMatrix(countData = uvc,
+                              colData = colDatauvc,
+                              design = ~ condition)
+```
+
+```{r}
+ddsuvc <- DESeq(ddsuvc)
+resuvc <- results(ddsuvc)
+resuvc <- resuvc[order(rownames(resuvc)), ]
+```
+From [Bioconductor `DESeq2` Vignette](http://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html):     
+```{r}
+vsduvc <- vst(ddsuvc, blind=FALSE)
+rlduvc <- rlog(ddsuvc, blind=FALSE)
+head(assay(vsduvc), 3)
+```
+
+```{r}
+plotuvc <- plotPCA(vsduvc, intgroup=c("condition"))
+nudge <- position_nudge(y = 4)
+plotuvc + geom_text(aes(label = name), position = nudge)
+```
+
+Run PERMANOVA:
+```{r}
+vsduvc.transpose <- t(assay(vsduvc))
+head(vsduvc.transpose)
+```
+
+vsd.transpose is currently a matrix, but adonis2 needs it to be a data frame. Make it into a dataframe:
+```{r}
+vsduvc.transpose.df=as.data.frame(vsduvc.transpose)
+head(vsduvc.transpose.df)
+```
+
+make rownames into a column called LibraryID:
+```{r}
+library(tibble)
+vsduvc.transpose.df <- tibble::rownames_to_column(vsduvc.transpose.df, "LibraryID")
+head(vsduvc.transpose.df)
+```
+Add columns to dataframe to explain the libraries:
+```{r}
+vsduvc.transpose.df$condition <- c("control", "exposed", "exposed", "exposed", "control", "control", "control", "exposed")
+head(vsduvc.transpose.df)
+```
+
+run a permanova to get significance:
+```{r}
+permanova.uvc <- adonis2(scale(vsduvc.transpose.df[c(2:26582)]) %>%
+                       replace(is.na(.), 0) ~ condition, data = vsduvc.transpose.df, method = "eu")  
+permanova.uvc #Significant influence of all factors
+``` 
+0.222 --> no significant difference 
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(resuvc[!is.na(resuvc$padj) & resuvc$padj <= 0.05, ])
+```
+36 degs
+
+```{r}
+unfilt_v_control_fig <- resuvc
+# The main plot
+plot(unfilt_v_control_fig$baseMean, unfilt_v_control_fig$log2FoldChange, pch=20, cex=0.45, ylim=c(-15, 15), log="x", col="darkgray",
+     main="Unfiltered vs Microbial Fraction (pval </= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+unfilt_v_control_fig.sig <- resuvc[!is.na(resuvc$padj) & resuvc$padj <= 0.05, ]
+points(unfilt_v_control_fig.sig$baseMean, unfilt_v_control_fig.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC line
+abline(h=c(-1,1), col="blue")
+```
+
+Write out list of those 7834 DEGs:
+Wrote out 2024-02-08. 
+```{r}
+#write.table(unfilt_v_control_fig.sig, "../analyses/05-deseq2/expA_DEGlist_control_v_unfiltered.tab", sep = "\t", row.names = T, quote = FALSE, col.names = TRUE)
+```
 
 ## Experiment A: 0.45live vs Control (fvc)
 
