@@ -192,3 +192,97 @@ Wrote out 2024-02-09.
 #write.table(control_v_exposed_fig.sig, "../analyses/05-deseq2/expA_DEGlist_armdrop-exposed_v_healthy-control.tab", sep = "\t", row.names = T, quote = FALSE, col.names = TRUE)
 ```
 
+# Experiment A: Pairwise Comparisons Across 3 treatment groups:
+## Experiment A: Unfiltered Live vs. 0.45live inoculate (uvf)
+```{r}
+uvf <- select(countmatrix, "PSC.24", "PSC.34", "PSC.35", "PSC.36", "PSC.37", "PSC.38", "PSC.43", "PSC.48", "PSC.49")
+head(uvf)
+```
+9 libraries 
+
+Make a data frame for the comparison: 
+0.45live will be designated as "microbef" for microbial fraction, and unfiltered will be "exposed"
+```{r}
+colDatauvf <- data.frame(condition=factor(c("microbef", "microbef", "exposed", "exposed", "exposed", "microbef", "exposed", "microbef", "microbef")),
+                      type=factor(rep("paired-end", 9)))
+rownames(colDatauvf) <- colnames(uvf)
+ddsuvf <- DESeqDataSetFromMatrix(countData = uvf,
+                              colData = colDatauvf,
+                              design = ~ condition)
+```
+
+
+```{r}
+ddsuvf <- DESeq(ddsuvf)
+resuvf <- results(ddsuvf)
+resuvf <- resuvf[order(rownames(resuvf)), ]
+```
+From [Bioconductor `DESeq2` Vignette](http://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html):     
+```{r}
+vsduvf <- vst(ddsuvf, blind=FALSE)
+rlduvf <- rlog(ddsuvf, blind=FALSE)
+head(assay(vsduvf), 3)
+```
+```{r}
+plotuvf <- plotPCA(vsduvf, intgroup=c("condition"))
+nudge <- position_nudge(y = 4)
+plotuvf + geom_text(aes(label = name), position = nudge)
+```
+Run PERMANOVA:
+```{r}
+vsduvf.transpose <- t(assay(vsduvf))
+head(vsduvf.transpose)
+```
+
+vsd.transpose is currently a matrix, but adonis2 needs it to be a data frame. Make it into a dataframe:
+```{r}
+vsduvf.transpose.df=as.data.frame(vsduvf.transpose)
+head(vsduvf.transpose.df)
+```
+
+make rownames into a column called LibraryID:
+```{r}
+library(tibble)
+vsduvf.transpose.df <- tibble::rownames_to_column(vsduvf.transpose.df, "LibraryID")
+head(vsduvf.transpose.df)
+```
+Add columns to dataframe to explain the libraries:
+```{r}
+vsduvf.transpose.df$condition <- c("microbef", "microbef", "exposed", "exposed", "exposed", "microbef", "exposed", "microbef", "microbef")
+head(vsduvf.transpose.df)
+```
+
+run a permanova to get significance:
+```{r}
+permanova.uvf <- adonis2(scale(vsduvf.transpose.df[c(2:26582)]) %>%
+                       replace(is.na(.), 0) ~ condition, data = vsduvf.transpose.df, method = "eu")  
+permanova.uvf #Significant influence of all factors
+``` 
+0.367 --> NO SIG DIFFERENCE
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(resuvf[!is.na(resuvf$padj) & resuvf$padj <= 0.05, ])
+```
+no degs
+
+```{r}
+unfilt_v_microbef_fig <- resuvf
+# The main plot
+plot(unfilt_v_microbef_fig$baseMean, unfilt_v_microbef_fig$log2FoldChange, pch=20, cex=0.45, ylim=c(-15, 15), log="x", col="darkgray",
+     main="Unfiltered vs Microbial Fraction (pval </= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+unfilt_v_microbef_fig.sig <- resuvf[!is.na(resuvf$padj) & resuvf$padj <= 0.05, ]
+points(unfilt_v_microbef_fig.sig$baseMean, unfilt_v_microbef_fig.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
+
+
+
+## Experiment A: Unfiltered Live vs. Control (uvc)
+
+## Experiment A: 0.45live vs Control (fvc)
+
