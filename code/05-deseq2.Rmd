@@ -358,7 +358,7 @@ dim(resuvc[!is.na(resuvc$padj) & resuvc$padj <= 0.05, ])
 unfilt_v_control_fig <- resuvc
 # The main plot
 plot(unfilt_v_control_fig$baseMean, unfilt_v_control_fig$log2FoldChange, pch=20, cex=0.45, ylim=c(-15, 15), log="x", col="darkgray",
-     main="Unfiltered vs Microbial Fraction (pval </= 0.05)",
+     main="Unfiltered vs Control (pval </= 0.05)",
      xlab="mean of normalized counts",
      ylab="Log2 Fold Change")
 # Getting the significant points and plotting them again so they're a different color
