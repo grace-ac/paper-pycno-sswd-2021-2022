@@ -1,0 +1,104 @@
+---
+title: "06-summer2021_blast"
+output: html_document
+date: "2024-02-26"
+---
+Rmd to perform BLAST with the _Pycnopodia helianthoides_ genome gene list against the published _Pycnopodia helianthoides_ genome. 
+
+Genome gene list: `project-pycno-sizeclass-2022/data/augustus.hints.codingseq`
+
+Based on this jupyter notebook by Steven Roberts: https://github.com/RobertsLab/code/blob/master/09-blast.ipynb 
+
+```{bash}
+pwd
+```
+
+```{bash}
+/home/shared/ncbi-blast-2.15.0+/bin/blastx -h
+```
+
+
+# Create a BLAST database
+I would like to make a database of UniProt/Swiss-prot. see https://www.uniprot.org/downloads 
+
+```{bash}
+cd /home/shared/8TB_HDD_02/graceac9/GitHub/paper-pycno-sswd-2021/analyses/06-BLAST
+curl -O https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz
+mv uniprot_sprot.fasta.gz uniprot_sprot_r2021_03.fasta.gz
+gunzip -k uniprot_sprot_r2021_03.fasta.gz
+cd -
+```
+
+```{bash}
+pwd
+```
+
+```{python}
+bldr = "/home/shared/ncbi-blast-2.15.0+/bin/"
+```
+
+```{bash}
+${bldr}makeblastdb \
+-in /home/shared/8TB_HDD_02/graceac9/GitHub/paper-pycno-sswd-2021/analyses/06-BLAST/uniprot_sprot_r2021_03.fasta \
+-dbtype prot \
+-out /home/shared/8TB_HDD_02/graceac9/GitHub/paper-pycno-sswd-2021/analyses/06-BLAST/uniprot_sprot_r2021_03
+```
+
+# Get a Query Sequence
+```{bash}
+pwd
+```
+
+`rsync` the data/augustus.hints.codingseq to the raven code directory. 
+
+In command line, `ssh` into Raven, and into this working directory. Then use code below to `rsync` data to this directory.
+
+Code:    
+`rsync --archive --progress --verbose graceac9@raven.fish.washington.edu:/home/shared/8TB_HDD_02/graceac9/GitHub/project-pycno-sizeclass-2022/data/augustus.hints.codingseq /home/shared/8TB_HDD_02/graceac9/GitHub/paper-pycno-sswd-2021/code/`
+
+
+```{python}
+#how many sequences? lets count ">" as we know each contig has 1
+!grep -c ">" augustus.hints.codingseq
+```
+26581 sequences 
+
+# Run BLAST
+
+```{bash}
+pwd
+```
+
+
+Set paths to programs:
+```{python}
+blast_dir="/home/shared/ncbi-blast-2.15.0+/bin"
+blastx="${blast_dir}/blastx"
+```
+
+Set paths to files:
+```{python}
+genome_fasta="/home/shared/8TB_HDD_02/graceac9/GitHub/paper-pycno-sswd-2021/code/augustus.hints.codingseq"
+sp_db=""
+```
+
+```{bash}
+pwd
+```
+
+code from: https://sr320.github.io/tumbling-oysters/posts/sr320-04-mytgo/index.html 
+
+```{bash}
+/home/shared/ncbi-blast-2.15.0+/bin/blastx \
+-query augustus.hints.codingseq \
+-db ../analyses/06-BLAST/uniprot_sprot_r2021_03 \
+-out ../analyses/06-BLAST/summer2021-uniprot_blastx.tab \
+-evalue 1E-20 \
+-num_threads 40 \
+-max_target_seqs 1 \
+-outfmt 6
+```
+
+```{bash}
+head -2 ../analyses/06-BLAST/summer2021-uniprot_blastx.tab
+```
