@@ -102,3 +102,22 @@ code from: https://sr320.github.io/tumbling-oysters/posts/sr320-04-mytgo/index.h
 ```{bash}
 head -2 ../analyses/06-BLAST/summer2021-uniprot_blastx.tab
 ```
+
+Note:    
+In excel, I separated the columns that were "|" deliminated and made them "tab" delimited. 
+
+
+# Annotate the blast output with uniprot-SP-GO
+```{bash}
+pwd
+```
+
+Move the `/analyses/06-BLAST/summer2021-uniprot_blastx.tab` to the code directory
+
+the uniprot-SP-GO.sorted and GO-GOslim.sorted exist in my crab repositories, so I'll copy them over into 
+
+
+
+
+
+
