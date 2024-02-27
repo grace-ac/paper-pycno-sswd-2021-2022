@@ -6,8 +6,17 @@ date: "2024-02-26"
 Rmd to annotate the DEGlists from Experiments A and B from Summer 2021 Sea Star Wasting Disease Challenge Experiments. DEG lists will be annotated with the _Pycnopodia helianthoides_ genome gene list FASTA BLAST results, uniprot, GO, and the gene counts from the libraries. 
 
 Where the files live that will be used to annotate:    
-1. _P. helianthoides_ genome gene list FASTA BLAST output:     
-
+1. _P. helianthoides_ genome gene list FASTA BLAST output: `/analyses/06-BLAST/summer2021-uniprot_blastx.tab`
+2. DEG lists:      
+Experiment A -->     `/analyses/05-deseq2/expA_DEGlist_armdrop-exposed_v_healthy-control.tab`
+Experiment B -->     `/analyses/05-deseq2/expB_DEGlist_control_v_exposed.tab`
+3. `kallisto` gene counts: `/data/kallisto_count_matrix_rounded.tab`
+4. uniprot SP GO --> 
 
 Order of operations for each DEG list:       
 1. 
+
+
+
+
+
