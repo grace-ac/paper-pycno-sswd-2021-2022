@@ -114,7 +114,7 @@ pwd
 
 Move the `/analyses/06-BLAST/summer2021-uniprot_blastx.tab` to the code directory
 
-the uniprot-SP-GO.sorted and GO-GOslim.sorted exist in my crab repositories, so I'll copy them over into 
+the uniprot-SP-GO.sorted and GO-GOslim.sorted exist in my crab repositories, so I'll copy them over into this code directory
 
 
 
