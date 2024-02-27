@@ -116,6 +116,18 @@ Move the `/analyses/06-BLAST/summer2021-uniprot_blastx.tab` to the code director
 
 the uniprot-SP-GO.sorted and GO-GOslim.sorted exist in my crab repositories, so I'll copy them over into this code directory
 
+Check that everything is in the working directory:
+```{bash}
+ls
+```
+
+Yep!
+
+
+
+
+
+
 
 
 
