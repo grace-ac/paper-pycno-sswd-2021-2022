@@ -11,10 +11,17 @@ Where the files live that will be used to annotate:
 Experiment A -->     `/analyses/05-deseq2/expA_DEGlist_armdrop-exposed_v_healthy-control.tab`
 Experiment B -->     `/analyses/05-deseq2/expB_DEGlist_control_v_exposed.tab`
 3. `kallisto` gene counts: `/data/kallisto_count_matrix_rounded.tab`
-4. uniprot SP GO --> 
+4. Blastquery-GOslim.tab --> `analyses/06-BLAST/Blastquery-GOslim.tab`
 
 Order of operations for each DEG list:       
-1. 
+1. Read in the DEG list      
+2. `left_join` DEG list with the `kallisto` gene counts based on the column of transcript IDs     
+3. `left_join` that new list with the BLASTQuery-GOslim.tab based on 
+
+
+
+
+
 
 
 
