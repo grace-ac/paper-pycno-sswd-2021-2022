@@ -77,8 +77,31 @@ Write out the table:
 ```
 WRote out 02/29/2024
 
+# Create uniprot accession ID file for exp B deg list
 
+```{r}
+expB <- read.delim("../analyses/08-deglist_annot/expB_DEG_annot.tab")
+head(expB)
+```
 
+76506 rows
 
+Subset the uniprot accession id column:
+```{r}
+expB.ua <- select(expB, "uniprot_acc")
+head(expB.ua)
+```
 
+remove NA's
+```{r}
+expB.ua.nna <- na.omit(expB.ua)
+head(expB.ua.nna)
+```
+73540 rows (removed 2966 Nas)
+
+Write out table:
+```{r}
+#write.table(expB.ua.nna, "../analyses/09-DAVID/expB_DEG-uniprot_acc.txt", sep = "\t", row.names = F, quote = FALSE, col.names = TRUE)
+```
+WRote out 02/29/2024
 
