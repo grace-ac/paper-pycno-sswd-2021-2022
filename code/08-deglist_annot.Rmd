@@ -118,7 +118,43 @@ head(expADEG.c.pb.goslim)
 ```
 wrote out 02/29/2024. 
 
+## Annotate Experiment B DEG list 
 
+### Read in Experiment B DEG list
+```{r}
+expBDEG <- read.delim("../analyses/05-deseq2/expB_DEGlist_control_v_exposed.tab")
+head(expBDEG)
+```
 
+Make the rownames into a column called "gene_ID": 
+```{r}
+expBDEG <- tibble::rownames_to_column(expBDEG, "gene_ID")
+head(expBDEG)
+```
 
+### `left_join` with counts from the libraries included in this experiment B
+
+```{r}
+expBDEG.c <- left_join(expBDEG, expBcounts, by = "gene_ID")
+head(expBDEG.c)
+```
+
+### `left_join` the new expBDEG.c with the summer 2021 blastx file:
+```{r}
+expBDEG.c.pb <- left_join(expBDEG.c, phelblast, by = "gene_ID")
+head(expBDEG.c.pb)
+```
+
+### `left_join` the new expBDEG.c.pb with the blastquery goslim table
+```{r}
+expBDEG.c.pb.goslim <- left_join(expBDEG.c.pb, blastqGO, by = "gene_ID")
+head(expBDEG.c.pb.goslim)
+```
+
+## Write out the annotated DEG list: 
+```{r}
+#write.table(expBDEG.c.pb.goslim, "../analyses/08-deglist_annot/expB_DEG_annot.tab", sep = "\t", row.names = F, quote = FALSE, col.names = TRUE)
+```
+
+Wrote out 02/29/2024
 
