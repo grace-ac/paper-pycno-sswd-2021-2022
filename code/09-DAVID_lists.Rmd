@@ -47,3 +47,38 @@ write out as file:
 ```
 WRote out 02/29/2024
 
+# Create uniprot accession ID file for expA_DEG list
+
+Read in DEG list:
+```{r}
+expA <- read.delim("../analyses/08-deglist_annot/expA_DEG_annot.tab")
+head(expA)
+```
+
+Pull out uniprot Accession ID column (note there will be blanks because not every gene ID will have an annotation - make a note of the numbers!), and also note that some gene ids will have multiple annotations 
+
+Current file contains 4,403 rows 
+
+```{r}
+expA.ua <- select(expA, "uniprot_acc")
+head(expA.ua)
+```
+
+remove rows that are _NA_: 
+```{r}
+expA.ua.nna <- na.omit(expA.ua)
+head(expA.ua.nna)
+```
+Now contains 42606 rows (1,417 removed)
+
+Write out the table:
+```{r}
+#write.table(expA.ua.nna, "../analyses/09-DAVID/expA_DEG-uniprot_acc.txt", sep = "\t", row.names = F, quote = FALSE, col.names = TRUE)
+```
+WRote out 02/29/2024
+
+
+
+
+
+
