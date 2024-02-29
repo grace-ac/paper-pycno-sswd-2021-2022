@@ -1,0 +1,49 @@
+---
+title: "09-DAVID"
+output: html_document
+date: "2024-02-29"
+---
+Rmd for making files of information to put into DAVID to get enrichment. 
+
+Goals:   
+
+1. Create a file that contains all the uniprot Accession IDs from the _P. helianthoides_ genome gene list blastx `analyses/06-BLAST/summer2021-uniprot_blastx.tab`    
+2. Create a file that contains all the uniprot accession IDs from:    
+2a. Annotated DEG list from Experiment A: `analyses/08-deglist_annot/expA_DEG_annot.tab`    
+2b. Annotated DEG list from Experiment B: `analyses/08-deglist_annot/expB_DEG_annot.tab`   
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(tibble)
+```
+
+# Create Uniprot Accession ID file for `analyses/06-BLAST/summer2021-uniprot_blastx.tab`    
+
+Read in file: 
+
+```{r}
+phel.blast <- read.delim("../analyses/06-BLAST/summer2021-uniprot_blastx.tab", header = F)
+head(phel.blast)
+```
+
+Rename columns to make sure column "V3" is "uniprot_acc": 
+```{r}
+cols.phel.blast <- c("V1", "V2", "uniprot_acc", "V4", "V5", "V6", "V7", "V8", "V9", "V10", "V11", "V12", "V13", "V14")
+colnames(phel.blast) <- cols.phel.blast
+head(phel.blast)
+```
+
+Call out just column "uniprot_acc":
+
+```{r}
+blast.ua <- select(phel.blast, "uniprot_acc")
+head(blast.ua)
+```
+
+write out as file:
+```{r}
+#write.table(blast.ua, "../analyses/09-DAVID/phel-blast-uniprot_acc.txt", sep = "\t", row.names = F, quote = FALSE, col.names = TRUE)
+```
+WRote out 02/29/2024
+
