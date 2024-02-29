@@ -14,14 +14,109 @@ Experiment B -->     `/analyses/05-deseq2/expB_DEGlist_control_v_exposed.tab`
 4. Blastquery-GOslim.tab --> `analyses/06-BLAST/Blastquery-GOslim.tab`
 
 Order of operations for each DEG list:       
-1. Read in the DEG list      
+1. Read in the DEG list, and the 3 other files listed above           
 2. `left_join` DEG list with the `kallisto` gene counts based on the column of transcript IDs     
-3. `left_join` that new list with the BLASTQuery-GOslim.tab based on 
+3. `left_join` that new list with the summer2021-uniprot_blastx.tab based on transcript IDs
+4. `left_join` that new list with the BLASTQuery-GOslim.tab based on transcript IDs    
+
+```{r}
+library(tidyr)
+library(tibble)
+library(dplyr)
+```
+
+## Read in other files that aren't the DEG lists and make sure each has a "gene_ID" column:    
+
+### _P. helianthoides_ genome gene list FASTA BLAST output:     
+```{r}
+phelblast <- read.delim("../analyses/06-BLAST/summer2021-uniprot_blastx.tab", header = FALSE)
+head(phelblast)
+```
+
+Change Column 1 into a column cal;ed "gene_ID"
+```{r}
+cols.phelblast <- c("gene_ID", "sp", "uniprot_acc", "V4", "V5", "V6", "V7", "V8", "V9", "V10", "V11", "V12", "V13", "V14")
+colnames(phelblast) <- cols.phelblast
+head(phelblast)
+```
+
+### `kallisto` gene counts of the libraries that were compared to the _P. helianthoides_ genome gene list fasta:
+```{r}
+counts <- read.delim("../data/kallisto_count_matrix_rounded.tab")
+head(counts)
+```
+
+Make the rownames into a column called "gene_ID": 
+```{r}
+counts <- tibble::rownames_to_column(counts, "gene_ID")
+head(counts)
+```
+
+#### Create a subset of those data for the experiment A libraries
+```{r}
+expAcounts <- select(counts, "gene_ID", "PSC.19", "PSC.23", "PSC.24", "PSC.34", "PSC.35", "PSC.36", "PSC.37", "PSC.38", "PSC.39", "PSC.40", "PSC.42", "PSC.43", "PSC.48", "PSC.49")
+head(expAcounts)
+```
 
 
+#### Create a subset of those data for the experiment B lirbaries
+```{r}
+expBcounts <- select(counts, "gene_ID", "PSC.56", "PSC.52", "PSC.54", "PSC.61", "PSC.64", "PSC.73", "PSC.76", "PSC.81", "PSC.59", "PSC.57", "PSC.69", "PSC.67", "PSC.71", "PSC.75", "PSC.78", "PSC.83")
+head(expBcounts)
+```
 
 
+### Blastquery GO Slim file
+```{r}
+blastqGO <- read.delim("../analyses/06-BLAST/Blastquery-GOslim.tab", header = FALSE)
+head(blastqGO)
+```
 
+Change Column 1 into a column cal;ed "gene_ID"
+```{r}
+cols.blastqGO <- c("gene_ID", "GO_ID", "biological_process", "V4")
+colnames(blastqGO) <- cols.blastqGO
+head(blastqGO)
+```
+
+## Annotate Experiment A DEG list
+
+### Read in the DEG list   
+```{r}
+expADEG <- read.delim("../analyses/05-deseq2/expA_DEGlist_armdrop-exposed_v_healthy-control.tab")
+head(expADEG)
+```
+
+Make the rownames into a column called "gene_ID": 
+```{r}
+expADEG <- tibble::rownames_to_column(expADEG, "gene_ID")
+head(expADEG)
+```
+
+### `left_join` with counts from the libraries included in this experiment A
+
+```{r}
+expADEG.c <- left_join(expADEG, expAcounts, by = "gene_ID")
+head(expADEG.c)
+```
+
+### `left_join` the new expADEG.c with the summer 2021 blastx file:
+```{r}
+expADEG.c.pb <- left_join(expADEG.c, phelblast, by = "gene_ID")
+head(expADEG.c.pb)
+```
+
+### `left_join` the new expADEG.c.pb with the blastquery goslim table
+```{r}
+expADEG.c.pb.goslim <- left_join(expADEG.c.pb, blastqGO, by = "gene_ID")
+head(expADEG.c.pb.goslim)
+```
+
+## Write out the annotated DEG list: 
+```{r}
+#write.table(expADEG.c.pb.goslim, "../analyses/08-deglist_annot/expA_DEG_annot.tab", sep = "\t", row.names = F, quote = FALSE, col.names = TRUE)
+```
+wrote out 02/29/2024. 
 
 
 
