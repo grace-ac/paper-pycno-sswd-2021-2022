@@ -1,0 +1,40 @@
+---
+title: "03-hisat2-summer2021_2022"
+output: html_document
+date: "2024-05-21"
+---
+Rmd to run `HISAT2` with _Pycnopodia helianthoides_ genome and _Pycnpoodia helianthoides_ coelomocyte RNAseq sequences. 
+
+All trimmed reads from summer 2021 and 2022 live on Raven:       
+Summer 2021     
+`/home/shared/8TB_HDD_02/graceac9/data/pycno2021`
+
+Summer 2022    
+`/home/shared/8TB_HDD_02/graceac9/data/pycno2022` 
+
+Get genome from NCBI into data directory on Raven:        
+https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_032158295.1/       
+Downloaded file via Google Chrome    
+Downloads --> 
+
+```{r, engine='bash'}
+cd ../data
+
+/home/shared/datasets download genome accession GCA_032158295.1 --include gff3,rna,cds,protein,genome,seq-report
+```
+
+```{r, engine='bash'}
+cd ../data
+unzip ncbi_dataset.zip
+
+```
+
+
+
+
+
+
+
+
+
+
