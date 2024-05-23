@@ -14,8 +14,6 @@ Summer 2022
 
 Get genome from NCBI into data directory on Raven:        
 https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_032158295.1/       
-Downloaded file via Google Chrome    
-Downloads --> 
 
 ```{r, engine='bash'}
 cd ../data
@@ -29,11 +27,63 @@ unzip ncbi_dataset.zip
 
 ```
 
+Get gtf file on raven into data folder:    
+I downloaded it originally from 
+
+rsync /Users/graciecrandall/Downloads/augustus.hints.gtf graceac9@raven.fish.washington.edu:/home/shared/8TB_HDD_02/graceac9/GitHub/paper-pycno-sswd-2021-2022/data
+graceac9@raven.fish.washington.edu's password: 
 
 
 
 
 
+# 1. BUILD AN INDEX
+
+Follow this code: https://htmlpreview.github.io/?https://github.com/urol-e5/deep-dive/blob/8fd4ad4546d1d95464952f0509406efd9e42ffa0/D-Apul/code/04-Apulcra-hisat.html 
+
+```{bash}
+pwd
+```
+
+
+```{bash}
+/home/shared/hisat2-2.2.1/hisat2_extract_exons.py \
+../data/augustus.hints.gtf \
+> ../analyses/03-hisat2/m_exon.tab
+```
+
+```{bash}
+head ../analyses/03-hisat2/m_exon.tab
+```
+
+```{bash}
+#!/bin/bash
+
+# This script will extract splice sites from the gtf file
+
+# This is the command to extract splice sites from the gtf file
+/home/shared/hisat2-2.2.1/hisat2_extract_splice_sites.py \
+../data/augustus.hints.gtf \
+> ../analyses/03-hisat2/m_splice_sites.tab
+
+```
+
+
+```{bash}
+# build an index 
+/home/shared/hisat2-2.2.1/hisat2-build \
+../data/ncbi_dataset/data/GCA_032158295.1/GCA_032158295.1_ASM3215829v1_genomic.fna \
+../data/Phel_genome_index \
+--exon ../analyses/03-hisat2/m_exon.tab \
+--ss ../analyses/03-hisat2/m_splice_sites.tab \
+-p 40 \
+../data/augustus.hints.gtf \
+2> ../analyses/03-hisat2/hisat2-build_stats.txt
+```
+
+```{bash}
+tail ../analyses/03-hisat2/hisat2-build_stats.txt
+```
 
 
 
