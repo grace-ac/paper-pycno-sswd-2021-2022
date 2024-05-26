@@ -1,0 +1,4 @@
+10-hisat-deseq2/GCF*
+10-hisat-deseq2/*sam
+10-hisat-deseq2/*bam
+10-hisat-deseq2/*bam*
