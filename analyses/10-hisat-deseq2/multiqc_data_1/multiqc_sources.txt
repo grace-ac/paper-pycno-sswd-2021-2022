@@ -1,0 +1,98 @@
+Module	Section	Sample Name	Source
+Bowtie 2 / HiSAT2	all_sections	PSC-35_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-35_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-73_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-73_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-75_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-75_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-71_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-71_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-40_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-40_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-59_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-59_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-37_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-37_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-38_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-38_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-36_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-36_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-24_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-24_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-43_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-43_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-49_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-49_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-48_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-48_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-64_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-64_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-78_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-78_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-57_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-57_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-52_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-52_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/hisat.out
+Bowtie 2 / HiSAT2	all_sections	PSC-81_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-81_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-58_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-58_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-69_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-69_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-63_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-63_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-34_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-34_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-83_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-83_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-42_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-42_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-23_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-23_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-54_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-54_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-19_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-19_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-56_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-56_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-76_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-76_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-61_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-61_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-39_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-39_hisat.stderr
+Bowtie 2 / HiSAT2	all_sections	PSC-67_hisat	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-67_hisat.stderr
+FastQC	all_sections	PSC-61_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-61_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-75_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-75_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-19_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-19_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-19_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-19_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-59_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-59_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-54_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-54_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-35_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-35_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-73_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-73_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-73_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-73_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-48_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-48_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-64_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-64_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-69_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-69_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-71_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-71_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-23_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-23_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-40_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-40_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-37_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-37_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-39_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-39_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-23_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-23_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-83_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-83_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-34_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-34_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-24_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-24_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-63_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-63_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-48_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-48_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-34_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-34_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-54_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-54_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-81_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-81_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-78_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-78_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-24_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-24_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-57_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-57_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-76_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-76_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-78_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-78_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-56_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-56_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-37_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-37_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-35_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-35_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-67_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-67_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-52_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-52_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-58_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-58_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-61_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-61_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-63_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-63_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-42_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-42_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-42_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-42_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-38_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-38_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-81_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-81_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-59_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-59_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-56_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-56_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-52_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-52_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-49_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-49_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-58_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-58_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-69_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-69_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-38_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-38_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-57_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-57_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-76_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-76_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-67_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-67_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-36_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-36_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-43_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-43_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-64_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-64_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-83_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-83_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-39_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-39_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-49_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-49_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-71_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-71_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-40_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-40_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-43_R1_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-43_R1_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-75_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-75_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
+FastQC	all_sections	PSC-36_R2_001	/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/10-hisat-deseq2/PSC-36_R2_001.fastq.gz.fastp-trim.20220810_fastqc.zip
