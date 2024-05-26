@@ -1,0 +1,78 @@
+Settings:
+  Output files: "../analyses/10-hisat-deseq2/GCA_032158295.index.*.ht2"
+  Line rate: 7 (line is 128 bytes)
+  Lines per side: 1 (side is 128 bytes)
+  Offset rate: 4 (one in 16)
+  FTable chars: 10
+  Strings: unpacked
+  Local offset rate: 3 (one in 8)
+  Local fTable chars: 6
+  Local sequence length: 57344
+  Local sequence overlap between two consecutive indexes: 1024
+  Endianness: little
+  Actual local endianness: little
+  Sanity checking: disabled
+  Assertions: disabled
+  Random seed: 0
+  Sizeofs: void*:8, int:4, long:8, size_t:8
+Input files DNA, FASTA:
+  ../data/ncbi_dataset/data/GCA_032158295.1/GCA_032158295.1_ASM3215829v1_genomic.fna
+Reading reference sizes
+  Time reading reference sizes: 00:00:03
+Calculating joined length
+Writing header
+Reserving space for joined string
+Joining reference sequences
+  Time to join reference sequences: 00:00:02
+  Time to read SNPs and splice sites: 00:00:00
+Using parameters --bmax 4535781 --dcv 1024
+  Doing ahead-of-time memory usage test
+  Passed!  Constructing with these parameters: --bmax 4535781 --dcv 1024
+Constructing suffix-array element generator
+Converting suffix-array elements to index image
+Allocating ftab, absorbFtab
+Entering GFM loop
+Exited GFM loop
+fchr[A]: 0
+fchr[C]: 147268959
+fchr[G]: 241923747
+fchr[T]: 336597128
+fchr[$]: 483816647
+Exiting GFM::buildToDisk()
+Returning from initFromVector
+Wrote 142634500 bytes to primary GFM file: ../analyses/10-hisat-deseq2/GCA_032158295.index.1.ht2
+Wrote 120954168 bytes to secondary GFM file: ../analyses/10-hisat-deseq2/GCA_032158295.index.2.ht2
+Re-opening _in1 and _in2 as input streams
+Returning from GFM constructor
+Returning from initFromVector
+Wrote 213205341 bytes to primary GFM file: ../analyses/10-hisat-deseq2/GCA_032158295.index.5.ht2
+Wrote 123078258 bytes to secondary GFM file: ../analyses/10-hisat-deseq2/GCA_032158295.index.6.ht2
+Re-opening _in5 and _in5 as input streams
+Returning from HGFM constructor
+Headers:
+    len: 483816647
+    gbwtLen: 483816648
+    nodes: 483816648
+    sz: 120954162
+    gbwtSz: 120954163
+    lineRate: 7
+    offRate: 4
+    offMask: 0xfffffff0
+    ftabChars: 10
+    eftabLen: 0
+    eftabSz: 0
+    ftabLen: 1048577
+    ftabSz: 4194308
+    offsLen: 30238541
+    offsSz: 120954164
+    lineSz: 128
+    sideSz: 128
+    sideGbwtSz: 112
+    sideGbwtLen: 448
+    numSides: 1079948
+    numLines: 1079948
+    gbwtTotLen: 138233344
+    gbwtTotSz: 138233344
+    reverse: 0
+    linearFM: Yes
+Total time for call to driver() for forward index: 00:02:25
