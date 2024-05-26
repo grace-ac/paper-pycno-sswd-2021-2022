@@ -1,0 +1,66 @@
+﻿library_ID,star_ID,star_size,star_collection_date,star_collection_location,star_radius_cm,star_diameter_cm,inoc_date,sample_date,experiment_number,exposure_history,treatment_group,experiment_day,disease_sign,number_arms_dropped,number_arm_twist,number_arms_crossed,star_death_date,notes
+PSC-19,H16,large,9/2/21,DallasBank,24,48,9/23/21,9/23/21,na,tankexposed,na,0,armdrop,2,0,0,9/24/21,died before got unfiltered inoculum
+PSC-23,H15,large,9/2/21,DallasBank,19,38,9/23/21,9/26/21,A,tankexposed,control,3,armdrop,2,1,0,9/27/21,injected with heat-killed 9/23/21
+PSC-24,E13,large,9/2/21,DallasBank,18,36,9/23/21,9/27/21,A,tankexposed,0.45live,4,armdrop,2,0,0,9/28/21,injected with 0.45 live inoc 23 Sept (sampled before injected with heat-killed live inoc on 5 Oct 21)
+PSC-34,H12,large,9/2/21,DallasBank,23,46,9/23/21,10/2/21,A,tankexposed,0.45live,9,armtwist,0,1,0,10/18/21,injected with 0.45 live inoc 23 Sept (sampled before injected with heat-killed live inoc on 5 Oct 21)
+PSC-35,E05,large,,,21,42,9/23/21,10/2/21,A,na,unfilteredlive,9,armdrop,6,0,0,10/3/21,died before got unfiltered inoculum
+PSC-36,E04,large,,,28,56,9/23/21,10/2/21,A,na,unfilteredlive,9,armdrop,9,0,0,10/3/21,DEAD 5 OCT 21 used in prelim experiment: given live inoc - survived
+PSC-37,E01,large,,,25,50,9/23/21,10/2/21,A,na,unfilteredlive,9,armdrop,1,2,0,10/18/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21
+PSC-38,E12,large,9/2/21,DallasBank,18,36,9/23/21,10/2/21,A,na,0.45live,9,NA,0,0,0,10/2/21,DEAD 2 OCT 21 used in prelim experiment: given live inoc - survived
+PSC-39,H05,large,,,16,32,9/23/21,10/2/21,A,na,control,9,NA,0,0,0,10/16/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> unfiltered inoculum --> 5 Oct 21; still heat-killed at this point??
+PSC-40,H04,large,,,30,60,9/23/21,10/2/21,A,na,control,9,NA,0,0,0,10/3/21,DEAD 3 OCT 21 used in prelim experiment: given live inoc - survived
+PSC-42,H03,large,,,25,50,9/23/21,10/3/21,A,na,control,9,NA,0,0,0,10/18/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21
+PSC-43,E02,large,,,20,40,9/23/21,10/3/21,A,na,unfilteredlive,10,armdrop,1,1,0,10/5/21,DEAD 5 OCT 21 used in prelim experiment: given live inoc - survived --> this star used for inoculate for 5 Oct 21
+PSC-48,E14,large,7/29/21,DallasBank,14,28,10/5/21,10/7/21,A,na,0.45live,12,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21;not used in last experiment - released nito water table
+PSC-49,E16,large,7/29/21,DallasBank,25,50,10/5/21,10/7/21,A,na,0.45live,12,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21;not used in last experiment - released nito water table
+PSC-56,E06,large,8/31/21,Ripple Island or Boulder Reef,17,34,10/5/21,10/14/21,B,0.45live,control,9,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21
+PSC-81,E07,large,7/29/21,DallasBank,16,32,10/5/21,10/18/21,B,0.45live,control,13,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21
+PSC-61,E09,large,8/31/21,Ripple Island or Boulder Reef,13,26,10/5/21,10/15/21,B,0.45live,control,10,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21
+PSC-57,H06,large,8/17/21,SanJuanIsland,16,32,10/5/21,10/14/21,B,na,unfilteredlive,9,armdrop,2,0,0,10/16/21,10/5/21 live inoc
+PSC-76,E10,large,,,26,52,10/5/21,10/17/21,B,0.45live,control,12,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21
+PSC-59,H01,large,,,23,46,10/5/21,10/14/21,B,na,unfilteredlive,9,armtwist,0,6,0,10/16/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> unfiltered inoculum --> 5 Oct 21
+PSC-52,E11,large,8/17/21,SanJuanIsland,15,30,10/5/21,10/14/21,B,0.45live,control,9,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21
+PSC-54,E18 ,large,,,12,24,10/5/21,10/14/21,B,0.45live,control,9,NA,0,0,0,10/18/21,injected with 0.45 live inoc 23 Sept 21; heat-killed live inoc 5 Oct 21
+PSC-63,H03,large,,,25,50,10/5/21,10/15/21,B,na,control,10,NA,0,0,0,10/18/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21
+PSC-67,H09,large,8/31/21,Ripple Island or Boulder Reef,15,30,10/5/21,10/15/21,B,na,unfilteredlive,10,armdrop,2,0,0,10/16/21,10/5/21 live inoc
+PSC-69,H04,large,,,16,32,10/5/21,10/15/21,B,na,unfilteredlive,10,armdrop,4,12,0,10/16/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> unfiltered inoculum --> 5 Oct 21; 12+ arms twisted
+PSC-71,H18,large,8/31/21,Ripple Island or Boulder Reef,14,28,10/5/21,10/15/21,B,na,unfilteredlive,10,armdrop,14,6,0,10/15/21,10/5/21 live inoc; 6+ arms twist
+PSC-73,H03,large,,,25,50,10/5/21,10/16/21,B,na,control,11,NA,0,0,0,10/18/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21
+PSC-75,H08,large,7/29/21,DallasBank,24,48,10/5/21,10/16/21,B,na,unfilteredlive,11,armdrop,1,0,0,10/18/21,10/5/21 live inoc
+PSC-58,H05,large,,,25,50,10/5/21,10/14/21,B,na,control,9,NA,0,0,0,10/18/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21
+PSC-78,H10,large,,,25,50,10/5/21,10/17/21,B,na,unfilteredlive,12,armdrop,1,0,0,10/18/21,10/5/21 live inoc
+PSC-64,H05,large,,,25,50,10/5/21,10/15/21,B,na,control,10,NA,0,0,0,10/18/21,used in prelim experiment: given heat-killed inoc - in experiment 2 --> heat-killed unfiltered inoculum --> 5 Oct 21
+PSC-83,H07,large,7/29/21,DallasBank,15,30,10/5/21,10/18/21,B,na,unfilteredlive,13,armcross,0,0,6,10/18/21,censored 10/18/21
+PSC-0085,6,large,5/27/22,Dallas Bank,,,6/21/22,6/21/22,C,na,exposed,0,healthy,0,0,0,,
+PSC-0087,31,large,5/27/22,Dallas Bank,,,6/21/22,6/21/22,C,na,control,0,healthy,0,0,0,,
+PSC-0090,27,large,5/27/22,Dallas Bank,,,6/21/22,6/21/22,C,na,control,0,healthy,0,0,0,,
+PSC-0093,13,large,5/27/22,Dallas Bank,,,6/21/22,6/21/22,C,na,exposed,0,healthy,0,0,0,,
+PSC-0095,10,large,5/27/22,Dallas Bank,,,6/21/22,6/21/22,C,na,exposed,0,healthy,0,0,0,,
+PSC-0096,4,large,5/27/22,Dallas Bank,,,6/21/22,6/21/22,C,na,control,0,healthy,0,0,0,,
+PSC-0099,28,large,5/27/22,Dallas Bank,,,6/21/22,6/21/22,C,na,exposed,0,healthy,0,0,0,,
+PSC-0105,23,large,5/27/22,Dallas Bank,,,6/21/22,6/21/22,C,na,control,0,healthy,0,0,0,,
+PSC-0118,60,small,6/3/22,Langley Dock,,,6/21/22,6/21/22,C,na,control,0,healthy,0,0,0,,
+PSC-0119,63,small,6/3/22,Langley Dock,,,6/21/22,6/21/22,C,na,control,0,healthy,0,0,0,,
+PSC-0132,55,small,6/3/22,Baby Island,,,6/21/22,6/21/22,C,na,control,0,healthy,0,0,0,,
+PSC-0141,44,small,6/3/22,Langley Dock,,,6/21/22,6/21/22,C,na,exposed,0,healthy,0,0,0,,
+PSC-0149,28,large,5/27/22,Dallas Bank,,,6/21/22,6/29/22,C,na,exposed,8,armdrop,1,,,,
+PSC-0150,6,large,5/27/22,Dallas Bank,,,6/21/22,6/29/22,C,na,exposed,8,armdrop,4,,,,
+PSC-0156,28,large,5/27/22,Dallas Bank,,,6/21/22,6/30/22,C,na,exposed,9,secondarmdrop,,,,,
+PSC-0174,30,large,5/27/22,Dallas Bank,,,6/21/22,7/1/22,C,na,exposed,10,armdrop,6,,,,
+PSC-0177,34,small,6/3/22,Langley Dock,,,6/21/22,7/2/22,C,na,control,11,healthy,0,0,0,,
+PSC-0186,15,large,5/27/22,Dallas Bank,,,6/21/22,7/2/22,C,na,control,11,healthy,0,0,0,,
+PSC-0187,57,small,6/3/22,Baby Island,,,6/21/22,7/2/22,C,na,exposed,11,armdrop,?,,,,stretching
+PSC-0188,38,small,6/3/22,Langley Dock,,,6/21/22,7/2/22,C,na,exposed,11,armdrop,,,,,stretching
+PSC-0190,10,large,5/27/22,Dallas Bank,,,6/21/22,7/2/22,C,na,exposed,11,armdrop,,,,,
+PSC-0198,38,small,6/3/22,Langley Dock,,,6/21/22,7/3/22,C,na,exposed,12,armdrop,4,,,,
+PSC-0202,4,large,5/27/22,Dallas Bank,,,6/21/22,7/3/22,C,na,control,12,healthy,0,0,0,,
+PSC-0203,31,large,5/27/22,Dallas Bank,,,6/21/22,7/3/22,C,na,control,12,healthy,0,0,0,,
+PSC-0206,30,large,5/27/22,Dallas Bank,,,6/21/22,7/3/22,C,na,exposed,12,secondarmdrop,,,,,
+PSC-0209,9,large,5/27/22,Dallas Bank,,,6/21/22,7/4/22,C,na,control,13,healthy,0,0,0,,
+PSC-0217,6,large,5/27/22,Dallas Bank,,,6/21/22,7/4/22,C,na,exposed,13,secondarmdrop,,,,,9 arms dropped
+PSC-0219,63,small,6/3/22,Langley Dock,,,6/21/22,7/5/22,C,na,control,14,healthy,0,0,0,,
+PSC-0228,61,small,6/3/22,Langley Dock,,,6/21/22,7/5/22,C,na,exposed,14,armdrop,,,,,
+PSC-0230,65,small,6/3/22,Langley Dock,,,6/21/22,7/6/22,C,na,control,15,healthy,0,0,0,,
+PSC-0231,13,large,5/27/22,Dallas Bank,,,6/21/22,7/6/22,C,na,exposed,15,armdrop,5,,,,
+PSC-0235,61,small,6/3/22,Langley Dock,,,6/21/22,7/6/22,C,na,exposed,15,secondarmdrop,,,,,3 arms dropped; just disc- dead
+,,,,,,,,,,,,,,,,,,
