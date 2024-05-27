@@ -83,7 +83,7 @@ find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-tri
 | xargs -I{} sh -c '/home/shared/kallisto/kallisto quant \
 -i /home/shared/8TB_HDD_03/sr320/github/fish541-rnaseq/data/Phel_transcriptome.index \
 -o ../analyses/11-kallisto/kallisto_02/{} \
--t 10 \
+-t 36 \
 --fr-stranded /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
 --rf-stranded /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R2_001.fastq.gz.fastp-trim.20220810.fq.gz \
 > ../analyses/11-kallisto/{}_kall02.stdout 2> ../analyses/11-kallisto/{}_kall02.stderr'
@@ -91,6 +91,11 @@ find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-tri
 
 
 ```{r, engine='bash'}
-/home/sam/programs/mambaforge/bin/multiqc \
-../analyses/11-kallisto/
+eval "$(/opt/anaconda/anaconda3/bin/conda shell.bash hook)"
+conda activate
+which multiqc
+
+
+multiqc ../analyses/11-kallisto/ \
+-o ../analyses/11-kallisto/
 ```

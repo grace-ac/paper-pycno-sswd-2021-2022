@@ -7,4 +7,9 @@
 [quant] running in paired-end mode
 [quant] will process pair 1: /home/shared/8TB_HDD_02/graceac9/data/pycno2021/PSC-43_R1_001.fastq.gz.fastp-trim.20220810.fq.gz
                              /home/shared/8TB_HDD_02/graceac9/data/pycno2021/PSC-43_R2_001.fastq.gz.fastp-trim.20220810.fq.gz
-[quant] finding pseudoalignments for the reads ...
+[quant] finding pseudoalignments for the reads ... done
+[quant] processed 22,105,954 reads, 4,784,858 reads pseudoaligned
+[quant] estimated average fragment length: 301.489
+[   em] quantifying the abundances ... done
+[   em] the Expectation-Maximization algorithm ran for 1,023 rounds
+

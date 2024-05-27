@@ -177,6 +177,24 @@ find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-tri
 ```
 
 
+keeping unmapped reads 
+```{r, engine='bash'}
+find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
+| xargs -I{} basename -s _R1_001.fastq.gz.fastp-trim.20220810.fq.gz {} \
+| xargs -I{} sh -c '/home/shared/hisat2-2.2.1/hisat2 \
+-x ../analyses/10-hisat-deseq2/GCA_032158295.index \
+--dta \
+-p 36 \
+--un ../analyses/10-hisat-deseq2/{}_unmapped_reads.fastq \
+-1 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
+-2 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R2_001.fastq.gz.fastp-trim.20220810.fq.gz \
+-S ../analyses/10-hisat-deseq2/{}_03.sam \
+> ../analyses/10-hisat-deseq2/{}_hisat03.stdout 2> ../analyses/10-hisat-deseq2/{}_hisat03.stderr'
+```
+
+--un unmapped_reads.fastq
+
+
 Explanation
 xargs -I{}: This option allows you to replace {} in the command with the output from the previous command (i.e., basename). It's used twice: first, to strip the suffix from the filenames, and second, to construct and execute the hisat2 command.
 
