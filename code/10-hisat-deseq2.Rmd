@@ -52,6 +52,26 @@ knitr::opts_chunk$set(
 ls /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*
 ```
 
+```{r, engine='bash}
+/home/shared/FastQC-0.12.1/fastqc \
+/home/shared/8TB_HDD_02/graceac9/data/pycno2021/*fq.gz \
+-t 36 \
+-o ../analyses/10-hisat-deseq2/
+```
+
+
+
+```{r, engine='bash'}
+eval "$(/opt/anaconda/anaconda3/bin/conda shell.bash hook)"
+conda activate
+which multiqc
+
+
+multiqc ../analyses/10-hisat-deseq2/ \
+-o ../analyses/10-hisat-deseq2/
+```
+
+
 
 
 
@@ -140,6 +160,37 @@ find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-tri
 2> ../analyses/10-hisat-deseq2/hisat.out
 ```
 
+
+mod
+
+```{r, engine='bash'}
+find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
+| xargs -I{} basename -s _R1_001.fastq.gz.fastp-trim.20220810.fq.gz {} \
+| xargs -I{} sh -c '/home/shared/hisat2-2.2.1/hisat2 \
+-x ../analyses/10-hisat-deseq2/GCA_032158295.index \
+--dta \
+-p 20 \
+-1 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
+-2 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R2_001.fastq.gz.fastp-trim.20220810.fq.gz \
+-S ../analyses/10-hisat-deseq2/{}_02.sam \
+> ../analyses/10-hisat-deseq2/{}_hisat.stdout 2> ../analyses/10-hisat-deseq2/{}_hisat.stderr'
+```
+
+
+Explanation
+xargs -I{}: This option allows you to replace {} in the command with the output from the previous command (i.e., basename). It's used twice: first, to strip the suffix from the filenames, and second, to construct and execute the hisat2 command.
+
+sh -c: This is used to execute a complex command within xargs. It's necessary because the output redirection (>, 2>) is shell functionality, and without sh -c, xargs wouldn't handle it correctly.
+
+Output Redirection:
+
+> ../analyses/10-hisat-deseq2/{}_hisat.stdout: Redirects the standard output to a unique file for each sample.
+2> ../analyses/10-hisat-deseq2/{}_hisat.stderr: Redirects the standard error to a different unique file for each sample.
+This setup ensures that the output from each sample's alignment process is neatly organized into separate files, making it easier to manage and debug individual runs.
+
+
+
+
 ```{r, engine='bash'}
 echo "10-hisat-deseq2/*bam" >> ../analyses/.gitignore
 echo "10-hisat-deseq2/*bam*" >> ../analyses/.gitignore
@@ -165,7 +216,7 @@ ls ../analyses/10-hisat-deseq2/*sorted.bam | wc -l
 ```
 
 ```{r, engine='bash', eval=TRUE}
-tail ../analyses/10-hisat-deseq2/hisat.out
+head ../analyses/10-hisat-deseq2/hisat.out
 ```
 
 ```{r, engine='bash', eval=TRUE}
