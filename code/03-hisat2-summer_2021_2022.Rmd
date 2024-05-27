@@ -89,22 +89,22 @@ tail ../analyses/03-hisat2/hisat2-build_stats.txt
 # 2. ALIGNMENT
 old code that doens't have --dta function and that get the stats output in separate files per library 
 ```{bash}
-#for file in ../data/2021_trimmed/*_R1*fq.gz; do
+for file in ../data/2021_trimmed/*_R1*fq.gz; do
     # Remove the  part to get the base name
     base=$(basename "$file" _R1_001.fastq.gz.fastp-trim.20220810.fq.gz)
     # Construct the names of the pair of files
     file1=${base}_R1_001.fastq.gz.fastp-trim.20220810.fq.gz
     file2=${base}_R2_001.fastq.gz.fastp-trim.20220810.fq.gz
     # Run the hisat2 command
-#    /home/shared/hisat2-2.2.1/hisat2 \
-#    -x ../data/Phel_genome_index \
-#    --dta \
-#    -p 20 \
-#    -1 ../data/2021_trimmed/$file1 \
-#    -2 ../data/2021_trimmed/$file2 \
-#    -S ../analyses/03-hisat2/${base}.sam \
-#    2> ../analyses/03-hisat2/hisat.out
-#done
+    /home/shared/hisat2-2.2.1/hisat2 \
+    -x ../data/Phel_genome_index \
+    --dta \
+    -p 20 \
+    -1 ../data/2021_trimmed/$file1 \
+    -2 ../data/2021_trimmed/$file2 \
+    -S ../analyses/03-hisat2/${base}.sam \
+    2> ../analyses/03-hisat2/${base}-hisat.out
+done
 ```
 
 this code chunk doesn't work because my hisat2 stats are individual files for each library 
