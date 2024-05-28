@@ -34,7 +34,13 @@ rsync /Users/graciecrandall/Downloads/augustus.hints.gtf graceac9@raven.fish.was
 graceac9@raven.fish.washington.edu's password: 
 
 
-
+```{r}
+library(knitr)
+library(tidyverse)
+library(Biostrings)
+library(pheatmap)
+library(DESeq2)
+```
 
 
 # 1. BUILD AN INDEX
@@ -107,51 +113,46 @@ for file in ../data/2021_trimmed/*_R1*fq.gz; do
 done
 ```
 
-this code chunk doesn't work because my hisat2 stats are individual files for each library 
+
 ```{bash}
-#cat ../analyses/03-hisat2/hisat2_stats.txt
+cat ../analyses/03-hisat2/*-hisat.out
 ```
+
+
 
 Convert sam to bam
 ```{bash}
-#for samfile in ../analyses/03-hisat2/*.sam; do
- # bamfile="${samfile%.sam}.bam"
-#  sorted_bamfile="${samfile%.sam}.sorted.bam"
- # /home/shared/samtools-1.12/samtools view -bS -@ 20 "$samfile" > "$bamfile"
-  #/home/shared/samtools-1.12/samtools sort -@ 20 "$bamfile" -o "$sorted_bamfile"
-#  /home/shared/samtools-1.12/samtools index -@ 20 "$sorted_bamfile"
-#done
+for samfile in ../analyses/03-hisat2/*.sam; do
+  bamfile="${samfile%.sam}.bam"
+  sorted_bamfile="${samfile%.sam}.sorted.bam"
+  /home/shared/samtools-1.12/samtools view -bS -@ 20 "$samfile" > "$bamfile"
+  /home/shared/samtools-1.12/samtools sort -@ 20 "$bamfile" -o "$sorted_bamfile"
+  /home/shared/samtools-1.12/samtools index -@ 20 "$sorted_bamfile"
+done
 ```
 
-2024-05-25   
-Should have done the --dta option for alignment based on [Steven's notebook post](https://sr320.github.io/tumbling-oysters/posts/sr320-12/)    
 
-Re-running alignment with that:    
-Steven's code: 
 ```{bash}
-#find ../data/fastq/*R2_001.fastp-trim.20230519.fastq.gz \
-#| xargs basename -s -S1-TP2_R2_001.fastp-trim.20230519.fastq.gz | xargs -I{} \
-#/home/shared/hisat2-2.2.1/hisat2 \
-#-x ../output/15-Apul-hisat/GCF_013753865.1_Amil_v2.1.index \
-#--dta \
-#-p 20 \
-#-1 ../data/fastq/{}-S1-TP2_R1_001.fastp-trim.20230519.fastq.gz \
-#-2 ../data/fastq/{}-S1-TP2_R2_001.fastp-trim.20230519.fastq.gz \
-#-S ../output/15-Apul-hisat/{}.sam \
-#2> ../output/15-Apul-hisat/hisat.out
+ls ../analyses/03-hisat2/*sorted.bam | wc -l
+```
+ 
+
+```{r, engine='bash', eval=TRUE}
+cat ../analyses/03-hisat2/*hisat.out \
+| grep "overall alignment rate"
+``` 
+
+# `stringtie`
+```{bash}
+find ../analyses/03-hisat2/*sorted.bam \
+| xargs basename -s .sorted.bam | xargs -I{} \
+/home/shared/stringtie-2.2.1.Linux_x86_64/stringtie \
+-p 36 \
+-eB \
+-G ../data/ncbi_dataset/data/GCF_031168955.1/genomic.gff \
+-o ../analyses/10-hisat-deseq2/{}.gtf \
+../analyses/10-hisat-deseq2/{}.sorted.bam
 ```
 
-Code for mine: 
-```{bash}
-find ../data/2021_trimmed/*.fq.gz \
-| xargs basename -s -.fastq.gz.fastp-trim.20220810.fq.gz | xargs -I{} \
-/home/shared/hisat2-2.2.1/hisat2 \
--x ../data/Phel_genome_index \
---dta \
--p 20 \
--1 ../data/2021_trimmed/{}_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
--2 ../data/2021_trimmed/{}_R2_001.fastq.gz.fastp-trim.20220810.fq.gz \
--S ../analyses/03-hisat2/{}.sam \
-2> ../analyses/03-hisat2/hisat.out
-```
+
 
