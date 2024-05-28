@@ -27,12 +27,24 @@ unzip ncbi_dataset.zip
 
 ```
 
+
+```{r, engine='bash', eval=TRUE}
+ls ../data/ncbi_dataset/data/GCA_032158295.1
+
+```
+
+
+
 Get gtf file on raven into data folder:    
 I downloaded it originally from 
 
 rsync /Users/graciecrandall/Downloads/augustus.hints.gtf graceac9@raven.fish.washington.edu:/home/shared/8TB_HDD_02/graceac9/GitHub/paper-pycno-sswd-2021-2022/data
 graceac9@raven.fish.washington.edu's password: 
 
+```{r, engine='bash', eval=TRUE}
+head ../data/augustus.hints.gtf
+
+```
 
 ```{r}
 library(knitr)
@@ -149,9 +161,9 @@ find ../analyses/03-hisat2/*sorted.bam \
 /home/shared/stringtie-2.2.1.Linux_x86_64/stringtie \
 -p 36 \
 -eB \
--G ../data/ncbi_dataset/data/GCF_031168955.1/genomic.gff \
--o ../analyses/10-hisat-deseq2/{}.gtf \
-../analyses/10-hisat-deseq2/{}.sorted.bam
+-G ../data/augustus.hints.gtf \
+-o ../analyses/03-hisat2/{}.gtf \
+../analyses/03-hisat2/{}.sorted.bam
 ```
 
 
