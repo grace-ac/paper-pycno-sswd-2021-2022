@@ -185,10 +185,10 @@ find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-tri
 -x ../analyses/10-hisat-deseq2/GCA_032158295.index \
 --dta \
 -p 36 \
---un ../analyses/10-hisat-deseq2/{}_unmapped_reads.fastq \
 -1 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
 -2 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R2_001.fastq.gz.fastp-trim.20220810.fq.gz \
 -S ../analyses/10-hisat-deseq2/{}_03.sam \
+--un ../analyses/10-hisat-deseq2/{}_unmapped_reads.fastq \
 > ../analyses/10-hisat-deseq2/{}_hisat03.stdout 2> ../analyses/10-hisat-deseq2/{}_hisat03.stderr'
 ```
 
