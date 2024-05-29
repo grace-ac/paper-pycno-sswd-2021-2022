@@ -62,6 +62,9 @@ head /home/shared/8TB_HDD_02/graceac9/GitHub/project-pycno-sizeclass-2022/data/a
 -i ../analyses/11-kallisto/Ph.codingseq.index \
 /home/shared/8TB_HDD_02/graceac9/GitHub/project-pycno-sizeclass-2022/data/augustus.hints.codingseq
 ```
+
+
+
 ```{r, engine='bash'}
 find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
 | xargs -I{} basename -s _R1_001.fastq.gz.fastp-trim.20220810.fq.gz {} \
@@ -76,17 +79,37 @@ find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-tri
 
 
 
+```{r, engine='bash'}
+eval "$(/opt/anaconda/anaconda3/bin/conda shell.bash hook)"
+conda activate
+which multiqc
+
+
+multiqc ../analyses/11-kallisto/kallisto_01 \
+-o ../analyses/11-kallisto/kallisto_01
+```
+
+```{r, engine='bash'}
+head ../data/Phel_transcriptome.fasta
+```
+
+```{r, engine='bash'}
+/home/shared/kallisto/kallisto index \
+-i ../analyses/11-kallisto/Phel_transcriptome.uia.index \
+../data/Phel_transcriptome.fasta
+```
+
 
 ```{r, engine='bash'}
 find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
 | xargs -I{} basename -s _R1_001.fastq.gz.fastp-trim.20220810.fq.gz {} \
 | xargs -I{} sh -c '/home/shared/kallisto/kallisto quant \
--i /home/shared/8TB_HDD_03/sr320/github/fish541-rnaseq/data/Phel_transcriptome.index \
+-i ../analyses/11-kallisto/Phel_transcriptome.uia.index \
 -o ../analyses/11-kallisto/kallisto_02/{} \
 -t 36 \
 --fr-stranded /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
 --rf-stranded /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R2_001.fastq.gz.fastp-trim.20220810.fq.gz \
-> ../analyses/11-kallisto/{}_kall02.stdout 2> ../analyses/11-kallisto/{}_kall02.stderr'
+> ../analyses/11-kallisto/kallisto_02/{}_kall02.stdout 2> ../analyses/11-kallisto/kallisto_02/{}_kall02.stderr'
 ```
 
 
@@ -96,6 +119,6 @@ conda activate
 which multiqc
 
 
-multiqc ../analyses/11-kallisto/ \
--o ../analyses/11-kallisto/
+multiqc ../analyses/11-kallisto/kallisto_02 \
+-o ../analyses/11-kallisto/kallisto_02
 ```
