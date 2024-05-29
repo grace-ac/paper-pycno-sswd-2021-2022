@@ -8,6 +8,6 @@
 	"p_unique": 17.0,
 	"kallisto_version": "0.46.1",
 	"index_version": 10,
-	"start_time": "Mon May 27 12:42:01 2024",
-	"call": "/home/shared/kallisto/kallisto quant -i ../analyses/11-kallisto/Ph.codingseq.index -o ../analyses/11-kallisto/kallisto_01/PSC-49 -t 10 --fr-stranded --rf-stranded /home/shared/8TB_HDD_02/graceac9/data/pycno2021/PSC-49_R1_001.fastq.gz.fastp-trim.20220810.fq.gz /home/shared/8TB_HDD_02/graceac9/data/pycno2021/PSC-49_R2_001.fastq.gz.fastp-trim.20220810.fq.gz"
+	"start_time": "Tue May 28 20:40:08 2024",
+	"call": "/home/shared/kallisto/kallisto quant -i ../analyses/11-kallisto/Ph.codingseq.index -o ../analyses/11-kallisto/kallisto_01/PSC-49 -t 20 --fr-stranded --rf-stranded /home/shared/8TB_HDD_02/graceac9/data/pycno2021/PSC-49_R1_001.fastq.gz.fastp-trim.20220810.fq.gz /home/shared/8TB_HDD_02/graceac9/data/pycno2021/PSC-49_R2_001.fastq.gz.fastp-trim.20220810.fq.gz"
 }

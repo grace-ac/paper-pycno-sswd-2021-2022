@@ -1,0 +1,13 @@
+{
+	"n_targets": 26581,
+	"n_bootstraps": 0,
+	"n_processed": 21462348,
+	"n_pseudoaligned": 3351738,
+	"n_unique": 3099015,
+	"p_pseudoaligned": 15.6,
+	"p_unique": 14.4,
+	"kallisto_version": "0.46.1",
+	"index_version": 10,
+	"start_time": "Tue May 28 21:07:35 2024",
+	"call": "/home/shared/kallisto/kallisto quant -i ../analyses/11-kallisto/Ph.codingseq.index -o ../analyses/11-kallisto/kallisto_01/PSC-78 -t 20 --fr-stranded --rf-stranded /home/shared/8TB_HDD_02/graceac9/data/pycno2021/PSC-78_R1_001.fastq.gz.fastp-trim.20220810.fq.gz /home/shared/8TB_HDD_02/graceac9/data/pycno2021/PSC-78_R2_001.fastq.gz.fastp-trim.20220810.fq.gz"
+}

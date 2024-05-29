@@ -1,0 +1,868 @@
+{
+    "report_data_sources": {
+        "Kallisto": {
+            "all_sections": {
+                "PSC-71_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-71_kall01.stderr",
+                "PSC-52_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-52_kall01.stderr",
+                "PSC-78_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-78_kall01.stderr",
+                "PSC-38_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-38_kall01.stderr",
+                "PSC-67_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-67_kall01.stderr",
+                "PSC-43_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-43_kall01.stderr",
+                "PSC-64_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-64_kall01.stderr",
+                "PSC-42_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-42_kall01.stderr",
+                "PSC-49_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-49_kall01.stderr",
+                "PSC-75_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-75_kall01.stderr",
+                "PSC-34_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-34_kall01.stderr",
+                "PSC-57_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-57_kall01.stderr",
+                "PSC-24_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-24_kall01.stderr",
+                "PSC-48_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-48_kall01.stderr",
+                "PSC-54_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-54_kall01.stderr",
+                "PSC-37_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-37_kall01.stderr",
+                "PSC-73_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-73_kall01.stderr",
+                "PSC-69_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-69_kall01.stderr",
+                "PSC-35_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-35_kall01.stderr",
+                "PSC-39_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-39_kall01.stderr",
+                "PSC-36_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-36_kall01.stderr",
+                "PSC-76_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-76_kall01.stderr",
+                "PSC-58_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-58_kall01.stderr",
+                "PSC-83_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-83_kall01.stderr",
+                "PSC-19_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-19_kall01.stderr",
+                "PSC-63_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-63_kall01.stderr",
+                "PSC-61_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-61_kall01.stderr",
+                "PSC-56_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-56_kall01.stderr",
+                "PSC-81_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-81_kall01.stderr",
+                "PSC-23_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-23_kall01.stderr",
+                "PSC-59_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-59_kall01.stderr",
+                "PSC-40_R1_001": "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01/PSC-40_kall01.stderr"
+            }
+        }
+    },
+    "report_general_stats_data": [
+        {
+            "PSC-71_R1_001": {
+                "total_reads": 26600124.0,
+                "pseudoaligned_reads": 5581151.0,
+                "not_pseudoaligned_reads": 21018973.0,
+                "percent_aligned": 20.98167286738964,
+                "fragment_length": 313.068
+            },
+            "PSC-52_R1_001": {
+                "total_reads": 22093640.0,
+                "pseudoaligned_reads": 4579511.0,
+                "not_pseudoaligned_reads": 17514129.0,
+                "percent_aligned": 20.72773431630098,
+                "fragment_length": 294.544
+            },
+            "PSC-78_R1_001": {
+                "total_reads": 21462348.0,
+                "pseudoaligned_reads": 3351738.0,
+                "not_pseudoaligned_reads": 18110610.0,
+                "percent_aligned": 15.616828130827065,
+                "fragment_length": 279.951
+            },
+            "PSC-38_R1_001": {
+                "total_reads": 28364962.0,
+                "pseudoaligned_reads": 517415.0,
+                "not_pseudoaligned_reads": 27847547.0,
+                "percent_aligned": 1.8241342963900322,
+                "fragment_length": 253.906
+            },
+            "PSC-67_R1_001": {
+                "total_reads": 24528314.0,
+                "pseudoaligned_reads": 4705452.0,
+                "not_pseudoaligned_reads": 19822862.0,
+                "percent_aligned": 19.183756372329544,
+                "fragment_length": 286.614
+            },
+            "PSC-43_R1_001": {
+                "total_reads": 22105954.0,
+                "pseudoaligned_reads": 4784858.0,
+                "not_pseudoaligned_reads": 17321096.0,
+                "percent_aligned": 21.645109729261176,
+                "fragment_length": 301.132
+            },
+            "PSC-64_R1_001": {
+                "total_reads": 24101501.0,
+                "pseudoaligned_reads": 5026042.0,
+                "not_pseudoaligned_reads": 19075459.0,
+                "percent_aligned": 20.85364724794526,
+                "fragment_length": 301.577
+            },
+            "PSC-42_R1_001": {
+                "total_reads": 20804015.0,
+                "pseudoaligned_reads": 4214067.0,
+                "not_pseudoaligned_reads": 16589948.0,
+                "percent_aligned": 20.256027502383557,
+                "fragment_length": 306.015
+            },
+            "PSC-49_R1_001": {
+                "total_reads": 21854798.0,
+                "pseudoaligned_reads": 4090632.0,
+                "not_pseudoaligned_reads": 17764166.0,
+                "percent_aligned": 18.71731781735068,
+                "fragment_length": 291.123
+            },
+            "PSC-75_R1_001": {
+                "total_reads": 24371724.0,
+                "pseudoaligned_reads": 2423991.0,
+                "not_pseudoaligned_reads": 21947733.0,
+                "percent_aligned": 9.945915192540339,
+                "fragment_length": 299.294
+            },
+            "PSC-34_R1_001": {
+                "total_reads": 28383132.0,
+                "pseudoaligned_reads": 783115.0,
+                "not_pseudoaligned_reads": 27600017.0,
+                "percent_aligned": 2.7590859246964006,
+                "fragment_length": 278.659
+            },
+            "PSC-57_R1_001": {
+                "total_reads": 22483440.0,
+                "pseudoaligned_reads": 4951482.0,
+                "not_pseudoaligned_reads": 17531958.0,
+                "percent_aligned": 22.022795444113534,
+                "fragment_length": 319.029
+            },
+            "PSC-24_R1_001": {
+                "total_reads": 22748556.0,
+                "pseudoaligned_reads": 4523808.0,
+                "not_pseudoaligned_reads": 18224748.0,
+                "percent_aligned": 19.88613255276511,
+                "fragment_length": 294.531
+            },
+            "PSC-48_R1_001": {
+                "total_reads": 19277387.0,
+                "pseudoaligned_reads": 3402893.0,
+                "not_pseudoaligned_reads": 15874494.0,
+                "percent_aligned": 17.652252351420863,
+                "fragment_length": 283.334
+            },
+            "PSC-54_R1_001": {
+                "total_reads": 25091718.0,
+                "pseudoaligned_reads": 5016925.0,
+                "not_pseudoaligned_reads": 20074793.0,
+                "percent_aligned": 19.99434634168932,
+                "fragment_length": 277.329
+            },
+            "PSC-37_R1_001": {
+                "total_reads": 17154009.0,
+                "pseudoaligned_reads": 405314.0,
+                "not_pseudoaligned_reads": 16748695.0,
+                "percent_aligned": 2.3627946097031893,
+                "fragment_length": 284.281
+            },
+            "PSC-73_R1_001": {
+                "total_reads": 25168443.0,
+                "pseudoaligned_reads": 4587875.0,
+                "not_pseudoaligned_reads": 20580568.0,
+                "percent_aligned": 18.22868025646243,
+                "fragment_length": 302.037
+            },
+            "PSC-69_R1_001": {
+                "total_reads": 22802409.0,
+                "pseudoaligned_reads": 3612760.0,
+                "not_pseudoaligned_reads": 19189649.0,
+                "percent_aligned": 15.843764577681243,
+                "fragment_length": 312.61
+            },
+            "PSC-35_R1_001": {
+                "total_reads": 26379746.0,
+                "pseudoaligned_reads": 799810.0,
+                "not_pseudoaligned_reads": 25579936.0,
+                "percent_aligned": 3.0319094050412767,
+                "fragment_length": 266.34
+            },
+            "PSC-39_R1_001": {
+                "total_reads": 22631446.0,
+                "pseudoaligned_reads": 577742.0,
+                "not_pseudoaligned_reads": 22053704.0,
+                "percent_aligned": 2.5528284847552385,
+                "fragment_length": 231.687
+            },
+            "PSC-36_R1_001": {
+                "total_reads": 21277746.0,
+                "pseudoaligned_reads": 1157828.0,
+                "not_pseudoaligned_reads": 20119918.0,
+                "percent_aligned": 5.4414974217663845,
+                "fragment_length": 270.083
+            },
+            "PSC-76_R1_001": {
+                "total_reads": 22423230.0,
+                "pseudoaligned_reads": 4297318.0,
+                "not_pseudoaligned_reads": 18125912.0,
+                "percent_aligned": 19.164580660324138,
+                "fragment_length": 304.964
+            },
+            "PSC-58_R1_001": {
+                "total_reads": 22500789.0,
+                "pseudoaligned_reads": 4456474.0,
+                "not_pseudoaligned_reads": 18044315.0,
+                "percent_aligned": 19.805856585740173,
+                "fragment_length": 301.906
+            },
+            "PSC-83_R1_001": {
+                "total_reads": 25489092.0,
+                "pseudoaligned_reads": 5126725.0,
+                "not_pseudoaligned_reads": 20362367.0,
+                "percent_aligned": 20.11340772750948,
+                "fragment_length": 284.186
+            },
+            "PSC-19_R1_001": {
+                "total_reads": 23469776.0,
+                "pseudoaligned_reads": 4664140.0,
+                "not_pseudoaligned_reads": 18805636.0,
+                "percent_aligned": 19.87296342325551,
+                "fragment_length": 292.01
+            },
+            "PSC-63_R1_001": {
+                "total_reads": 21332723.0,
+                "pseudoaligned_reads": 3951944.0,
+                "not_pseudoaligned_reads": 17380779.0,
+                "percent_aligned": 18.525267496324776,
+                "fragment_length": 321.735
+            },
+            "PSC-61_R1_001": {
+                "total_reads": 19883194.0,
+                "pseudoaligned_reads": 3627983.0,
+                "not_pseudoaligned_reads": 16255211.0,
+                "percent_aligned": 18.246479916657254,
+                "fragment_length": 303.521
+            },
+            "PSC-56_R1_001": {
+                "total_reads": 20798136.0,
+                "pseudoaligned_reads": 4333654.0,
+                "not_pseudoaligned_reads": 16464482.0,
+                "percent_aligned": 20.83674229267469,
+                "fragment_length": 308.953
+            },
+            "PSC-81_R1_001": {
+                "total_reads": 25846623.0,
+                "pseudoaligned_reads": 5029421.0,
+                "not_pseudoaligned_reads": 20817202.0,
+                "percent_aligned": 19.458716134792542,
+                "fragment_length": 295.345
+            },
+            "PSC-23_R1_001": {
+                "total_reads": 23607269.0,
+                "pseudoaligned_reads": 4973675.0,
+                "not_pseudoaligned_reads": 18633594.0,
+                "percent_aligned": 21.068404820566073,
+                "fragment_length": 298.851
+            },
+            "PSC-59_R1_001": {
+                "total_reads": 22471547.0,
+                "pseudoaligned_reads": 4331158.0,
+                "not_pseudoaligned_reads": 18140389.0,
+                "percent_aligned": 19.27396453835599,
+                "fragment_length": 301.481
+            },
+            "PSC-40_R1_001": {
+                "total_reads": 21152503.0,
+                "pseudoaligned_reads": 570929.0,
+                "not_pseudoaligned_reads": 20581574.0,
+                "percent_aligned": 2.699108469574499,
+                "fragment_length": 283.418
+            }
+        }
+    ],
+    "report_general_stats_headers": [
+        {
+            "fragment_length": {
+                "title": "Frag Length",
+                "description": "Estimated average fragment length",
+                "min": 0,
+                "suffix": "bp",
+                "scale": "RdYlGn",
+                "namespace": "Kallisto",
+                "rid": "mqc-generalstats-kallisto-fragment_length",
+                "format": "{:,.1f}",
+                "colour": "55,126,184",
+                "hidden": null,
+                "max": null,
+                "ceiling": null,
+                "floor": null,
+                "minRange": null,
+                "shared_key": null,
+                "modify": null,
+                "placement": 1000.0,
+                "dmax": 321.735,
+                "dmin": 0.0
+            },
+            "percent_aligned": {
+                "title": "% Aligned",
+                "description": "% processed reads that were pseudoaligned",
+                "max": 100,
+                "min": 0,
+                "suffix": "%",
+                "scale": "YlGn",
+                "namespace": "Kallisto",
+                "rid": "mqc-generalstats-kallisto-percent_aligned",
+                "format": "{:,.1f}",
+                "colour": "55,126,184",
+                "hidden": null,
+                "ceiling": null,
+                "floor": null,
+                "minRange": null,
+                "shared_key": null,
+                "modify": null,
+                "placement": 1000.0,
+                "dmax": 100.0,
+                "dmin": 0.0
+            },
+            "pseudoaligned_reads": {
+                "title": "M Aligned",
+                "description": "Pseudoaligned reads (millions)",
+                "min": 0,
+                "scale": "PuRd",
+                "modify": 1e-06,
+                "shared_key": "read_count",
+                "namespace": "Kallisto",
+                "rid": "mqc-generalstats-kallisto-pseudoaligned_reads",
+                "format": "{:,.1f}",
+                "colour": "55,126,184",
+                "hidden": null,
+                "max": null,
+                "ceiling": null,
+                "floor": null,
+                "minRange": null,
+                "placement": 1000.0,
+                "dmax": 5.581150999999999,
+                "dmin": 0.0
+            }
+        }
+    ],
+    "report_multiqc_command": "/opt/anaconda/anaconda3/bin/multiqc ../analyses/11-kallisto/kallisto_01 -o ../analyses/11-kallisto/kallisto_01",
+    "report_plot_data": {
+        "kallisto_alignment": {
+            "plot_type": "bar_graph",
+            "samples": [
+                [
+                    "PSC-19_R1_001",
+                    "PSC-23_R1_001",
+                    "PSC-24_R1_001",
+                    "PSC-34_R1_001",
+                    "PSC-35_R1_001",
+                    "PSC-36_R1_001",
+                    "PSC-37_R1_001",
+                    "PSC-38_R1_001",
+                    "PSC-39_R1_001",
+                    "PSC-40_R1_001",
+                    "PSC-42_R1_001",
+                    "PSC-43_R1_001",
+                    "PSC-48_R1_001",
+                    "PSC-49_R1_001",
+                    "PSC-52_R1_001",
+                    "PSC-54_R1_001",
+                    "PSC-56_R1_001",
+                    "PSC-57_R1_001",
+                    "PSC-58_R1_001",
+                    "PSC-59_R1_001",
+                    "PSC-61_R1_001",
+                    "PSC-63_R1_001",
+                    "PSC-64_R1_001",
+                    "PSC-67_R1_001",
+                    "PSC-69_R1_001",
+                    "PSC-71_R1_001",
+                    "PSC-73_R1_001",
+                    "PSC-75_R1_001",
+                    "PSC-76_R1_001",
+                    "PSC-78_R1_001",
+                    "PSC-81_R1_001",
+                    "PSC-83_R1_001"
+                ]
+            ],
+            "datasets": [
+                [
+                    {
+                        "name": "Pseudoaligned",
+                        "data": [
+                            4664140.0,
+                            4973675.0,
+                            4523808.0,
+                            783115.0,
+                            799810.0,
+                            1157828.0,
+                            405314.0,
+                            517415.0,
+                            577742.0,
+                            570929.0,
+                            4214067.0,
+                            4784858.0,
+                            3402893.0,
+                            4090632.0,
+                            4579511.0,
+                            5016925.0,
+                            4333654.0,
+                            4951482.0,
+                            4456474.0,
+                            4331158.0,
+                            3627983.0,
+                            3951944.0,
+                            5026042.0,
+                            4705452.0,
+                            3612760.0,
+                            5581151.0,
+                            4587875.0,
+                            2423991.0,
+                            4297318.0,
+                            3351738.0,
+                            5029421.0,
+                            5126725.0
+                        ],
+                        "color": "#437bb1"
+                    },
+                    {
+                        "name": "Not aligned",
+                        "data": [
+                            18805636.0,
+                            18633594.0,
+                            18224748.0,
+                            27600017.0,
+                            25579936.0,
+                            20119918.0,
+                            16748695.0,
+                            27847547.0,
+                            22053704.0,
+                            20581574.0,
+                            16589948.0,
+                            17321096.0,
+                            15874494.0,
+                            17764166.0,
+                            17514129.0,
+                            20074793.0,
+                            16464482.0,
+                            17531958.0,
+                            18044315.0,
+                            18140389.0,
+                            16255211.0,
+                            17380779.0,
+                            19075459.0,
+                            19822862.0,
+                            19189649.0,
+                            21018973.0,
+                            20580568.0,
+                            21947733.0,
+                            18125912.0,
+                            18110610.0,
+                            20817202.0,
+                            20362367.0
+                        ],
+                        "color": "#b1084c"
+                    }
+                ]
+            ],
+            "config": {
+                "id": "kallisto_alignment",
+                "title": "Kallisto: Alignment Scores",
+                "ylab": "# Reads",
+                "cpswitch_counts_label": "Number of Reads"
+            }
+        }
+    },
+    "report_saved_raw_data": {
+        "multiqc_kallisto": {
+            "PSC-71_R1_001": {
+                "total_reads": 26600124.0,
+                "pseudoaligned_reads": 5581151.0,
+                "not_pseudoaligned_reads": 21018973.0,
+                "percent_aligned": 20.98167286738964,
+                "fragment_length": 313.068
+            },
+            "PSC-52_R1_001": {
+                "total_reads": 22093640.0,
+                "pseudoaligned_reads": 4579511.0,
+                "not_pseudoaligned_reads": 17514129.0,
+                "percent_aligned": 20.72773431630098,
+                "fragment_length": 294.544
+            },
+            "PSC-78_R1_001": {
+                "total_reads": 21462348.0,
+                "pseudoaligned_reads": 3351738.0,
+                "not_pseudoaligned_reads": 18110610.0,
+                "percent_aligned": 15.616828130827065,
+                "fragment_length": 279.951
+            },
+            "PSC-38_R1_001": {
+                "total_reads": 28364962.0,
+                "pseudoaligned_reads": 517415.0,
+                "not_pseudoaligned_reads": 27847547.0,
+                "percent_aligned": 1.8241342963900322,
+                "fragment_length": 253.906
+            },
+            "PSC-67_R1_001": {
+                "total_reads": 24528314.0,
+                "pseudoaligned_reads": 4705452.0,
+                "not_pseudoaligned_reads": 19822862.0,
+                "percent_aligned": 19.183756372329544,
+                "fragment_length": 286.614
+            },
+            "PSC-43_R1_001": {
+                "total_reads": 22105954.0,
+                "pseudoaligned_reads": 4784858.0,
+                "not_pseudoaligned_reads": 17321096.0,
+                "percent_aligned": 21.645109729261176,
+                "fragment_length": 301.132
+            },
+            "PSC-64_R1_001": {
+                "total_reads": 24101501.0,
+                "pseudoaligned_reads": 5026042.0,
+                "not_pseudoaligned_reads": 19075459.0,
+                "percent_aligned": 20.85364724794526,
+                "fragment_length": 301.577
+            },
+            "PSC-42_R1_001": {
+                "total_reads": 20804015.0,
+                "pseudoaligned_reads": 4214067.0,
+                "not_pseudoaligned_reads": 16589948.0,
+                "percent_aligned": 20.256027502383557,
+                "fragment_length": 306.015
+            },
+            "PSC-49_R1_001": {
+                "total_reads": 21854798.0,
+                "pseudoaligned_reads": 4090632.0,
+                "not_pseudoaligned_reads": 17764166.0,
+                "percent_aligned": 18.71731781735068,
+                "fragment_length": 291.123
+            },
+            "PSC-75_R1_001": {
+                "total_reads": 24371724.0,
+                "pseudoaligned_reads": 2423991.0,
+                "not_pseudoaligned_reads": 21947733.0,
+                "percent_aligned": 9.945915192540339,
+                "fragment_length": 299.294
+            },
+            "PSC-34_R1_001": {
+                "total_reads": 28383132.0,
+                "pseudoaligned_reads": 783115.0,
+                "not_pseudoaligned_reads": 27600017.0,
+                "percent_aligned": 2.7590859246964006,
+                "fragment_length": 278.659
+            },
+            "PSC-57_R1_001": {
+                "total_reads": 22483440.0,
+                "pseudoaligned_reads": 4951482.0,
+                "not_pseudoaligned_reads": 17531958.0,
+                "percent_aligned": 22.022795444113534,
+                "fragment_length": 319.029
+            },
+            "PSC-24_R1_001": {
+                "total_reads": 22748556.0,
+                "pseudoaligned_reads": 4523808.0,
+                "not_pseudoaligned_reads": 18224748.0,
+                "percent_aligned": 19.88613255276511,
+                "fragment_length": 294.531
+            },
+            "PSC-48_R1_001": {
+                "total_reads": 19277387.0,
+                "pseudoaligned_reads": 3402893.0,
+                "not_pseudoaligned_reads": 15874494.0,
+                "percent_aligned": 17.652252351420863,
+                "fragment_length": 283.334
+            },
+            "PSC-54_R1_001": {
+                "total_reads": 25091718.0,
+                "pseudoaligned_reads": 5016925.0,
+                "not_pseudoaligned_reads": 20074793.0,
+                "percent_aligned": 19.99434634168932,
+                "fragment_length": 277.329
+            },
+            "PSC-37_R1_001": {
+                "total_reads": 17154009.0,
+                "pseudoaligned_reads": 405314.0,
+                "not_pseudoaligned_reads": 16748695.0,
+                "percent_aligned": 2.3627946097031893,
+                "fragment_length": 284.281
+            },
+            "PSC-73_R1_001": {
+                "total_reads": 25168443.0,
+                "pseudoaligned_reads": 4587875.0,
+                "not_pseudoaligned_reads": 20580568.0,
+                "percent_aligned": 18.22868025646243,
+                "fragment_length": 302.037
+            },
+            "PSC-69_R1_001": {
+                "total_reads": 22802409.0,
+                "pseudoaligned_reads": 3612760.0,
+                "not_pseudoaligned_reads": 19189649.0,
+                "percent_aligned": 15.843764577681243,
+                "fragment_length": 312.61
+            },
+            "PSC-35_R1_001": {
+                "total_reads": 26379746.0,
+                "pseudoaligned_reads": 799810.0,
+                "not_pseudoaligned_reads": 25579936.0,
+                "percent_aligned": 3.0319094050412767,
+                "fragment_length": 266.34
+            },
+            "PSC-39_R1_001": {
+                "total_reads": 22631446.0,
+                "pseudoaligned_reads": 577742.0,
+                "not_pseudoaligned_reads": 22053704.0,
+                "percent_aligned": 2.5528284847552385,
+                "fragment_length": 231.687
+            },
+            "PSC-36_R1_001": {
+                "total_reads": 21277746.0,
+                "pseudoaligned_reads": 1157828.0,
+                "not_pseudoaligned_reads": 20119918.0,
+                "percent_aligned": 5.4414974217663845,
+                "fragment_length": 270.083
+            },
+            "PSC-76_R1_001": {
+                "total_reads": 22423230.0,
+                "pseudoaligned_reads": 4297318.0,
+                "not_pseudoaligned_reads": 18125912.0,
+                "percent_aligned": 19.164580660324138,
+                "fragment_length": 304.964
+            },
+            "PSC-58_R1_001": {
+                "total_reads": 22500789.0,
+                "pseudoaligned_reads": 4456474.0,
+                "not_pseudoaligned_reads": 18044315.0,
+                "percent_aligned": 19.805856585740173,
+                "fragment_length": 301.906
+            },
+            "PSC-83_R1_001": {
+                "total_reads": 25489092.0,
+                "pseudoaligned_reads": 5126725.0,
+                "not_pseudoaligned_reads": 20362367.0,
+                "percent_aligned": 20.11340772750948,
+                "fragment_length": 284.186
+            },
+            "PSC-19_R1_001": {
+                "total_reads": 23469776.0,
+                "pseudoaligned_reads": 4664140.0,
+                "not_pseudoaligned_reads": 18805636.0,
+                "percent_aligned": 19.87296342325551,
+                "fragment_length": 292.01
+            },
+            "PSC-63_R1_001": {
+                "total_reads": 21332723.0,
+                "pseudoaligned_reads": 3951944.0,
+                "not_pseudoaligned_reads": 17380779.0,
+                "percent_aligned": 18.525267496324776,
+                "fragment_length": 321.735
+            },
+            "PSC-61_R1_001": {
+                "total_reads": 19883194.0,
+                "pseudoaligned_reads": 3627983.0,
+                "not_pseudoaligned_reads": 16255211.0,
+                "percent_aligned": 18.246479916657254,
+                "fragment_length": 303.521
+            },
+            "PSC-56_R1_001": {
+                "total_reads": 20798136.0,
+                "pseudoaligned_reads": 4333654.0,
+                "not_pseudoaligned_reads": 16464482.0,
+                "percent_aligned": 20.83674229267469,
+                "fragment_length": 308.953
+            },
+            "PSC-81_R1_001": {
+                "total_reads": 25846623.0,
+                "pseudoaligned_reads": 5029421.0,
+                "not_pseudoaligned_reads": 20817202.0,
+                "percent_aligned": 19.458716134792542,
+                "fragment_length": 295.345
+            },
+            "PSC-23_R1_001": {
+                "total_reads": 23607269.0,
+                "pseudoaligned_reads": 4973675.0,
+                "not_pseudoaligned_reads": 18633594.0,
+                "percent_aligned": 21.068404820566073,
+                "fragment_length": 298.851
+            },
+            "PSC-59_R1_001": {
+                "total_reads": 22471547.0,
+                "pseudoaligned_reads": 4331158.0,
+                "not_pseudoaligned_reads": 18140389.0,
+                "percent_aligned": 19.27396453835599,
+                "fragment_length": 301.481
+            },
+            "PSC-40_R1_001": {
+                "total_reads": 21152503.0,
+                "pseudoaligned_reads": 570929.0,
+                "not_pseudoaligned_reads": 20581574.0,
+                "percent_aligned": 2.699108469574499,
+                "fragment_length": 283.418
+            }
+        },
+        "multiqc_general_stats": {
+            "PSC-71_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 313.068,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 20.98167286738964,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 5581151.0
+            },
+            "PSC-52_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 294.544,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 20.72773431630098,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 4579511.0
+            },
+            "PSC-78_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 279.951,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 15.616828130827065,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 3351738.0
+            },
+            "PSC-38_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 253.906,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 1.8241342963900322,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 517415.0
+            },
+            "PSC-67_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 286.614,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 19.183756372329544,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 4705452.0
+            },
+            "PSC-43_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 301.132,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 21.645109729261176,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 4784858.0
+            },
+            "PSC-64_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 301.577,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 20.85364724794526,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 5026042.0
+            },
+            "PSC-42_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 306.015,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 20.256027502383557,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 4214067.0
+            },
+            "PSC-49_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 291.123,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 18.71731781735068,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 4090632.0
+            },
+            "PSC-75_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 299.294,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 9.945915192540339,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 2423991.0
+            },
+            "PSC-34_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 278.659,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 2.7590859246964006,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 783115.0
+            },
+            "PSC-57_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 319.029,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 22.022795444113534,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 4951482.0
+            },
+            "PSC-24_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 294.531,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 19.88613255276511,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 4523808.0
+            },
+            "PSC-48_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 283.334,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 17.652252351420863,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 3402893.0
+            },
+            "PSC-54_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 277.329,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 19.99434634168932,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 5016925.0
+            },
+            "PSC-37_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 284.281,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 2.3627946097031893,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 405314.0
+            },
+            "PSC-73_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 302.037,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 18.22868025646243,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 4587875.0
+            },
+            "PSC-69_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 312.61,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 15.843764577681243,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 3612760.0
+            },
+            "PSC-35_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 266.34,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 3.0319094050412767,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 799810.0
+            },
+            "PSC-39_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 231.687,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 2.5528284847552385,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 577742.0
+            },
+            "PSC-36_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 270.083,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 5.4414974217663845,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 1157828.0
+            },
+            "PSC-76_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 304.964,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 19.164580660324138,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 4297318.0
+            },
+            "PSC-58_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 301.906,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 19.805856585740173,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 4456474.0
+            },
+            "PSC-83_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 284.186,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 20.11340772750948,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 5126725.0
+            },
+            "PSC-19_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 292.01,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 19.87296342325551,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 4664140.0
+            },
+            "PSC-63_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 321.735,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 18.525267496324776,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 3951944.0
+            },
+            "PSC-61_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 303.521,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 18.246479916657254,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 3627983.0
+            },
+            "PSC-56_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 308.953,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 20.83674229267469,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 4333654.0
+            },
+            "PSC-81_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 295.345,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 19.458716134792542,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 5029421.0
+            },
+            "PSC-23_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 298.851,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 21.068404820566073,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 4973675.0
+            },
+            "PSC-59_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 301.481,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 19.27396453835599,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 4331158.0
+            },
+            "PSC-40_R1_001": {
+                "Kallisto_mqc-generalstats-kallisto-fragment_length": 283.418,
+                "Kallisto_mqc-generalstats-kallisto-percent_aligned": 2.699108469574499,
+                "Kallisto_mqc-generalstats-kallisto-pseudoaligned_reads": 570929.0
+            }
+        }
+    },
+    "config_analysis_dir_abs": [
+        "/home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/11-kallisto/kallisto_01"
+    ],
+    "config_analysis_dir": [
+        "../analyses/11-kallisto/kallisto_01"
+    ],
+    "config_creation_date": "2024-05-29, 05:05",
+    "config_git_hash": null,
+    "config_intro_text": null,
+    "config_report_comment": null,
+    "config_report_header_info": null,
+    "config_script_path": "/opt/anaconda/anaconda3/lib/python3.9/site-packages/multiqc/utils",
+    "config_short_version": "1.12",
+    "config_subtitle": null,
+    "config_title": null,
+    "config_version": "1.12"
+}
