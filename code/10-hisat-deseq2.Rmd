@@ -194,6 +194,44 @@ find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-tri
 
 --un unmapped_reads.fastq
 
+# Perform assembly
+${trinity_dir}/Trinity \
+--seqType fq \
+--SS_lib_type RF \
+--max_memory 100G \
+--CPU ${threads} \
+--samples_file ${samples}
+
+```{bash}
+
+export PATH=${PATH}:/home/shared/bowtie2-2.4.4-linux-x86_64/
+export PATH=${PATH}:/home/shared/jellyfish-2.3.0/bin/
+export PATH=${PATH}:/home/shared/salmon-1.4.0_linux_x86_64/bin/
+
+
+/home/shared/trinityrnaseq-v2.12.0/Trinity \
+--seqType fq \
+--max_memory 300G \
+--CPU 24 \
+--left ../analyses/10-hisat-deseq2/PSC-35_unmapped_reads.1.fastq \
+--right ../analyses/10-hisat-deseq2/PSC-35_unmapped_reads.2.fastq \
+--output ../analyses/10-hisat-deseq2/trinity
+```
+
+```{bash}
+/home/shared/trinityrnaseq-v2.12.0/Trinity --help
+
+```
+
+/home/shared/trinityrnaseq-v2.12.0
+
+
+
+
+
+
+
+
 
 Explanation
 xargs -I{}: This option allows you to replace {} in the command with the output from the previous command (i.e., basename). It's used twice: first, to strip the suffix from the filenames, and second, to construct and execute the hisat2 command.
