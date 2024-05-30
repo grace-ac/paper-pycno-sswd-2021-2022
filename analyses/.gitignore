@@ -2,3 +2,6 @@
 10-hisat-deseq2/*sam
 10-hisat-deseq2/*bam
 10-hisat-deseq2/*bam*
+10-hisat-deseq2/*bam
+10-hisat-deseq2/*fastq
+10-hisat-deseq2/*gtf

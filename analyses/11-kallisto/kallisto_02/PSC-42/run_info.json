@@ -1,0 +1,13 @@
+{
+	"n_targets": 29476,
+	"n_bootstraps": 0,
+	"n_processed": 20804015,
+	"n_pseudoaligned": 7850914,
+	"n_unique": 7823636,
+	"p_pseudoaligned": 37.7,
+	"p_unique": 37.6,
+	"kallisto_version": "0.46.1",
+	"index_version": 10,
+	"start_time": "Wed May 29 05:37:51 2024",
+	"call": "/home/shared/kallisto/kallisto quant -i ../analyses/11-kallisto/Phel_transcriptome.uia.index -o ../analyses/11-kallisto/kallisto_02/PSC-42 -t 36 --fr-stranded --rf-stranded /home/shared/8TB_HDD_02/graceac9/data/pycno2021/PSC-42_R1_001.fastq.gz.fastp-trim.20220810.fq.gz /home/shared/8TB_HDD_02/graceac9/data/pycno2021/PSC-42_R2_001.fastq.gz.fastp-trim.20220810.fq.gz"
+}

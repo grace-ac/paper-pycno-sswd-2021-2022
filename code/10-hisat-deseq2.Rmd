@@ -184,11 +184,11 @@ find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-tri
 | xargs -I{} sh -c '/home/shared/hisat2-2.2.1/hisat2 \
 -x ../analyses/10-hisat-deseq2/GCA_032158295.index \
 --dta \
--p 36 \
+-p 20 \
 -1 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
 -2 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R2_001.fastq.gz.fastp-trim.20220810.fq.gz \
 -S ../analyses/10-hisat-deseq2/{}_03.sam \
---un ../analyses/10-hisat-deseq2/{}_unmapped_reads.fastq \
+--un-conc ../analyses/10-hisat-deseq2/{}_unmapped_reads.fastq \
 > ../analyses/10-hisat-deseq2/{}_hisat03.stdout 2> ../analyses/10-hisat-deseq2/{}_hisat03.stderr'
 ```
 
@@ -254,10 +254,21 @@ find ../analyses/10-hisat-deseq2/*sorted.bam \
 /home/shared/stringtie-2.2.1.Linux_x86_64/stringtie \
 -p 36 \
 -eB \
--G ../data/ncbi_dataset/data/GCF_031168955.1/genomic.gff \
+-G ../data/augustus.hints.gff \
 -o ../analyses/10-hisat-deseq2/{}.gtf \
 ../analyses/10-hisat-deseq2/{}.sorted.bam
 ```
+
+```{bash}
+head ../data/*gf*
+echo "next"
+head ../data/*gt*
+```
+
+
+
+
+
 
 
 # Count Matrix

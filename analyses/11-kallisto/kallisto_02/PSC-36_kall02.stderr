@@ -1,0 +1,15 @@
+
+[quant] fragment length distribution will be estimated from the data
+[index] k-mer length: 31
+[index] number of targets: 29,476
+[index] number of k-mers: 39,350,352
+[index] number of equivalence classes: 62,859
+[quant] running in paired-end mode
+[quant] will process pair 1: /home/shared/8TB_HDD_02/graceac9/data/pycno2021/PSC-36_R1_001.fastq.gz.fastp-trim.20220810.fq.gz
+                             /home/shared/8TB_HDD_02/graceac9/data/pycno2021/PSC-36_R2_001.fastq.gz.fastp-trim.20220810.fq.gz
+[quant] finding pseudoalignments for the reads ... done
+[quant] processed 21,277,746 reads, 5,692,157 reads pseudoaligned
+[quant] estimated average fragment length: 286.341
+[   em] quantifying the abundances ... done
+[   em] the Expectation-Maximization algorithm ran for 278 rounds
+
