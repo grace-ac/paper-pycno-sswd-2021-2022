@@ -286,21 +286,34 @@ cat ../analyses/10-hisat-deseq2/hisat.out \
 echo "10-hisat-deseq2/*gtf" >> ../analyses/.gitignore
 ```
 
+
+```{bash}
+/home/shared/gffread-0.12.7.Linux_x86_64/gffread \
+../data/augustus.hints.gtf \
+-T \
+-o ../analyses/10-hisat-deseq2/augustus.hint.2.gff
+
+```
+
+
+
+
+
+
 ```{r, engine='bash'}
 find ../analyses/10-hisat-deseq2/*sorted.bam \
 | xargs basename -s .sorted.bam | xargs -I{} \
-/home/shared/stringtie-2.2.1.Linux_x86_64/stringtie \
+sh -c '/home/shared/stringtie-2.2.1.Linux_x86_64/stringtie \
 -p 36 \
 -eB \
--G ../data/augustus.hints.gff \
+-G ../analyses/10-hisat-deseq2/augustus.hint.2.gff \
 -o ../analyses/10-hisat-deseq2/{}.gtf \
-../analyses/10-hisat-deseq2/{}.sorted.bam
+../analyses/10-hisat-deseq2/{}.sorted.bam'
 ```
 
 ```{bash}
-head ../data/*gf*
-echo "next"
-head ../data/*gt*
+head ../analyses/10-hisat-deseq2/*gtf
+
 ```
 
 
