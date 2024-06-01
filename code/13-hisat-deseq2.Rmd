@@ -1,0 +1,459 @@
+---
+title: "10-Hisat"
+author: "Steven Roberts"
+date: "`r format(Sys.time(), '%d %B, %Y')`"  
+analyses: 
+  github_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    html_preview: true
+  html_document:
+    theme: readable
+    highlight: zenburn
+    toc: true
+    toc_float: true
+    number_sections: true
+    code_folding: show
+    code_download: true
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+library(kableExtra)
+library(DT)
+library(Biostrings)
+library(tm)
+library(pheatmap)
+library(DESeq2)
+knitr::opts_chunk$set(
+  echo = TRUE,         # Display code chunks
+  eval = FALSE,         # Evaluate code chunks
+  warning = FALSE,     # Hide warnings
+  message = FALSE,     # Hide messages
+  fig.width = 6,       # Set plot width in inches
+  fig.height = 4,      # Set plot height in inches
+  fig.align = "center", # Align plots to the center
+  comment = ""         # Prevents appending '##' to beginning of lines in code analyses
+)
+```
+
+# Differentially Expressed Genes
+ 
+
+
+# Reads
+
+```{r, engine='bash', eval=TRUE}
+ls /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*
+```
+
+```{r, engine='bash}
+/home/shared/FastQC-0.12.1/fastqc \
+/home/shared/8TB_HDD_02/graceac9/data/pycno2021/*fq.gz \
+-t 36 \
+-o ../analyses/10-hisat-deseq2/
+```
+
+
+
+```{r, engine='bash'}
+eval "$(/opt/anaconda/anaconda3/bin/conda shell.bash hook)"
+conda activate
+which multiqc
+
+
+multiqc ../analyses/10-hisat-deseq2/ \
+-o ../analyses/10-hisat-deseq2/
+```
+
+
+
+
+
+# Genome
+https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_032158295.1/
+
+![](http://gannet.fish.washington.edu/seashell/snaps/Monosnap_Pycnopodia_helianthoides_genome_assembly_ASM3215829v1_-_NCBI_-_NLM_2024-05-25_15-32-13.png)
+
+```{r, engine='bash'}
+cd ../data
+
+/home/shared/datasets download genome accession GCA_032158295.1 --include gff3,rna,cds,protein,genome,seq-report
+```
+
+```{r, engine='bash'}
+cd ../data 
+unzip ncbi_dataset.zip
+```
+
+```{r, engine='bash', eval=TRUE}
+ls ../data/ncbi_dataset/data/GCA_032158295.1
+
+```
+
+## Annotation files
+
+
+```{r, engine='bash', eval=TRUE}
+head ../data/augustus.hints.gtf
+
+```
+
+
+
+# Hisat
+
+```{r, engine='bash'}
+/home/shared/hisat2-2.2.1/hisat2_extract_exons.py \
+../data/augustus.hints.gtf \
+> ../analyses/10-hisat-deseq2/m_exon.tab
+```
+
+```{r, engine='bash'}
+/home/shared/hisat2-2.2.1/hisat2_extract_splice_sites.py \
+../data/augustus.hints.gtf \
+> ../analyses/10-hisat-deseq2/m_spice_sites.tab
+```
+
+```{r, engine='bash'}
+echo "10-hisat-deseq2/GCF*" >> ../analyses/.gitignore
+```
+
+```{r, engine='bash'}
+/home/shared/hisat2-2.2.1/hisat2-build \
+../data/ncbi_dataset/data/GCA_032158295.1/GCA_032158295.1_ASM3215829v1_genomic.fna \
+../analyses/10-hisat-deseq2/GCA_032158295.index \
+--exon ../analyses/10-hisat-deseq2/m_exon.tab \
+--ss ../analyses/10-hisat-deseq2/m_spice_sites.tab \
+-p 20 \
+../data/augustus.hints.gtf \
+2> ../analyses/10-hisat-deseq2/hisat2-build_stats.txt
+```
+
+```{r, engine='bash'}
+echo "10-hisat-deseq2/*sam" >> ../analyses/.gitignore
+```
+
+
+
+```{r, engine='bash', eval=TRUE}
+find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-trim.20220810.fq.gz | xargs basename -s _R1_001.fastq.gz.fastp-trim.20220810.fq.gz | xargs -I{} echo {}
+```
+
+
+
+```{r, engine='bash'}
+find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
+| xargs basename -s _R1_001.fastq.gz.fastp-trim.20220810.fq.gz | xargs -I{} \
+/home/shared/hisat2-2.2.1/hisat2 \
+-x ../analyses/10-hisat-deseq2/GCA_032158295.index \
+--dta \
+-p 36 \
+-1 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
+-2 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R2_001.fastq.gz.fastp-trim.20220810.fq.gz \
+-S ../analyses/10-hisat-deseq2/{}.sam \
+2> ../analyses/10-hisat-deseq2/hisat.out
+```
+
+
+mod
+
+```{r, engine='bash'}
+find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
+| xargs -I{} basename -s _R1_001.fastq.gz.fastp-trim.20220810.fq.gz {} \
+| xargs -I{} sh -c '/home/shared/hisat2-2.2.1/hisat2 \
+-x ../analyses/10-hisat-deseq2/GCA_032158295.index \
+--dta \
+-p 20 \
+-1 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
+-2 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R2_001.fastq.gz.fastp-trim.20220810.fq.gz \
+-S ../analyses/10-hisat-deseq2/{}_02.sam \
+> ../analyses/10-hisat-deseq2/{}_hisat.stdout 2> ../analyses/10-hisat-deseq2/{}_hisat.stderr'
+```
+
+
+keeping unmapped reads 
+```{r, engine='bash'}
+find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
+| xargs -I{} basename -s _R1_001.fastq.gz.fastp-trim.20220810.fq.gz {} \
+| xargs -I{} sh -c '/home/shared/hisat2-2.2.1/hisat2 \
+-x ../analyses/10-hisat-deseq2/GCA_032158295.index \
+--dta \
+-p 20 \
+-1 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
+-2 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R2_001.fastq.gz.fastp-trim.20220810.fq.gz \
+-S ../analyses/10-hisat-deseq2/{}_03.sam \
+--un-conc ../analyses/10-hisat-deseq2/{}_unmapped_reads.fastq \
+> ../analyses/10-hisat-deseq2/{}_hisat03.stdout 2> ../analyses/10-hisat-deseq2/{}_hisat03.stderr'
+```
+
+--un unmapped_reads.fastq
+
+# Perform assembly
+${trinity_dir}/Trinity \
+--seqType fq \
+--SS_lib_type RF \
+--max_memory 100G \
+--CPU ${threads} \
+--samples_file ${samples}
+
+```{bash}
+
+export PATH=${PATH}:/home/shared/bowtie2-2.4.4-linux-x86_64/
+export PATH=${PATH}:/home/shared/jellyfish-2.3.0/bin/
+export PATH=${PATH}:/home/shared/salmon-1.4.0_linux_x86_64/bin/
+
+
+/home/shared/trinityrnaseq-v2.12.0/Trinity \
+--seqType fq \
+--max_memory 300G \
+--CPU 24 \
+--left ../analyses/10-hisat-deseq2/PSC-35_unmapped_reads.1.fastq \
+--right ../analyses/10-hisat-deseq2/PSC-35_unmapped_reads.2.fastq \
+--output ../analyses/10-hisat-deseq2/trinity
+```
+
+```{bash}
+/home/shared/trinityrnaseq-v2.12.0/Trinity --help
+
+```
+
+/home/shared/trinityrnaseq-v2.12.0
+
+
+
+
+
+
+
+
+
+Explanation
+xargs -I{}: This option allows you to replace {} in the command with the output from the previous command (i.e., basename). It's used twice: first, to strip the suffix from the filenames, and second, to construct and execute the hisat2 command.
+
+sh -c: This is used to execute a complex command within xargs. It's necessary because the output redirection (>, 2>) is shell functionality, and without sh -c, xargs wouldn't handle it correctly.
+
+Output Redirection:
+
+> ../analyses/10-hisat-deseq2/{}_hisat.stdout: Redirects the standard output to a unique file for each sample.
+2> ../analyses/10-hisat-deseq2/{}_hisat.stderr: Redirects the standard error to a different unique file for each sample.
+This setup ensures that the output from each sample's alignment process is neatly organized into separate files, making it easier to manage and debug individual runs.
+
+
+
+
+```{r, engine='bash'}
+echo "10-hisat-deseq2/*bam" >> ../analyses/.gitignore
+echo "10-hisat-deseq2/*bam*" >> ../analyses/.gitignore
+```
+
+```{r, engine='bash'}
+for samfile in ../analyses/10-hisat-deseq2/*.sam; do
+  bamfile="${samfile%.sam}.bam"
+  sorted_bamfile="${samfile%.sam}.sorted.bam"
+  /home/shared/samtools-1.12/samtools view -bS -@ 20 "$samfile" > "$bamfile"
+  /home/shared/samtools-1.12/samtools sort -@ 20 "$bamfile" -o "$sorted_bamfile"
+  /home/shared/samtools-1.12/samtools index -@ 20 "$sorted_bamfile"
+done
+```
+
+```{r, engine='bash'}
+rm ../analyses/10-hisat-deseq2/*sam
+```
+
+
+```{r, engine='bash'}
+ls ../analyses/10-hisat-deseq2/*sorted.bam | wc -l
+```
+
+```{r, engine='bash', eval=TRUE}
+head ../analyses/10-hisat-deseq2/hisat.out
+```
+
+```{r, engine='bash', eval=TRUE}
+cat ../analyses/10-hisat-deseq2/hisat.out \
+| grep "overall alignment rate"
+```
+
+# Stringtie
+
+```{r, engine='bash'}
+echo "10-hisat-deseq2/*gtf" >> ../analyses/.gitignore
+```
+
+
+```{bash}
+/home/shared/gffread-0.12.7.Linux_x86_64/gffread \
+../data/augustus.hints.gtf \
+-T \
+-o ../analyses/10-hisat-deseq2/augustus.hint.2.gff
+
+```
+
+
+
+
+
+
+```{r, engine='bash'}
+find ../analyses/10-hisat-deseq2/*sorted.bam \
+| xargs basename -s .sorted.bam | xargs -I{} \
+sh -c '/home/shared/stringtie-2.2.1.Linux_x86_64/stringtie \
+-p 36 \
+-eB \
+-G ../analyses/10-hisat-deseq2/augustus.hint.2.gff \
+-o ../analyses/10-hisat-deseq2/{}.gtf \
+../analyses/10-hisat-deseq2/{}.sorted.bam'
+```
+
+```{bash}
+head ../analyses/10-hisat-deseq2/*gtf
+
+```
+
+
+
+
+
+
+
+# Count Matrix
+
+list format
+```
+RNA-ACR-140 ../analyses/15-Apul-hisat/RNA-ACR-140.gtf
+RNA-ACR-145 ../analyses/15-Apul-hisat/RNA-ACR-145.gtf
+RNA-ACR-173 ../analyses/15-Apul-hisat/RNA-ACR-173.gtf
+RNA-ACR-178 ../analyses/15-Apul-hisat/RNA-ACR-178.gtf
+```
+
+```{r, engine='bash', eval=TRUE}
+ls ../analyses/10-hisat-deseq2/*gtf
+```
+
+
+```{r, engine='bash', eval=TRUE}
+head ../data/list01.txt
+```
+
+
+```{r, engine='bash'}
+python /home/shared/stringtie-2.2.1.Linux_x86_64/prepDE.py \
+-i ../data/list01.txt \
+-g ../analyses/10-hisat-deseq2/gene_count_matrix.csv \
+-t ../analyses/10-hisat-deseq2/transcript_count_matrix.csv
+```
+
+```{r, engine='bash', eval=TRUE}
+head ../analyses/10-hisat-deseq2/*matrix.csv
+```
+
+# DEseq2
+
+
+need `conditions.txt` file in this format
+
+```
+SampleID	Condition
+RNA.ACR.140	control
+RNA.ACR.145	control
+RNA.ACR.173	treated
+RNA.ACR.178	treated
+```
+
+```{r, engine='bash', eval=TRUE}
+head ../data/conditions.txt
+```
+
+
+
+```{r, eval=TRUE}
+library(DESeq2)
+```
+
+```{r, eval=TRUE, cache=TRUE}
+# Load gene(/transcript) count matrix and labels
+countData <- as.matrix(read.csv("../analyses/10-hisat-deseq2/gene_count_matrix.csv", row.names="gene_id"))
+colData <- read.csv("../data/conditions.txt", sep="\t", row.names = 1)
+
+# Note: The PHENO_DATA file contains information on each sample, e.g., sex or population.
+# The exact way to import this depends on the format of the file.
+
+# Check all sample IDs in colData are also in CountData and match their orders
+all(rownames(colData) %in% colnames(countData)) # This should return TRUE
+
+countData <- countData[, rownames(colData)]
+all(rownames(colData) == colnames(countData)) # This should also return TRUE
+
+# Create a DESeqDataSet from count matrix and labels
+dds <- DESeqDataSetFromMatrix(countData = countData,
+                              colData = colData, design = ~ Condition)
+
+
+# Run the default analysis for DESeq2 and generate results table
+dds <- DESeq(dds)
+deseq2.res <- results(dds)
+
+# Sort by adjusted p-value and display
+resOrdered <- deseq2.res[order(deseq2.res$padj), ]
+vsd <- vst(dds, blind = FALSE)
+plotPCA(vsd, intgroup = "Condition")
+```
+
+
+```{r, eval=TRUE}
+# Select top 50 differentially expressed genes
+res <- results(dds)
+res_ordered <- res[order(res$padj), ]
+top_genes <- row.names(res_ordered)[1:50]
+
+# Extract counts and normalize
+counts <- counts(dds, normalized = TRUE)
+counts_top <- counts[top_genes, ]
+
+# Log-transform counts
+log_counts_top <- log2(counts_top + 1)
+
+# Generate heatmap
+pheatmap(log_counts_top, scale = "row")
+```
+
+```{r, eval=TRUE}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ])
+```
+
+```{r, eval=TRUE}
+tmp <- deseq2.res
+# The main plot
+plot(tmp$baseMean, tmp$log2FoldChange, pch=20, cex=0.45, ylim=c(-3, 3), log="x", col="darkgray",
+     main="DEG Dessication  (pval <= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+tmp.sig <- deseq2.res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ]
+points(tmp.sig$baseMean, tmp.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
+
+```{r}
+write.table(tmp.sig, "../analyses/10-hisat-deseq2/DEGlist.tab", sep = '\t', row.names = T)
+```
+
+```{r, eval=TRUE}
+deglist <- read.csv("../analyses/10-hisat-deseq2/DEGlist.tab", sep = '\t', header = TRUE)
+deglist$RowName <- rownames(deglist)
+deglist2 <- deglist[, c("RowName", "pvalue")] # Optionally, reorder the columns
+```
+
+```{r,eval=TRUE}
+head(deglist)
+```
+
+
