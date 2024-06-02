@@ -52,7 +52,7 @@ knitr::opts_chunk$set(
 ls /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*
 ```
 
-```{r, engine='bash}
+```{r, engine='bash'}
 /home/shared/FastQC-0.12.1/fastqc \
 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*fq.gz \
 -t 36 \
@@ -165,7 +165,6 @@ find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-tri
 > ../analyses/13-hisat-deseq2/{}_hisat03.stdout 2> ../analyses/13-hisat-deseq2/{}_hisat03.stderr'
 ```
 
---un unmapped_reads.fastq
 
 
 
@@ -211,14 +210,8 @@ rm ../analyses/13-hisat-deseq2/*sam
 ls ../analyses/13-hisat-deseq2/*sorted.bam | wc -l
 ```
 
-```{r, engine='bash', eval=TRUE}
-head ../analyses/13-hisat-deseq2/hisat.out
-```
 
-```{r, engine='bash', eval=TRUE}
-cat ../analyses/13-hisat-deseq2/hisat.out \
-| grep "overall alignment rate"
-```
+
 
 # Stringtie
 
@@ -229,15 +222,24 @@ echo "13-hisat-deseq2/*gtf" >> ../analyses/.gitignore
 
 ```{bash}
 /home/shared/gffread-0.12.7.Linux_x86_64/gffread \
-../data/augustus.hints.gtf \
+../analyses/12-fix-gff/mod_augustus.gtf \
 -T \
--o ../analyses/13-hisat-deseq2/augustus.hint.2.gff
+-o ../analyses/13-hisat-deseq2/mod_augustus.gff
 
 ```
 
 
+```{bash}
+tail ../data/augustus.hints.gtf
+```
 
+```{bash}
+grep "46414" ../data/augustus.hints.gtf | head -20
+```
 
+```{bash}
+grep "14" ../analyses/12-fix-gff/mod_augustus.gtf | head 
+```
 
 
 ```{r, engine='bash'}
@@ -246,7 +248,7 @@ find ../analyses/13-hisat-deseq2/*sorted.bam \
 sh -c '/home/shared/stringtie-2.2.1.Linux_x86_64/stringtie \
 -p 36 \
 -eB \
--G ../analyses/13-hisat-deseq2/augustus.hint.2.gff \
+-G ../analyses/13-hisat-deseq2/mod_augustus.gff \
 -o ../analyses/13-hisat-deseq2/{}.gtf \
 ../analyses/13-hisat-deseq2/{}.sorted.bam'
 ```

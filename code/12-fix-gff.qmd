@@ -44,4 +44,53 @@ knitr::opts_chunk$set(
 
 Need to convert gtf to match genome fasta.. then will convert gtf to gff to use with hisat
 
+```{r}
+gtfbttr <- read.table("../data/augustus.hints.gtf", sep = "\t", quote = "")
+```
+
+```{r}
+head(gtfbttr)
+```
+
+
+
+
+```{r}
+save(gtfch, file = "../analyses/12-fix-gff/gtfch.RData")
+save(ncbi, file = "../analyses/12-fix-gff/ncbi.RData")
+```
+
+```{r}
+gtfch <- gtfbttr %>%
+  mutate(Chromosome.name = str_extract(V1, "(?<=\\.)\\d+"),  # Extract the number after the dot
+         Chromosome.name = str_remove_all(Chromosome.name, "^0+"))  # Remove leading zeros
+
+```
+
+```{r}
+(gtfch)
+```
+
+
+
+
+
+
+```{r}
+gtfch %>%
+left_join(ncbi, by = "Chromosome.name")
+
+```
+
+```{r}
+gtfch %>%
+left_join(ncbi, by = "Chromosome.name") %>%
+select(GenBank.seq.accession, V2, V3, V4, V5, V6, V7, V8, V9) %>% filter(!is.na(GenBank.seq.accession)) %>%
+write.table(file = "../analyses/12-fix-gff/mod_augustus.gtf", sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
+```
+
+
+```{bash}
+head ../analyses/12-fix-gff/mod_augustus.gtf
+```
 
