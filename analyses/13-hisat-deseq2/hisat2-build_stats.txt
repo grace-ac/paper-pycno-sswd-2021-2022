@@ -591,3 +591,49 @@ SORT, Make index: 7
 TOTAL: 32
 Allocating ftab, absorbFtab
 Entering GFM loop
+Exited GFM loop
+fchr[A]: 0
+fchr[C]: 147875828
+fchr[G]: 243001481
+fchr[T]: 338119481
+fchr[$]: 485899035
+Exiting GFM::buildToDisk()
+Returning from initFromVector
+Wrote 303416084 bytes to primary GFM file: ../analyses/13-hisat-deseq2/GCA_032158295.index.1.ht2
+Wrote 121440216 bytes to secondary GFM file: ../analyses/13-hisat-deseq2/GCA_032158295.index.2.ht2
+Re-opening _in1 and _in2 as input streams
+Returning from GFM constructor
+Warning: a local graph exploded (offset: 121194950, length: 57344)
+Warning: a local graph exploded (offset: 327235680, length: 57344)
+Returning from initFromVector
+Wrote 336934463 bytes to primary GFM file: ../analyses/13-hisat-deseq2/GCA_032158295.index.5.ht2
+Wrote 123284342 bytes to secondary GFM file: ../analyses/13-hisat-deseq2/GCA_032158295.index.6.ht2
+Re-opening _in5 and _in5 as input streams
+Returning from HGFM constructor
+Headers:
+    len: 483816647
+    gbwtLen: 485899036
+    nodes: 485760845
+    sz: 241908324
+    gbwtSz: 242949519
+    lineRate: 7
+    offRate: 4
+    offMask: 0xfffffff0
+    ftabChars: 10
+    eftabLen: 0
+    eftabSz: 0
+    ftabLen: 1048577
+    ftabSz: 4194308
+    offsLen: 30360053
+    offsSz: 121440212
+    lineSz: 128
+    sideSz: 128
+    sideGbwtSz: 104
+    sideGbwtLen: 208
+    numSides: 2336054
+    numLines: 2336054
+    gbwtTotLen: 299014912
+    gbwtTotSz: 299014912
+    reverse: 0
+    linearFM: No
+Total time for call to driver() for forward index: 00:07:47

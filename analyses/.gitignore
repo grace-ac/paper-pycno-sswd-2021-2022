@@ -6,3 +6,4 @@
 10-hisat-deseq2/*fastq
 10-hisat-deseq2/*gtf
 13-hisat-deseq2/GCF*
+13-hisat-deseq2/*sam

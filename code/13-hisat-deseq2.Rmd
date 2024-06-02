@@ -1,5 +1,5 @@
 ---
-title: "10-Hisat"
+title: "13-Hisat"
 author: "Steven Roberts"
 date: "`r format(Sys.time(), '%d %B, %Y')`"  
 analyses: 
@@ -56,7 +56,7 @@ ls /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*
 /home/shared/FastQC-0.12.1/fastqc \
 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*fq.gz \
 -t 36 \
--o ../analyses/10-hisat-deseq2/
+-o ../analyses/13-hisat-deseq2/
 ```
 
 
@@ -67,8 +67,8 @@ conda activate
 which multiqc
 
 
-multiqc ../analyses/10-hisat-deseq2/ \
--o ../analyses/10-hisat-deseq2/
+multiqc ../analyses/13-hisat-deseq2/ \
+-o ../analyses/13-hisat-deseq2/
 ```
 
 
@@ -100,8 +100,8 @@ ls ../data/ncbi_dataset/data/GCA_032158295.1
 
 
 ```{r, engine='bash', eval=TRUE}
-head ../data/augustus.hints.gtf
-
+head ../analyses/12-fix-gff/mod_augustus.gtf
+head ../data/ncbi_dataset/data/GCA_032158295.1/GCA_032158295.1_ASM3215829v1_genomic.fna
 ```
 
 
@@ -110,33 +110,34 @@ head ../data/augustus.hints.gtf
 
 ```{r, engine='bash'}
 /home/shared/hisat2-2.2.1/hisat2_extract_exons.py \
-../data/augustus.hints.gtf \
-> ../analyses/10-hisat-deseq2/m_exon.tab
+../analyses/12-fix-gff/mod_augustus.gtf \
+> ../analyses/13-hisat-deseq2/m_exon.tab
 ```
 
 ```{r, engine='bash'}
 /home/shared/hisat2-2.2.1/hisat2_extract_splice_sites.py \
-../data/augustus.hints.gtf \
-> ../analyses/10-hisat-deseq2/m_spice_sites.tab
+../analyses/12-fix-gff/mod_augustus.gtf \
+> ../analyses/13-hisat-deseq2/m_spice_sites.tab
 ```
 
 ```{r, engine='bash'}
-echo "10-hisat-deseq2/GCF*" >> ../analyses/.gitignore
+echo "13-hisat-deseq2/GCF*" >> ../analyses/.gitignore
+echo "13-hisat-deseq2/GCF**fastq" >> ../analyses/.gitignore
 ```
 
 ```{r, engine='bash'}
 /home/shared/hisat2-2.2.1/hisat2-build \
 ../data/ncbi_dataset/data/GCA_032158295.1/GCA_032158295.1_ASM3215829v1_genomic.fna \
-../analyses/10-hisat-deseq2/GCA_032158295.index \
---exon ../analyses/10-hisat-deseq2/m_exon.tab \
---ss ../analyses/10-hisat-deseq2/m_spice_sites.tab \
+../analyses/13-hisat-deseq2/GCA_032158295.index \
+--exon ../analyses/13-hisat-deseq2/m_exon.tab \
+--ss ../analyses/13-hisat-deseq2/m_spice_sites.tab \
 -p 20 \
-../data/augustus.hints.gtf \
-2> ../analyses/10-hisat-deseq2/hisat2-build_stats.txt
+../analyses/12-fix-gff/mod_augustus.gtf \
+2> ../analyses/13-hisat-deseq2/hisat2-build_stats.txt
 ```
 
 ```{r, engine='bash'}
-echo "10-hisat-deseq2/*sam" >> ../analyses/.gitignore
+echo "13-hisat-deseq2/*sam" >> ../analyses/.gitignore
 ```
 
 
@@ -147,34 +148,6 @@ find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-tri
 
 
 
-```{r, engine='bash'}
-find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
-| xargs basename -s _R1_001.fastq.gz.fastp-trim.20220810.fq.gz | xargs -I{} \
-/home/shared/hisat2-2.2.1/hisat2 \
--x ../analyses/10-hisat-deseq2/GCA_032158295.index \
---dta \
--p 36 \
--1 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
--2 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R2_001.fastq.gz.fastp-trim.20220810.fq.gz \
--S ../analyses/10-hisat-deseq2/{}.sam \
-2> ../analyses/10-hisat-deseq2/hisat.out
-```
-
-
-mod
-
-```{r, engine='bash'}
-find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
-| xargs -I{} basename -s _R1_001.fastq.gz.fastp-trim.20220810.fq.gz {} \
-| xargs -I{} sh -c '/home/shared/hisat2-2.2.1/hisat2 \
--x ../analyses/10-hisat-deseq2/GCA_032158295.index \
---dta \
--p 20 \
--1 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
--2 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R2_001.fastq.gz.fastp-trim.20220810.fq.gz \
--S ../analyses/10-hisat-deseq2/{}_02.sam \
-> ../analyses/10-hisat-deseq2/{}_hisat.stdout 2> ../analyses/10-hisat-deseq2/{}_hisat.stderr'
-```
 
 
 keeping unmapped reads 
@@ -182,51 +155,17 @@ keeping unmapped reads
 find /home/shared/8TB_HDD_02/graceac9/data/pycno2021/*_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
 | xargs -I{} basename -s _R1_001.fastq.gz.fastp-trim.20220810.fq.gz {} \
 | xargs -I{} sh -c '/home/shared/hisat2-2.2.1/hisat2 \
--x ../analyses/10-hisat-deseq2/GCA_032158295.index \
+-x ../analyses/13-hisat-deseq2/GCA_032158295.index \
 --dta \
--p 20 \
+-p 32 \
 -1 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
 -2 /home/shared/8TB_HDD_02/graceac9/data/pycno2021/{}_R2_001.fastq.gz.fastp-trim.20220810.fq.gz \
--S ../analyses/10-hisat-deseq2/{}_03.sam \
---un-conc ../analyses/10-hisat-deseq2/{}_unmapped_reads.fastq \
-> ../analyses/10-hisat-deseq2/{}_hisat03.stdout 2> ../analyses/10-hisat-deseq2/{}_hisat03.stderr'
+-S ../analyses/13-hisat-deseq2/{}_03.sam \
+--un-conc ../analyses/13-hisat-deseq2/{}_unmapped_reads.fastq \
+> ../analyses/13-hisat-deseq2/{}_hisat03.stdout 2> ../analyses/13-hisat-deseq2/{}_hisat03.stderr'
 ```
 
 --un unmapped_reads.fastq
-
-# Perform assembly
-${trinity_dir}/Trinity \
---seqType fq \
---SS_lib_type RF \
---max_memory 100G \
---CPU ${threads} \
---samples_file ${samples}
-
-```{bash}
-
-export PATH=${PATH}:/home/shared/bowtie2-2.4.4-linux-x86_64/
-export PATH=${PATH}:/home/shared/jellyfish-2.3.0/bin/
-export PATH=${PATH}:/home/shared/salmon-1.4.0_linux_x86_64/bin/
-
-
-/home/shared/trinityrnaseq-v2.12.0/Trinity \
---seqType fq \
---max_memory 300G \
---CPU 24 \
---left ../analyses/10-hisat-deseq2/PSC-35_unmapped_reads.1.fastq \
---right ../analyses/10-hisat-deseq2/PSC-35_unmapped_reads.2.fastq \
---output ../analyses/10-hisat-deseq2/trinity
-```
-
-```{bash}
-/home/shared/trinityrnaseq-v2.12.0/Trinity --help
-
-```
-
-/home/shared/trinityrnaseq-v2.12.0
-
-
-
 
 
 
@@ -240,20 +179,20 @@ sh -c: This is used to execute a complex command within xargs. It's necessary be
 
 Output Redirection:
 
-> ../analyses/10-hisat-deseq2/{}_hisat.stdout: Redirects the standard output to a unique file for each sample.
-2> ../analyses/10-hisat-deseq2/{}_hisat.stderr: Redirects the standard error to a different unique file for each sample.
+> ../analyses/13-hisat-deseq2/{}_hisat.stdout: Redirects the standard output to a unique file for each sample.
+2> ../analyses/13-hisat-deseq2/{}_hisat.stderr: Redirects the standard error to a different unique file for each sample.
 This setup ensures that the output from each sample's alignment process is neatly organized into separate files, making it easier to manage and debug individual runs.
 
 
 
 
 ```{r, engine='bash'}
-echo "10-hisat-deseq2/*bam" >> ../analyses/.gitignore
-echo "10-hisat-deseq2/*bam*" >> ../analyses/.gitignore
+echo "13-hisat-deseq2/*bam" >> ../analyses/.gitignore
+echo "13-hisat-deseq2/*bam*" >> ../analyses/.gitignore
 ```
 
 ```{r, engine='bash'}
-for samfile in ../analyses/10-hisat-deseq2/*.sam; do
+for samfile in ../analyses/13-hisat-deseq2/*.sam; do
   bamfile="${samfile%.sam}.bam"
   sorted_bamfile="${samfile%.sam}.sorted.bam"
   /home/shared/samtools-1.12/samtools view -bS -@ 20 "$samfile" > "$bamfile"
@@ -262,28 +201,29 @@ for samfile in ../analyses/10-hisat-deseq2/*.sam; do
 done
 ```
 
+,
 ```{r, engine='bash'}
-rm ../analyses/10-hisat-deseq2/*sam
+rm ../analyses/13-hisat-deseq2/*sam
 ```
 
 
 ```{r, engine='bash'}
-ls ../analyses/10-hisat-deseq2/*sorted.bam | wc -l
+ls ../analyses/13-hisat-deseq2/*sorted.bam | wc -l
 ```
 
 ```{r, engine='bash', eval=TRUE}
-head ../analyses/10-hisat-deseq2/hisat.out
+head ../analyses/13-hisat-deseq2/hisat.out
 ```
 
 ```{r, engine='bash', eval=TRUE}
-cat ../analyses/10-hisat-deseq2/hisat.out \
+cat ../analyses/13-hisat-deseq2/hisat.out \
 | grep "overall alignment rate"
 ```
 
 # Stringtie
 
 ```{r, engine='bash'}
-echo "10-hisat-deseq2/*gtf" >> ../analyses/.gitignore
+echo "13-hisat-deseq2/*gtf" >> ../analyses/.gitignore
 ```
 
 
@@ -291,7 +231,7 @@ echo "10-hisat-deseq2/*gtf" >> ../analyses/.gitignore
 /home/shared/gffread-0.12.7.Linux_x86_64/gffread \
 ../data/augustus.hints.gtf \
 -T \
--o ../analyses/10-hisat-deseq2/augustus.hint.2.gff
+-o ../analyses/13-hisat-deseq2/augustus.hint.2.gff
 
 ```
 
@@ -301,18 +241,18 @@ echo "10-hisat-deseq2/*gtf" >> ../analyses/.gitignore
 
 
 ```{r, engine='bash'}
-find ../analyses/10-hisat-deseq2/*sorted.bam \
+find ../analyses/13-hisat-deseq2/*sorted.bam \
 | xargs basename -s .sorted.bam | xargs -I{} \
 sh -c '/home/shared/stringtie-2.2.1.Linux_x86_64/stringtie \
 -p 36 \
 -eB \
--G ../analyses/10-hisat-deseq2/augustus.hint.2.gff \
--o ../analyses/10-hisat-deseq2/{}.gtf \
-../analyses/10-hisat-deseq2/{}.sorted.bam'
+-G ../analyses/13-hisat-deseq2/augustus.hint.2.gff \
+-o ../analyses/13-hisat-deseq2/{}.gtf \
+../analyses/13-hisat-deseq2/{}.sorted.bam'
 ```
 
 ```{bash}
-head ../analyses/10-hisat-deseq2/*gtf
+head ../analyses/13-hisat-deseq2/*gtf
 
 ```
 
@@ -333,7 +273,7 @@ RNA-ACR-178 ../analyses/15-Apul-hisat/RNA-ACR-178.gtf
 ```
 
 ```{r, engine='bash', eval=TRUE}
-ls ../analyses/10-hisat-deseq2/*gtf
+ls ../analyses/13-hisat-deseq2/*gtf
 ```
 
 
@@ -345,12 +285,12 @@ head ../data/list01.txt
 ```{r, engine='bash'}
 python /home/shared/stringtie-2.2.1.Linux_x86_64/prepDE.py \
 -i ../data/list01.txt \
--g ../analyses/10-hisat-deseq2/gene_count_matrix.csv \
--t ../analyses/10-hisat-deseq2/transcript_count_matrix.csv
+-g ../analyses/13-hisat-deseq2/gene_count_matrix.csv \
+-t ../analyses/13-hisat-deseq2/transcript_count_matrix.csv
 ```
 
 ```{r, engine='bash', eval=TRUE}
-head ../analyses/10-hisat-deseq2/*matrix.csv
+head ../analyses/13-hisat-deseq2/*matrix.csv
 ```
 
 # DEseq2
@@ -378,7 +318,7 @@ library(DESeq2)
 
 ```{r, eval=TRUE, cache=TRUE}
 # Load gene(/transcript) count matrix and labels
-countData <- as.matrix(read.csv("../analyses/10-hisat-deseq2/gene_count_matrix.csv", row.names="gene_id"))
+countData <- as.matrix(read.csv("../analyses/13-hisat-deseq2/gene_count_matrix.csv", row.names="gene_id"))
 colData <- read.csv("../data/conditions.txt", sep="\t", row.names = 1)
 
 # Note: The PHENO_DATA file contains information on each sample, e.g., sex or population.
@@ -443,11 +383,11 @@ abline(h=c(-1,1), col="blue")
 ```
 
 ```{r}
-write.table(tmp.sig, "../analyses/10-hisat-deseq2/DEGlist.tab", sep = '\t', row.names = T)
+write.table(tmp.sig, "../analyses/13-hisat-deseq2/DEGlist.tab", sep = '\t', row.names = T)
 ```
 
 ```{r, eval=TRUE}
-deglist <- read.csv("../analyses/10-hisat-deseq2/DEGlist.tab", sep = '\t', header = TRUE)
+deglist <- read.csv("../analyses/13-hisat-deseq2/DEGlist.tab", sep = '\t', header = TRUE)
 deglist$RowName <- rownames(deglist)
 deglist2 <- deglist[, c("RowName", "pvalue")] # Optionally, reorder the columns
 ```
