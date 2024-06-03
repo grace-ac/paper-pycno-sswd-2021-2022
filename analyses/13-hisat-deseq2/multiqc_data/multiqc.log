@@ -1,0 +1,328 @@
+[2024-06-03 09:12:40,466] multiqc                                            [DEBUG  ]  This is MultiQC v1.12
+[2024-06-03 09:12:40,466] multiqc                                            [DEBUG  ]  No MultiQC config found: /opt/anaconda/anaconda3/lib/python3.9/site-packages/multiqc_config.yaml
+[2024-06-03 09:12:40,467] multiqc                                            [DEBUG  ]  No MultiQC config found: /home/sr320/.multiqc_config.yaml
+[2024-06-03 09:12:40,467] multiqc                                            [DEBUG  ]  No MultiQC config found: multiqc_config.yaml
+[2024-06-03 09:12:40,467] multiqc                                            [DEBUG  ]  Command used: /opt/anaconda/anaconda3/bin/multiqc ../analyses/13-hisat-deseq2/ -o ../analyses/13-hisat-deseq2/
+[2024-06-03 09:12:41,546] multiqc                                            [WARNING]  MultiQC Version v1.22.2 now available!
+[2024-06-03 09:12:41,546] multiqc                                            [DEBUG  ]  Command     : /opt/anaconda/anaconda3/bin/multiqc ../analyses/13-hisat-deseq2/ -o ../analyses/13-hisat-deseq2/
+[2024-06-03 09:12:41,546] multiqc                                            [DEBUG  ]  Working dir : /home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/code
+[2024-06-03 09:12:41,546] multiqc                                            [DEBUG  ]  Template    : default
+[2024-06-03 09:12:41,546] multiqc                                            [DEBUG  ]  Running Python 3.9.7 (default, Sep 16 2021, 13:09:58)  [GCC 7.5.0]
+[2024-06-03 09:12:41,547] multiqc                                            [DEBUG  ]  Analysing modules: custom_content, ccs, ngsderive, purple, conpair, lima, peddy, somalier, methylQA, mosdepth, phantompeakqualtools, qualimap, preseq, quast, qorts, rna_seqc, rockhopper, rsem, rseqc, busco, bustools, goleft_indexcov, gffcompare, disambiguate, supernova, deeptools, sargasso, verifybamid, mirtrace, happy, mirtop, sambamba, homer, hops, macs2, theta2, snpeff, gatk, htseq, bcftools, featureCounts, fgbio, dragen, dedup, pbmarkdup, damageprofiler, biobambam2, jcvi, mtnucratio, picard, vep, sentieon, prokka, qc3C, nanostat, samblaster, samtools, sexdeterrmine, eigenstratdatabasetools, bamtools, jellyfish, vcftools, longranger, stacks, varscan2, snippy, bbmap, bismark, biscuit, hicexplorer, hicup, hicpro, salmon, kallisto, slamdunk, star, hisat2, tophat, bowtie2, bowtie1, snpsplit, odgi, pangolin, kat, leehom, adapterRemoval, clipandmerge, cutadapt, flexbar, kaiju, kraken, malt, trimmomatic, sickle, skewer, sortmerna, biobloomtools, fastq_screen, afterqc, fastp, fastqc, pychopper, pycoqc, minionqc, multivcfanalyzer, clusterflow, checkqc, bcl2fastq, bclconvert, interop, ivar, flash, seqyclean, optitype, whatshap
+[2024-06-03 09:12:41,548] multiqc                                            [DEBUG  ]  Using temporary directory for creating report: /tmp/tmp1jg1v2u4
+[2024-06-03 09:12:41,974] multiqc                                            [INFO   ]  Search path : /home/shared/8TB_HDD_03/sr320/github/paper-pycno-sswd-2021-2022/analyses/13-hisat-deseq2
+[2024-06-03 09:12:41,995] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-71_03.sorted.bam.bai
+[2024-06-03 09:12:41,995] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-58_03.gtf
+[2024-06-03 09:12:41,995] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-36_03.sorted.bam
+[2024-06-03 09:12:41,995] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-57_03.sorted.bam
+[2024-06-03 09:12:41,995] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-19_03.sorted.bam.bai
+[2024-06-03 09:12:41,996] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-71_unmapped_reads.1.fastq
+[2024-06-03 09:12:41,996] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-56_03.sorted.bam.bai
+[2024-06-03 09:12:42,019] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-63_03.gtf
+[2024-06-03 09:12:42,040] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-69_03.bam
+[2024-06-03 09:12:42,040] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-61_03.sorted.bam.bai
+[2024-06-03 09:12:42,040] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-42_03.gtf
+[2024-06-03 09:12:42,043] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: GCA_032158295.index.3.ht2
+[2024-06-03 09:12:42,043] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: GCA_032158295.index.3.ht2
+[2024-06-03 09:12:42,044] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: GCA_032158295.index.3.ht2
+[2024-06-03 09:12:42,045] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: GCA_032158295.index.3.ht2
+[2024-06-03 09:12:42,047] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: GCA_032158295.index.3.ht2
+[2024-06-03 09:12:42,047] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-83_03.sorted.bam.bai
+[2024-06-03 09:12:42,053] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-37_03.bam
+[2024-06-03 09:12:42,053] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-67_03.bam
+[2024-06-03 09:12:42,057] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-83_unmapped_reads.2.fastq
+[2024-06-03 09:12:42,057] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-39_unmapped_reads.2.fastq
+[2024-06-03 09:12:42,060] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-71_unmapped_reads.2.fastq
+[2024-06-03 09:12:42,060] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-38_03.bam
+[2024-06-03 09:12:42,060] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-43_03.gtf
+[2024-06-03 09:12:42,061] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-34_03.sorted.bam.bai
+[2024-06-03 09:12:42,061] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-35_03.sorted.bam.bai
+[2024-06-03 09:12:42,061] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-59_unmapped_reads.1.fastq
+[2024-06-03 09:12:42,061] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-57_03.bam
+[2024-06-03 09:12:42,067] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-40_03.sorted.bam.bai
+[2024-06-03 09:12:42,067] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-78_unmapped_reads.2.fastq
+[2024-06-03 09:12:42,067] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-34_03.gtf
+[2024-06-03 09:12:42,070] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-61_unmapped_reads.2.fastq
+[2024-06-03 09:12:42,077] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-24_03.gtf
+[2024-06-03 09:12:42,077] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-78_03.bam
+[2024-06-03 09:12:42,077] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-34_03.bam
+[2024-06-03 09:12:42,077] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-56_03.sorted.bam
+[2024-06-03 09:12:42,077] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-81_03.bam
+[2024-06-03 09:12:42,077] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-40_unmapped_reads.2.fastq
+[2024-06-03 09:12:42,077] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-19_03.bam
+[2024-06-03 09:12:42,077] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-24_03.bam
+[2024-06-03 09:12:42,077] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-69_03.gtf
+[2024-06-03 09:12:42,077] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-35_03.sorted.bam
+[2024-06-03 09:12:42,077] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-39_03.gtf
+[2024-06-03 09:12:42,078] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-36_03.sorted.bam.bai
+[2024-06-03 09:12:42,078] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-49_03.sorted.bam.bai
+[2024-06-03 09:12:42,079] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: t_data.ctab
+[2024-06-03 09:12:42,079] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: t_data.ctab
+[2024-06-03 09:12:42,079] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: t_data.ctab
+[2024-06-03 09:12:42,080] multiqc                                            [DEBUG  ]  File ignored by vep/vep_html because it exceeded search pattern filesize limit: t_data.ctab
+[2024-06-03 09:12:42,080] multiqc                                            [DEBUG  ]  File ignored by vep/vep_txt because it exceeded search pattern filesize limit: t_data.ctab
+[2024-06-03 09:12:42,080] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: t_data.ctab
+[2024-06-03 09:12:42,080] multiqc                                            [DEBUG  ]  File ignored by rockhopper because it exceeded search pattern filesize limit: t_data.ctab
+[2024-06-03 09:12:42,080] multiqc                                            [DEBUG  ]  File ignored by rseqc/bam_stat because it exceeded search pattern filesize limit: t_data.ctab
+[2024-06-03 09:12:42,080] multiqc                                            [DEBUG  ]  File ignored by rseqc/junction_annotation because it exceeded search pattern filesize limit: t_data.ctab
+[2024-06-03 09:12:42,080] multiqc                                            [DEBUG  ]  File ignored by rseqc/read_distribution because it exceeded search pattern filesize limit: t_data.ctab
+[2024-06-03 09:12:42,080] multiqc                                            [DEBUG  ]  File ignored by rseqc/infer_experiment because it exceeded search pattern filesize limit: t_data.ctab
+[2024-06-03 09:12:42,088] multiqc                                            [DEBUG  ]  File ignored by stacks/sumstats because it exceeded search pattern filesize limit: t_data.ctab
+[2024-06-03 09:12:42,422] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: t_data.ctab
+[2024-06-03 09:12:42,441] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-40_03.sorted.bam
+[2024-06-03 09:12:42,441] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-54_unmapped_reads.1.fastq
+[2024-06-03 09:12:42,447] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-38_03.sorted.bam
+[2024-06-03 09:12:42,450] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-37_03.sorted.bam.bai
+[2024-06-03 09:12:42,450] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-59_03.bam
+[2024-06-03 09:12:42,452] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: m_spice_sites.tab
+[2024-06-03 09:12:42,452] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: m_spice_sites.tab
+[2024-06-03 09:12:42,452] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: m_spice_sites.tab
+[2024-06-03 09:12:42,453] multiqc                                            [DEBUG  ]  File ignored by vep/vep_html because it exceeded search pattern filesize limit: m_spice_sites.tab
+[2024-06-03 09:12:42,453] multiqc                                            [DEBUG  ]  File ignored by vep/vep_txt because it exceeded search pattern filesize limit: m_spice_sites.tab
+[2024-06-03 09:12:42,453] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: m_spice_sites.tab
+[2024-06-03 09:12:42,453] multiqc                                            [DEBUG  ]  File ignored by rockhopper because it exceeded search pattern filesize limit: m_spice_sites.tab
+[2024-06-03 09:12:42,453] multiqc                                            [DEBUG  ]  File ignored by rseqc/bam_stat because it exceeded search pattern filesize limit: m_spice_sites.tab
+[2024-06-03 09:12:42,453] multiqc                                            [DEBUG  ]  File ignored by rseqc/junction_annotation because it exceeded search pattern filesize limit: m_spice_sites.tab
+[2024-06-03 09:12:42,453] multiqc                                            [DEBUG  ]  File ignored by rseqc/read_distribution because it exceeded search pattern filesize limit: m_spice_sites.tab
+[2024-06-03 09:12:42,453] multiqc                                            [DEBUG  ]  File ignored by rseqc/infer_experiment because it exceeded search pattern filesize limit: m_spice_sites.tab
+[2024-06-03 09:12:42,485] multiqc                                            [DEBUG  ]  File ignored by stacks/sumstats because it exceeded search pattern filesize limit: m_spice_sites.tab
+[2024-06-03 09:12:43,978] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: m_spice_sites.tab
+[2024-06-03 09:12:44,084] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-37_03.gtf
+[2024-06-03 09:12:44,089] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-57_unmapped_reads.1.fastq
+[2024-06-03 09:12:44,090] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-52_03.sorted.bam
+[2024-06-03 09:12:44,098] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-76_03.sorted.bam
+[2024-06-03 09:12:44,098] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-61_unmapped_reads.1.fastq
+[2024-06-03 09:12:44,098] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-61_03.gtf
+[2024-06-03 09:12:44,098] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-58_03.bam
+[2024-06-03 09:12:44,098] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-43_03.bam
+[2024-06-03 09:12:44,098] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-78_03.sorted.bam.bai
+[2024-06-03 09:12:44,098] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-42_03.sorted.bam.bai
+[2024-06-03 09:12:44,098] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-67_03.sorted.bam
+[2024-06-03 09:12:44,098] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-75_unmapped_reads.2.fastq
+[2024-06-03 09:12:44,098] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-42_unmapped_reads.2.fastq
+[2024-06-03 09:12:44,103] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: GCA_032158295.index.8.ht2
+[2024-06-03 09:12:44,104] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: GCA_032158295.index.8.ht2
+[2024-06-03 09:12:44,104] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: GCA_032158295.index.8.ht2
+[2024-06-03 09:12:44,105] multiqc                                            [DEBUG  ]  File ignored by vep/vep_html because it exceeded search pattern filesize limit: GCA_032158295.index.8.ht2
+[2024-06-03 09:12:44,105] multiqc                                            [DEBUG  ]  File ignored by vep/vep_txt because it exceeded search pattern filesize limit: GCA_032158295.index.8.ht2
+[2024-06-03 09:12:44,105] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: GCA_032158295.index.8.ht2
+[2024-06-03 09:12:44,105] multiqc                                            [DEBUG  ]  File ignored by rockhopper because it exceeded search pattern filesize limit: GCA_032158295.index.8.ht2
+[2024-06-03 09:12:44,105] multiqc                                            [DEBUG  ]  File ignored by rseqc/bam_stat because it exceeded search pattern filesize limit: GCA_032158295.index.8.ht2
+[2024-06-03 09:12:44,105] multiqc                                            [DEBUG  ]  File ignored by rseqc/junction_annotation because it exceeded search pattern filesize limit: GCA_032158295.index.8.ht2
+[2024-06-03 09:12:44,105] multiqc                                            [DEBUG  ]  File ignored by rseqc/read_distribution because it exceeded search pattern filesize limit: GCA_032158295.index.8.ht2
+[2024-06-03 09:12:44,105] multiqc                                            [DEBUG  ]  File ignored by rseqc/infer_experiment because it exceeded search pattern filesize limit: GCA_032158295.index.8.ht2
+[2024-06-03 09:12:44,105] multiqc                                            [DEBUG  ]  File ignored by stacks/sumstats because it exceeded search pattern filesize limit: GCA_032158295.index.8.ht2
+[2024-06-03 09:12:44,106] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: GCA_032158295.index.8.ht2
+[2024-06-03 09:12:44,106] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-23_03.bam
+[2024-06-03 09:12:44,106] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-73_03.sorted.bam.bai
+[2024-06-03 09:12:44,106] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-54_03.gtf
+[2024-06-03 09:12:44,110] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-63_unmapped_reads.2.fastq
+[2024-06-03 09:12:44,110] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-71_03.bam
+[2024-06-03 09:12:44,110] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-69_03.sorted.bam
+[2024-06-03 09:12:44,110] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-57_03.sorted.bam.bai
+[2024-06-03 09:12:44,113] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-58_unmapped_reads.2.fastq
+[2024-06-03 09:12:44,113] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-63_unmapped_reads.1.fastq
+[2024-06-03 09:12:44,113] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-76_unmapped_reads.1.fastq
+[2024-06-03 09:12:44,116] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-36_unmapped_reads.2.fastq
+[2024-06-03 09:12:44,118] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: hisat2-build_stats.txt
+[2024-06-03 09:12:44,118] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: hisat2-build_stats.txt
+[2024-06-03 09:12:44,118] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: hisat2-build_stats.txt
+[2024-06-03 09:12:44,119] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: hisat2-build_stats.txt
+[2024-06-03 09:12:44,127] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: hisat2-build_stats.txt
+[2024-06-03 09:12:44,134] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-52_unmapped_reads.1.fastq
+[2024-06-03 09:12:44,134] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-57_unmapped_reads.2.fastq
+[2024-06-03 09:12:44,134] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-75_03.gtf
+[2024-06-03 09:12:44,134] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-63_03.sorted.bam
+[2024-06-03 09:12:44,135] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: GCA_032158295.index.7.ht2
+[2024-06-03 09:12:44,136] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: GCA_032158295.index.7.ht2
+[2024-06-03 09:12:44,136] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: GCA_032158295.index.7.ht2
+[2024-06-03 09:12:44,137] multiqc                                            [DEBUG  ]  File ignored by vep/vep_html because it exceeded search pattern filesize limit: GCA_032158295.index.7.ht2
+[2024-06-03 09:12:44,137] multiqc                                            [DEBUG  ]  File ignored by vep/vep_txt because it exceeded search pattern filesize limit: GCA_032158295.index.7.ht2
+[2024-06-03 09:12:44,137] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: GCA_032158295.index.7.ht2
+[2024-06-03 09:12:44,137] multiqc                                            [DEBUG  ]  File ignored by rockhopper because it exceeded search pattern filesize limit: GCA_032158295.index.7.ht2
+[2024-06-03 09:12:44,137] multiqc                                            [DEBUG  ]  File ignored by rseqc/bam_stat because it exceeded search pattern filesize limit: GCA_032158295.index.7.ht2
+[2024-06-03 09:12:44,137] multiqc                                            [DEBUG  ]  File ignored by rseqc/junction_annotation because it exceeded search pattern filesize limit: GCA_032158295.index.7.ht2
+[2024-06-03 09:12:44,137] multiqc                                            [DEBUG  ]  File ignored by rseqc/read_distribution because it exceeded search pattern filesize limit: GCA_032158295.index.7.ht2
+[2024-06-03 09:12:44,137] multiqc                                            [DEBUG  ]  File ignored by rseqc/infer_experiment because it exceeded search pattern filesize limit: GCA_032158295.index.7.ht2
+[2024-06-03 09:12:44,137] multiqc                                            [DEBUG  ]  File ignored by snpeff because it exceeded search pattern filesize limit: GCA_032158295.index.7.ht2
+[2024-06-03 09:12:44,137] multiqc                                            [DEBUG  ]  File ignored by stacks/sumstats because it exceeded search pattern filesize limit: GCA_032158295.index.7.ht2
+[2024-06-03 09:12:44,138] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: GCA_032158295.index.7.ht2
+[2024-06-03 09:12:44,138] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-75_03.sorted.bam
+[2024-06-03 09:12:44,138] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-67_03.sorted.bam.bai
+[2024-06-03 09:12:44,138] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-56_03.bam
+[2024-06-03 09:12:44,138] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-19_03.gtf
+[2024-06-03 09:12:44,138] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-23_03.sorted.bam.bai
+[2024-06-03 09:12:44,138] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-42_03.bam
+[2024-06-03 09:12:44,138] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-52_unmapped_reads.2.fastq
+[2024-06-03 09:12:44,142] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-54_03.bam
+[2024-06-03 09:12:44,142] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-52_03.gtf
+[2024-06-03 09:12:44,142] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-58_03.sorted.bam.bai
+[2024-06-03 09:12:44,142] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-48_unmapped_reads.1.fastq
+[2024-06-03 09:12:44,142] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-71_03.sorted.bam
+[2024-06-03 09:12:44,142] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-38_03.gtf
+[2024-06-03 09:12:44,142] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-38_unmapped_reads.2.fastq
+[2024-06-03 09:12:44,152] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-59_03.sorted.bam.bai
+[2024-06-03 09:12:44,153] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: m_exon.tab
+[2024-06-03 09:12:44,153] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: m_exon.tab
+[2024-06-03 09:12:44,153] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: m_exon.tab
+[2024-06-03 09:12:44,154] multiqc                                            [DEBUG  ]  File ignored by vep/vep_html because it exceeded search pattern filesize limit: m_exon.tab
+[2024-06-03 09:12:44,154] multiqc                                            [DEBUG  ]  File ignored by vep/vep_txt because it exceeded search pattern filesize limit: m_exon.tab
+[2024-06-03 09:12:44,154] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: m_exon.tab
+[2024-06-03 09:12:44,154] multiqc                                            [DEBUG  ]  File ignored by rockhopper because it exceeded search pattern filesize limit: m_exon.tab
+[2024-06-03 09:12:44,154] multiqc                                            [DEBUG  ]  File ignored by rseqc/bam_stat because it exceeded search pattern filesize limit: m_exon.tab
+[2024-06-03 09:12:44,154] multiqc                                            [DEBUG  ]  File ignored by rseqc/junction_annotation because it exceeded search pattern filesize limit: m_exon.tab
+[2024-06-03 09:12:44,154] multiqc                                            [DEBUG  ]  File ignored by rseqc/read_distribution because it exceeded search pattern filesize limit: m_exon.tab
+[2024-06-03 09:12:44,154] multiqc                                            [DEBUG  ]  File ignored by rseqc/infer_experiment because it exceeded search pattern filesize limit: m_exon.tab
+[2024-06-03 09:12:44,191] multiqc                                            [DEBUG  ]  File ignored by stacks/sumstats because it exceeded search pattern filesize limit: m_exon.tab
+[2024-06-03 09:12:45,941] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: m_exon.tab
+[2024-06-03 09:12:46,040] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-76_03.gtf
+[2024-06-03 09:12:46,040] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-42_unmapped_reads.1.fastq
+[2024-06-03 09:12:46,040] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-23_unmapped_reads.1.fastq
+[2024-06-03 09:12:46,040] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-71_03.gtf
+[2024-06-03 09:12:46,040] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-73_03.gtf
+[2024-06-03 09:12:46,047] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-24_03.sorted.bam.bai
+[2024-06-03 09:12:46,063] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-61_03.sorted.bam
+[2024-06-03 09:12:46,063] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-58_unmapped_reads.1.fastq
+[2024-06-03 09:12:46,066] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-69_unmapped_reads.2.fastq
+[2024-06-03 09:12:46,067] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-75_unmapped_reads.1.fastq
+[2024-06-03 09:12:46,067] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-35_03.bam
+[2024-06-03 09:12:46,067] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-40_03.gtf
+[2024-06-03 09:12:46,067] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-83_03.sorted.bam
+[2024-06-03 09:12:46,067] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-49_unmapped_reads.1.fastq
+[2024-06-03 09:12:46,067] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-64_03.sorted.bam
+[2024-06-03 09:12:46,067] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-69_03.sorted.bam.bai
+[2024-06-03 09:12:46,067] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-24_unmapped_reads.1.fastq
+[2024-06-03 09:12:46,071] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-78_unmapped_reads.1.fastq
+[2024-06-03 09:12:46,071] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-73_03.bam
+[2024-06-03 09:12:46,071] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-40_unmapped_reads.1.fastq
+[2024-06-03 09:12:46,074] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-67_03.gtf
+[2024-06-03 09:12:46,074] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-61_03.bam
+[2024-06-03 09:12:46,078] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-59_03.gtf
+[2024-06-03 09:12:46,078] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-37_03.sorted.bam
+[2024-06-03 09:12:46,079] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-67_unmapped_reads.1.fastq
+[2024-06-03 09:12:46,079] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-76_03.sorted.bam.bai
+[2024-06-03 09:12:46,079] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-34_03.sorted.bam
+[2024-06-03 09:12:46,085] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-48_03.bam
+[2024-06-03 09:12:46,085] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-52_03.sorted.bam.bai
+[2024-06-03 09:12:46,085] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-35_03.gtf
+[2024-06-03 09:12:46,089] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-59_unmapped_reads.2.fastq
+[2024-06-03 09:12:46,092] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-34_unmapped_reads.1.fastq
+[2024-06-03 09:12:46,092] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-23_03.gtf
+[2024-06-03 09:12:46,092] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-43_03.sorted.bam
+[2024-06-03 09:12:46,093] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-49_03.sorted.bam
+[2024-06-03 09:12:46,093] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-42_03.sorted.bam
+[2024-06-03 09:12:46,093] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-37_unmapped_reads.1.fastq
+[2024-06-03 09:12:46,093] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-49_03.gtf
+[2024-06-03 09:12:46,093] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-76_unmapped_reads.2.fastq
+[2024-06-03 09:12:46,093] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-75_03.bam
+[2024-06-03 09:12:46,096] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-48_03.sorted.bam
+[2024-06-03 09:12:46,100] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-56_03.gtf
+[2024-06-03 09:12:46,100] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-56_unmapped_reads.2.fastq
+[2024-06-03 09:12:46,100] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-38_03.sorted.bam.bai
+[2024-06-03 09:12:46,100] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-73_unmapped_reads.2.fastq
+[2024-06-03 09:12:46,100] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-35_unmapped_reads.1.fastq
+[2024-06-03 09:12:46,100] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-49_unmapped_reads.2.fastq
+[2024-06-03 09:12:46,100] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-64_unmapped_reads.1.fastq
+[2024-06-03 09:12:46,100] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-81_03.gtf
+[2024-06-03 09:12:46,104] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-49_03.bam
+[2024-06-03 09:12:46,104] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-39_03.sorted.bam
+[2024-06-03 09:12:46,104] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-43_unmapped_reads.2.fastq
+[2024-06-03 09:12:46,104] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-64_unmapped_reads.2.fastq
+[2024-06-03 09:12:46,104] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-75_03.sorted.bam.bai
+[2024-06-03 09:12:46,111] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-64_03.bam
+[2024-06-03 09:12:46,117] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-37_unmapped_reads.2.fastq
+[2024-06-03 09:12:46,117] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-54_03.sorted.bam
+[2024-06-03 09:12:46,117] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-19_03.sorted.bam
+[2024-06-03 09:12:46,117] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-64_03.gtf
+[2024-06-03 09:12:46,121] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-39_unmapped_reads.1.fastq
+[2024-06-03 09:12:46,121] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-52_03.bam
+[2024-06-03 09:12:46,125] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-36_unmapped_reads.1.fastq
+[2024-06-03 09:12:46,125] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-73_03.sorted.bam
+[2024-06-03 09:12:46,128] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-48_03.sorted.bam.bai
+[2024-06-03 09:12:46,132] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-19_unmapped_reads.1.fastq
+[2024-06-03 09:12:46,133] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: e2t.ctab
+[2024-06-03 09:12:46,134] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: e2t.ctab
+[2024-06-03 09:12:46,134] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: e2t.ctab
+[2024-06-03 09:12:46,135] multiqc                                            [DEBUG  ]  File ignored by vep/vep_html because it exceeded search pattern filesize limit: e2t.ctab
+[2024-06-03 09:12:46,135] multiqc                                            [DEBUG  ]  File ignored by vep/vep_txt because it exceeded search pattern filesize limit: e2t.ctab
+[2024-06-03 09:12:46,135] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: e2t.ctab
+[2024-06-03 09:12:46,135] multiqc                                            [DEBUG  ]  File ignored by rockhopper because it exceeded search pattern filesize limit: e2t.ctab
+[2024-06-03 09:12:46,135] multiqc                                            [DEBUG  ]  File ignored by rseqc/bam_stat because it exceeded search pattern filesize limit: e2t.ctab
+[2024-06-03 09:12:46,135] multiqc                                            [DEBUG  ]  File ignored by rseqc/junction_annotation because it exceeded search pattern filesize limit: e2t.ctab
+[2024-06-03 09:12:46,135] multiqc                                            [DEBUG  ]  File ignored by rseqc/read_distribution because it exceeded search pattern filesize limit: e2t.ctab
+[2024-06-03 09:12:46,135] multiqc                                            [DEBUG  ]  File ignored by rseqc/infer_experiment because it exceeded search pattern filesize limit: e2t.ctab
+[2024-06-03 09:12:46,172] multiqc                                            [DEBUG  ]  File ignored by stacks/sumstats because it exceeded search pattern filesize limit: e2t.ctab
+[2024-06-03 09:12:48,059] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: e2t.ctab
+[2024-06-03 09:12:48,174] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-36_03.bam
+[2024-06-03 09:12:48,174] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-73_unmapped_reads.1.fastq
+[2024-06-03 09:12:48,174] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-40_03.bam
+[2024-06-03 09:12:48,174] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-67_unmapped_reads.2.fastq
+[2024-06-03 09:12:48,178] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-78_03.gtf
+[2024-06-03 09:12:48,178] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-76_03.bam
+[2024-06-03 09:12:48,178] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-83_unmapped_reads.1.fastq
+[2024-06-03 09:12:48,182] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-24_03.sorted.bam
+[2024-06-03 09:12:48,182] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-39_03.bam
+[2024-06-03 09:12:48,182] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-48_unmapped_reads.2.fastq
+[2024-06-03 09:12:48,183] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: i2t.ctab
+[2024-06-03 09:12:48,183] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: i2t.ctab
+[2024-06-03 09:12:48,183] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: i2t.ctab
+[2024-06-03 09:12:48,184] multiqc                                            [DEBUG  ]  File ignored by vep/vep_html because it exceeded search pattern filesize limit: i2t.ctab
+[2024-06-03 09:12:48,184] multiqc                                            [DEBUG  ]  File ignored by vep/vep_txt because it exceeded search pattern filesize limit: i2t.ctab
+[2024-06-03 09:12:48,184] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: i2t.ctab
+[2024-06-03 09:12:48,184] multiqc                                            [DEBUG  ]  File ignored by rockhopper because it exceeded search pattern filesize limit: i2t.ctab
+[2024-06-03 09:12:48,184] multiqc                                            [DEBUG  ]  File ignored by rseqc/bam_stat because it exceeded search pattern filesize limit: i2t.ctab
+[2024-06-03 09:12:48,184] multiqc                                            [DEBUG  ]  File ignored by rseqc/junction_annotation because it exceeded search pattern filesize limit: i2t.ctab
+[2024-06-03 09:12:48,184] multiqc                                            [DEBUG  ]  File ignored by rseqc/read_distribution because it exceeded search pattern filesize limit: i2t.ctab
+[2024-06-03 09:12:48,184] multiqc                                            [DEBUG  ]  File ignored by rseqc/infer_experiment because it exceeded search pattern filesize limit: i2t.ctab
+[2024-06-03 09:12:48,217] multiqc                                            [DEBUG  ]  File ignored by stacks/sumstats because it exceeded search pattern filesize limit: i2t.ctab
+[2024-06-03 09:12:49,828] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: i2t.ctab
+[2024-06-03 09:12:49,923] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-23_unmapped_reads.2.fastq
+[2024-06-03 09:12:49,923] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-81_03.sorted.bam
+[2024-06-03 09:12:49,923] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-54_unmapped_reads.2.fastq
+[2024-06-03 09:12:49,923] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-48_03.gtf
+[2024-06-03 09:12:49,923] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-35_unmapped_reads.2.fastq
+[2024-06-03 09:12:49,927] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-83_03.gtf
+[2024-06-03 09:12:49,934] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-81_03.sorted.bam.bai
+[2024-06-03 09:12:49,934] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-56_unmapped_reads.1.fastq
+[2024-06-03 09:12:49,934] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-43_unmapped_reads.1.fastq
+[2024-06-03 09:12:49,934] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-58_03.sorted.bam
+[2024-06-03 09:12:49,935] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-24_unmapped_reads.2.fastq
+[2024-06-03 09:12:49,936] multiqc                                            [DEBUG  ]  File ignored by ccs/v4 because it exceeded search pattern filesize limit: i_data.ctab
+[2024-06-03 09:12:49,936] multiqc                                            [DEBUG  ]  File ignored by hicexplorer because it exceeded search pattern filesize limit: i_data.ctab
+[2024-06-03 09:12:49,936] multiqc                                            [DEBUG  ]  File ignored by lima/summary because it exceeded search pattern filesize limit: i_data.ctab
+[2024-06-03 09:12:49,937] multiqc                                            [DEBUG  ]  File ignored by vep/vep_html because it exceeded search pattern filesize limit: i_data.ctab
+[2024-06-03 09:12:49,937] multiqc                                            [DEBUG  ]  File ignored by vep/vep_txt because it exceeded search pattern filesize limit: i_data.ctab
+[2024-06-03 09:12:49,937] multiqc                                            [DEBUG  ]  File ignored by longranger/invocation because it exceeded search pattern filesize limit: i_data.ctab
+[2024-06-03 09:12:49,937] multiqc                                            [DEBUG  ]  File ignored by rockhopper because it exceeded search pattern filesize limit: i_data.ctab
+[2024-06-03 09:12:49,937] multiqc                                            [DEBUG  ]  File ignored by rseqc/bam_stat because it exceeded search pattern filesize limit: i_data.ctab
+[2024-06-03 09:12:49,937] multiqc                                            [DEBUG  ]  File ignored by rseqc/junction_annotation because it exceeded search pattern filesize limit: i_data.ctab
+[2024-06-03 09:12:49,937] multiqc                                            [DEBUG  ]  File ignored by rseqc/read_distribution because it exceeded search pattern filesize limit: i_data.ctab
+[2024-06-03 09:12:49,937] multiqc                                            [DEBUG  ]  File ignored by rseqc/infer_experiment because it exceeded search pattern filesize limit: i_data.ctab
+[2024-06-03 09:12:49,937] multiqc                                            [DEBUG  ]  File ignored by snpeff because it exceeded search pattern filesize limit: i_data.ctab
+[2024-06-03 09:12:49,937] multiqc                                            [DEBUG  ]  File ignored by stacks/sumstats because it exceeded search pattern filesize limit: i_data.ctab
+[2024-06-03 09:12:51,608] multiqc                                            [DEBUG  ]  File ignored by nanostat because it exceeded search pattern filesize limit: i_data.ctab
+[2024-06-03 09:12:51,707] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-64_03.sorted.bam.bai
+[2024-06-03 09:12:51,707] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-69_unmapped_reads.1.fastq
+[2024-06-03 09:12:51,707] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-57_03.gtf
+[2024-06-03 09:12:51,707] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-63_03.sorted.bam.bai
+[2024-06-03 09:12:51,711] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-34_unmapped_reads.2.fastq
+[2024-06-03 09:12:51,711] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-81_unmapped_reads.2.fastq
+[2024-06-03 09:12:51,711] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-23_03.sorted.bam
+[2024-06-03 09:12:51,714] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-78_03.sorted.bam
+[2024-06-03 09:12:51,714] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-43_03.sorted.bam.bai
+[2024-06-03 09:12:51,721] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-38_unmapped_reads.1.fastq
+[2024-06-03 09:12:51,721] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-36_03.gtf
+[2024-06-03 09:12:51,721] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-63_03.bam
+[2024-06-03 09:12:51,724] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-83_03.bam
+[2024-06-03 09:12:51,724] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-59_03.sorted.bam
+[2024-06-03 09:12:51,725] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-19_unmapped_reads.2.fastq
+[2024-06-03 09:12:51,728] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-81_unmapped_reads.1.fastq
+[2024-06-03 09:12:51,742] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-39_03.sorted.bam.bai
+[2024-06-03 09:12:51,742] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: PSC-54_03.sorted.bam.bai
+[2024-06-03 09:12:53,447] multiqc.plots.bargraph                             [DEBUG  ]  Using matplotlib version 3.4.3
+[2024-06-03 09:12:53,521] multiqc.modules.bowtie2.bowtie2                    [INFO   ]  Found 32 reports
+[2024-06-03 09:12:53,533] multiqc                                            [INFO   ]  Compressing plot data
+[2024-06-03 09:12:53,538] multiqc                                            [INFO   ]  Report      : ../analyses/13-hisat-deseq2/multiqc_report.html
+[2024-06-03 09:12:53,539] multiqc                                            [INFO   ]  Data        : ../analyses/13-hisat-deseq2/multiqc_data
+[2024-06-03 09:12:53,539] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmp1jg1v2u4/multiqc_data' to '../analyses/13-hisat-deseq2/multiqc_data'
+[2024-06-03 09:12:53,720] multiqc                                            [INFO   ]  MultiQC complete

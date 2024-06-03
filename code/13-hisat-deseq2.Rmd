@@ -229,18 +229,6 @@ echo "13-hisat-deseq2/*gtf" >> ../analyses/.gitignore
 ```
 
 
-```{bash}
-tail ../data/augustus.hints.gtf
-```
-
-```{bash}
-grep "46414" ../data/augustus.hints.gtf | head -20
-```
-
-```{bash}
-grep "14" ../analyses/12-fix-gff/mod_augustus.gtf | head 
-```
-
 
 ```{r, engine='bash'}
 find ../analyses/13-hisat-deseq2/*sorted.bam \
@@ -253,149 +241,11 @@ sh -c '/home/shared/stringtie-2.2.1.Linux_x86_64/stringtie \
 ../analyses/13-hisat-deseq2/{}.sorted.bam'
 ```
 
-```{bash}
-head ../analyses/13-hisat-deseq2/*gtf
-
-```
 
 
 
 
 
 
-
-# Count Matrix
-
-list format
-```
-RNA-ACR-140 ../analyses/15-Apul-hisat/RNA-ACR-140.gtf
-RNA-ACR-145 ../analyses/15-Apul-hisat/RNA-ACR-145.gtf
-RNA-ACR-173 ../analyses/15-Apul-hisat/RNA-ACR-173.gtf
-RNA-ACR-178 ../analyses/15-Apul-hisat/RNA-ACR-178.gtf
-```
-
-```{r, engine='bash', eval=TRUE}
-ls ../analyses/13-hisat-deseq2/*gtf
-```
-
-
-```{r, engine='bash', eval=TRUE}
-head ../data/list01.txt
-```
-
-
-```{r, engine='bash'}
-python /home/shared/stringtie-2.2.1.Linux_x86_64/prepDE.py \
--i ../data/list01.txt \
--g ../analyses/13-hisat-deseq2/gene_count_matrix.csv \
--t ../analyses/13-hisat-deseq2/transcript_count_matrix.csv
-```
-
-```{r, engine='bash', eval=TRUE}
-head ../analyses/13-hisat-deseq2/*matrix.csv
-```
-
-# DEseq2
-
-
-need `conditions.txt` file in this format
-
-```
-SampleID	Condition
-RNA.ACR.140	control
-RNA.ACR.145	control
-RNA.ACR.173	treated
-RNA.ACR.178	treated
-```
-
-```{r, engine='bash', eval=TRUE}
-head ../data/conditions.txt
-```
-
-
-
-```{r, eval=TRUE}
-library(DESeq2)
-```
-
-```{r, eval=TRUE, cache=TRUE}
-# Load gene(/transcript) count matrix and labels
-countData <- as.matrix(read.csv("../analyses/13-hisat-deseq2/gene_count_matrix.csv", row.names="gene_id"))
-colData <- read.csv("../data/conditions.txt", sep="\t", row.names = 1)
-
-# Note: The PHENO_DATA file contains information on each sample, e.g., sex or population.
-# The exact way to import this depends on the format of the file.
-
-# Check all sample IDs in colData are also in CountData and match their orders
-all(rownames(colData) %in% colnames(countData)) # This should return TRUE
-
-countData <- countData[, rownames(colData)]
-all(rownames(colData) == colnames(countData)) # This should also return TRUE
-
-# Create a DESeqDataSet from count matrix and labels
-dds <- DESeqDataSetFromMatrix(countData = countData,
-                              colData = colData, design = ~ Condition)
-
-
-# Run the default analysis for DESeq2 and generate results table
-dds <- DESeq(dds)
-deseq2.res <- results(dds)
-
-# Sort by adjusted p-value and display
-resOrdered <- deseq2.res[order(deseq2.res$padj), ]
-vsd <- vst(dds, blind = FALSE)
-plotPCA(vsd, intgroup = "Condition")
-```
-
-
-```{r, eval=TRUE}
-# Select top 50 differentially expressed genes
-res <- results(dds)
-res_ordered <- res[order(res$padj), ]
-top_genes <- row.names(res_ordered)[1:50]
-
-# Extract counts and normalize
-counts <- counts(dds, normalized = TRUE)
-counts_top <- counts[top_genes, ]
-
-# Log-transform counts
-log_counts_top <- log2(counts_top + 1)
-
-# Generate heatmap
-pheatmap(log_counts_top, scale = "row")
-```
-
-```{r, eval=TRUE}
-# Count number of hits with adjusted p-value less then 0.05
-dim(res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ])
-```
-
-```{r, eval=TRUE}
-tmp <- deseq2.res
-# The main plot
-plot(tmp$baseMean, tmp$log2FoldChange, pch=20, cex=0.45, ylim=c(-3, 3), log="x", col="darkgray",
-     main="DEG Dessication  (pval <= 0.05)",
-     xlab="mean of normalized counts",
-     ylab="Log2 Fold Change")
-# Getting the significant points and plotting them again so they're a different color
-tmp.sig <- deseq2.res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ]
-points(tmp.sig$baseMean, tmp.sig$log2FoldChange, pch=20, cex=0.45, col="red")
-# 2 FC lines
-abline(h=c(-1,1), col="blue")
-```
-
-```{r}
-write.table(tmp.sig, "../analyses/13-hisat-deseq2/DEGlist.tab", sep = '\t', row.names = T)
-```
-
-```{r, eval=TRUE}
-deglist <- read.csv("../analyses/13-hisat-deseq2/DEGlist.tab", sep = '\t', header = TRUE)
-deglist$RowName <- rownames(deglist)
-deglist2 <- deglist[, c("RowName", "pvalue")] # Optionally, reorder the columns
-```
-
-```{r,eval=TRUE}
-head(deglist)
-```
 
 
