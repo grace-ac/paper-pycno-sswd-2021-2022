@@ -6,7 +6,7 @@ output: html_document
 Rmd to run FastQC on pre-trimmed RNAseq data from _Pycnopodia helianthoides_ coelomocytes sampled summer/fall 2021 at USGS Marrowstone Field Station as part of the large SSWD _Pycnopodia_ Epidemiology project.      
 Personel: Drew Harvell, Alyssa Gehman, TNC, Hakai, USGS, WDFW, UWSAFS. 
 
-All RAW fastq files (Libraries: n = 32) are found on owl: http://owl.fish.washington.edu/nightingales/P_helianthoides/ 
+All RAW fastq files (Libraries: n = 64) are found on owl: http://owl.fish.washington.edu/nightingales/P_helianthoides/ 
 
 All samples from this project have the beginning of "PSC_" filename. 
 Files were later transferred to RAVEN, see below. 
