@@ -29,11 +29,14 @@ unzip ncbi_dataset.zip
 
 
 ```{r, engine='bash', eval=TRUE}
-ls ../data/ncbi_dataset/data/GCA_032158295.1
+ls ../data/ncbi_dataset/data/
 
 ```
 
+```{r, engine='bash', eval=TRUE}
+ls ../data/ncbi_dataset/data/GCA_032158295.1
 
+```
 
 Get gtf file on raven into data folder:    
 I downloaded it originally from 
@@ -45,6 +48,11 @@ graceac9@raven.fish.washington.edu's password:
 head ../data/augustus.hints.gtf
 
 ```
+
+For `stringtie` later, the gtf needs to be in gff format. There isn't currently one in existence that works, so I'll use `Rgff` to convert the august.hints.gtf to a gff file. 
+
+
+
 
 ```{r}
 library(knitr)
