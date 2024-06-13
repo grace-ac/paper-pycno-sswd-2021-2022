@@ -1,0 +1,96 @@
+---
+title: "12-fix-gff"
+author: "Steven Roberts"
+date: "`r format(Sys.time(), '%d %B, %Y')`"  
+analyses: 
+  github_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    html_preview: true
+  html_document:
+    theme: readable
+    highlight: zenburn
+    toc: true
+    toc_float: true
+    number_sections: true
+    code_folding: show
+    code_download: true
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+library(kableExtra)
+library(DT)
+library(Biostrings)
+library(tm)
+library(pheatmap)
+library(DESeq2)
+knitr::opts_chunk$set(
+  echo = TRUE,         # Display code chunks
+  eval = FALSE,         # Evaluate code chunks
+  warning = FALSE,     # Hide warnings
+  message = FALSE,     # Hide messages
+  fig.width = 6,       # Set plot width in inches
+  fig.height = 4,      # Set plot height in inches
+  fig.align = "center", # Align plots to the center
+  comment = ""         # Prevents appending '##' to beginning of lines in code analyses
+)
+```
+
+Need to convert gtf to match genome fasta.. then will convert gtf to gff to use with hisat
+
+```{r}
+gtfbttr <- read.table("../data/augustus.hints.gtf", sep = "\t", quote = "")
+```
+
+```{r}
+head(gtfbttr)
+```
+
+
+
+
+```{r}
+save(gtfch, file = "../analyses/12-fix-gff/gtfch.RData")
+save(ncbi, file = "../analyses/12-fix-gff/ncbi.RData")
+```
+
+```{r}
+gtfch <- gtfbttr %>%
+  mutate(Chromosome.name = str_extract(V1, "(?<=\\.)\\d+"),  # Extract the number after the dot
+         Chromosome.name = str_remove_all(Chromosome.name, "^0+"))  # Remove leading zeros
+
+```
+
+```{r}
+(gtfch)
+```
+
+
+
+
+
+
+```{r}
+gtfch %>%
+left_join(ncbi, by = "Chromosome.name")
+
+```
+
+```{r}
+gtfch %>%
+left_join(ncbi, by = "Chromosome.name") %>%
+select(GenBank.seq.accession, V2, V3, V4, V5, V6, V7, V8, V9) %>% filter(!is.na(GenBank.seq.accession)) %>%
+write.table(file = "../analyses/12-fix-gff/mod_augustus.gtf", sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
+```
+
+
+```{bash}
+head ../analyses/12-fix-gff/mod_augustus.gtf
+```
+

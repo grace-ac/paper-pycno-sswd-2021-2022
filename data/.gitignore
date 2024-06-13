@@ -1,5 +1,7 @@
-<<<<<<< HEAD
 augustus.hints.gtf
-=======
 ncbi*
->>>>>>> 2c047f24153f0ea21dcec1ee93b18ae530c771f0
+inter*
+augustus.hints.gff
+Phel_genome_index*
+Phel_transcriptome.fasta
+2021_trimmed

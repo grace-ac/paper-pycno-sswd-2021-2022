@@ -15,6 +15,10 @@ Summer 2022 trimmed RNAseq reads (Raven):
 RNAseq library metadata:   
 [paper-pycno-sswd-2021-2022/data/RNAseq_library_metadata.csv](https://github.com/grace-ac/paper-pycno-sswd-2021-2022/blob/main/data/RNAseq_library_metadata.csv)
 
+[Google Sheet](https://docs.google.com/spreadsheets/d/1B7kGu382dwdww7FIzpcV9T0fR3aHzRsG/edit?usp=sharing&ouid=103457047809583883571&rtpof=true&sd=true) 
+
+
+
 GitHub Repository back up (includes big files that can't be pushed to GitHub):    
 
 
