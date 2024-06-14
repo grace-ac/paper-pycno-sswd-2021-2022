@@ -49,9 +49,10 @@ head ../data/augustus.hints.gtf
 
 ```
 
-For `stringtie` later, the gtf needs to be in gff format. There isn't currently one in existence that works, so I'll use `Rgff` to convert the august.hints.gtf to a gff file. 
+For `stringtie` later, the gtf needs to be in gff format. There isn't currently one in existence that works. Steven figured out how to fix this issue (https://sr320.github.io/tumbling-oysters/posts/sr320-20-seastar/)  
 
-
+Won't run code because Steven did this already and the new file lives in:
+` ../analyses/12-fix-gff/mod_augustus.gtf`
 
 
 ```{r}
@@ -60,6 +61,7 @@ library(tidyverse)
 library(Biostrings)
 library(pheatmap)
 library(DESeq2)
+library(tidyverse)
 ```
 
 
@@ -74,7 +76,7 @@ pwd
 From the gtf, get exon list
 ```{bash}
 /home/shared/hisat2-2.2.1/hisat2_extract_exons.py \
-../data/augustus.hints.gtf \
+../analyses/12-fix-gff/mod_augustus.gtf \
 > ../analyses/03-hisat2/m_exon.tab
 ```
 
@@ -90,7 +92,7 @@ from the gtf, get the splice sites
 
 # This is the command to extract splice sites from the gtf file
 /home/shared/hisat2-2.2.1/hisat2_extract_splice_sites.py \
-../data/augustus.hints.gtf \
+../analyses/12-fix-gff/mod_augustus.gtf \
 > ../analyses/03-hisat2/m_splice_sites.tab
 
 ```
@@ -104,7 +106,7 @@ use the genome fasta to make an index for alignment
 --exon ../analyses/03-hisat2/m_exon.tab \
 --ss ../analyses/03-hisat2/m_splice_sites.tab \
 -p 40 \
-../data/augustus.hints.gtf \
+../analyses/12-fix-gff/mod_augustus.gtf \
 2> ../analyses/03-hisat2/hisat2-build_stats.txt
 ```
 
