@@ -115,7 +115,8 @@ tail ../analyses/03-hisat2/hisat2-build_stats.txt
 ```
 
 # 2. ALIGNMENT
-old code that doens't have --dta function and that get the stats output in separate files per library 
+
+
 ```{bash}
 for file in ../data/2021_trimmed/*_R1*fq.gz; do
     # Remove the  part to get the base name
@@ -172,6 +173,27 @@ find ../analyses/03-hisat2/*sorted.bam \
 -p 36 \
 -eB \
 -G ../data/augustus.hints.gtf \
+-o ../analyses/03-hisat2/{}.gtf \
+../analyses/03-hisat2/{}.sorted.bam
+```
+
+steven did this to get the gtf into gff for `stringtie` use
+```{bash}
+#/home/shared/gffread-0.12.7.Linux_x86_64/gffread \
+#../analyses/12-fix-gff/mod_augustus.gtf \
+#-T \
+#-o ../analyses/13-hisat-deseq2/mod_augustus.gff
+```
+
+
+
+```{bash}
+find ../analyses/03-hisat2/*sorted.bam \
+| xargs basename -s .sorted.bam | xargs -I{} \
+/home/shared/stringtie-2.2.1.Linux_x86_64/stringtie \
+-p 36 \
+-eB \
+-G ../analyses/13-hisat-deseq2/mod_augustus.gff \
 -o ../analyses/03-hisat2/{}.gtf \
 ../analyses/03-hisat2/{}.sorted.bam
 ```
