@@ -319,7 +319,7 @@ dim(res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ])
 exBt <- deseq2.res
 # The main plot
 plot(exBt$baseMean, exBt$log2FoldChange, pch=20, cex=0.45, ylim=c(-3, 3), log="x", col="darkgray",
-     main="DEG SSWD Exposed  (pval <= 0.05)",
+     main="DET SSWD Exposed  (pval <= 0.05)",
      xlab="mean of normalized counts",
      ylab="Log2 Fold Change")
 # Getting the significant points and plotting them again so they're a different color
@@ -329,6 +329,12 @@ points(exBt.sig$baseMean, exBt.sig$log2FoldChange, pch=20, cex=0.45, col="red")
 abline(h=c(-1,1), col="blue")
 ```
 
+Write out differentially expressed transcript list: 
+```{r}
+#write.table(exBt.sig, "../data/expB_DEG_DET_lists/experimentB_all_DETlist.tab", sep = '\t', row.names = T)
+```
+
+wrote out 2024-06-18
 
 ##### Notes on PCA from above: 
 all controls are in same clump except 56, no clue why.
@@ -353,6 +359,7 @@ here are the n=6 control vs n=6 exposed libraries i'll continue with:
 | PSC-76     | control         | 12             | NA           |
 | PSC-78     | exposed         | 12             | armdrop      |
 
+## Differentially expressed genes --> Experiment B
 
 
 
