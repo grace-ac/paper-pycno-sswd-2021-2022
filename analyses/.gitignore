@@ -2,8 +2,8 @@
 10-hisat-deseq2/*sam
 10-hisat-deseq2/*bam
 10-hisat-deseq2/*bam*
-03-hisat2
 10-hisat-deseq2
+03-hisat2
 11-kallisto
 12-fix-gff
 13-hisat-deseq2
