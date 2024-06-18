@@ -231,6 +231,20 @@ python /home/shared/stringtie-2.2.1.Linux_x86_64/prepDE.py \
 head ../analyses/03-hisat2/*matrix.csv
 ```
 
+### write out the gene count and the transcript count matrices to data folder
+
+
+
+# `DESEQ2`
+
+```{r}
+library(DESeq2)
+```
+
+
+
+
+
 
 
 
