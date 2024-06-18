@@ -223,23 +223,96 @@ cat ../analyses/03-hisat2/list01.txt
 ```{r, engine='bash'}
 python /home/shared/stringtie-2.2.1.Linux_x86_64/prepDE.py \
 -i ../analyses/03-hisat2/list01.txt \
--g ../analyses/03-hisat2/gene_count_matrix.csv \
--t ../analyses/03-hisat2/transcript_count_matrix.csv
+-g ../data/gene_count_matrix.csv \
+-t ../data/transcript_count_matrix.csv
 ```
 
 ```{bash}
-head ../analyses/03-hisat2/*matrix.csv
+head ../data/*matrix.csv
 ```
 
-### write out the gene count and the transcript count matrices to data folder
 
-
-
-# `DESEQ2`
+# `DESEQ2` for Experiment B
 
 ```{r}
 library(DESeq2)
+library(dplyr)
+library(ggplot2)
 ```
+
+## Differentially expressed transcripts --> Experiment B
+read in csv and subset the libraries from experiment B for transcript counts
+```{r}
+eBtranscriptCounts <- read.csv("../data/transcript_count_matrix.csv", row.names = "transcript_id")
+head(eBtranscriptCounts)
+```
+Subset just the counts for the libraries from Experiment 2:    
+```{r}
+eBtranscriptCounts <- select(eBtranscriptCounts, PSC.52, PSC.54, PSC.56, PSC.57, PSC.58, PSC.59, PSC.61, PSC.63, PSC.64, PSC.67, PSC.69, PSC.71, PSC.73, PSC.75, PSC.76, PSC.78, PSC.81, PSC.83)
+head(eBtranscriptCounts)
+```
+
+
+```{r}
+colData <- read.csv("../analyses/03-hisat2/conditions.txt", sep = "\t", row.names = 1)
+```
+
+```{r}
+eBtranscriptCounts <- as.matrix(eBtranscriptCounts)
+```
+
+
+
+```{r}
+# Check all sample IDs in colData are also in CountData and match their orders
+all(rownames(colData) %in% colnames(eBtranscriptCounts)) #should return TRUE
+```
+
+```{r}
+eBtranscriptCounts <- eBtranscriptCounts[, rownames(colData)]
+all(rownames(colData) == colnames(eBtranscriptCounts)) # This should also return TRUE
+```
+
+```{r}
+# Create a DESeqDataSet from count matrix and labels
+dds <- DESeqDataSetFromMatrix(countData = eBtranscriptCounts,
+                              colData = colData, design = ~ Condition)
+
+
+# Run the default analysis for DESeq2 and generate results table
+dds <- DESeq(dds)
+deseq2.res <- results(dds)
+
+# Sort by adjusted p-value and display
+resOrdered <- deseq2.res[order(deseq2.res$padj), ]
+vsd <- vst(dds, blind = FALSE)
+eBtPCA <- plotPCA(vsd, intgroup = "Condition")
+nudge <- position_nudge(y = 4)
+eBtPCA + geom_text(aes(label = name), position = nudge)
+```
+
+
+all controls are in same clump except 56, no clue why.
+But, since the repeat control star samples are in the same clump, I guess it doesn't really matter which ones I remove to balance the analyses. 
+
+also.... for exposed, two stars were sampled pre arm drop. 59 was at arm twist on day 9, and 83 was at arm cross on day 13. so maybe i'll drop those two as well and just do 6 arm drop vs 6 control.
+
+here are the n=6 control vs n=6 exposed libraries i'll continue with:
+
+| library_ID | treatment_group | experiment_day | disease_sign |
+|------------|-----------------|----------------|--------------|
+| PSC-52     | control         | 9              | NA           |
+| PSC-54     | control         | 9              | NA           |
+| PSC-57     | exposed         | 9              | armdrop      |
+| PSC-61     | control         | 10             | NA           |
+| PSC-64     | control         | 10             | NA           |
+| PSC-67     | exposed         | 10             | armdrop      |
+| PSC-69     | exposed         | 10             | armdrop      |
+| PSC-71     | exposed         | 10             | armdrop      |
+| PSC-73     | control         | 11             | NA           |
+| PSC-75     | exposed         | 11             | armdrop      |
+| PSC-76     | control         | 12             | NA           |
+| PSC-78     | exposed         | 12             | armdrop      |
 
 
 
