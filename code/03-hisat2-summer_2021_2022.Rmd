@@ -220,17 +220,16 @@ copy the above and put into a txt file
 cat ../analyses/03-hisat2/list01.txt
 ```
 
-```{python}
+```{r, engine='bash'}
 python /home/shared/stringtie-2.2.1.Linux_x86_64/prepDE.py \
 -i ../analyses/03-hisat2/list01.txt \
 -g ../analyses/03-hisat2/gene_count_matrix.csv \
 -t ../analyses/03-hisat2/transcript_count_matrix.csv
 ```
 
-python /home/shared/stringtie-2.2.1.Linux_x86_64/prepDE.py \
--i ../output/10.1-hisat-deseq2/list01.txt \
--g ../output/10.1-hisat-deseq2/gene_count_matrix.csv \
--t ../output/10.1-hisat-deseq2/transcript_count_matrix.csv
+```{bash}
+head ../analyses/03-hisat2/*matrix.csv
+```
 
 
 
