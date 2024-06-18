@@ -315,9 +315,22 @@ pheatmap(log_counts_top, scale = "row")
 dim(res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ])
 ```
 
+```{r}
+exBt <- deseq2.res
+# The main plot
+plot(exBt$baseMean, exBt$log2FoldChange, pch=20, cex=0.45, ylim=c(-3, 3), log="x", col="darkgray",
+     main="DEG SSWD Exposed  (pval <= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+exBt.sig <- deseq2.res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ]
+points(exBt.sig$baseMean, exBt.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
 
 
-
+##### Notes on PCA from above: 
 all controls are in same clump except 56, no clue why.
 But, since the repeat control star samples are in the same clump, I guess it doesn't really matter which ones I remove to balance the analyses. 
 
