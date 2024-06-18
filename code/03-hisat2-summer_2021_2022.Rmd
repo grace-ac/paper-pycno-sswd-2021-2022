@@ -293,7 +293,7 @@ eBtPCA + geom_text(aes(label = name), position = nudge)
 ```
 
 ```{r}
-# Select top 50 differentially expressed genes
+# Select top 50 differentially expressed transcripts
 res <- results(dds)
 res_ordered <- res[order(res$padj), ]
 top_genes <- row.names(res_ordered)[1:50]
