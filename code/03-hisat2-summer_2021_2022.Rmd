@@ -238,6 +238,7 @@ head ../data/*matrix.csv
 library(DESeq2)
 library(dplyr)
 library(ggplot2)
+library(pheatmap)
 ```
 
 ## Differentially expressed transcripts --> Experiment B
@@ -290,6 +291,31 @@ eBtPCA <- plotPCA(vsd, intgroup = "Condition")
 nudge <- position_nudge(y = 4)
 eBtPCA + geom_text(aes(label = name), position = nudge)
 ```
+
+```{r}
+# Select top 50 differentially expressed genes
+res <- results(dds)
+res_ordered <- res[order(res$padj), ]
+top_genes <- row.names(res_ordered)[1:50]
+
+# Extract counts and normalize
+counts <- counts(dds, normalized = TRUE)
+counts_top <- counts[top_genes, ]
+
+# Log-transform counts
+log_counts_top <- log2(counts_top + 1)
+
+# Generate heatmap
+pheatmap(log_counts_top, scale = "row")
+
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ])
+```
+
+
 
 
 all controls are in same clump except 56, no clue why.
