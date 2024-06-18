@@ -198,7 +198,39 @@ find ../analyses/03-hisat2/*sorted.bam \
 ../analyses/03-hisat2/{}.sorted.bam
 ```
 
+```{bash}
+eval "$(/opt/anaconda/anaconda3/bin/conda shell.bash hook)"
+conda activate
+which multiqc
 
+
+multiqc ../analyses/03-hisat2/ \
+-o ../analyses/03-hisat2/
+```
+
+# get a count matrix
+```{bash}
+ls ../analyses/03-hisat2/*gtf
+```
+
+copy the above and put into a txt file
+
+
+```{bash}
+cat ../analyses/03-hisat2/list01.txt
+```
+
+```{python}
+python /home/shared/stringtie-2.2.1.Linux_x86_64/prepDE.py \
+-i ../analyses/03-hisat2/list01.txt \
+-g ../analyses/03-hisat2/gene_count_matrix.csv \
+-t ../analyses/03-hisat2/transcript_count_matrix.csv
+```
+
+python /home/shared/stringtie-2.2.1.Linux_x86_64/prepDE.py \
+-i ../output/10.1-hisat-deseq2/list01.txt \
+-g ../output/10.1-hisat-deseq2/gene_count_matrix.csv \
+-t ../output/10.1-hisat-deseq2/transcript_count_matrix.csv
 
 
 
