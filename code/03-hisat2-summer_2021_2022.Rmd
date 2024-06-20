@@ -464,8 +464,122 @@ I'll do two things:
 1. All 8 exposed stars versus the 8 control libraries (excluding the second time point for the two stars that got sampled twice)     
 2. The 6 exposed stars that were sampled at arm drop versus the 8 controls 
 
+## 8 exposed stars vs 8 control stars - TRANSCRIPTS
+**CLEAR R ENVIRONMENT**
+
+| library_ID | treatment_group | experiment_day | disease_sign |
+|------------|-----------------|----------------|--------------|
+| PSC-56     | control         | 9              | NA           |
+| PSC-52     | control         | 9              | NA           |
+| PSC-54     | control         | 9              | NA           |
+| PSC-59     | exposed         | 9              | armtwist     |
+| PSC-58     | control         | 9              | NA           |
+| PSC-57     | exposed         | 9              | armdrop      |
+| PSC-61     | control         | 10             | NA           |
+| PSC-63     | control         | 10             | NA           |
+| PSC-69     | exposed         | 10             | armdrop      |
+| PSC-67     | exposed         | 10             | armdrop      |
+| PSC-71     | exposed         | 10             | armdrop      |
+| PSC-75     | exposed         | 11             | armdrop      |
+| PSC-76     | control         | 12             | NA           |
+| PSC-78     | exposed         | 12             | armdrop      |
+| PSC-81     | control         | 13             | NA           |
+| PSC-83     | exposed         | 13             | armcross     | 
+
+read in csv and subset the libraries from experiment B for gene counts
+```{r}
+eBtranscript8v8Counts <- read.csv("../data/transcript_count_matrix.csv", row.names = "transcript_id")
+head(eBtranscript8v8Counts)
+```
+Subset just the counts for the libraries from Experiment 2, excluding the libraries from teh second time point sampling for the two control stars:    
+```{r}
+eBtranscript8v8Counts <- select(eBtranscript8v8Counts, PSC.52, PSC.54, PSC.56, PSC.57, PSC.58, PSC.59, PSC.61, PSC.63, PSC.67, PSC.69, PSC.71, PSC.75, PSC.76, PSC.78, PSC.81, PSC.83)
+head(eBtranscript8v8Counts)
+```
+remove psc 64 and psc 73 from the conditions txt file, then read in:
+```{r}
+colData <- read.csv("../analyses/03-hisat2/conditions.txt", sep = "\t", row.names = 1)
+```
+
+make the counts into a matrix
+```{r}
+eBtranscript8v8Counts <- as.matrix(eBtranscript8v8Counts)
+```
+
+```{r}
+# Check all sample IDs in colData are also in CountData and match their orders
+all(rownames(colData) %in% colnames(eBtranscript8v8Counts)) #should return TRUE
+```
+
+```{r}
+eBtranscript8v8Counts <- eBtranscript8v8Counts[, rownames(colData)]
+all(rownames(colData) == colnames(eBtranscript8v8Counts)) # This should also return TRUE
+```
+
+```{r}
+# Create a DESeqDataSet from count matrix and labels
+dds <- DESeqDataSetFromMatrix(countData = eBtranscript8v8Counts,
+                              colData = colData, design = ~ Condition)
+
+
+# Run the default analysis for DESeq2 and generate results table
+dds <- DESeq(dds)
+deseq2.res <- results(dds)
+
+# Sort by adjusted p-value and display
+resOrdered <- deseq2.res[order(deseq2.res$padj), ]
+vsd <- vst(dds, blind = FALSE)
+eBt8v8PCA <- plotPCA(vsd, intgroup = "Condition")
+nudge <- position_nudge(y = 4)
+eBt8v8PCA + geom_text(aes(label = name), position = nudge)
+```
+
+```{r}
+# Select top 50 differentially expressed genes
+res <- results(dds)
+res_ordered <- res[order(res$padj), ]
+top_genes <- row.names(res_ordered)[1:50]
+
+# Extract counts and normalize
+counts <- counts(dds, normalized = TRUE)
+counts_top <- counts[top_genes, ]
+
+# Log-transform counts
+log_counts_top <- log2(counts_top + 1)
+
+# Generate heatmap
+pheatmap(log_counts_top, scale = "row")
+
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ])
+```
+
+```{r}
+exBt <- deseq2.res
+# The main plot
+plot(exBt$baseMean, exBt$log2FoldChange, pch=20, cex=0.45, ylim=c(-3, 3), log="x", col="darkgray",
+     main="DET SSWD Exposed 8v8  (pval <= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+exBt.sig <- deseq2.res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ]
+points(exBt.sig$baseMean, exBt.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
+Write out differentially expressed gene list: 
+```{r}
+#write.table(exBt.sig, "../data/expB_DEG_DET_lists/experimentB_8Ev8C_DETlist.tab", sep = '\t', row.names = T)
+```
+
+wrote out 2024-06-20
+
+
 ## 8 exposed stars vs 8 control stars - GENES
-CLEAR R ENVIRONMENT 
+**CLEAR R ENVIRONMENT** 
 
 | library_ID | treatment_group | experiment_day | disease_sign |
 |------------|-----------------|----------------|--------------|
