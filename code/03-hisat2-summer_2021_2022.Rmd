@@ -456,3 +456,35 @@ here are the n=6 control vs n=6 exposed libraries i'll continue with:
 | PSC-76     | control         | 12             | NA           |
 | PSC-78     | exposed         | 12             | armdrop      |
 
+
+# 2024-06-20 Experiment B DESeq2
+After chatting with Steven over slack, I'm going to remove the libraries from the second sampling of the two control stars so that no star has multiple libraries in the analysis. 
+
+I'll do two things:    
+1. All 8 exposed stars versus the 8 control libraries (excluding the second time point for the two stars that got sampled twice)     
+2. The 6 exposed stars that were sampled at arm drop versus the 8 controls 
+
+## 8 exposed stars vs 8 control stars 
+| library_ID | treatment_group | experiment_day | disease_sign |
+|------------|-----------------|----------------|--------------|
+| PSC-56     | control         | 9              | NA           |
+| PSC-52     | control         | 9              | NA           |
+| PSC-54     | control         | 9              | NA           |
+| PSC-59     | exposed         | 9              | armtwist     |
+| PSC-58     | control         | 9              | NA           |
+| PSC-57     | exposed         | 9              | armdrop      |
+| PSC-61     | control         | 10             | NA           |
+| PSC-63     | control         | 10             | NA           |
+| PSC-69     | exposed         | 10             | armdrop      |
+| PSC-67     | exposed         | 10             | armdrop      |
+| PSC-71     | exposed         | 10             | armdrop      |
+| PSC-75     | exposed         | 11             | armdrop      |
+| PSC-76     | control         | 12             | NA           |
+| PSC-78     | exposed         | 12             | armdrop      |
+| PSC-81     | control         | 13             | NA           |
+| PSC-83     | exposed         | 13             | armcross     | 
+
+
+
+
+
