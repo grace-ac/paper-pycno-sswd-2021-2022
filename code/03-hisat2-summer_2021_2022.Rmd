@@ -812,4 +812,102 @@ Write out differentially expressed transcript list:
 
 wrote out 2024-06-20
 
+## 6 exposed stars sampled at arm drop vs 8 control - GENES
+**CLEAR R ENVIRONMENT**
+
+read in csv and subset the libraries from experiment B for gene counts
+```{r}
+eBgene6v8Counts <- read.csv("../data/gene_count_matrix.csv", row.names = "gene_id")
+head(eBgene6v8Counts)
+```
+
+Subset just the counts for the libraries from Experiment 2, excluding the libraries from teh second time point sampling for the two control stars, and only including the 6 exposed stars that were sampled at arm drop:    
+```{r}
+eBgene6v8Counts <- select(eBgene6v8Counts, PSC.52, PSC.54, PSC.56, PSC.57, PSC.58, PSC.61, PSC.63, PSC.67, PSC.69, PSC.71, PSC.75, PSC.76, PSC.78, PSC.81)
+head(eBgene6v8Counts)
+```
+remove psc 83 and psc 59 from the conditions txt file, then read in:
+```{r}
+colData <- read.csv("../analyses/03-hisat2/conditions.txt", sep = "\t", row.names = 1)
+```
+
+make the counts into a matrix
+```{r}
+eBgene6v8Counts <- as.matrix(eBgene6v8Counts)
+```
+
+```{r}
+# Check all sample IDs in colData are also in CountData and match their orders
+all(rownames(colData) %in% colnames(eBgene6v8Counts)) #should return TRUE
+```
+
+```{r}
+eBgene6v8Counts <- eBgene6v8Counts[, rownames(colData)]
+all(rownames(colData) == colnames(eBgene6v8Counts)) # This should also return TRUE
+```
+
+```{r}
+# Create a DESeqDataSet from count matrix and labels
+dds <- DESeqDataSetFromMatrix(countData = eBgene6v8Counts,
+                              colData = colData, design = ~ Condition)
+
+
+# Run the default analysis for DESeq2 and generate results table
+dds <- DESeq(dds)
+deseq2.res <- results(dds)
+
+# Sort by adjusted p-value and display
+resOrdered <- deseq2.res[order(deseq2.res$padj), ]
+vsd <- vst(dds, blind = FALSE)
+eBg6v8PCA <- plotPCA(vsd, intgroup = "Condition")
+nudge <- position_nudge(y = 4)
+eBg6v8PCA + geom_text(aes(label = name), position = nudge)
+```
+
+```{r}
+# Select top 50 differentially expressed genes
+res <- results(dds)
+res_ordered <- res[order(res$padj), ]
+top_genes <- row.names(res_ordered)[1:50]
+
+# Extract counts and normalize
+counts <- counts(dds, normalized = TRUE)
+counts_top <- counts[top_genes, ]
+
+# Log-transform counts
+log_counts_top <- log2(counts_top + 1)
+
+# Generate heatmap
+pheatmap(log_counts_top, scale = "row")
+
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ])
+```
+
+```{r}
+exB6v8g <- deseq2.res
+# The main plot
+plot(exB6v8g$baseMean, exB6v8g$log2FoldChange, pch=20, cex=0.45, ylim=c(-3, 3), log="x", col="darkgray",
+     main="DEG SSWD Exposed 6 exposed at arm drop v 8 control (pval <= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+exB6v8g.sig <- deseq2.res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ]
+points(exB6v8g.sig$baseMean, exB6v8g.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
+
+Write out differentially expressed gene list: 
+```{r}
+#write.table(exB6v8g.sig, "../data/expB_DEG_DET_lists/experimentB_6Earmdropv8C_DEGlist.tab", sep = '\t', row.names = T)
+```
+
+wrote out 2024-06-21
+
+
+
 
