@@ -130,4 +130,19 @@ ggplot(cg_motifs_counts_df, aes(x = CG_Count)) +
   theme_minimal()
 ```
 
+# Run BLASTx
+```{bash}
+/home/shared/ncbi-blast-2.11.0+/bin/blastx \
+-query ../data/ncbi_dataset/data/GCA_032158295.1/GCA_032158295.1_ASM3215829v1_genomic.fna \
+-db ../blastdb/uniprot_sprot_r2023_01 \
+-out ../analyses/14-blast/Phel_genome_blastout.tab \
+-evalue 1E-20 \
+-num_threads 20 \
+-max_target_seqs 1 \
+-outfmt 6
+```
+
+
+
+
 
