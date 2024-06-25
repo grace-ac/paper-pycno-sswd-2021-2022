@@ -1,0 +1,133 @@
+---
+title: "14-blast"
+output: html_document
+date: "2024-06-25"
+---
+Rmd to run BLAST on the _Pycnopodia helianthoides_ genome to annotate it and the DEG lists. 
+
+Will use the example code provided at [Roberts Lab - resources - bio-Annotation](https://robertslab.github.io/resources/bio-Annotation/)
+
+Specifically: [https://robertslab.github.io/tusk/modules/04-blast.html](https://robertslab.github.io/tusk/modules/04-blast.html) 
+
+The genome fasta lives:    
+`../data/ncbi_dataset/data/GCA_032158295.1/GCA_032158295.1_ASM3215829v1_genomic.fna`
+
+```{r}
+library(Biostrings)
+library(reshape2)
+```
+
+```{r}
+#install.packages("reshape2")
+```
+
+
+# Create Database
+```{r}
+current_time <- format(Sys.time(), "%B %d, %Y %H:%M:%S")
+cat("current date and time is ", current_time)
+```
+
+```{bash}
+pwd
+```
+
+
+```{bash}
+cd ../data
+curl -O https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz
+mv uniprot_sprot.fasta.gz uniprot_sprot_r2023_04.fasta.gz
+gunzip -k uniprot_sprot_r2023_04.fasta.gz
+```
+
+make the database
+```{bash}
+mkdir ../blastdb
+/home/shared/ncbi-blast-2.11.0+/bin/makeblastdb \
+-in ../data/uniprot_sprot_r2023_04.fasta \
+-dbtype prot \
+-out ../blastdb/uniprot_sprot_r2023_01
+```
+
+# Query Fasta File
+as noted above, it lives: `../data/ncbi_dataset/data/GCA_032158295.1/GCA_032158295.1_ASM3215829v1_genomic.fna`
+
+```{bash}
+head -3 ../data/ncbi_dataset/data/GCA_032158295.1/GCA_032158295.1_ASM3215829v1_genomic.fna
+```
+
+```{bash}
+echo "How many sequences are there?"
+grep -c ">" ../data/ncbi_dataset/data/GCA_032158295.1/GCA_032158295.1_ASM3215829v1_genomic.fna
+```
+1603 sequences
+
+Read in the fasta file: 
+```{r}
+# Read FASTA file
+fasta_file <- "../data/ncbi_dataset/data/GCA_032158295.1/GCA_032158295.1_ASM3215829v1_genomic.fna"  # Replace with the name of your FASTA file
+sequences <- readDNAStringSet(fasta_file)
+
+# Calculate sequence lengths
+sequence_lengths <- width(sequences)
+
+# Create a data frame
+sequence_lengths_df <- data.frame(Length = sequence_lengths)
+
+# Plot histogram using ggplot2
+ggplot(sequence_lengths_df, aes(x = Length)) +
+  geom_histogram(binwidth = 1, color = "grey", fill = "blue", alpha = 0.75) +
+  labs(title = "Histogram of Sequence Lengths",
+       x = "Sequence Length",
+       y = "Frequency") +
+  theme_minimal()
+```
+```{r}
+# Read FASTA file
+fasta_file <- "../data/ncbi_dataset/data/GCA_032158295.1/GCA_032158295.1_ASM3215829v1_genomic.fna"
+sequences <- readDNAStringSet(fasta_file)
+
+# Calculate base composition
+base_composition <- alphabetFrequency(sequences, baseOnly = TRUE)
+
+# Convert to data frame and reshape for ggplot2
+base_composition_df <- as.data.frame(base_composition)
+base_composition_df$ID <- rownames(base_composition_df)
+base_composition_melted <- reshape2::melt(base_composition_df, id.vars = "ID", variable.name = "Base", value.name = "Count")
+
+# Plot base composition bar chart using ggplot2
+ggplot(base_composition_melted, aes(x = Base, y = Count, fill = Base)) +
+  geom_bar(stat = "identity", position = "dodge", color = "black") +
+  labs(title = "Base Composition",
+       x = "Base",
+       y = "Count") +
+  theme_minimal() +
+  scale_fill_manual(values = c("A" = "green", "C" = "blue", "G" = "yellow", "T" = "red"))
+```
+
+```{r}
+# Read FASTA file
+fasta_file <- "../data/ncbi_dataset/data/GCA_032158295.1/GCA_032158295.1_ASM3215829v1_genomic.fna"
+sequences <- readDNAStringSet(fasta_file)
+
+# Count CG motifs in each sequence
+count_cg_motifs <- function(sequence) {
+  cg_motif <- "CG"
+  return(length(gregexpr(cg_motif, sequence, fixed = TRUE)[[1]]))
+}
+
+cg_motifs_counts <- sapply(sequences, count_cg_motifs)
+
+# Create a data frame
+cg_motifs_counts_df <- data.frame(CG_Count = cg_motifs_counts)
+
+# Plot CG motifs distribution using ggplot2
+ggplot(cg_motifs_counts_df, aes(x = CG_Count)) +
+  geom_histogram(binwidth = 1, color = "black", fill = "blue", alpha = 0.75) +
+  labs(title = "Distribution of CG Motifs",
+       x = "Number of CG Motifs",
+       y = "Frequency") +
+  theme_minimal()
+```
+
+
