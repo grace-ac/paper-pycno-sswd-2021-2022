@@ -143,6 +143,25 @@ ggplot(cg_motifs_counts_df, aes(x = CG_Count)) +
 ```
 
 
+```{r}
+blast <- read.table("../analyses/14-blast/Phel_genome_blastout.tab")
+head(blast)
+```
+Convert pipes to tabs 
+### Convert pipes (`|`) to tabs.
+Makes downstream manipulation easier
+
+```{bash convert-pipes-to-tabs}
+tr '|' '\t' < ../analyses/14-blast/Phel_genome_blastout.tab \
+> ../analyses/14-blast/Phel_genome_blastout_sep.tab
+
+head ../analyses/14-blast/Phel_genome_blastout_sep.tab
+```
+
+# Annotate with gene ontology
+
+
+
 
 
 
