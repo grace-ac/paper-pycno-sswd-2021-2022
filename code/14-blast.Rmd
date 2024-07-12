@@ -158,7 +158,7 @@ tr '|' '\t' < ../analyses/14-blast/Phel_genome_blastout.tab \
 head ../analyses/14-blast/Phel_genome_blastout_sep.tab
 ```
 
-# Annotate with gene ontology
+Annotate the blast output with UNIPROT SP GO in jupyter notebook
 
 
 
