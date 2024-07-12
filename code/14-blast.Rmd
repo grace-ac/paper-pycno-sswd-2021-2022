@@ -158,7 +158,28 @@ tr '|' '\t' < ../analyses/14-blast/Phel_genome_blastout.tab \
 head ../analyses/14-blast/Phel_genome_blastout_sep.tab
 ```
 
-Annotate the blast output with UNIPROT SP GO in jupyter notebook
+# SP GO annotation
+following: https://rpubs.com/sr320/1026094 
+
+```{r}
+spgo <- read.csv("https://gannet.fish.washington.edu/seashell/snaps/uniprot_table_r2023_01.tab", sep = '\t', header = TRUE)
+```
+
+```{r}
+install.packages("data.table")
+```
+
+```{r}
+library(data.table)
+```
+
+```{r}
+
+blastgo <- left_join(blast, spgo,  by = c("V3" = "Entry")) %>%
+select(V1, V3, V13, Protein.names, Organism, Gene.Ontology..biological.process., Gene.Ontology.IDs) 
+```
+
+
 
 
 
