@@ -1,0 +1,23 @@
+---
+title: "15-hisat2-deseq2-summer2022"
+output: html_document
+date: "2024-09-02"
+---
+Follow code from 03-hisat2-summer2021_2022.Rmd. A lot of steps were done in the beginning that don't need to be repeated. 
+
+Summer 2022    
+`/home/shared/8TB_HDD_02/graceac9/data/pycno2022` 
+
+```{r, engine='bash'}
+cd ../data
+
+```
+
+
+
+```{r, engine='bash', eval=TRUE}
+head ../data/augustus.hints.gtf
+
+```
+
+
