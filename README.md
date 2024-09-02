@@ -15,7 +15,7 @@ Summer 2022 trimmed RNAseq reads (Raven):
 RNAseq library metadata:   
 [paper-pycno-sswd-2021-2022/data/RNAseq_library_metadata.csv](https://github.com/grace-ac/paper-pycno-sswd-2021-2022/blob/main/data/RNAseq_library_metadata.csv)
 
-[Google Sheet](https://docs.google.com/spreadsheets/d/1B7kGu382dwdww7FIzpcV9T0fR3aHzRsG/edit?usp=sharing&ouid=103457047809583883571&rtpof=true&sd=true) 
+[Google Sheet](https://docs.google.com/spreadsheets/d/1B7kGu382dwdww7FIzpcV9T0fR3aHzRsG/edit?usp=sharing&ouid=103457047809583883571&rtpof=true&sd=true)
 
 
 
@@ -50,11 +50,17 @@ Experiment A began on 9/23/2021. Stars were injected with either 0.45micron filt
 
 Experiment B began on 10/05/2021. Stars were injected with heat-killed tissue homogenate from a wasting star (control group) or unfiltered live tissue homogenate from a wasting star (exposed group). Some of the control stars in this experiment were previously injected with the 0.45micron filtered live tissue homogenate in Experiment A but never showed any disease signs, and so they became part of the control group. They continued to remain disease-sign free throughout the remainder of Experiment B. Comparisons made between libraries from Experiment B are shared below under the title “Experiment B”.
 
-### September 23, 2021 (Experiment A)
+### September 23, 2021 - (Experiment A)
 - Control: n=13 stars injected with heat-killed inoculum
 - Exposed: n=12 stars injected with 0.45um filtered live inoculum
 - Exposed: n=4 stars injected with unfiltered live inoculum
 
-### October 5, 2021 (Experiment B)
+### October 5, 2021 - October 18, 2021 (Experiment B)
 - Control: n=9 stars injected with heat-killed inoculum
 - Exposed: n=9 stars injected with unfiltered live inoculum
+
+### June 21, 2022 - July 8, 2022 (Experiment C)
+- Control Juveniles: n=15 stars injected with heat-killed inoculum
+- Control Adults: n=14 stars injected with heat-killed inoculum
+- Exposed Juveniles: n=15 stars injected with unfiltered live inoculum
+- Exposed Adults: n=15 stars injected with unfiltered live inoculum
