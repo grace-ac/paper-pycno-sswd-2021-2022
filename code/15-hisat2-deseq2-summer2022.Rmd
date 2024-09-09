@@ -227,18 +227,29 @@ pcaExplorer()
 ```
 
 
+saved a bunch of plots 
+can be found in analyses/15-hisat2-deseq2-summer2022/pcaExplorer_plots
 
+## Use `DESeq2` to compare the samples that `pcaExplorer` showed would be interesting 
+Want a balanced comparison, so I'll be comparing the libraries shown in the plot [noday0_norepeatstars_size_disease_signs_3pergroup_samplesPca_sampleout.pdf](https://github.com/grace-ac/paper-pycno-sswd-2021-2022/blob/main/analyses/15-hisat2-deseq2-summer2022/pcaExplorer_plots/noday0_norepeatstars_size_disease_signs_3pergroup_samplesPca_sampleout.pdf)
 
-Subset just the counts for the libraries of interest
+I'm not sure why the sample IDs got all cut-off, but below is a table detailing the samples:    
 
-Some comparisons that can be made:
+| library_ID | star_ID | star_age_class | treatment | experiment_day | total_armdrop | total_armtwist | disease_sign  |
+|------------|---------|----------------|-----------|----------------|---------------|----------------|---------------|
+| PSC.0186   |      15 | adult          | control   |             11 |             0 |              0 | healthy       |
+| PSC.0203   |      31 | adult          | control   |             12 |             0 |              0 | healthy       |
+| PSC.0209   |       9 | adult          | control   |             13 |             0 |              0 | healthy       |
+| PSC.0177   |      34 | juvenile       | control   |             11 |             0 |              0 | healthy       |
+| PSC.0219   |      63 | juvenile       | control   |             14 |             0 |              0 | healthy       |
+| PSC.0230   |      65 | juvenile       | control   |             15 |             0 |              0 | healthy       |
+| PSC.0174   |      30 | adult          | exposed   |             10 |             1 |              6 | first_armdrop |
+| PSC.0190   |      10 | adult          | exposed   |             11 |             1 |              0 | first_armdrop |
+| PSC.0231   |      13 | adult          | exposed   |             15 |             1 |              5 | first_armdrop |
+| PSC.0187   |      57 | juvenile       | exposed   |             11 |             1 |              1 | first_armdrop |
+| PSC.0188   |      38 | juvenile       | exposed   |             11 |             1 |              0 | first_armdrop |
+| PSC.0228   |      61 | juvenile       | exposed   |             14 |             1 |              0 | first_armdrop |
 
-Exposed vs Exposed with age class being the treatment --> 5 small vs 5 large:    
-
-Make a PCA of all samples:
-```{r}
-
-```
 
 
 
