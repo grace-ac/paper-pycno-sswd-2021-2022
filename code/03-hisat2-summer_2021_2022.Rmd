@@ -223,8 +223,8 @@ cat ../analyses/03-hisat2/list01.txt
 ```{r, engine='bash'}
 python /home/shared/stringtie-2.2.1.Linux_x86_64/prepDE.py \
 -i ../analyses/03-hisat2/list01.txt \
--g ../data/gene_count_matrix.csv \
--t ../data/transcript_count_matrix.csv
+-g ../data/gene_count_matrix_2021.csv \
+-t ../data/transcript_count_matrix_2021.csv
 ```
 
 ```{bash}

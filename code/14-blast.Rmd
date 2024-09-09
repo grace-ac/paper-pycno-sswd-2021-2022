@@ -162,6 +162,12 @@ head ../analyses/14-blast/Phel_genome_blastout_sep.tab
 following: https://rpubs.com/sr320/1026094 
 
 ```{r}
+blastsep <- read.table("../analyses/14-blast/Phel_genome_blastout_sep.tab", sep = '\t')
+head(blastsep)
+```
+
+
+```{r}
 spgo <- read.csv("https://gannet.fish.washington.edu/seashell/snaps/uniprot_table_r2023_01.tab", sep = '\t', header = TRUE)
 ```
 
@@ -174,9 +180,9 @@ library(data.table)
 ```
 
 ```{r}
-
-blastgo <- left_join(blast, spgo,  by = c("V3" = "Entry")) %>%
-select(V1, V3, V13, Protein.names, Organism, Gene.Ontology..biological.process., Gene.Ontology.IDs) 
+annot_tab <-
+  left_join(blast, spgo,  by = c("V3" = "Entry")) %>%
+  select(V1, V3, V13, Protein.names, Organism, Gene.Ontology..biological.process., Gene.Ontology.IDs)
 ```
 
 
