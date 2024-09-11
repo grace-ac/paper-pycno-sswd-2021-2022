@@ -263,7 +263,162 @@ head(counts2022sub)
 ```
 create a text file called "conditions.txt" in `/analyses/15-hisat2-deseq2-summer2022/` and put the metadata for the libraries in it, with tabs between each column 
 
+```{r}
+deseq2.colData <- data.frame(condition=factor(c("exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "control", "control", "control", "control", "control", "control")), 
+                             type=factor(rep("paired-end", 12)),
+                             age=factor(c("juvenile", "juvenile", "juvenile", "adult", "adult", "adult", "juvenile", "juvenile", "juvenile", "adult", "adult", "adult")))
+rownames(deseq2.colData) <- colnames(counts2022sub)
+```
 
 
+set counts as matrix:
+```{r}
+counts2022sub <- as.matrix(counts2022sub)
+```
+
+
+```{r}
+# Check all sample IDs in colData are also in CountData and match their orders
+all(rownames(deseq2.colData) %in% colnames(counts2022sub)) #should return TRUE
+```
+
+```{r}
+counts2022sub <- counts2022sub[, rownames(deseq2.colData)]
+all(rownames(deseq2.colData) == colnames(counts2022sub)) # This should also return TRUE
+```
+
+
+
+modelled after crab paper https://github.com/RobertsLab/paper-tanner-crab/blob/master/scripts/DESeq.Rmd 
+
+```{r}
+# Create a DESeqDataSet from count matrix and labels, with the design taking age into account
+dds <- DESeqDataSetFromMatrix(countData = counts2022sub,
+                                     colData = deseq2.colData, 
+                                     design = ~ condition + age)
+```
+
+Check levels of age and condition 
+```{r}
+levels(dds$age)
+```
+
+```{r}
+levels(dds$condition)
+```
+
+note: `DESeq2` automatically puts the levels in alphabetical order and the first listed level is the reference level for the factor. 
+
+We want control to be the reference. 
+```{r}
+dds$condition = relevel(dds$condition, "control")
+levels(dds$condition)
+```
+
+
+The following will pull the results from `condition` because that is our variable of interest. This tells us how age contributes to the DEGs
+```{r}
+design(dds) <- formula(~ age + condition)
+dds <- DESeq(dds)
+```
+
+Access results:
+```{r}
+deseq2.res <- results(dds)
+head(deseq2.res)
+```
+
+```{r}
+summary(deseq2.res)
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(deseq2.res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ])
+```
+6189 dets between control and exposed, impacted by age.... 
+
+```{r}
+inf <- deseq2.res
+# The main plot
+plot(inf$baseMean, inf$log2FoldChange, pch=20, cex=0.45, ylim=c(-15, 15), log="x", col="darkgray",
+     #main="Infection Status  (pval </= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+inf.sig <- deseq2.res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ]
+points(inf.sig$baseMean, inf.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
+
+Now need to perform a contrast to see if there is a difference between these groups as it relates to age. 
+
+In the multifactor section of the `DESeq2` manual:                
+The contrast argument of the function _results_ needs a character vector of three componenets: the name of the variable (in this case "age"), and the name of the factor level for the numerator of the log2 ratio (juvenile) and the denominator (adult) 
+
+A **contrast** is a linear combination of estimated log2 fold changes. Can be used to test if differences between groups are equal to zero.         
+```{r}
+resultsNames(dds)
+```
+
+```{r}
+deseq2.resage <- results(dds,
+                          contrast = c("age", "juvenile",  "adult"))
+head(deseq2.resage)
+```
+
+
+```{r}
+age <- deseq2.resage
+# The main plot
+plot(age$baseMean, age$log2FoldChange, pch=20, cex=0.45, ylim=c(-15, 15), log="x", col="darkgray",
+     #main="Age  (pval </= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+age.sig <- deseq2.resage[!is.na(deseq2.resage$padj) & deseq2.resage$padj <= 0.05, ]
+points(age.sig$baseMean, age.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(deseq2.resage[!is.na(deseq2.resage$padj) & deseq2.resage$padj <= 0.05, ])
+```
+92 DETs -  differentially expressed transcripts associated with age that are different between control and exposed... 
+
+```{r}
+summary(deseq2.resage)
+```
+
+```{r}
+write.table(age.sig, "../analyses/15-hisat2-deseq2-summer2022/DETlist-contrast_age.tab", sep = "\t", row.names = T, quote = FALSE, col.names = TRUE)
+```
+Wrote out 09112024. Comment out code. 
+
+
+
+juvenile exposed are 0228, 0187, 0188
+juvenile control are 0230, 0219, 0177
+
+```{r}
+# Select top 50 differentially expressed transcripts
+res <- results(dds)
+res_ordered <- res[order(res$padj), ]
+top_genes <- row.names(res_ordered)[1:50]
+
+# Extract counts and normalize
+counts <- counts(dds, normalized = TRUE)
+counts_top <- counts[top_genes, ]
+
+# Log-transform counts
+log_counts_top <- log2(counts_top + 1)
+
+# Generate heatmap
+pheatmap(log_counts_top, scale = "row")
+
+```
+first six columns are exposed, last six columns are control
 
 
