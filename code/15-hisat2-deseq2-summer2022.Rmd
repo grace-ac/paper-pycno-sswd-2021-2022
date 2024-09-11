@@ -428,7 +428,7 @@ head(detageblast)
 ```
 write out table:
 ```{r}
-#write.table(detageblast, "../analyses/15-hisat2-deseq2-summer2022/DETlist-contrast_age_annot.tab", sep = "\t", row.names = T, quote = FALSE, col.names = TRUE)
+#write.table(detageblast, "../analyses/15-hisat2-deseq2-summer2022/DETlist-contrast_age_annot.tab", sep = "\t", row.names = F, quote = FALSE, col.names = TRUE)
 ```
 Wrote out 09112024. Comment out code. 
 
