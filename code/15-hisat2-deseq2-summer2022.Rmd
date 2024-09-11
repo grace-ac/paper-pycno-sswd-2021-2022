@@ -393,11 +393,44 @@ summary(deseq2.resage)
 ```
 
 ```{r}
-write.table(age.sig, "../analyses/15-hisat2-deseq2-summer2022/DETlist-contrast_age.tab", sep = "\t", row.names = T, quote = FALSE, col.names = TRUE)
+#write.table(age.sig, "../analyses/15-hisat2-deseq2-summer2022/DETlist-contrast_age.tab", sep = "\t", row.names = T, quote = FALSE, col.names = TRUE)
 ```
 Wrote out 09112024. Comment out code. 
 
+### `join` the DET list with the blast uniprot output: 
+read in the blast output:
+```{r}
+blast <- read.table("../analyses/06-BLAST/summer2021-uniprot_blastx.tab")
+head(blast)
+```
 
+rename first column "transcriptID":
+```{r}
+colnames(blast) <- c("transcriptID", "V2", "uniprot_accession_ID", "gene", "V5", "V6", "V7", "V8", "V9", "V10", "V11", "V12", "V13", "V14")
+head(blast)
+```
+reaad in the DET list from above:
+```{r}
+detage <- read.table("../analyses/15-hisat2-deseq2-summer2022/DETlist-contrast_age.tab")
+head(detage)
+```
+make rownmaes into a column called "transcriptID":
+```{r}
+library(tibble)
+detage <- tibble::rownames_to_column(detage, "transcriptID")
+head(detage)
+```
+
+`join` the two tables based on transcriptID:
+```{r}
+detageblast <- left_join(detage, blast, by = "transcriptID")
+head(detageblast)
+```
+write out table:
+```{r}
+#write.table(detageblast, "../analyses/15-hisat2-deseq2-summer2022/DETlist-contrast_age_annot.tab", sep = "\t", row.names = T, quote = FALSE, col.names = TRUE)
+```
+Wrote out 09112024. Comment out code. 
 
 juvenile exposed are 0228, 0187, 0188
 juvenile control are 0230, 0219, 0177
