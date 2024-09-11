@@ -398,7 +398,7 @@ summary(deseq2.resage)
 Wrote out 09112024. Comment out code. 
 
 ### `join` the DET list with the blast uniprot output: 
-read in the blast output:
+read in the blast output and blastquery go slim output:
 ```{r}
 blast <- read.table("../analyses/06-BLAST/summer2021-uniprot_blastx.tab")
 head(blast)
@@ -409,6 +409,16 @@ rename first column "transcriptID":
 colnames(blast) <- c("transcriptID", "V2", "uniprot_accession_ID", "gene", "V5", "V6", "V7", "V8", "V9", "V10", "V11", "V12", "V13", "V14")
 head(blast)
 ```
+```{r}
+blastq <- read.delim("../analyses/06-BLAST/Blastquery-GOslim.tab", sep = '\t', header = F)
+head(blastq)
+```
+rename first column "transcriptID":
+```{r}
+colnames(blastq) <- c("transcriptID", "GO_ID", "biolodical_process", "V4")
+head(blastq)
+```
+
 reaad in the DET list from above:
 ```{r}
 detage <- read.table("../analyses/15-hisat2-deseq2-summer2022/DETlist-contrast_age.tab")
@@ -426,11 +436,24 @@ head(detage)
 detageblast <- left_join(detage, blast, by = "transcriptID")
 head(detageblast)
 ```
+`join` above with blastq
+```{r}
+detageblastq <- left_join(detageblast, blastq, by = "transcriptID")
+head(detageblastq)
+```
+
+
+
+
+
+
 write out table:
 ```{r}
-#write.table(detageblast, "../analyses/15-hisat2-deseq2-summer2022/DETlist-contrast_age_annot.tab", sep = "\t", row.names = F, quote = FALSE, col.names = TRUE)
+#write.table(detageblastq, "../analyses/15-hisat2-deseq2-summer2022/DETlist-contrast_age_annot.tab", sep = "\t", row.names = F, quote = FALSE, col.names = TRUE)
 ```
 Wrote out 09112024. Comment out code. 
+
+57 have annotations.
 
 juvenile exposed are 0228, 0187, 0188
 juvenile control are 0230, 0219, 0177
