@@ -210,15 +210,12 @@ Install 2024-09-06 - `pcaExplorer`:
 
 
 ## Explore all the samples with `pcaExplorer` 
-read in csv 
-```{r}
-eCtranscriptCounts <- read.csv("../data/transcript_count_matrix_2022.csv", row.names = "transcript_id")
-head(eCtranscriptCounts)
-```
 
 made a coldata frame in google sheets https://docs.google.com/spreadsheets/d/1tZuBu8wFnKgh_mvZY8jpleF4nzMsQh-NOHZ1YKoeyqU/edit?gid=0#gid=0 
 
 downloaded as .csv, then copy-pasted into data directory and pushed to github 
+
+in `pcaExplorere`, can select the count matrices to import
 
 it's call coldata2022.csv in data in this repo
 
@@ -249,6 +246,22 @@ I'm not sure why the sample IDs got all cut-off, but below is a table detailing 
 | PSC.0187   |      57 | juvenile       | exposed   |             11 |             1 |              1 | first_armdrop |
 | PSC.0188   |      38 | juvenile       | exposed   |             11 |             1 |              0 | first_armdrop |
 | PSC.0228   |      61 | juvenile       | exposed   |             14 |             1 |              0 | first_armdrop |
+
+
+## `DESeq2` --> Differentially expressed genes and transcripts for the above library comparisons
+### DIFFERENTIALLY EXPRESSED TRANSCRIPTS
+
+Read in counts: 
+```{r}
+counts2022 <- read.csv("../data/transcript_count_matrix_2022.csv", row.names = "transcript_id")
+head(counts2022)
+```
+subset just the counts for the libraries specified in the table above:
+```{r}
+counts2022sub <- select(counts2022, PSC.0228, PSC.0187, PSC.0188, PSC.0174, PSC.0190, PSC.0231, PSC.0230, PSC.0219, PSC.0177, PSC.0186, PSC.0209, PSC.0203)
+head(counts2022sub)
+```
+create a text file called "conditions.txt" in `/analyses/15-hisat2-deseq2-summer2022/` and put the metadata for the libraries in it, with tabs between each column 
 
 
 
