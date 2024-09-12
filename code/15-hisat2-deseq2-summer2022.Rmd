@@ -420,6 +420,42 @@ wrote out and commented out code 2024-09-12
 ```
 Wrote out 09112024. Comment out code. 
 
+read in the files:
+```{r}
+counts2022sub <- read.delim("../analyses/15-hisat2-deseq2-summer2022/subset_summer2022_count_matrix.tab")
+counts2022sub
+```
+set rownames as a colum called transcript ID
+```{r}
+library(tibble)
+counts2022sub <- tibble::rownames_to_column(counts2022sub, "transcriptID")
+head(counts2022sub)
+```
+read in the DETlist:
+```{r}
+detage <- read.delim("../analyses/15-hisat2-deseq2-summer2022/DETlist-contrast_age.tab")
+head(detage)
+```
+set rownames as a colum called transcript ID
+```{r}
+library(tibble)
+detage <- tibble::rownames_to_column(detage, "transcriptID")
+head(detage)
+```
+`join` the lists based on the "transcriptID"
+```{r}
+detagecounts <- left_join(detage, counts2022sub, by = "transcriptID")
+head(detagecounts)
+```
+wrte out table:
+
+
+```{r}
+#write.table(detagecounts, "../analyses/15-hisat2-deseq2-summer2022/DETlist_counts_contrast_age.tab", sep = "\t", row.names = T, quote = FALSE, col.names = TRUE)
+```
+wrote out 2024-09-12
+
+
 ### `join` the DET list with the blast uniprot output: 
 read in the blast output and blastquery go slim output:
 ```{r}
