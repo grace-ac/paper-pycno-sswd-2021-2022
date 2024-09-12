@@ -392,6 +392,29 @@ dim(deseq2.resage[!is.na(deseq2.resage$padj) & deseq2.resage$padj <= 0.05, ])
 summary(deseq2.resage)
 ```
 
+### make a heatmap of those DETs: 
+
+`join` the DET list with the count data from those libraries:
+write out the count matrix for those libraries:
+
+```{r}
+counts2022 <- read.csv("../data/transcript_count_matrix_2022.csv", row.names = "transcript_id")
+head(counts2022)
+```
+
+subset just the counts for the libraries specified in the table above:
+```{r}
+counts2022sub <- select(counts2022, PSC.0228, PSC.0187, PSC.0188, PSC.0174, PSC.0190, PSC.0231, PSC.0230, PSC.0219, PSC.0177, PSC.0186, PSC.0209, PSC.0203)
+head(counts2022sub)
+```
+
+```{r}
+#write.table(counts2022sub, "../analyses/15-hisat2-deseq2-summer2022/subset_summer2022_count_matrix.tab", sep = '\t', row.names = T)
+```
+wrote out and commented out code 2024-09-12
+
+
+
 ```{r}
 #write.table(age.sig, "../analyses/15-hisat2-deseq2-summer2022/DETlist-contrast_age.tab", sep = "\t", row.names = T, quote = FALSE, col.names = TRUE)
 ```
