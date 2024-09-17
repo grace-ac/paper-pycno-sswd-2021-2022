@@ -712,8 +712,93 @@ dim(deseq2.resage[!is.na(deseq2.resage$padj) & deseq2.resage$padj <= 0.05, ])
 
 82 degs 
 
+```{r}
+summary(deseq2.resage)
+```
+
+```{r}
+#write.table(age.sig, "../analyses/15-hisat2-deseq2-summer2022/DEGlist-contrast_age.tab", sep = "\t", row.names = T, quote = FALSE, col.names = TRUE)
+```
+
+wrote out 2024-09-17
+
+## ANNOTATE DEG LISTS
+read in the files:
+```{r}
+counts2022sub <- read.delim("../analyses/15-hisat2-deseq2-summer2022/subset_summer2022_count_matrix.tab")
+counts2022sub
+```
+set rownames as a colum called transcript ID
+```{r}
+library(tibble)
+counts2022sub <- tibble::rownames_to_column(counts2022sub, "geneID")
+head(counts2022sub)
+```
+read in the DETlist:
+```{r}
+degs <- read.delim("../analyses/15-hisat2-deseq2-summer2022/DEGlist_2022_exposed_v_control_no_contrast.tab")
+head(degs)
+```
+set rownames as a colum called gene ID
+```{r}
+library(tibble)
+degs <- tibble::rownames_to_column(degs, "geneID")
+head(degs)
+```
+`join` the lists based on the "geneID"
+```{r}
+degcounts <- left_join(degs, counts2022sub, by = "geneID")
+head(degcounts)
+```
+wrte out table:
 
 
+```{r}
+#write.table(degcounts, "../analyses/15-hisat2-deseq2-summer2022/DEGlist_counts_exposedVcontrol.tab", sep = "\t", row.names = T, quote = FALSE, col.names = TRUE)
+```
+wrote out 2024-09-17
 
+### `join` the DET list with the blast uniprot output: 
+read in the blast output and blastquery go slim output:
+```{r}
+blast <- read.table("../analyses/06-BLAST/summer2021-uniprot_blastx.tab")
+head(blast)
+```
+
+rename first column "transcriptID":
+```{r}
+colnames(blast) <- c("geneID", "V2", "uniprot_accession_ID", "gene", "V5", "V6", "V7", "V8", "V9", "V10", "V11", "V12", "V13", "V14")
+head(blast)
+```
+```{r}
+blastq <- read.delim("../analyses/06-BLAST/Blastquery-GOslim.tab", sep = '\t', header = F)
+head(blastq)
+```
+rename first column "geneID":
+```{r}
+colnames(blastq) <- c("geneID", "GO_ID", "biolodical_process", "V4")
+head(blastq)
+```
+reaad in the DEG list from above:
+```{r}
+degs <- read.table("../analyses/15-hisat2-deseq2-summer2022/DEGlist_counts_exposedVcontrol.tab")
+head(degs)
+```
+
+`join` the two tables based on transcriptID:
+```{r}
+degsblast <- left_join(degs, blast, by = "geneID")
+head(degsblast)
+```
+`join` above with blastq
+```{r}
+degsblastq <- left_join(degsblast, blastq, by = "geneID")
+head(degsblastq)
+```
+write out table:
+```{r}
+#write.table(degsblastq, "../analyses/15-hisat2-deseq2-summer2022/DEGlist-counts_exposedVcontrol_annot.tab", sep = "\t", row.names = F, quote = FALSE, col.names = TRUE)
+```
+Wrote out 2024-09-17 Comment out code. 
 
 
