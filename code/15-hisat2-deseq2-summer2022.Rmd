@@ -351,6 +351,13 @@ points(inf.sig$baseMean, inf.sig$log2FoldChange, pch=20, cex=0.45, col="red")
 # 2 FC lines
 abline(h=c(-1,1), col="blue")
 ```
+Write out differentially expressed gene list: 
+```{r}
+#write.table(inf.sig, "../analyses/15-hisat2-deseq2-summer2022/DEGlist_2022_exposed_v_control_no_contrast.tab", sep = '\t', row.names = T, quote = FALSE)
+```
+
+wrote out 2024-09-17
+
 
 Now need to perform a contrast to see if there is a difference between these groups as it relates to age. 
 
@@ -454,6 +461,8 @@ wrte out table:
 #write.table(detagecounts, "../analyses/15-hisat2-deseq2-summer2022/DETlist_counts_contrast_age.tab", sep = "\t", row.names = T, quote = FALSE, col.names = TRUE)
 ```
 wrote out 2024-09-12
+
+
 
 
 ### `join` the DET list with the blast uniprot output: 
