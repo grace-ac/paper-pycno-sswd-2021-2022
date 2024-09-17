@@ -734,7 +734,7 @@ library(tibble)
 counts2022sub <- tibble::rownames_to_column(counts2022sub, "geneID")
 head(counts2022sub)
 ```
-read in the DETlist:
+read in the DEGlist:
 ```{r}
 degs <- read.delim("../analyses/15-hisat2-deseq2-summer2022/DEGlist_2022_exposed_v_control_no_contrast.tab")
 head(degs)
@@ -758,7 +758,7 @@ wrte out table:
 ```
 wrote out 2024-09-17
 
-### `join` the DET list with the blast uniprot output: 
+### `join` the DEG list with the blast uniprot output: 
 read in the blast output and blastquery go slim output:
 ```{r}
 blast <- read.table("../analyses/06-BLAST/summer2021-uniprot_blastx.tab")
@@ -800,5 +800,47 @@ write out table:
 #write.table(degsblastq, "../analyses/15-hisat2-deseq2-summer2022/DEGlist-counts_exposedVcontrol_annot.tab", sep = "\t", row.names = F, quote = FALSE, col.names = TRUE)
 ```
 Wrote out 2024-09-17 Comment out code. 
+
+#### ANNOTATE AGE CONTRAST DEGLIST
+read in the DEGlist:
+```{r}
+degsage <- read.delim("../analyses/15-hisat2-deseq2-summer2022/DEGlist-contrast_age.tab")
+head(degsage)
+```
+
+set rownames as a colum called gene ID
+```{r}
+library(tibble)
+degsage <- tibble::rownames_to_column(degsage, "geneID")
+head(degsage)
+```
+
+
+`join` the lists based on the "geneID"
+```{r}
+degagecounts <- left_join(degsage, counts2022sub, by = "geneID")
+head(degagecounts)
+```
+`join` the blast and blastq
+
+
+`join` the two tables based on transcriptID:
+```{r}
+degsagecountsblast <- left_join(degagecounts, blast, by = "geneID")
+head(degsagecountsblast)
+```
+
+`join` above with blastq
+```{r}
+degsagecountsblastq <- left_join(degsagecountsblast, blastq, by = "geneID")
+head(degsagecountsblastq)
+```
+
+write out table:
+```{r}
+#write.table(degsagecountsblastq, "../analyses/15-hisat2-deseq2-summer2022/DEGlist-counts_contrastAge_annot.tab", sep = "\t", row.names = F, quote = FALSE, col.names = TRUE)
+```
+Wrote out 2024-09-17 Comment out code. 
+
 
 
