@@ -393,6 +393,40 @@ write out the DEG age contrast list:
 
 wrote out 2024-09-18
 
+annotate the list: 
+
+read in the DEg age contrast list: 
+```{r}
+degage <- read.delim("../data/2022_DEG_DET_lists/DEGlist_2022-contrast_age.tab")
+head(degage)
+```
+
+set rownames as a colum called transcript ID
+```{r}
+library(tibble)
+degage <- tibble::rownames_to_column(degage, "transcriptID")
+head(degage)
+```
+
+`join` the above with blast output and the count matrix:
+
+`join` the two tables by "transcriptID:
+```{r}
+blastdegage <- left_join(degage, blast, by = "transcriptID")
+head(blastdegage)
+```
+
+`join` the above by the count matrix
+```{r}
+blastdegagecounts <- left_join(blastdegage, counts2022, by = "transcriptID")
+head(blastdegagecounts)
+```
+write out the table: 
+Write out differentially expressed gene list: 
+```{r}
+#write.table(blastdegagecounts, "../data/2022_DEG_DET_lists/DEGlist_2022_agecontrast_counts_BLAST.tab", sep = '\t', row.names = T, quote = F)
+```
+comment out the code - wrote out 2024-09-18
 
 
 
