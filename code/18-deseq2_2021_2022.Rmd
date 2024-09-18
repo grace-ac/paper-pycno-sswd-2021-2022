@@ -132,7 +132,7 @@ exBg.sig
 
 Write out differentially expressed gene list: 
 ```{r}
-#write.table(exBg.sig, "../data/expB_DEG_DET_lists/DEGlist_8v8_2021_exposedVcontrol.tab", sep = '\t', row.names = T)
+#write.table(exBg.sig, "../data/expB_DEG_DET_lists/DEGlist_8v8_2021_exposedVcontrol.tab", sep = '\t', row.names = F, quote = F)
 ```
 comment out the code - wrote out 2024-09-18
 
@@ -180,7 +180,7 @@ head(blastdeg2021counts)
 write out the table: 
 Write out differentially expressed gene list: 
 ```{r}
-write.table(blastdeg2021counts, "../data/expB_DEG_DET_lists/DEGlist_8v8_2021_exposedVcontrol_counts_BLAST.tab", sep = '\t', row.names = T, quote = F)
+#write.table(blastdeg2021counts, "../data/expB_DEG_DET_lists/DEGlist_8v8_2021_exposedVcontrol_counts_BLAST.tab", sep = '\t', row.names = F, quote = F)
 ```
 comment out the code - wrote out 2024-09-18
 
@@ -297,7 +297,7 @@ pwd
 
 
 ```{r}
-write.table(inf.sig, "../data/2022_DEG_DET_lists/DEGlist_2022_exposed_v_control_no_contrast.tab", sep = '\t', row.names = T, quote = FALSE)
+#write.table(inf.sig, "../data/2022_DEG_DET_lists/DEGlist_2022_exposed_v_control_no_contrast.tab", sep = '\t', row.names = F, quote = FALSE)
 ```
 
 wrote out 2024-09-18
@@ -337,7 +337,7 @@ head(blastdeg2022counts)
 write out the table: 
 Write out differentially expressed gene list: 
 ```{r}
-write.table(blastdeg2022counts, "../data/2022_DEG_DET_lists/DEGlist_2022_noage_contrast_counts_BLAST.tab", sep = '\t', row.names = T, quote = F)
+#write.table(blastdeg2022counts, "../data/2022_DEG_DET_lists/DEGlist_2022_noage_contrast_counts_BLAST.tab", sep = '\t', row.names = F, quote = F)
 ```
 comment out the code - wrote out 2024-09-18
 
@@ -388,7 +388,7 @@ summary(deseq2.resage)
 
 write out the DEG age contrast list: 
 ```{r}
-#write.table(age.sig, "../data/2022_DEG_DET_lists/DEGlist_2022-contrast_age.tab", sep = "\t", row.names = T, quote = FALSE, col.names = TRUE)
+#write.table(age.sig, "../data/2022_DEG_DET_lists/DEGlist_2022-contrast_age.tab", sep = "\t", row.names = F, quote = FALSE, col.names = TRUE)
 ```
 
 wrote out 2024-09-18
@@ -424,7 +424,7 @@ head(blastdegagecounts)
 write out the table: 
 Write out differentially expressed gene list: 
 ```{r}
-#write.table(blastdegagecounts, "../data/2022_DEG_DET_lists/DEGlist_2022_agecontrast_counts_BLAST.tab", sep = '\t', row.names = T, quote = F)
+#write.table(blastdegagecounts, "../data/2022_DEG_DET_lists/DEGlist_2022_agecontrast_counts_BLAST.tab", sep = '\t', row.names = F, quote = F)
 ```
 comment out the code - wrote out 2024-09-18
 
