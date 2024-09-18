@@ -136,6 +136,17 @@ Write out differentially expressed gene list:
 ```
 comment out the code - wrote out 2024-09-18
 
+read in the DEG list:
+```{r}
+deg2021 <- read.table("../data/expB_DEG_DET_lists/DEGlist_8v8_2021_exposedVcontrol.tab")
+head(deg2021)
+```
+set rownames as a colum called transcript ID
+```{r}
+library(tibble)
+deg2021 <- tibble::rownames_to_column(deg2021, "transcriptID")
+head(deg2021)
+```
 
 Read in the BLAST output: 
 ```{r}
@@ -149,7 +160,29 @@ colnames(blast) <- c("transcriptID", "V2", "uniprot_accession_ID", "gene", "V5",
 head(blast)
 ```
 
+`join` the two tables by "transcriptID:
+```{r}
+blastdeg2021 <- left_join(deg2021, blast, by = "transcriptID")
+head(blastdeg2021)
+```
+```{r}
+library(tibble)
+expB <- tibble::rownames_to_column(expB, "transcriptID")
+head(expB)
+```
 
+`join` the above by the count matrix
+```{r}
+blastdeg2021counts <- left_join(blastdeg2021, expB, by = "transcriptID")
+head(blastdeg2021counts)
+```
+
+write out the table: 
+Write out differentially expressed gene list: 
+```{r}
+#write.table(blastdeg2021counts, "../data/expB_DEG_DET_lists/DEGlist_8v8_2021_exposedVcontrol_counts_BLAST.tab", sep = '\t', row.names = T)
+```
+comment out the code - wrote out 2024-09-18
 
 
 
