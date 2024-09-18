@@ -302,6 +302,8 @@ write.table(inf.sig, "../data/2022_DEG_DET_lists/DEGlist_2022_exposed_v_control_
 
 wrote out 2024-09-18
 
+### `join` the DEG list with BLAST output: 
+
 
 
 
