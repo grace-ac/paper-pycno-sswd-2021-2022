@@ -1,0 +1,162 @@
+---
+title: "18-deseq2"
+output: html_document
+date: "2024-09-18"
+---
+Rmd to run `DESeq2` with the 2021 count matrix created using `kallisto` in the code Rmd: [17-kallisto-2021-2022.Rmd](https://github.com/grace-ac/paper-pycno-sswd-2021-2022/blob/main/code/17-kallisto-2021-2022.Rmd). 
+
+Load packages needed to run code:
+```{r}
+library(DESeq2)
+library(tidyverse)
+library(pheatmap)
+library(RColorBrewer)
+library(data.table)
+library(ggplot2)
+```
+
+# load rounded count matrix of all 64 coelomocyte RNAseq libraries with genome gene transcript list FASTA alignment: 
+```{r}
+countmatrix <- read.delim("../data/2021-2022_kallisto_count_matrix_rounded_20240918.tab", header = TRUE, sep = '\t')
+head(countmatrix)
+```
+# 2021 Experiment `DESeq2` Work 
+Subset the libraries from "Experiment B" from 2021 work - stars that were part of the final experiment that were injected with their inoculate (either unfiltered raw tissue homogenate from a wasting adult _Pycnopodia helianthoides_, or a heat-killed raw tissue homogenate from a wasting adult _Pycnopodia helianthoides_). Stars H03 and H05 had two time points as controls, so I picked one of each so that it's a balanced 8 vs 8 comparison. 
+
+| library_ID | star_ID | previous_exposure           | treatment         | sample_date | experiment_day |
+|------------|---------|-----------------------------|-------------------|-------------|----------------|
+| PSC.56     | E06     | 0.45 live inoculate 9/23/21 | control (10/5/21) | 10/14/21    | 9              |
+| PSC.52     | E11     | 0.45 live inoculate 9/23/21 | control (10/5/21) | 10/14/21    | 9              |
+| PSC.54     | E18     | 0.45 live inoculate 9/23/21 | control (10/5/21) | 10/14/21    | 9              |
+| PSC.61     | E09     | 0.45 live inoculate 9/23/21 | control (10/5/21) | 10/15/21    | 10             |
+| PSC.64     | H05     | NA                          | control (10/5/21) | 10/15/21    | 10             |
+| PSC.73     | H03     | NA                          | control (10/5/21) | 10/16/21    | 11             |
+| PSC.76     | E10     | 0.45 live inoculate 9/23/21 | control (10/5/21) | 10/17/21    | 12             |
+| PSC.81     | E07     | 0.45 live inoculate 9/23/21 | control (10/5/21) | 10/18/21    | 13             |
+| PSC.59     | H01     | NA                          | exposed (10/5/21) | 10/14/21    | 9              |
+| PSC.57     | H06     | NA                          | exposed (10/5/21) | 10/14/21    | 9              |
+| PSC.69     | H04     | NA                          | exposed (10/5/21) | 10/15/21    | 10             |
+| PSC.67     | H09     | NA                          | exposed (10/5/21) | 10/15/21    | 10             |
+| PSC.71     | H18     | NA                          | exposed (10/5/21) | 10/15/21    | 10             |
+| PSC.75     | H08     | NA                          | exposed (10/5/21) | 10/16/21    | 11             |
+| PSC.78     | H10     | NA                          | exposed (10/5/21) | 10/17/21    | 12             |
+| PSC.83     | H07     | NA                          | exposed (10/5/21) | 10/18/21    | 13             |
+
+
+```{r}
+expB <- select(countmatrix, "PSC.56", "PSC.52", "PSC.54", "PSC.61", "PSC.64", "PSC.73", "PSC.76", "PSC.81", "PSC.59", "PSC.57", "PSC.69", "PSC.67", "PSC.71", "PSC.75", "PSC.78", "PSC.83")
+head(expB)
+```
+26,581 rows, 64 16 libraries
+
+Make a data frame for the comparison: 
+```{r}
+colData <- data.frame(condition=factor(c("control", "control", "control", "control", "control", "control", "control", "control", "exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "exposed")),
+                      type=factor(rep("paired-end",16)))
+rownames(colData) <- colnames(expB)
+dds <- DESeqDataSetFromMatrix(countData = expB,
+                              colData = colData,
+                              design = ~ condition)
+```
+
+
+```{r}
+# Check all sample IDs in colData are also in CountData and match their orders
+all(rownames(colData) %in% colnames(expB)) #should return TRUE
+```
+
+```{r}
+expB <- expB[, rownames(colData)]
+all(rownames(colData) == colnames(expB)) # This should also return TRUE
+```
+
+```{r}
+# Create a DESeqDataSet from count matrix and labels
+dds <- DESeqDataSetFromMatrix(countData = expB,
+                              colData = colData, design = ~ condition)
+
+
+# Run the default analysis for DESeq2 and generate results table
+dds <- DESeq(dds)
+deseq2.res <- results(dds)
+
+# Sort by adjusted p-value and display
+resOrdered <- deseq2.res[order(deseq2.res$padj), ]
+vsd <- vst(dds, blind = FALSE)
+eBgPCA <- plotPCA(vsd, intgroup = "condition")
+nudge <- position_nudge(y = 4)
+eBgPCA + geom_text(aes(label = name), position = nudge)
+```
+
+```{r}
+# Select top 50 differentially expressed genes
+res <- results(dds)
+res_ordered <- res[order(res$padj), ]
+top_genes <- row.names(res_ordered)[1:50]
+
+# Extract counts and normalize
+counts <- counts(dds, normalized = TRUE)
+counts_top <- counts[top_genes, ]
+
+# Log-transform counts
+log_counts_top <- log2(counts_top + 1)
+
+# Generate heatmap
+pheatmap(log_counts_top, scale = "row")
+
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ])
+```
+7833 degs
+
+```{r}
+exBg <- deseq2.res
+# The main plot
+plot(exBg$baseMean, exBg$log2FoldChange, pch=20, cex=0.45, ylim=c(-3, 3), log="x", col="darkgray",
+     main="DEG SSWD Exposed  (pval <= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+exBg.sig <- deseq2.res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ]
+points(exBg.sig$baseMean, exBg.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
+
+### `join` the DEG list with BLAST output: 
+the file that is the DEG list is:    
+exBg.sig 
+
+Write out differentially expressed gene list: 
+```{r}
+#write.table(exBg.sig, "../data/expB_DEG_DET_lists/DEGlist_8v8_2021_exposedVcontrol.tab", sep = '\t', row.names = T)
+```
+comment out the code - wrote out 2024-09-18
+
+
+Read in the BLAST output: 
+```{r}
+blast <- read.table("../analyses/16-blast-annotation/blast_out.tab", )
+head(blast)
+```
+rename the first column: 
+rename first column "transcriptID":
+```{r}
+colnames(blast) <- c("transcriptID", "V2", "uniprot_accession_ID", "gene", "V5", "V6", "V7", "V8", "V9", "V10", "V11", "V12")
+head(blast)
+```
+
+
+
+
+
+# Summer 2022 `DESeq2` Work
+
+
+
+
+
+
