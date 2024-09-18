@@ -1,0 +1,162 @@
+---
+title: "17-kallisto-2021-2022"
+output: html_document
+date: "2024-09-18"
+---
+Rmd to get count matrices for the 2021 and 2022 libraries using `kallisto`. 
+
+# Confirm `kallisto` location on Raven:
+```{bash}
+/home/shared/kallisto/kallisto
+```
+
+## Print working directory
+```{bash}
+pwd
+```
+
+# Make the 2023 *P. helianthoides* fasta of genes an index:
+Get the fasta of genes on Raven: 
+
+```{bash}
+/home/shared/kallisto_linux-v0.50.1/kallisto index \
+-t 40 \
+-i /home/shared/8TB_HDD_02/graceac9/GitHub/paper-pycno-sswd-2021-2022/code/2023_phel_genomefasta.index \
+/home/shared/8TB_HDD_02/graceac9/GitHub/paper-pycno-sswd-2021-2022/data/augustus.hints.codingseq
+```
+
+# Get `quant` info:
+
+```{bash}
+/home/shared/kallisto/kallisto \
+quant
+```
+
+I want all kallisto files to go into: 
+
+`paper-pycno-sswd-2021-2022/analyses/17-kallisto-2021-2022`
+
+Trimmed summer 2021 RNAseq reads live: `/home/shared/8TB_HDD_02/graceac9/data/pycno2021`    
+Trimmed summer 2022 RNAseq reads live: `/home/shared/8TB_HDD_02/graceac9/data/pycno2022`
+
+```{bash}
+pwd
+```
+
+```{bash}
+#list all files in directory, get count of how many files
+DATA_DIRECTORY="../../../data/pycno2021"
+ls -1 "$DATA_DIRECTORY"/*.fq.gz | wc -l
+```
+should be 64 --> it is 
+
+```{bash}
+#list all files in directory, get count of how many files
+DATA_DIRECTORY="../../../data/pycno2022"
+ls -1 "$DATA_DIRECTORY"/*.fq.gz | wc -l
+```
+should be 64 --> it is 
+
+# Kallisto quanitification 2021 libraries
+```{bash}
+# Set the paths
+DATA_DIRECTORY="../../../data/pycno2021"
+KALLISTO_INDEX="2023_phel_genomefasta.index"
+OUTPUT_DIRECTORY="../analyses/17-kallisto-2021-2022"
+
+pwd
+echo $DATA_DIRECTORY
+
+# Iterate over all .fq.gz files in the data directory
+for FILE in "$DATA_DIRECTORY"/*_R1_001.fastq.gz.fastp-trim.20220810.fq.gz; do
+    # Extract the base name of the file for naming the output folder
+    BASENAME=$(basename "$FILE" _R1_001.fastq.gz.fastp-trim.20220810.fq.gz)
+
+    # Create output directory for this sample3
+    SAMPLE_OUTPUT="$OUTPUT_DIRECTORY/$BASENAME"
+    mkdir -p "$SAMPLE_OUTPUT"
+
+    # Run Kallisto quantification
+    /home/shared/kallisto_linux-v0.50.1/kallisto quant \
+    -i "$KALLISTO_INDEX" \
+    -o "$SAMPLE_OUTPUT" \
+    -t 40 \
+    "$DATA_DIRECTORY"/"$BASENAME"_R1_001.fastq.gz.fastp-trim.20220810.fq.gz \
+    "$DATA_DIRECTORY"/"$BASENAME"_R2_001.fastq.gz.fastp-trim.20220810.fq.gz
+done
+
+echo "Kallisto quantification complete."
+```
+
+
+# Kallisto quanitification 2022 libraries
+```{bash}
+# Set the paths
+DATA_DIRECTORY="../../../data/pycno2022"
+KALLISTO_INDEX="2023_phel_genomefasta.index"
+OUTPUT_DIRECTORY="../analyses/17-kallisto-2021-2022"
+
+pwd
+echo $DATA_DIRECTORY
+
+# Iterate over all .fq.gz files in the data directory
+for FILE in "$DATA_DIRECTORY"/*_R1_001.fastq.gz.fastp-trim.20231101.fq.gz; do
+    # Extract the base name of the file for naming the output folder
+    BASENAME=$(basename "$FILE" _R1_001.fastq.gz.fastp-trim.20231101.fq.gz)
+
+    # Create output directory for this sample3
+    SAMPLE_OUTPUT="$OUTPUT_DIRECTORY/$BASENAME"
+    mkdir -p "$SAMPLE_OUTPUT"
+
+    # Run Kallisto quantification
+    /home/shared/kallisto_linux-v0.50.1/kallisto quant \
+    -i "$KALLISTO_INDEX" \
+    -o "$SAMPLE_OUTPUT" \
+    -t 40 \
+    "$DATA_DIRECTORY"/"$BASENAME"_R1_001.fastq.gz.fastp-trim.20231101.fq.gz \
+    "$DATA_DIRECTORY"/"$BASENAME"_R2_001.fastq.gz.fastp-trim.20231101.fq.gz
+done
+
+echo "Kallisto quantification complete."
+```
+
+# Creating count matrix 
+
+```{bash}
+pwd
+```
+
+```{bash}
+perl /home/shared/trinityrnaseq-v2.12.0/util/abundance_estimates_to_matrix.pl \
+--est_method kallisto \
+    --gene_trans_map none \
+    --out_prefix ../analyses/17-kallisto-2021-2022/kallisto_20240918 \
+    --name_sample_by_basedir \
+     ../analyses/17-kallisto-2021-2022/*/abundance.tsv
+```
+
+```{bash}     
+head ../analyses/17-kallisto-2021-2022/kallisto_20240918.isoform.counts.matrix
+```
+
+```{r}
+countmatrix <- read.delim("../analyses/17-kallisto-2021-2022/kallisto_20240918.isoform.counts.matrix", header = TRUE, sep = '\t')
+rownames(countmatrix) <- countmatrix$X
+countmatrix <- countmatrix[,-1]
+head(countmatrix)
+```
+
+```{r}
+countmatrix <- round(countmatrix, 0)
+head(countmatrix)
+```
+
+write out count matrix (not rounded):
+```{r}
+#write.table(countmatrix, "../data/2021-2022_kallisto_count_matrix_rounded.tab", quote = FALSE, sep = '\t')
+
+````
+Wrote out 2024-09-18
+
+
+
