@@ -180,13 +180,129 @@ head(blastdeg2021counts)
 write out the table: 
 Write out differentially expressed gene list: 
 ```{r}
-#write.table(blastdeg2021counts, "../data/expB_DEG_DET_lists/DEGlist_8v8_2021_exposedVcontrol_counts_BLAST.tab", sep = '\t', row.names = T)
+write.table(blastdeg2021counts, "../data/expB_DEG_DET_lists/DEGlist_8v8_2021_exposedVcontrol_counts_BLAST.tab", sep = '\t', row.names = T, quote = F)
 ```
 comment out the code - wrote out 2024-09-18
 
 
 
 # Summer 2022 `DESeq2` Work
+Want a balanced comparison.
+
+Below is a table detailing the samples:    
+
+| library_ID | star_ID | star_age_class | treatment | experiment_day | total_armdrop | total_armtwist | disease_sign  |
+|------------|---------|----------------|-----------|----------------|---------------|----------------|---------------|
+| PSC.0186   |      15 | adult          | control   |             11 |             0 |              0 | healthy       |
+| PSC.0203   |      31 | adult          | control   |             12 |             0 |              0 | healthy       |
+| PSC.0209   |       9 | adult          | control   |             13 |             0 |              0 | healthy       |
+| PSC.0177   |      34 | juvenile       | control   |             11 |             0 |              0 | healthy       |
+| PSC.0219   |      63 | juvenile       | control   |             14 |             0 |              0 | healthy       |
+| PSC.0230   |      65 | juvenile       | control   |             15 |             0 |              0 | healthy       |
+| PSC.0174   |      30 | adult          | exposed   |             10 |             1 |              6 | first_armdrop |
+| PSC.0190   |      10 | adult          | exposed   |             11 |             1 |              0 | first_armdrop |
+| PSC.0231   |      13 | adult          | exposed   |             15 |             1 |              5 | first_armdrop |
+| PSC.0187   |      57 | juvenile       | exposed   |             11 |             1 |              1 | first_armdrop |
+| PSC.0188   |      38 | juvenile       | exposed   |             11 |             1 |              0 | first_armdrop |
+| PSC.0228   |      61 | juvenile       | exposed   |             14 |             1 |              0 | first_armdrop |
+
+subset just the counts for the libraries specified in the table above:
+```{r}
+counts2022 <- select(countmatrix, PSC.0228, PSC.0187, PSC.0188, PSC.0174, PSC.0190, PSC.0231, PSC.0230, PSC.0219, PSC.0177, PSC.0186, PSC.0209, PSC.0203)
+head(counts2022)
+```
+
+
+```{r}
+deseq2.colData <- data.frame(condition=factor(c("exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "control", "control", "control", "control", "control", "control")), 
+                             type=factor(rep("paired-end", 12)),
+                             age=factor(c("juvenile", "juvenile", "juvenile", "adult", "adult", "adult", "juvenile", "juvenile", "juvenile", "adult", "adult", "adult")))
+rownames(deseq2.colData) <- colnames(counts2022)
+```
+
+```{r}
+# Check all sample IDs in colData are also in CountData and match their orders
+all(rownames(deseq2.colData) %in% colnames(counts2022)) #should return TRUE
+```
+
+```{r}
+counts2022 <- counts2022[, rownames(deseq2.colData)]
+all(rownames(deseq2.colData) == colnames(counts2022)) # This should also return TRUE
+```
+
+```{r}
+# Create a DESeqDataSet from count matrix and labels, with the design taking age into account
+dds <- DESeqDataSetFromMatrix(countData = counts2022,
+                                     colData = deseq2.colData, 
+                                     design = ~ condition + age)
+```
+
+Check levels of age and condition 
+```{r}
+levels(dds$age)
+```
+
+```{r}
+levels(dds$condition)
+```
+
+note: `DESeq2` automatically puts the levels in alphabetical order and the first listed level is the reference level for the factor. 
+
+We want control to be the reference. 
+```{r}
+dds$condition = relevel(dds$condition, "control")
+levels(dds$condition)
+```
+
+The following will pull the results from `condition` because that is our variable of interest. This tells us how age contributes to the DEGs
+```{r}
+design(dds) <- formula(~ age + condition)
+dds <- DESeq(dds)
+```
+
+Access results:
+```{r}
+deseq2.res <- results(dds)
+head(deseq2.res)
+```
+
+```{r}
+summary(deseq2.res)
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(deseq2.res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ])
+```
+
+6496 DEGs
+
+```{r}
+inf <- deseq2.res
+# The main plot
+plot(inf$baseMean, inf$log2FoldChange, pch=20, cex=0.45, ylim=c(-15, 15), log="x", col="darkgray",
+     #main="Infection Status  (pval </= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+inf.sig <- deseq2.res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ]
+points(inf.sig$baseMean, inf.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
+Write out differentially expressed gene list: 
+```{bash}
+pwd
+```
+
+
+```{r}
+write.table(inf.sig, "../data/2022_DEG_DET_lists/DEGlist_2022_exposed_v_control_no_contrast.tab", sep = '\t', row.names = T, quote = FALSE)
+```
+
+wrote out 2024-09-18
+
+
 
 
 
