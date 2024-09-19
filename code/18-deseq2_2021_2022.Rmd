@@ -429,4 +429,24 @@ Write out differentially expressed gene list:
 comment out the code - wrote out 2024-09-18
 
 
+# `join` the DEG lists to see where there's overlap:   
+library(dplyr)
+inner_join(df1, df2)
 
+      V1
+1  id300
+2 id5456
+3   id45
+
+```{r}
+library(dplyr)
+matchdegs <- inner_join(blastdeg2021counts, blastdeg2022counts, by = "transcriptID")
+head(matchdegs)
+```
+4386 DEGs match between the two
+
+write out table: 
+```{r}
+#write.table(matchdegs, "../data/DEGlist_2021-2022-matching.tab", sep = '\t', row.names = F, quote = F)
+```
+comment out the code - wrote out 2024-09-19
