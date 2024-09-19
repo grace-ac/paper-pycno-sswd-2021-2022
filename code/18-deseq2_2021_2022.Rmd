@@ -132,7 +132,7 @@ exBg.sig
 
 Write out differentially expressed gene list: 
 ```{r}
-#write.table(exBg.sig, "../data/expB_DEG_DET_lists/DEGlist_8v8_2021_exposedVcontrol.tab", sep = '\t', row.names = F, quote = F)
+#write.table(exBg.sig, "../data/expB_DEG_DET_lists/DEGlist_8v8_2021_exposedVcontrol.tab", sep = '\t', row.names = T, quote = F)
 ```
 comment out the code - wrote out 2024-09-18
 
@@ -150,13 +150,13 @@ head(deg2021)
 
 Read in the BLAST output: 
 ```{r}
-blast <- read.table("../analyses/16-blast-annotation/blast_out.tab", )
+blast <- read.table("../analyses/16-blast-annotation/blast_out_sep.tab", )
 head(blast)
 ```
 rename the first column: 
 rename first column "transcriptID":
 ```{r}
-colnames(blast) <- c("transcriptID", "V2", "uniprot_accession_ID", "gene", "V5", "V6", "V7", "V8", "V9", "V10", "V11", "V12")
+colnames(blast) <- c("transcriptID", "V2", "uniprot_accession_ID", "gene", "V5", "V6", "V7", "V8", "V9", "V10", "V11", "V12", "V13", "V14")
 head(blast)
 ```
 
