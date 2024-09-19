@@ -297,7 +297,7 @@ pwd
 
 
 ```{r}
-#write.table(inf.sig, "../data/2022_DEG_DET_lists/DEGlist_2022_exposed_v_control_no_contrast.tab", sep = '\t', row.names = F, quote = FALSE)
+#write.table(inf.sig, "../data/2022_DEG_DET_lists/DEGlist_2022_exposed_v_control_no_contrast.tab", sep = '\t', row.names = T, quote = FALSE)
 ```
 
 wrote out 2024-09-18
@@ -388,7 +388,7 @@ summary(deseq2.resage)
 
 write out the DEG age contrast list: 
 ```{r}
-#write.table(age.sig, "../data/2022_DEG_DET_lists/DEGlist_2022-contrast_age.tab", sep = "\t", row.names = F, quote = FALSE, col.names = TRUE)
+#write.table(age.sig, "../data/2022_DEG_DET_lists/DEGlist_2022-contrast_age.tab", sep = "\t", row.names = T, quote = FALSE, col.names = TRUE)
 ```
 
 wrote out 2024-09-18
