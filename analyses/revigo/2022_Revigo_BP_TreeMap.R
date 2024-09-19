@@ -1,0 +1,122 @@
+# A treemap R script produced by the Revigo server at http://revigo.irb.hr/
+# If you found Revigo useful in your work, please cite the following reference:
+# Supek F et al. "REVIGO summarizes and visualizes long lists of Gene Ontology
+# terms" PLoS ONE 2011. doi:10.1371/journal.pone.0021800
+
+# author: Anton Kratz <anton.kratz@gmail.com>, RIKEN Omics Science Center, Functional Genomics Technology Team, Japan
+# created: Fri, Nov 02, 2012  7:25:52 PM
+# last change: Fri, Nov 09, 2012  3:20:01 PM
+
+# -----------------------------------------------------------------------------
+# If you don't have the treemap package installed, uncomment the following line:
+# install.packages( "treemap" );
+library(treemap) 								# treemap package by Martijn Tennekes
+
+# Set the working directory if necessary
+# setwd("C:/Users/username/workingdir");
+
+# --------------------------------------------------------------------------
+# Here is your data from Revigo. Scroll down for plot configuration options.
+
+revigo.names <- c("term_ID","description","frequency","value","uniqueness","dispensability","representative");
+revigo.data <- rbind(c("GO:0006629","lipid metabolic process",5.904682497366825,1.195182936,0.9536630982724119,0.06517577,"lipid metabolic process"),
+c("GO:0006915","apoptotic process",0.35571372278606816,1.178626289,0.9887612732549868,0.01514893,"apoptotic process"),
+c("GO:0043011","myeloid dendritic cell differentiation",0.0022894172143842514,2.115770123,0.9190436884380582,0.01054961,"myeloid dendritic cell differentiation"),
+c("GO:0001701","in utero embryonic development",0.03568295037389269,1.309762457,0.9566355028557962,0.41772647,"myeloid dendritic cell differentiation"),
+c("GO:0006879","intracellular iron ion homeostasis",0.3120742899631481,1.535402624,0.9764973127724955,0.54526293,"myeloid dendritic cell differentiation"),
+c("GO:0007586","digestion",0.0278835037626751,2.115770123,0.9662227204770014,0.35692821,"myeloid dendritic cell differentiation"),
+c("GO:0048813","dendrite morphogenesis",0.013270905802273091,1.597199014,0.9126817034462441,0.48487839,"myeloid dendritic cell differentiation"),
+c("GO:0097009","energy homeostasis",0.007838016816995422,1.570035766,0.9474863287096692,0.38183165,"myeloid dendritic cell differentiation"),
+c("GO:0043651","linoleic acid metabolic process",0.005471459191055504,2.298614455,0.9241176847064396,0.03398733,"linoleic acid metabolic process"),
+c("GO:0006006","glucose metabolic process",0.4454913867633721,1.565174974,0.9514459309160656,0.21267819,"linoleic acid metabolic process"),
+c("GO:0006633","fatty acid biosynthetic process",0.826237173099254,1.603283582,0.8955265258775132,0.55827172,"linoleic acid metabolic process"),
+c("GO:0006689","ganglioside catabolic process",0.017149966497643762,2.262698604,0.8678089160123548,0.32813133,"linoleic acid metabolic process"),
+c("GO:0006750","glutathione biosynthetic process",0.0664289144082227,1.989185586,0.9027480127640992,0.51477998,"linoleic acid metabolic process"),
+c("GO:0043162","ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway",0.07008481891302162,2.216521081,0.8660428709942438,0.38863986,"linoleic acid metabolic process"),
+c("GO:0097352","autophagosome maturation",0.029208665832613518,1.777834617,0.876833334500904,0.41181131,"linoleic acid metabolic process"),
+c("GO:0044550","secondary metabolite biosynthetic process",0.4384964044440921,2.370446156,0.9609712616464665,-0,"secondary metabolite biosynthetic process"),
+c("GO:0002181","cytoplasmic translation",0.30687006719783905,2.198050072,0.8807136328296484,0.15616886,"secondary metabolite biosynthetic process"),
+c("GO:0006412","translation",4.79105045597284,1.335132717,0.8475891235514879,0.40011842,"secondary metabolite biosynthetic process"),
+c("GO:0006508","proteolysis",5.47471837344373,1.296346533,0.8760779316193001,0.53488925,"secondary metabolite biosynthetic process"),
+c("GO:0006513","protein monoubiquitination",0.03420626249554136,1.450649976,0.8840698110549975,0.29134813,"secondary metabolite biosynthetic process"),
+c("GO:0016310","phosphorylation",1.4042282367682775,1.19173132,0.9416982117192175,0.26809817,"secondary metabolite biosynthetic process"),
+c("GO:0016579","protein deubiquitination",0.3210363527770975,1.361021717,0.867994432423861,0.58529027,"secondary metabolite biosynthetic process"),
+c("GO:0031638","zymogen activation",0.021841756529047348,2.093381021,0.8890239374886499,0.24839,"secondary metabolite biosynthetic process"),
+c("GO:0035335","peptidyl-tyrosine dephosphorylation",0.0001735659260002501,1.831708394,0.911025730768654,0.16687576,"secondary metabolite biosynthetic process"),
+c("GO:0051865","protein autoubiquitination",0.021976752249269763,1.396408281,0.8872990281356669,0.53710462,"secondary metabolite biosynthetic process"),
+c("GO:0051923","sulfation",0.030054455345027434,1.896356925,0.9509870791467299,0.07369615,"sulfation"),
+c("GO:0070327","thyroid hormone transport",0.0019643254799710844,2.585941261,0.8940772157979122,-0,"thyroid hormone transport"),
+c("GO:0006954","inflammatory response",0.14757511733538725,1.252981848,0.909145895256503,0.67294153,"thyroid hormone transport"),
+c("GO:0006986","response to unfolded protein",0.10853104902942623,1.584931741,0.9225257889498728,0.23426371,"thyroid hormone transport"),
+c("GO:0007034","vacuolar transport",0.33345320402286144,2.585941261,0.9168755371150915,0.16193289,"thyroid hormone transport"),
+c("GO:0007169","cell surface receptor protein tyrosine kinase signaling pathway",0.2759009469729372,1.406389107,0.7994659487411124,0.6382183,"thyroid hormone transport"),
+c("GO:0007229","integrin-mediated signaling pathway",0.08797037433514263,1.704370377,0.8129197947295356,0.26265976,"thyroid hormone transport"),
+c("GO:0007249","canonical NF-kappaB signal transduction",0.017535668555422095,1.690807748,0.8467495171026098,0.53327823,"thyroid hormone transport"),
+c("GO:0010629","negative regulation of gene expression",0.8899083177943616,1.253186919,0.8613210066825949,0.55288072,"thyroid hormone transport"),
+c("GO:0015031","protein transport",3.012903359291357,1.119288009,0.9091818967955958,0.61251274,"thyroid hormone transport"),
+c("GO:0015804","neutral amino acid transport",0.1240638218990994,1.723960841,0.9620712106058027,0.21609075,"thyroid hormone transport"),
+c("GO:0015881","creatine transmembrane transport",0.0006915086893025837,2.298614455,0.9605582574315928,0.11789672,"thyroid hormone transport"),
+c("GO:0022409","positive regulation of cell-cell adhesion",0.04582140446406603,2.298614455,0.7967803382903964,0.14239256,"thyroid hormone transport"),
+c("GO:0030001","metal ion transport",2.4677575808568575,1.723960841,0.9480918700604672,0.41907622,"thyroid hormone transport"),
+c("GO:0030513","positive regulation of BMP signaling pathway",0.005777265822579753,1.567237128,0.7893621270670877,0.53470484,"thyroid hormone transport"),
+c("GO:0031397","negative regulation of protein ubiquitination",0.015959800147927757,1.67325611,0.8893780603371372,0.26884676,"thyroid hormone transport"),
+c("GO:0032008","positive regulation of TOR signaling",0.05085481631807327,1.68086182,0.7572873053963475,0.66906206,"thyroid hormone transport"),
+c("GO:0032436","positive regulation of proteasomal ubiquitin-dependent protein catabolic process",0.08619063483996547,1.45459196,0.775968307307848,0.6576597,"thyroid hormone transport"),
+c("GO:0032728","positive regulation of interferon-beta production",0.004140787091720252,1.861877708,0.8046785253430374,0.57557807,"thyroid hormone transport"),
+c("GO:0033674","positive regulation of kinase activity",0.0017549443628914177,1.521141918,0.8284926747850807,0.372888,"thyroid hormone transport"),
+c("GO:0034097","response to cytokine",0.24023728170193348,2.115770123,0.882379955476487,0.19021392,"thyroid hormone transport"),
+c("GO:0035023","regulation of Rho protein signal transduction",0.04992086633531003,2.298614455,0.834631223335449,0.10561438,"thyroid hormone transport"),
+c("GO:0038061","non-canonical NF-kappaB signal transduction",0.0055265594850238365,2.154951051,0.8556991693691842,0.12508879,"thyroid hormone transport"),
+c("GO:0042742","defense response to bacterium",0.12667006580380158,1.490203439,0.9086459362717606,0.38676398,"thyroid hormone transport"),
+c("GO:0042981","regulation of apoptotic process",0.42402706724800787,1.341761975,0.8909072679915276,0.16664171,"thyroid hormone transport"),
+c("GO:0043032","positive regulation of macrophage activation",0.0030525562858456684,2.262698604,0.8041218791933459,0.56432982,"thyroid hormone transport"),
+c("GO:0043122","regulation of canonical NF-kappaB signal transduction",0.09361539945219839,1.867624244,0.8286995284581298,0.66821125,"thyroid hormone transport"),
+c("GO:0045324","late endosome to vacuole transport",0.12929008478199583,2.115770123,0.9208258934456143,0.57877801,"thyroid hormone transport"),
+c("GO:0045471","response to ethanol",0.005562374676103253,1.385325676,0.9248813389977781,0.39038519,"thyroid hormone transport"),
+c("GO:0045600","positive regulation of fat cell differentiation",0.009050223284298754,1.68086182,0.8189292926310159,0.66309767,"thyroid hormone transport"),
+c("GO:0045672","positive regulation of osteoclast differentiation",0.0033280577556873353,1.896356925,0.7972559246425565,0.57455755,"thyroid hormone transport"),
+c("GO:0046686","response to cadmium ion",0.022122768028285843,1.777834617,0.9191323033698021,0.42768953,"thyroid hormone transport"),
+c("GO:0046825","regulation of protein export from nucleus",0.0038818157100690854,2.262698604,0.9074867177280107,0.12260054,"thyroid hormone transport"),
+c("GO:0047496","vesicle transport along microtubule",0.020690160385109176,1.939455946,0.9299389575121096,0.50402111,"thyroid hormone transport"),
+c("GO:0051246","regulation of protein metabolic process",1.9158289562348558,2.262698604,0.8665320384159425,0.24378979,"thyroid hormone transport"),
+c("GO:0060340","positive regulation of type I interferon-mediated signaling pathway",0.0022866621996858348,2.262698604,0.7825733108651258,0.46868666,"thyroid hormone transport"),
+c("GO:0090110","COPII-coated vesicle cargo loading",0.027748508042452685,2.115770123,0.8794884687295624,0.58515993,"thyroid hormone transport"),
+c("GO:0097401","synaptic vesicle lumen acidification",0.0017191291718120008,2.262698604,0.8561208366916105,0.40751736,"thyroid hormone transport"),
+c("GO:1900153","positive regulation of nuclear-transcribed mRNA catabolic process, deadenylation-dependent decay",0.005443909044071337,2.262698604,0.8035642076777818,0.52093078,"thyroid hormone transport"),
+c("GO:1901096","regulation of autophagosome maturation",0.009380825048108755,2.262698604,0.8630562645851683,0.12901045,"thyroid hormone transport"),
+c("GO:1904395","positive regulation of skeletal muscle acetylcholine-gated channel clustering",0.0006253883365405838,1.939455946,0.8365432275937492,0.57125572,"thyroid hormone transport"),
+c("GO:0098742","cell-cell adhesion via plasma-membrane adhesion molecules",0.26452824629787325,2.327347135,0.9430481896451037,0.00970873,"cell-cell adhesion via plasma-membrane adhesion molecules"),
+c("GO:0007160","cell-matrix adhesion",0.06753918533168463,1.363496301,0.9470927337486585,0.69878893,"cell-cell adhesion via plasma-membrane adhesion molecules"),
+c("GO:0033627","cell adhesion mediated by integrin",0.026665787265974933,1.847100901,0.9496809134498477,0.65294176,"cell-cell adhesion via plasma-membrane adhesion molecules"),
+c("GO:0098885","modification of postsynaptic actin cytoskeleton",0.0005427378955880837,2.585941261,0.958915956476276,0,"modification of postsynaptic actin cytoskeleton"),
+c("GO:0030036","actin cytoskeleton organization",0.625278135952647,1.292970631,0.9129029764799728,0.65293662,"modification of postsynaptic actin cytoskeleton"),
+c("GO:0045104","intermediate filament cytoskeleton organization",0.055444670805635456,2.068753009,0.927439960755762,0.20198261,"modification of postsynaptic actin cytoskeleton"));
+
+stuff <- data.frame(revigo.data);
+names(stuff) <- revigo.names;
+
+stuff$value <- as.numeric( as.character(stuff$value) );
+stuff$frequency <- as.numeric( as.character(stuff$frequency) );
+stuff$uniqueness <- as.numeric( as.character(stuff$uniqueness) );
+stuff$dispensability <- as.numeric( as.character(stuff$dispensability) );
+
+# by default, outputs to a PDF file
+pdf( file="revigo_treemap.pdf", width=16, height=9 ) # width and height are in inches
+
+# check the tmPlot command documentation for all possible parameters - there are a lot more
+treemap(
+  stuff,
+  index = c("representative","description"),
+  vSize = "value",
+  type = "categorical",
+  vColor = "representative",
+  title = "Revigo TreeMap",
+  inflate.labels = FALSE,      # set this to TRUE for space-filling group labels - good for posters
+  lowerbound.cex.labels = 0,   # try to draw as many labels as possible (still, some small squares may not get a label)
+  bg.labels = "#CCCCCCAA",   # define background color of group labels
+								 # "#CCCCCC00" is fully transparent, "#CCCCCCAA" is semi-transparent grey, NA is opaque
+  position.legend = "none"
+)
+
+dev.off()
+
