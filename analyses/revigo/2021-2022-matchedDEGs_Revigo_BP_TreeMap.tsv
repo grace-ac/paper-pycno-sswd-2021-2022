@@ -1,0 +1,96 @@
+# WARNING - This exported Revigo data is only useful for the specific purpose of constructing a TreeMap visualization.
+# Do not use this table as a general list of non-redundant GO categories, as it sets an extremely permissive 
+# threshold to detect redundancies (c=0.10) and fill the 'representative' column, while normally c>=0.4 is recommended.
+# To export a reduced-redundancy set of GO terms, go to the Scatterplot or Table tab, and export from there.
+TermID	Name	Frequency	Value	Uniqueness	Dispensability	Representative
+"GO:0002376"	"immune system process"	0.9082220067499159	1.406706645	1	-0	null
+"GO:0006629"	"lipid metabolic process"	5.980051423570241	1.412413366	0.9598748847902504	0.07456754	null
+"GO:0007034"	"vacuolar transport"	0.3908702315163347	3.735048679	0.9127485387634906	0.00866202	null
+"GO:0006865"	"amino acid transport"	1.027831453048388	1.563508749	0.9511595946239912	0.27635011	"vacuolar transport"
+"GO:0006890"	"retrograde vesicle-mediated transport, Golgi to endoplasmic reticulum"	0.13692260290436695	1.763772987	0.9214642766244691	0.66445687	"vacuolar transport"
+"GO:0007010"	"cytoskeleton organization"	1.8978237258769566	1.432621411	0.9091624260018024	0.46326893	"vacuolar transport"
+"GO:0007035"	"vacuolar acidification"	0.05759565888227698	2.905037861	0.9013751147027088	0.44867553	"vacuolar transport"
+"GO:0016043"	"cellular component organization"	12.335614236288208	1.867524339	0.9136648646320242	0.55118368	"vacuolar transport"
+"GO:0016192"	"vesicle-mediated transport"	2.591260690701909	1.299147367	0.9349969755210876	0.33395861	"vacuolar transport"
+"GO:0030036"	"actin cytoskeleton organization"	0.7770466629690582	1.475946655	0.9117209359699678	0.6544067	"vacuolar transport"
+"GO:0031468"	"nuclear membrane reassembly"	0.012698119836481494	2.614534075	0.926807723810324	0.51287086	"vacuolar transport"
+"GO:0032509"	"endosome transport via multivesicular body sorting pathway"	0.14284461808687798	3.201470296	0.907679180538433	0.57114995	"vacuolar transport"
+"GO:0043652"	"engulfment of apoptotic cell"	0.02980944550099387	2.716399039	0.8855666804752473	0.20118557	"vacuolar transport"
+"GO:0045104"	"intermediate filament cytoskeleton organization"	0.08859639920801539	2.614534075	0.9241289662954979	0.24223182	"vacuolar transport"
+"GO:0045324"	"late endosome to vacuole transport"	0.1579327116316796	2.716399039	0.9070112350855712	0.57593099	"vacuolar transport"
+"GO:0050821"	"protein stabilization"	0.09708806686373571	1.414241733	0.913501732933627	0.47110066	"vacuolar transport"
+"GO:0090110"	"COPII-coated vesicle cargo loading"	0.042706934925914014	3.055948919	0.8560535194251934	0.5634974	"vacuolar transport"
+"GO:0097009"	"energy homeostasis"	0.008516281185157196	1.867524339	0.9447672564802253	0.46007482	"vacuolar transport"
+"GO:0097401"	"synaptic vesicle lumen acidification"	0.001599879413396583	3.268167594	0.84004437897744	0.39138787	"vacuolar transport"
+"GO:0098656"	"monoatomic anion transmembrane transport"	0.4659611871223392	3.112540566	0.940813615335	0.25186787	"vacuolar transport"
+"GO:0021799"	"cerebral cortex radially oriented cell migration"	0.0030323868266224465	3.201470296	0.9220225642999071	0.00937585	null
+"GO:0001889"	"liver development"	0.0225238407876802	1.494019471	0.9371017120397289	0.48041844	"cerebral cortex radially oriented cell migration"
+"GO:0002467"	"germinal center formation"	0.0017869422371167985	2.801286509	0.876080011269766	0.3102288	"cerebral cortex radially oriented cell migration"
+"GO:0016477"	"cell migration"	0.48278207313949656	1.41768271	0.9772338263328754	0.60268856	"cerebral cortex radially oriented cell migration"
+"GO:0033327"	"Leydig cell differentiation"	0.001016538765742752	2.376849159	0.9371024440305054	0.41245443	"cerebral cortex radially oriented cell migration"
+"GO:0043011"	"myeloid dendritic cell differentiation"	0.0020995340609650543	2.376849159	0.9180344844597952	0.42930489	"cerebral cortex radially oriented cell migration"
+"GO:0048484"	"enteric nervous system development"	0.011912948247445324	2.801286509	0.9381185366006684	0.4509025	"cerebral cortex radially oriented cell migration"
+"GO:0048813"	"dendrite morphogenesis"	0.01966867137300322	1.867524339	0.883667919764685	0.49888659	"cerebral cortex radially oriented cell migration"
+"GO:0043162"	"ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway"	0.08314204108480489	3.201470296	0.896371621219957	0.04506878	null
+"GO:0002181"	"cytoplasmic translation"	0.37754692803215667	2.707910292	0.8948930320485143	0.21317541	"ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway"
+"GO:0006412"	"translation"	4.432288697403288	1.583335853	0.8682763538139142	0.40773812	"ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway"
+"GO:0006488"	"dolichol-linked oligosaccharide biosynthetic process"	0.05846451647139851	2.075027044	0.893924065309853	0.61844561	"ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway"
+"GO:0006508"	"proteolysis"	5.329242630377004	1.258019007	0.9064536494340812	0.44662344	"ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway"
+"GO:0016266"	"O-glycan processing"	0.024975348319592503	2.376849159	0.8996224811565108	0.26710125	"ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway"
+"GO:0016310"	"phosphorylation"	6.253736641437635	1.169813904	0.9227339659816481	0.47760914	"ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway"
+"GO:0016311"	"dephosphorylation"	0.8318929906132368	1.429463075	0.9357504612756269	0.28646981	"ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway"
+"GO:0016567"	"protein ubiquitination"	1.2480954666259985	1.248981246	0.8872876975479309	0.68331221	"ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway"
+"GO:0031638"	"zymogen activation"	0.03279260526874257	2.490032452	0.8935102822443078	0.36727646	"ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway"
+"GO:0035335"	"peptidyl-tyrosine dephosphorylation"	0.04028250227638227	2.178778396	0.9007580114016702	0.28375271	"ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway"
+"GO:0042026"	"protein refolding"	0.19468809513975832	2.376849159	0.8893069282046199	0.52122705	"ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway"
+"GO:0045116"	"protein neddylation"	0.03665200668444387	2.298491495	0.9126926351982337	0.50208411	"ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway"
+"GO:0051085"	"chaperone cofactor-dependent protein refolding"	0.1663160797578777	2.075027044	0.8905697057488339	0.69242144	"ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway"
+"GO:0097039"	"protein linear polyubiquitination"	0.01475334954446018	2.801286509	0.9173163795810736	0.16974384	"ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway"
+"GO:0097352"	"autophagosome maturation"	0.03528841715364124	2.217685153	0.8675188064125291	0.29045657	"ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway"
+"GO:0043651"	"linoleic acid metabolic process"	0.009119312656360522	3.32004327	0.922129031270775	0.01007115	null
+"GO:0006006"	"glucose metabolic process"	0.4804905535489239	1.67094283	0.9492126763097674	0.22244567	"linoleic acid metabolic process"
+"GO:0006082"	"organic acid metabolic process"	8.445551746967404	2.905037861	0.9131558937904247	0.41701609	"linoleic acid metabolic process"
+"GO:0006646"	"phosphatidylethanolamine biosynthetic process"	0.06377119341798779	2.801286509	0.9088191362727777	0.35693502	"linoleic acid metabolic process"
+"GO:0042761"	"very long-chain fatty acid biosynthetic process"	0.058110081647507576	2.490032452	0.9042426864815394	0.47311356	"linoleic acid metabolic process"
+"GO:0044550"	"secondary metabolite biosynthetic process"	0.46700972347634995	3.112540566	0.9570703587505645	0.03104353	null
+"GO:0046825"	"regulation of protein export from nucleus"	0.004642111651793778	2.801286509	0.9170622222112533	0.09664475	null
+"GO:0042981"	"regulation of apoptotic process"	0.49277516609086597	1.374216023	0.8867989371636568	0.13707053	"regulation of protein export from nucleus"
+"GO:1904395"	"positive regulation of skeletal muscle acetylcholine-gated channel clustering"	0.0005562657652732735	2.490032452	0.8689208117658273	0.55402887	"regulation of protein export from nucleus"
+"GO:0048511"	"rhythmic process"	0.13974577473077598	1.517363526	1	-0	null
+"GO:0070106"	"interleukin-27-mediated signaling pathway"	0.0008147078243604138	3.735048679	0.8287644582296746	0	null
+"GO:0006805"	"xenobiotic metabolic process"	0.14736120073854372	1.757669966	0.8517148380603625	0.33013988	"interleukin-27-mediated signaling pathway"
+"GO:0006986"	"response to unfolded protein"	0.1284161671309845	1.92776706	0.9042939779045807	0.31660361	"interleukin-27-mediated signaling pathway"
+"GO:0007165"	"signal transduction"	8.851839893322994	1.145522489	0.7584191642355146	0.66982833	"interleukin-27-mediated signaling pathway"
+"GO:0007166"	"cell surface receptor signaling pathway"	1.7427092633657988	1.422875687	0.7885678865252039	0.32818889	"interleukin-27-mediated signaling pathway"
+"GO:0007169"	"cell surface receptor protein tyrosine kinase signaling pathway"	0.36239976201670654	1.703706415	0.7889015972739373	0.62749382	"interleukin-27-mediated signaling pathway"
+"GO:0007219"	"Notch signaling pathway"	0.0884413339725631	1.450504341	0.8078143290657882	0.62907732	"interleukin-27-mediated signaling pathway"
+"GO:0007229"	"integrin-mediated signaling pathway"	0.08566246649914042	2.207074219	0.8082047688023472	0.51277179	"interleukin-27-mediated signaling pathway"
+"GO:0009636"	"response to toxic substance"	1.0264457113410923	1.612861929	0.8819425713161614	0.54248102	"interleukin-27-mediated signaling pathway"
+"GO:0034097"	"response to cytokine"	0.29129865953241874	2.716399039	0.874079782973975	0.66305789	"interleukin-27-mediated signaling pathway"
+"GO:0038061"	"non-canonical NF-kappaB signal transduction"	0.00812738742005464	2.490032452	0.8529479661096955	0.20911965	"interleukin-27-mediated signaling pathway"
+"GO:0042742"	"defense response to bacterium"	0.1321229646641772	2.025789114	0.8605903658407452	0.58407484	"interleukin-27-mediated signaling pathway"
+"GO:0097192"	"extrinsic apoptotic signaling pathway in absence of ligand"	0.021226707786357126	2.585802931	0.8238754094299349	0.39445377	"interleukin-27-mediated signaling pathway"
+"GO:0098586"	"cellular response to virus"	0.010187539833920702	2.100964882	0.890884054774874	0.14103485	"interleukin-27-mediated signaling pathway"
+"GO:1990253"	"cellular response to leucine starvation"	0.008415365714466026	3.112540566	0.9068647399260995	0.16172335	"interleukin-27-mediated signaling pathway"
+"GO:0098742"	"cell-cell adhesion via plasma-membrane adhesion molecules"	0.2759619693403047	3.361543811	0.9493547164981125	0.01307375	null
+"GO:0034446"	"substrate adhesion-dependent cell spreading"	0.02784774720487529	1.628098142	0.9573876468971609	0.64353182	"cell-cell adhesion via plasma-membrane adhesion molecules"
+"GO:0098885"	"modification of postsynaptic actin cytoskeleton"	0.000630106353583885	3.112540566	0.9539577654395028	0.00631113	null
+"GO:1902455"	"negative regulation of stem cell population maintenance"	0.0006079541770907015	2.801286509	0.8857133060934966	0.08165872	null
+"GO:0016525"	"negative regulation of angiogenesis"	0.02570390879092387	1.600735148	0.8612220080794046	0.61969039	"negative regulation of stem cell population maintenance"
+"GO:0032743"	"positive regulation of interleukin-2 production"	0.004885785593218795	2.197087458	0.8278438400258759	0.55296735	"negative regulation of stem cell population maintenance"
+"GO:0043032"	"positive regulation of macrophage activation"	0.004137534298337932	2.801286509	0.8356033983183224	0.42663784	"negative regulation of stem cell population maintenance"
+"GO:0045672"	"positive regulation of osteoclast differentiation"	0.00399723718054777	2.490032452	0.8345789105888075	0.5628768	"negative regulation of stem cell population maintenance"
+"GO:0050852"	"T cell receptor signaling pathway"	0.05136351322886137	1.810932693	0.7048764974892171	0.64422744	"negative regulation of stem cell population maintenance"
+"GO:1904417"	"positive regulation of xenophagy"	0.000822091883191475	3.112540566	0.8316072584868445	0.08946614	null
+"GO:0010629"	"negative regulation of gene expression"	1.0018051070218412	1.292901466	0.8445723320944553	0.52498543	"positive regulation of xenophagy"
+"GO:0010838"	"positive regulation of keratinocyte proliferation"	0.0012675967659988312	2.490032452	0.8713048580672031	0.30904936	"positive regulation of xenophagy"
+"GO:0030336"	"negative regulation of cell migration"	0.04620944016478069	1.469527349	0.8759808982631527	0.69244471	"positive regulation of xenophagy"
+"GO:0030513"	"positive regulation of BMP signaling pathway"	0.007610503301880361	1.697749399	0.837786815162912	0.59477592	"positive regulation of xenophagy"
+"GO:0031397"	"negative regulation of protein ubiquitination"	0.021199632903976567	2.197087458	0.8570304717402412	0.60536925	"positive regulation of xenophagy"
+"GO:0033674"	"positive regulation of kinase activity"	0.1889556041339112	1.867524339	0.8136775966483926	0.41053144	"positive regulation of xenophagy"
+"GO:0042059"	"negative regulation of epidermal growth factor receptor signaling pathway"	0.013803267308196981	2.585802931	0.8614163137948416	0.35887442	"positive regulation of xenophagy"
+"GO:0051897"	"positive regulation of phosphatidylinositol 3-kinase/protein kinase B signal transduction"	0.023569915788747196	1.418372916	0.8263997247088218	0.67814334	"positive regulation of xenophagy"
+"GO:1900026"	"positive regulation of substrate adhesion-dependent cell spreading"	0.009810952833536583	1.867524339	0.8571347790820026	0.3431529	"positive regulation of xenophagy"
+"GO:1904263"	"positive regulation of TORC1 signaling"	0.04213836239592231	1.913073713	0.820730614344894	0.48460382	"positive regulation of xenophagy"
+"GO:2000059"	"negative regulation of ubiquitin-dependent protein catabolic process"	0.017436224253079065	2.614534075	0.8520486213839761	0.46793984	"positive regulation of xenophagy"
+"GO:2001224"	"positive regulation of neuron migration"	0.009006090420950918	2.490032452	0.8488022708302573	0.30268391	"positive regulation of xenophagy"
