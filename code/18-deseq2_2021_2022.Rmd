@@ -450,3 +450,57 @@ write out table:
 #write.table(matchdegs, "../data/DEGlist_2021-2022-matching.tab", sep = '\t', row.names = F, quote = F)
 ```
 comment out the code - wrote out 2024-09-19
+
+
+
+# `join` the DEG lists with the uniprot accession IDs from the blast output that was put into uniprot.org ID/Mapping tool to get gene ID and GO IDs
+
+read in the file downloaded from uniprot.org:
+
+```{r}
+ungo <- read.delim("../data/genome_uniprot_GOIDs_2024_09_20.tsv")
+head(ungo)
+```
+
+read in the DEG lists:
+```{r}
+deg2021 <- read.delim("../data/expB_DEG_DET_lists/DEGlist_8v8_2021_exposedVcontrol_counts_BLAST.tab")
+head(deg2021)
+```
+
+```{r}
+deg2022 <- read.delim("../data/2022_DEG_DET_lists/DEGlist_2022_noage_contrast_counts_BLAST.tab")
+head(deg2022)
+```
+
+rename the uniprot accession iD column in ungo:
+```{r}
+colnames(ungo) <- c("From", "uniprot_accession_ID", "Reviewed", "Entry.name", "Protein.names", "Gene.names", "Organism", "Length", "Gene.Ontology.IDs")
+head(ungo)
+```
+`join` both DEG lists with ungo:
+
+### 2021
+```{r}
+deg2021ungo <- left_join(deg2021, ungo, by = "uniprot_accession_ID")
+head(deg2021ungo)
+```
+write out table:
+```{r}
+#write.table(deg2021ungo, "../data/expB_DEG_DET_lists/DEGlist_8v8_exVco_GOIDs.tab", sep = "\t", row.names = T, quote = FALSE, col.names = TRUE)
+```
+
+wrote out 2024-09-20
+
+
+### 2022
+```{r}
+deg2022ungo <- left_join(deg2022, ungo, by = "uniprot_accession_ID")
+head(deg2022ungo)
+```
+write out table:
+```{r}
+#write.table(deg2021ungo, "../data/2022_DEG_DET_lists/DEGlist_2022_exVco_noagecontrast_GOID.tab", sep = "\t", row.names = T, quote = FALSE, col.names = TRUE)
+```
+
+wrote out 2024-09-20
