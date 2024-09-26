@@ -1,0 +1,25 @@
+---
+title: "19-get-gene-annotations"
+output: html_document
+date: "2024-09-26"
+---
+Rmd to get gene annotation lists from augustus.hints.gtf
+
+
+```{bash}
+pwd
+```
+
+
+
+Use code from Sam White from this GitHub Issue: [1965](https://github.com/RobertsLab/resources/issues/1965) 
+```{bash}
+awk '$3 == "gene"' ../data/augustus.hints.gtf > ../data/gene_annotation.tab
+```
+
+check new file:
+```{r}
+geneannot <- read.table("../data/gene_annotation.tab")
+head(geneannot)
+```
+looks good! push to repo. 
