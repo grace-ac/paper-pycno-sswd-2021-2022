@@ -43,6 +43,74 @@ library(tidyverse)
 ```
 
 
+# 1. BUILD AN INDEX
+
+Follow this code: https://htmlpreview.github.io/?https://github.com/urol-e5/deep-dive/blob/8fd4ad4546d1d95464952f0509406efd9e42ffa0/D-Apul/code/04-Apulcra-hisat.html 
+
+```{bash}
+pwd
+```
+
+From the gtf, get exon list
+```{bash}
+/home/shared/hisat2-2.2.1/hisat2_extract_exons.py \
+../analyses/12-fix-gff/mod_augustus.gtf \
+> ../analyses/20-hisat2/m_exon.tab
+```
+
+```{bash}
+head ../analyses/20-hisat2/m_exon.tab
+```
 
 
+from the gtf, get the splice sites
+```{bash}
+#!/bin/bash
 
+# This script will extract splice sites from the gtf file
+
+# This is the command to extract splice sites from the gtf file
+/home/shared/hisat2-2.2.1/hisat2_extract_splice_sites.py \
+../analyses/12-fix-gff/mod_augustus.gtf \
+> ../analyses/20-hisat2/m_splice_sites.tab
+
+```
+
+use the genome fasta to make an index for alignment
+```{bash}
+# build an index 
+/home/shared/hisat2-2.2.1/hisat2-build \
+../data/ncbi_dataset/data/GCA_032158295.1/GCA_032158295.1_ASM3215829v1_genomic.fna \
+../data/Phel_genome_index \
+--exon ../analyses/20-hisat2/m_exon.tab \
+--ss ../analyses/20-hisat2/m_splice_sites.tab \
+-p 40 \
+../analyses/12-fix-gff/mod_augustus.gtf \
+2> ../analyses/20-hisat2/hisat2-build_stats.txt
+```
+
+```{bash}
+tail ../analyses/20-hisat2/hisat2-build_stats.txt
+```
+
+# 2. ALIGNMENT
+
+
+```{bash}
+for file in ../data/2021_trimmed/*_R1*fq.gz; do
+    # Remove the  part to get the base name
+    base=$(basename "$file" _R1_001.fastq.gz.fastp-trim.20220810.fq.gz)
+    # Construct the names of the pair of files
+    file1=${base}_R1_001.fastq.gz.fastp-trim.20220810.fq.gz
+    file2=${base}_R2_001.fastq.gz.fastp-trim.20220810.fq.gz
+    # Run the hisat2 command
+    /home/shared/hisat2-2.2.1/hisat2 \
+    -x ../data/Phel_genome_index \
+    --dta \
+    -p 20 \
+    -1 ../data/2021_trimmed/$file1 \
+    -2 ../data/2021_trimmed/$file2 \
+    -S ../analyses/20-hisat2/${base}.sam \
+    2> ../analyses/20-hisat2/${base}-hisat.out
+done
+```
