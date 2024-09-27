@@ -1,0 +1,48 @@
+---
+title: "20-hisat2-genecount-matrices"
+output: html_document
+date: "2024-09-27"
+---
+Rmd to use `hisat2` to get gene count matrices for use in `DESeq2` and to annotate with gene IDs retrieved in [paper-pycno-sswd-2021-2022/code/19-get-gene-annotations.Rmd](https://github.com/grace-ac/paper-pycno-sswd-2021-2022/blob/main/code/19-get-gene-annotations.Rmd)
+
+Modelling after [paper-pycno-sswd-2021-2022/code/03-hisat2-summer_2021_2022.Rmd](https://github.com/grace-ac/paper-pycno-sswd-2021-2022/blob/main/code/03-hisat2-summer_2021_2022.Rmd)
+
+All trimmed reads from summer 2021 and 2022 live on Raven:       
+Summer 2021     
+`/home/shared/8TB_HDD_02/graceac9/data/pycno2021`
+
+Summer 2022    
+`/home/shared/8TB_HDD_02/graceac9/data/pycno2022` 
+
+Get genome from NCBI into data directory on Raven:        
+https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_032158295.1/       
+
+```{r, engine='bash'}
+cd ../data
+
+```
+
+```{r, engine='bash', eval=TRUE}
+head ../data/augustus.hints.gtf
+
+```
+
+
+For `stringtie` later, the gtf needs to be in gff format. There isn't currently one in existence that works. Steven figured out how to fix this issue (https://sr320.github.io/tumbling-oysters/posts/sr320-20-seastar/)  
+
+Won't run code because Steven did this already and the new file lives in:
+` ../analyses/12-fix-gff/mod_augustus.gtf`
+
+```{r}
+library(knitr)
+library(tidyverse)
+library(Biostrings)
+library(pheatmap)
+library(DESeq2)
+library(tidyverse)
+```
+
+
+
+
+
