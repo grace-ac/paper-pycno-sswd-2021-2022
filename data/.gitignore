@@ -7,3 +7,5 @@ Phel_transcriptome.fasta
 2021_trimmed
 uniprot_sprot_r2023_04.fasta
 uniprot_sprot_r2023_04.fasta.gz
+augustus.hints.codingseq
+blast_dbs
