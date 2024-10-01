@@ -114,7 +114,7 @@ use the genome fasta to make an index for alignment
 tail ../analyses/03-hisat2/hisat2-build_stats.txt
 ```
 
-# 2. ALIGNMENT
+# 2. ALIGNMENT 2021 RNAseq Data
 
 
 ```{bash}
@@ -488,7 +488,7 @@ I'll do two things:
 
 read in csv and subset the libraries from experiment B for gene counts
 ```{r}
-eBtranscript8v8Counts <- read.csv("../data/transcript_count_matrix.csv", row.names = "transcript_id")
+eBtranscript8v8Counts <- read.csv("../data/transcript_count_matrix_2021.csv", row.names = "transcript_id")
 head(eBtranscript8v8Counts)
 ```
 Subset just the counts for the libraries from Experiment 2, excluding the libraries from teh second time point sampling for the two control stars:    
@@ -572,10 +572,24 @@ abline(h=c(-1,1), col="blue")
 ```
 Write out differentially expressed gene list: 
 ```{r}
-#write.table(exBt.sig, "../data/expB_DEG_DET_lists/experimentB_8Ev8C_DETlist.tab", sep = '\t', row.names = T)
+#write.table(exBt.sig, "../data/expB_DEG_DET_lists/experimentB_8Ev8C_DETlist.tab", sep = '\t', row.names = T, quote = FALSE)
 ```
 
-wrote out 2024-06-20
+wrote out to remove quotes 2024-09-11
+
+### Annotate DET list with BLAST and UNIPROT and GO
+read in the blast output and blastquery go slim output:
+```{r}
+blast <- read.table("../analyses/14-blast/Phel_genome_blastout_sep.tab")
+head(blast)
+```
+
+rename first column "transcriptID":
+```{r}
+colnames(blast) <- c("transcriptID", "V2", "uniprot_accession_ID", "gene", "V5", "V6", "V7", "V8", "V9", "V10", "V11", "V12", "V13", "V14")
+head(blast)
+```
+
 
 
 ## 8 exposed stars vs 8 control stars - GENES
@@ -602,7 +616,7 @@ wrote out 2024-06-20
 
 read in csv and subset the libraries from experiment B for gene counts
 ```{r}
-eBgene8v8Counts <- read.csv("../data/gene_count_matrix.csv", row.names = "gene_id")
+eBgene8v8Counts <- read.csv("../data/gene_count_matrix_2021.csv", row.names = "gene_id")
 head(eBgene8v8Counts)
 ```
 

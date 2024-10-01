@@ -758,14 +758,14 @@ wrte out table:
 ```
 wrote out 2024-09-17
 
-### `join` the DEG list with the blast uniprot output: 
+### `join` the DEG count list with the blast uniprot output: 
 read in the blast output and blastquery go slim output:
 ```{r}
 blast <- read.table("../analyses/06-BLAST/summer2021-uniprot_blastx.tab")
 head(blast)
 ```
 
-rename first column "transcriptID":
+rename first column "geneID":
 ```{r}
 colnames(blast) <- c("geneID", "V2", "uniprot_accession_ID", "gene", "V5", "V6", "V7", "V8", "V9", "V10", "V11", "V12", "V13", "V14")
 head(blast)

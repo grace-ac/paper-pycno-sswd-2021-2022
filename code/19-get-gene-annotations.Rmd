@@ -23,3 +23,6 @@ geneannot <- read.table("../data/gene_annotation.tab")
 head(geneannot)
 ```
 looks good! push to repo. 
+
+
+`join` the table with the `hisat2` count matrices. 
