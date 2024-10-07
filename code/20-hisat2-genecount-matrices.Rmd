@@ -93,7 +93,7 @@ use the genome fasta to make an index for alignment
 tail ../analyses/20-hisat2/hisat2-build_stats.txt
 ```
 
-# 2. ALIGNMENT
+# 2. ALIGNMENT 2021 RNAseq Data
 
 
 ```{bash}
@@ -114,3 +114,40 @@ for file in ../data/2021_trimmed/*_R1*fq.gz; do
     2> ../analyses/20-hisat2/${base}-hisat.out
 done
 ```
+
+
+
+```{bash}
+cat ../analyses/20-hisat2/*-hisat.out
+```
+
+```{bash}
+pwd
+```
+
+
+
+Convert sam to bam
+```{bash}
+for samfile in ../analyses/20-hisat2/*.sam; do
+  bamfile="${samfile%.sam}.bam"
+  sorted_bamfile="${samfile%.sam}.sorted.bam"
+  /home/shared/samtools-1.12/samtools view -bS -@ 20 "$samfile" > "$bamfile"
+  /home/shared/samtools-1.12/samtools sort -@ 20 "$bamfile" -o "$sorted_bamfile"
+  /home/shared/samtools-1.12/samtools index -@ 20 "$sorted_bamfile"
+done
+```
+
+```{bash}
+ls ../analyses/20-hisat2/*sorted.bam | wc -l
+```
+oop there should be 32... because i have 32 libraries... 
+
+
+```{bash}
+ls ../analyses/20-hisat2/*sam | wc -l
+```
+
+there are 32 .sam files... so why the heck did they not all get converted?? I'll run the code chunk again and see. 
+
+
