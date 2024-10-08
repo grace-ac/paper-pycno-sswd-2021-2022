@@ -141,13 +141,12 @@ done
 ```{bash}
 ls ../analyses/20-hisat2/*sorted.bam | wc -l
 ```
-oop there should be 32... because i have 32 libraries... 
+Woo! 32 .bam files converted from the 32 .sam files. 
 
 
 ```{bash}
 ls ../analyses/20-hisat2/*sam | wc -l
 ```
 
-there are 32 .sam files... so why the heck did they not all get converted?? I'll run the code chunk again and see. 
 
 
