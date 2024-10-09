@@ -148,5 +148,22 @@ Woo! 32 .bam files converted from the 32 .sam files.
 ls ../analyses/20-hisat2/*sam | wc -l
 ```
 
+```{r, engine='bash', eval=TRUE}
+cat ../analyses/20-hisat2/*hisat.out \
+| grep "overall alignment rate"
+``` 
+
+
+# `stringtie`
+```{bash}
+find ../analyses/20-hisat2/*sorted.bam \
+| xargs basename -s .sorted.bam | xargs -I{} \
+/home/shared/stringtie-2.2.1.Linux_x86_64/stringtie \
+-p 36 \
+-eB \
+-G ../data/augustus.hints.gtf \
+-o ../analyses/20-hisat2/{}.gtf \
+../analyses/20-hisat2/{}.sorted.bam
+```
 
 
