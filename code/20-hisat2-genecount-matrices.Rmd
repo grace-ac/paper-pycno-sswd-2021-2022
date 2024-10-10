@@ -194,7 +194,7 @@ which multiqc
 
 
 multiqc ../analyses/20-hisat2/ \
--o ../analyses/20-hisat2/
+-o ../analyses/20-hisat2/multiqc2021/
 ```
 
 # get a count matrix
