@@ -166,4 +166,61 @@ find ../analyses/20-hisat2/*sorted.bam \
 ../analyses/20-hisat2/{}.sorted.bam
 ```
 
+steven did this to get the gtf into gff for `stringtie` use
+```{bash}
+#/home/shared/gffread-0.12.7.Linux_x86_64/gffread \
+#../analyses/12-fix-gff/mod_augustus.gtf \
+#-T \
+#-o ../analyses/13-hisat-deseq2/mod_augustus.gff
+```
+
+
+
+```{bash}
+find ../analyses/20-hisat2/*sorted.bam \
+| xargs basename -s .sorted.bam | xargs -I{} \
+/home/shared/stringtie-2.2.1.Linux_x86_64/stringtie \
+-p 36 \
+-eB \
+-G ../analyses/13-hisat-deseq2/mod_augustus.gff \
+-o ../analyses/20-hisat2/{}.gtf \
+../analyses/20-hisat2/{}.sorted.bam
+```
+
+```{bash}
+eval "$(/opt/anaconda/anaconda3/bin/conda shell.bash hook)"
+conda activate
+which multiqc
+
+
+multiqc ../analyses/20-hisat2/ \
+-o ../analyses/20-hisat2/
+```
+
+# get a count matrix
+```{bash}
+ls ../analyses/20-hisat2/*gtf
+```
+
+copy the above and put into a txt file, add the sample ID before each path
+called 2021.txt
+
+
+```{bash}
+cat ../analyses/20-hisat2/2021.txt
+```
+
+```{r, engine='bash'}
+python /home/shared/stringtie-2.2.1.Linux_x86_64/prepDE.py \
+-i ../analyses/20-hisat2/2021.txt \
+-g ../data/gene_count_matrix_2021.csv \
+-t ../data/transcript_count_matrix_2021.csv
+```
+
+
+```{bash}
+head ../data/*matrix_2021.csv
+```
+
+
 
