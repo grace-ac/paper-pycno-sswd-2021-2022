@@ -154,7 +154,7 @@ cat ../analyses/20-hisat2/*hisat.out \
 ``` 
 
 
-# `stringtie`
+## `stringtie`
 ```{bash}
 find ../analyses/20-hisat2/*sorted.bam \
 | xargs basename -s .sorted.bam | xargs -I{} \
@@ -197,7 +197,7 @@ multiqc ../analyses/20-hisat2/ \
 -o ../analyses/20-hisat2/multiqc2021/
 ```
 
-# get a count matrix
+## get a count matrix
 ```{bash}
 ls ../analyses/20-hisat2/*gtf
 ```
@@ -268,6 +268,84 @@ for samfile in ../analyses/20-hisat2/2022/*.sam; do
   /home/shared/samtools-1.12/samtools index -@ 20 "$sorted_bamfile"
 done
 ```
+
+```{bash}
+ls ../analyses/20-hisat2/2022/*sorted.bam | wc -l
+```
+
+woooo
+
+```{r, engine='bash', eval=TRUE}
+cat ../analyses/20-hisat2/2022/*hisat.out \
+| grep "overall alignment rate"
+``` 
+
+## `stringtie`
+```{bash}
+find ../analyses/20-hisat2/2022/*sorted.bam \
+| xargs basename -s .sorted.bam | xargs -I{} \
+/home/shared/stringtie-2.2.1.Linux_x86_64/stringtie \
+-p 36 \
+-eB \
+-G ../data/augustus.hints.gtf \
+-o ../analyses/20-hisat2/2022/{}.gtf \
+../analyses/20-hisat2/2022/{}.sorted.bam
+```
+
+```{bash}
+ls ../analyses/20-hisat2/2022/*sorted.bam | wc -l
+```
+
+```{bash}
+find ../analyses/20-hisat2/2022/*sorted.bam \
+| xargs basename -s .sorted.bam | xargs -I{} \
+/home/shared/stringtie-2.2.1.Linux_x86_64/stringtie \
+-p 36 \
+-eB \
+-G ../analyses/13-hisat-deseq2/mod_augustus.gff \
+-o ../analyses/20-hisat2/2022/{}.gtf \
+../analyses/20-hisat2/2022/{}.sorted.bam
+```
+
+
+```{bash}
+eval "$(/opt/anaconda/anaconda3/bin/conda shell.bash hook)"
+conda activate
+which multiqc
+
+
+multiqc ../analyses/20-hisat2/2022/ \
+-o ../analyses/20-hisat2/multiqc2022/
+```
+
+## get a count matrix
+```{bash}
+ls ../analyses/20-hisat2/2022/*gtf
+```
+
+copy the above and put into a txt file, add the sample ID before each path
+called 2022.txt
+
+```{bash}
+cat ../analyses/20-hisat2/2022/2022.txt
+```
+
+```{r, engine='bash'}
+python /home/shared/stringtie-2.2.1.Linux_x86_64/prepDE.py \
+-i ../analyses/20-hisat2/2022/2022.txt \
+-g ../data/gene_count_matrix_2022.csv \
+-t ../data/transcript_count_matrix_2022.csv
+```
+
+
+
+```{bash}
+head ../data/*matrix_2022.csv
+```
+
+
+
+
 
 
 
