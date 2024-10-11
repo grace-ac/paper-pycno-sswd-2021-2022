@@ -12,3 +12,14 @@
 15-hisat2-deseq2-summer2022/*bam*
 15-hisat2-deseq2-summer2022/*gtf
 15-hisat2-deseq2-summer2022/*-hisat.out
+17-kallisto-2021-2022
+20-hisat2/*sam
+20-hisat2/*bam
+20-hisat2/*gtf
+20-hisat2/*sorted.bam.bai
+20-hisat2/*hisat.out
+20-hisat2/2022/*sam
+20-hisat2/2022/*bam
+20-hisat2/2022/*gtf
+20-hisat2/2022/*sorted.bam.bai
+20-hisat2/2022/*hisat.out
