@@ -222,5 +222,52 @@ python /home/shared/stringtie-2.2.1.Linux_x86_64/prepDE.py \
 head ../data/*matrix_2021.csv
 ```
 
+# 3. ALIGNMENT 2022 RNAseq Data
+pycno2022 trimmed data is in: `/home/shared/8TB_HDD_02/graceac9/data/pycno2022` on Raven
+moving it into the data/2022_trimmed directory in this repo: 
+```
+rsync --archive --progress --verbose PSC*fq.gz graceac9@raven.fish.washington.edu:/home/shared/8TB_HDD_02/graceac9/GitHub/paper-pycno-sswd-2021-2022/data/2022_trimmed
+```
+run `rsync` while in the `/home/shared/8TB_HDD_02/graceac9/data/pycno2022` directory. 
+
+
+```{bash}
+for file in ../data/2022_trimmed/*_R1*fq.gz; do
+    # Remove the  part to get the base name
+    base=$(basename "$file" _R1_001.fastq.gz.fastp-trim.20231101.fq.gz)
+    # Construct the names of the pair of files
+    file1=${base}_R1_001.fastq.gz.fastp-trim.20231101.fq.gz
+    file2=${base}_R2_001.fastq.gz.fastp-trim.20231101.fq.gz
+    # Run the hisat2 command
+    /home/shared/hisat2-2.2.1/hisat2 \
+    -x ../data/Phel_genome_index \
+    --dta \
+    -p 20 \
+    -1 ../data/2022_trimmed/$file1 \
+    -2 ../data/2022_trimmed/$file2 \
+    -S ../analyses/20-hisat2/2022/${base}.sam \
+    2> ../analyses/20-hisat2/2022/${base}-hisat.out
+done
+```
+
+```{bash}
+cat ../analyses/20-hisat2/2022/*-hisat.out
+```
+
+```{bash}
+ls ../analyses/20-hisat2/2022/*sam | wc -l
+```
+
+Convert sam to bam
+```{bash}
+for samfile in ../analyses/20-hisat2/2022/*.sam; do
+  bamfile="${samfile%.sam}.bam"
+  sorted_bamfile="${samfile%.sam}.sorted.bam"
+  /home/shared/samtools-1.12/samtools view -bS -@ 20 "$samfile" > "$bamfile"
+  /home/shared/samtools-1.12/samtools sort -@ 20 "$bamfile" -o "$sorted_bamfile"
+  /home/shared/samtools-1.12/samtools index -@ 20 "$sorted_bamfile"
+done
+```
+
 
 
