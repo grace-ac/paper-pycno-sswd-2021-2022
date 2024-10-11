@@ -1,0 +1,106 @@
+---
+title: "22-deseq2-2022"
+output: html_document
+date: "2024-10-11"
+---
+Rmd to take gene count matrix from [code/20-hisat2-genecount-matrices.Rmd](https://github.com/grace-ac/paper-pycno-sswd-2021-2022/blob/main/code/20-hisat2-genecount-matrices.Rmd) through `DESeq2` to get a list or lists of differentially expressed genes. 
+
+This was done in a previous Rmd ([code/15-hisat2-deseq2-summer2022.Rmd](https://github.com/grace-ac/paper-pycno-sswd-2021-2022/blob/main/code/15-hisat2-deseq2-summer2022.Rmd)), but doing in a new document because I'm using a new count matrix. 
+
+```{r}
+library(DESeq2)
+library(dplyr)
+library(ggplot2)
+library(pheatmap)
+```
+
+
+| library_ID | star_ID | star_age_class | treatment | experiment_day | total_armdrop | total_armtwist | disease_sign  |
+|------------|---------|----------------|-----------|----------------|---------------|----------------|---------------|
+| PSC.0186   |      15 | adult          | control   |             11 |             0 |              0 | healthy       |
+| PSC.0203   |      31 | adult          | control   |             12 |             0 |              0 | healthy       |
+| PSC.0209   |       9 | adult          | control   |             13 |             0 |              0 | healthy       |
+| PSC.0177   |      34 | juvenile       | control   |             11 |             0 |              0 | healthy       |
+| PSC.0219   |      63 | juvenile       | control   |             14 |             0 |              0 | healthy       |
+| PSC.0230   |      65 | juvenile       | control   |             15 |             0 |              0 | healthy       |
+| PSC.0174   |      30 | adult          | exposed   |             10 |             1 |              6 | first_armdrop |
+| PSC.0190   |      10 | adult          | exposed   |             11 |             1 |              0 | first_armdrop |
+| PSC.0231   |      13 | adult          | exposed   |             15 |             1 |              5 | first_armdrop |
+| PSC.0187   |      57 | juvenile       | exposed   |             11 |             1 |              1 | first_armdrop |
+| PSC.0188   |      38 | juvenile       | exposed   |             11 |             1 |              0 | first_armdrop |
+| PSC.0228   |      61 | juvenile       | exposed   |             14 |             1 |              0 | first_armdrop |
+
+Read in gene count matrix:
+```{r}
+counts22 <- read.csv("../data/gene_count_matrix_2022.csv")
+head(counts22)
+```
+
+subset just the counts for the libraries specified in the table above:
+```{r}
+counts22sub <- select(counts22, gene_id, PSC.0228, PSC.0187, PSC.0188, PSC.0174, PSC.0190, PSC.0231, PSC.0230, PSC.0219, PSC.0177, PSC.0186, PSC.0209, PSC.0203)
+head(counts22sub)
+```
+23464 rows, 13 columns (12 libraries) 
+
+set column one (gene_id) as rownames: 
+```{r}
+counts22sub <- counts22sub %>% remove_rownames %>% column_to_rownames(var='gene_id')
+head(counts22sub)
+```
+
+```{r}
+colData <- data.frame(condition=factor(c("exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "control", "control", "control", "control", "control", "control")),
+                      type=factor(rep("paired-end",12)))
+rownames(colData) <- colnames(counts22sub)
+dds <- DESeqDataSetFromMatrix(countData = counts22sub,
+                              colData = colData,
+                              design = ~ condition)
+```
+
+
+```{r}
+# Check all sample IDs in colData are also in CountData and match their orders
+all(rownames(deseq2.colData) %in% colnames(counts22sub)) #should return TRUE
+```
+
+```{r}
+counts22sub <- counts22sub[, rownames(deseq2.colData)]
+all(rownames(deseq2.colData) == colnames(counts22sub)) # This should also return TRUE
+```
+
+```{r}
+# Create a DESeqDataSet from count matrix and labels
+dds <- DESeqDataSetFromMatrix(countData = counts22sub,
+                              colData = colData, design = ~ condition)
+
+
+# Run the default analysis for DESeq2 and generate results table
+dds <- DESeq(dds)
+deseq2.res <- results(dds)
+
+# Sort by adjusted p-value and display
+resOrdered <- deseq2.res[order(deseq2.res$padj), ]
+vsd <- vst(dds, blind = FALSE)
+exp22PCA <- plotPCA(vsd, intgroup = "condition")
+nudge <- position_nudge(y = 4)
+exp22PCA + geom_text(aes(label = name), position = nudge)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

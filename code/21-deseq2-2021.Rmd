@@ -1,0 +1,135 @@
+---
+title: "21-deseq2-2021"
+output: html_document
+date: "2024-10-11"
+---
+Rmd to take gene count matrix from [code/20-hisat2-genecount-matrices.Rmd](https://github.com/grace-ac/paper-pycno-sswd-2021-2022/blob/main/code/20-hisat2-genecount-matrices.Rmd) through `DESeq2` to get a list or lists of differentially expressed genes. 
+
+This was done in a previous Rmd ([code/18-deseq2_2021_2022.Rmd](https://github.com/grace-ac/paper-pycno-sswd-2021-2022/blob/main/code/18-deseq2_2021_2022.Rmd)), but doing in a new document because I'm using a new count matrix. 
+
+```{r}
+library(DESeq2)
+library(dplyr)
+library(ggplot2)
+library(pheatmap)
+```
+
+
+| library_ID | star_ID | treatment         | sample_date | experiment_day |
+|------------|---------|-------------------|-------------|----------------|
+| PSC.56     | E06     | control (10/5/21) | 10/14/21    | 9              |
+| PSC.52     | E11     | control (10/5/21) | 10/14/21    | 9              |
+| PSC.54     | E18     | control (10/5/21) | 10/14/21    | 9              |
+| PSC.61     | E09     | control (10/5/21) | 10/15/21    | 10             |
+| PSC.64     | H05     | control (10/5/21) | 10/15/21    | 10             |
+| PSC.73     | H03     | control (10/5/21) | 10/16/21    | 11             |
+| PSC.76     | E10     | control (10/5/21) | 10/17/21    | 12             |
+| PSC.81     | E07     | control (10/5/21) | 10/18/21    | 13             |
+| PSC.59     | H01     | exposed (10/5/21) | 10/14/21    | 9              |
+| PSC.57     | H06     | exposed (10/5/21) | 10/14/21    | 9              |
+| PSC.69     | H04     | exposed (10/5/21) | 10/15/21    | 10             |
+| PSC.67     | H09     | exposed (10/5/21) | 10/15/21    | 10             |
+| PSC.71     | H18     | exposed (10/5/21) | 10/15/21    | 10             |
+| PSC.75     | H08     | exposed (10/5/21) | 10/16/21    | 11             |
+| PSC.78     | H10     | exposed (10/5/21) | 10/17/21    | 12             |
+| PSC.83     | H07     | exposed (10/5/21) | 10/18/21    | 13             |
+
+Read in gene count matrix:
+```{r}
+counts21 <- read.csv("../data/gene_count_matrix_2021.csv")
+head(counts21)
+```
+calling subset of libraries "exp" short for "experiment" because these libraries are part of the experiment of interest. 
+```{r}
+exp <- select(counts21, "gene_id", "PSC.56", "PSC.52", "PSC.54", "PSC.61", "PSC.64", "PSC.73", "PSC.76", "PSC.81", "PSC.59", "PSC.57", "PSC.69", "PSC.67", "PSC.71", "PSC.75", "PSC.78", "PSC.83")
+head(exp)
+```
+23,464 rows, 17 columns (16 libraries)
+
+set column one (gene_id) as rownames: 
+```{r}
+exp <- exp %>% remove_rownames %>% column_to_rownames(var='gene_id')
+```
+
+
+
+Make a data frame for the comparison: 
+```{r}
+colData <- data.frame(condition=factor(c("control", "control", "control", "control", "control", "control", "control", "control", "exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "exposed")),
+                      type=factor(rep("paired-end",16)))
+rownames(colData) <- colnames(exp)
+dds <- DESeqDataSetFromMatrix(countData = exp,
+                              colData = colData,
+                              design = ~ condition)
+```
+
+
+```{r}
+# Check all sample IDs in colData are also in CountData and match their orders
+all(rownames(colData) %in% colnames(exp)) #should return TRUE
+```
+
+```{r}
+exp <- exp[, rownames(colData)]
+all(rownames(colData) == colnames(exp)) # This should also return TRUE
+```
+
+```{r}
+# Create a DESeqDataSet from count matrix and labels
+dds <- DESeqDataSetFromMatrix(countData = exp,
+                              colData = colData, design = ~ condition)
+
+
+# Run the default analysis for DESeq2 and generate results table
+dds <- DESeq(dds)
+deseq2.res <- results(dds)
+
+# Sort by adjusted p-value and display
+resOrdered <- deseq2.res[order(deseq2.res$padj), ]
+vsd <- vst(dds, blind = FALSE)
+expPCA <- plotPCA(vsd, intgroup = "condition")
+nudge <- position_nudge(y = 4)
+expPCA + geom_text(aes(label = name), position = nudge)
+```
+```{r}
+# Select top 50 differentially expressed genes
+res <- results(dds)
+res_ordered <- res[order(res$padj), ]
+top_genes <- row.names(res_ordered)[1:50]
+
+# Extract counts and normalize
+counts <- counts(dds, normalized = TRUE)
+counts_top <- counts[top_genes, ]
+
+# Log-transform counts
+log_counts_top <- log2(counts_top + 1)
+
+# Generate heatmap
+pheatmap(log_counts_top, scale = "row")
+
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ])
+```
+6938 degs
+
+```{r}
+expg <- deseq2.res
+# The main plot
+plot(expg$baseMean, expg$log2FoldChange, pch=20, cex=0.45, ylim=c(-3, 3), log="x", col="darkgray",
+     main="DEG SSWD Exposed  (pval <= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+expg.sig <- deseq2.res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ]
+points(expg.sig$baseMean, expg.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
+
+
+
+
+
