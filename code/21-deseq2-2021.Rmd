@@ -49,6 +49,7 @@ head(exp)
 set column one (gene_id) as rownames: 
 ```{r}
 exp <- exp %>% remove_rownames %>% column_to_rownames(var='gene_id')
+head(exp)
 ```
 
 
@@ -128,7 +129,11 @@ points(expg.sig$baseMean, expg.sig$log2FoldChange, pch=20, cex=0.45, col="red")
 # 2 FC lines
 abline(h=c(-1,1), col="blue")
 ```
-
+Write out differentially expressed gene list: 
+```{r}
+#write.table(expg.sig, "../analyses/21-deseq2-2021/DEGlist_2021_exposedVcontrol.tab", sep = '\t', row.names = T, quote = F)
+```
+comment out the code - wrote out 2024-10-14
 
 
 
