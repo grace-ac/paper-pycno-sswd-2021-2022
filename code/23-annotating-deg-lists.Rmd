@@ -3,3 +3,12 @@ title: "23-annotating-deg-lists"
 output: html_document
 date: "2024-10-14"
 ---
+Rmd to annotated DEG lists that from [21-deseq2-2021.Rmd](https://github.com/grace-ac/paper-pycno-sswd-2021-2022/blob/main/code/21-deseq2-2021.Rmd) and [22-deseq2-2022.Rmd](https://github.com/grace-ac/paper-pycno-sswd-2021-2022/blob/main/code/22-deseq2-2022.Rmd). 
+
+Packages needed:
+```{r}
+library(dplyr)
+library(tidyverse)
+```
+
+# Get Annotation files into R environment to `join` with DEG lists: 
