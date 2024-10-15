@@ -3,4 +3,4 @@ title: "24-2021-enrichment"
 output: html_document
 date: "2024-10-15"
 ---
-
+Rmd to get enriched processes from 2021 work using DAVID and revigo. 
