@@ -36,7 +36,7 @@ head ../data/blast_dbs/uniprot_sprot_r2024_04.fasta
 ```
 
 
-# Run BLAST
+# Run BLAST (transcripts)
 In command line in Raven, run: 
 
 `rsync --archive --progress --verbose graceac9@raven.fish.washington.edu:/home/shared/8TB_HDD_02/graceac9/GitHub/project-pycno-sizeclass-2022/data/augustus.hints.codingseq /home/shared/8TB_HDD_02/graceac9/GitHub/paper-pycno-sswd-2021-2022/data/`
@@ -67,4 +67,93 @@ tr '|' '\t' < ../analyses/16-blast-annotation/blast_out.tab \
 
 head ../analyses/16-blast-annotation/blast_out_sep.tab
 ```
+
+
+# Get BLAST output and remove .t# to get genes 
+GitHub Issue: [1965](https://github.com/RobertsLab/resources/issues/1965)
+
+read in BLAST output:
+```{r}
+blast <- read.table("../analyses/16-blast-annotation/blast_out_sep.tab")
+head(blast)
+```
+```{bash}
+pwd
+```
+
+```{bash}
+sed 's/\.t1//' ../analyses/16-blast-annotation/blast_out_sep.tab | sort --unique -k1,1 \
+> ../analyses/16-blast-annotation/blast_out_sep_genes.tab
+```
+
+
+
+
+
+
+
+
+
+
+
+# Run BLAST (genes):
+2024-10-14
+```{bash}
+pwd
+```
+
+Swiss prot download:
+```{bash}
+cd ../data/blast_dbs
+curl -O https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz
+mv uniprot_sprot.fasta.gz uniprot_sprot_r2024_04.fasta.gz
+gunzip -k uniprot_sprot_r2024_04.fasta.gz
+```
+
+```{bash}
+head ../data/blast_dbs/uniprot_sprot_r2024_04.fasta
+echo "Number of Sequences"
+grep -c ">" ../data/blast_dbs/uniprot_sprot_r2024_04.fasta
+```
+
+```{bash}
+/home/shared/ncbi-blast-2.15.0+/bin/makeblastdb \
+-in ../data/blast_dbs/uniprot_sprot_r2024_04.fasta \
+-dbtype prot \
+-out ../data/blast_dbs/uniprot_sprot_r2024_04
+```
+
+```{bash}
+head ../data/blast_dbs/uniprot_sprot_r2024_04.fasta
+```
+
+```{bash}
+head -3 ../data/ncbi_dataset/data/GCA_032158295.1/GCA_032158295.1_ASM3215829v1_genomic.fna
+```
+
+```{bash}
+fasta="../data/ncbi_dataset/data/GCA_032158295.1/GCA_032158295.1_ASM3215829v1_genomic.fna"
+
+/home/shared/ncbi-blast-2.15.0+/bin/blastx \
+-query $fasta \
+-db ../data/blast_dbs/uniprot_sprot_r2024_04 \
+-out ../analyses/16-blast-annotation/blast_out_genes.tab \
+-evalue 1E-05 \
+-num_threads 48 \
+-max_target_seqs 1 \
+-max_hsps 1 \
+-outfmt 6
+```
+
+
+```{bash}
+head -3 ../analyses/12-fix-gff/mod_augustus.gtf
+```
+
+```{bash}
+head -3 ../data/ncbi_dataset/data/GCA_032158295.1/GCA_032158295.1_ASM3215829v1_genomic.fna
+```
+
+
+
 
