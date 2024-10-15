@@ -1,6 +1,37 @@
 ---
-title: "24-2021-enrichment"
+title: "24-2021-2022-enrichment"
 output: html_document
 date: "2024-10-15"
 ---
 Rmd to get enriched processes from 2021 work using DAVID and revigo. 
+Packages needed:
+```{r}
+library(dplyr)
+library(tidyverse)
+```
+
+
+Get uniprot accession IDs into a .txt from the genome blast output: 
+Read in blast output:
+```{r}
+blast <- read.table("../analyses/16-blast-annotation/blast_out_sep_genes.tab", )
+head(blast)
+```
+Rename columns: 
+```{r}
+colnames(blast) <- c("gene_id", "V2", "uniprot_accession", "gene_name", "V5", "V6", "V7", "V8", "V9", "V10", "V11", "V12", "V13", "V14")
+head(blast)
+```
+
+```{r}
+blastuniprot <- select(blast, uniprot_accession)
+head(blastuniprot)
+```
+
+write out as a txt file: 
+```{r}
+#write.csv(blastuniprot, "../analyses/24-2021-2022-enrichment/blastuniprot.csv")
+```
+write out 2024-10-15. comment out code. 
+
+
