@@ -87,8 +87,14 @@ sed 's/\.t1//' ../analyses/16-blast-annotation/blast_out_sep.tab | sort --unique
 ```
 
 
+push to github
 
-
+read the file in and look at the head:
+```{r}
+blast <- read.delim("../analyses/16-blast-annotation/blast_out_sep_genes.tab", header = F)
+head(blast)
+```
+yay! 
 
 
 
