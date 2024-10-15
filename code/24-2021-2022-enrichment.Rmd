@@ -35,3 +35,26 @@ write out as a txt file:
 write out 2024-10-15. comment out code. 
 
 
+
+# 2021 DEG list 
+```{r}
+deg21 <- read.delim("../analyses/23-annotating-deg-lists/DEGlist_2021_exposedVcontrol_annotated.tab")
+head(deg21)
+```
+
+subset the uniprot_accession column:
+```{r}
+deg21uniprot <- select(deg21, uniprot_accession)
+head(deg21uniprot)
+```
+
+write out: 
+```{r}
+#write.csv(deg21uniprot, "../analyses/24-2021-2022-enrichment/2021_deg_uniprot_accessions.csv")
+```
+write out 2024-10-15. comment out code. 
+
+
+
+
+
