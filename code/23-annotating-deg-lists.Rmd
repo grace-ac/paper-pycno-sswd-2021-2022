@@ -12,3 +12,88 @@ library(tidyverse)
 ```
 
 # Get Annotation files into R environment to `join` with DEG lists: 
+Files needed:
+
+- BLAST output 
+- uniprot
+- count matrix 
+
+Read in the BLAST output:  
+Code where BLAST was done: [paper-pycno-sswd-2021-2022/code/16-blast-genome-annotation.Rmd](https://github.com/grace-ac/paper-pycno-sswd-2021-2022/blob/main/code/16-blast-genome-annotation.Rmd)
+```{r}
+blast <- read.table("../analyses/16-blast-annotation/blast_out_sep_genes.tab", )
+head(blast)
+```
+Rename columns: 
+```{r}
+colnames(blast) <- c("gene_id", "V2", "uniprot_accession", "gene_name", "V5", "V6", "V7", "V8", "V9", "V10", "V11", "V12", "V13", "V14")
+head(blast)
+```
+
+
+Downloaded from uniprot.org ID mapping tool (copy and pasted the uniprot accession IDs from the BLAST output into the ID Mapping tool, downloaded as .tsv, then pasted into 23-annotating-deg-lists analyses folder).
+```{r}
+unigo <- read.delim("../analyses/23-annotating-deg-lists/idmapping_2024_10_15.tsv")
+head(unigo)
+```
+Rename column 1 to match BLAST output file: 
+```{r}
+colnames(unigo) <- c("uniprot_accession", "Entry", "Reviewed", "Entry.Name", "Protein.names", "Gene.Names", "Organism", "Length", "Gene.Ontology.IDs")
+head(unigo)
+```
+
+2021 Count Matrix: 
+
+```{r}
+counts21 <- read.csv("../data/gene_count_matrix_2021.csv")
+head(counts21)
+```
+Subset the counts for the ones that the DEG lists was made from comparing: 
+```{r}
+exp <- select(counts21, "gene_id", "PSC.56", "PSC.52", "PSC.54", "PSC.61", "PSC.64", "PSC.73", "PSC.76", "PSC.81", "PSC.59", "PSC.57", "PSC.69", "PSC.67", "PSC.71", "PSC.75", "PSC.78", "PSC.83")
+head(exp)
+```
+
+# 2021 DEG list annotation
+Read in the DEG list: 
+```{r}
+DEG <- read.table("../analyses/21-deseq2-2021/DEGlist_2021_exposedVcontrol.tab")
+head(DEG)
+```
+make rownames a column called "gene_id":
+```{r}
+library(tibble)
+DEG <- tibble::rownames_to_column(DEG, "gene_id")
+head(DEG)
+```
+`join` the DEG list with the count matrix based on the "gene_id" column: 
+```{r}
+DEGcount <- left_join(DEG, exp, by = "gene_id")
+head(DEGcount)
+```
+6938 rows (GOOD) and 23 columns. 
+
+`join` with the BLAST output based on "gene_id" column: 
+```{r}
+DEGcountblast <- left_join(DEGcount, blast, by = "gene_id")
+head(DEGcountblast)
+```
+6398 rows (YAY), and 36 columns. 
+
+`join` with uniprot GO list based on uniprot_accession column: 
+```{r}
+DEGcountblastGO <- left_join(DEGcountblast, unigo, by = "uniprot_accession")
+head(DEGcountblastGO)
+```
+6398 rows (PHEW) and 44 columns. 
+
+WRite the table out!
+```{r}
+#write.table(DEGcountblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2021_exposedVcontrol_annotated.tab", sep = '\t', row.names = T, quote = F)
+```
+Wrote out 2024-10-15. Comment out code. 
+
+
+
+
+
