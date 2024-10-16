@@ -50,9 +50,13 @@ head(deg21uniprot)
 
 write out: 
 ```{r}
-#write.csv(deg21uniprot, "../analyses/24-2021-2022-enrichment/2021_deg_uniprot_accessions.csv")
+write.table(deg21uniprot, "../analyses/24-2021-2022-enrichment/2021_deg_uniprot_accessions.tab")
 ```
 write out 2024-10-15. comment out code. 
+
+```{r}
+write
+```
 
 
 
