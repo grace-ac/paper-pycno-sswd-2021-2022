@@ -220,7 +220,55 @@ Write out differentially expressed gene list:
 
 comment out 2024-10-16
 
+## Age Contrast:
 
+Now need to perform a contrast to see if there is a difference between these groups as it relates to age. 
+
+In the multifactor section of the `DESeq2` manual:                
+The contrast argument of the function _results_ needs a character vector of three componenets: the name of the variable (in this case "age"), and the name of the factor level for the numerator of the log2 ratio (juvenile) and the denominator (adult) 
+
+A **contrast** is a linear combination of estimated log2 fold changes. Can be used to test if differences between groups are equal to zero.         
+```{r}
+resultsNames(ddsCvEwA)
+```
+
+```{r}
+deseq2.resage <- results(ddsCvEwA,
+                          contrast = c("age", "juvenile",  "adult"))
+head(deseq2.resage)
+```
+
+```{r}
+age <- deseq2.resage
+# The main plot
+plot(age$baseMean, age$log2FoldChange, pch=20, cex=0.45, ylim=c(-15, 15), log="x", col="darkgray",
+     #main="Age  (pval </= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+age.sig <- deseq2.resage[!is.na(deseq2.resage$padj) & deseq2.resage$padj <= 0.05, ]
+points(age.sig$baseMean, age.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(deseq2.resage[!is.na(deseq2.resage$padj) & deseq2.resage$padj <= 0.05, ])
+```
+
+82
+
+```{r}
+summary(deseq2.resage)
+```
+
+write out DEGs from age contrast:
+```{r}
+#write.table(age.sig, "../analyses/22-deseq2-2022/DEGlist_2022_controlVexposed_ageContrast.tab", sep = '\t', row.names = T, quote = FALSE)
+```
+
+wrote out 2024-10-16
 
 
 
