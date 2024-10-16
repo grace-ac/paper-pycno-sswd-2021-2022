@@ -128,8 +128,11 @@ points(exp22.sig$baseMean, exp22.sig$log2FoldChange, pch=20, cex=0.45, col="red"
 abline(h=c(-1,1), col="blue")
 ```
 
-## Compare Exposed to Control Taking Age (Juvenile vs Adult) Into Account
-Modeled after work done in my MS --> 
+Write out differentially expressed gene list: 
+```{r}
+#write.table(exp22.sig, "../analyses/22-deseq2-2022/DEGlist_2022_controlVexposed.tab", sep = '\t', row.names = T, quote = F)
+```
+comment out the code - wrote out 2024-10-16
 
 
 
