@@ -1,0 +1,8 @@
+# WARNING - This exported Revigo data is only useful for the specific purpose of constructing a TreeMap visualization.
+# Do not use this table as a general list of non-redundant GO categories, as it sets an extremely permissive 
+# threshold to detect redundancies (c=0.10) and fill the 'representative' column, while normally c>=0.4 is recommended.
+# To export a reduced-redundancy set of GO terms, go to the Scatterplot or Table tab, and export from there.
+TermID	Name	Frequency	Value	Uniqueness	Dispensability	Representative
+"GO:0006826"	"iron ion transport"	0.4840324404348896	-1.3453594250910355	0.5445869060028433	-0	null
+"GO:0007155"	"cell adhesion"	1.0284049482842672	-1.8199596152547688	0.988782834276861	0.0168732	null
+"GO:0051301"	"cell division"	1.377833380287743	-1.99663460948337	0.988782834276861	0	null
