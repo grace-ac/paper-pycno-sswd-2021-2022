@@ -178,7 +178,44 @@ WRite the table out!
 Wrote out 2024-10-18. Comment out code. 
 
 
+## Age contrast
+```{r}
+deg3 <- read.table("../analyses/22-deseq2-2022/DEGlist_2022_controlVexposed_ageContrast.tab")
+head(deg3)
+```
+make rownames a column called "gene_id":
+```{r}
+library(tibble)
+deg3 <- tibble::rownames_to_column(deg3, "gene_id")
+head(deg3)
+```
 
+
+`join` the DEG list with the count matrix based on the "gene_id" column: 
+```{r}
+deg3count <- left_join(deg3, counts22sub, by = "gene_id")
+head(deg3count)
+```
+
+
+`join` with the BLAST output based on "gene_id" column: 
+```{r}
+deg3countblast <- left_join(deg3count, blast, by = "gene_id")
+head(deg3countblast)
+```
+
+`join` with uniprot GO list based on uniprot_accession column: 
+```{r}
+deg3countblastGO <- left_join(deg3countblast, unigo, by = "uniprot_accession")
+head(deg3countblastGO)
+```
+
+
+WRite the table out!
+```{r}
+#write.table(deg3countblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_withAgeContrast_annotated.tab", sep = '\t', row.names = T, quote = F)
+```
+Wrote out 2024-10-18. Comment out code. 
 
 
 
