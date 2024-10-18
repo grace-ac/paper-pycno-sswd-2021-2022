@@ -1,0 +1,70 @@
+# WARNING - This exported Revigo data is only useful for the specific purpose of constructing a TreeMap visualization.
+# Do not use this table as a general list of non-redundant GO categories, as it sets an extremely permissive 
+# threshold to detect redundancies (c=0.10) and fill the 'representative' column, while normally c>=0.4 is recommended.
+# To export a reduced-redundancy set of GO terms, go to the Scatterplot or Table tab, and export from there.
+TermID	Name	Frequency	Value	Uniqueness	Dispensability	Representative
+"GO:0006511"	"ubiquitin-dependent protein catabolic process"	1.2078769595261523	-7.377785977033705	0.803451623441882	0	null
+"GO:0002181"	"cytoplasmic translation"	0.37754692803215667	-6.333482019445119	0.8741691754554136	0.27024809	"ubiquitin-dependent protein catabolic process"
+"GO:0006412"	"translation"	4.432288697403288	-3.876148359032914	0.8412074706689483	0.40773812	"ubiquitin-dependent protein catabolic process"
+"GO:0006457"	"protein folding"	1.1925033490398829	-1.7719055261894394	0.8455735742552257	0.59709358	"ubiquitin-dependent protein catabolic process"
+"GO:0006508"	"proteolysis"	5.329242630377004	-6.255707016877324	0.8756404981875638	0.44662344	"ubiquitin-dependent protein catabolic process"
+"GO:0006513"	"protein monoubiquitination"	0.044016374691955525	-2.1853760899887633	0.8882217667165422	0.69364171	"ubiquitin-dependent protein catabolic process"
+"GO:0006629"	"lipid metabolic process"	5.980051423570241	-2.8790376805562286	0.9519288865143246	0.10215589	"ubiquitin-dependent protein catabolic process"
+"GO:0016567"	"protein ubiquitination"	1.2480954666259985	-7.189095719331299	0.8570942405958872	0.30696801	"ubiquitin-dependent protein catabolic process"
+"GO:0031638"	"zymogen activation"	0.03279260526874257	-2.6820630046435534	0.8597840261608586	0.44629044	"ubiquitin-dependent protein catabolic process"
+"GO:0035335"	"peptidyl-tyrosine dephosphorylation"	0.04028250227638227	-1.4416301792729072	0.8893851470231914	0.37472349	"ubiquitin-dependent protein catabolic process"
+"GO:0070534"	"protein K63-linked ubiquitination"	0.04617498122356907	-1.9886014052453627	0.8878562588687015	0.69639444	"ubiquitin-dependent protein catabolic process"
+"GO:0097352"	"autophagosome maturation"	0.03528841715364124	-3.3496924768680634	0.8455905701844217	0.35331458	"ubiquitin-dependent protein catabolic process"
+"GO:0006915"	"apoptotic process"	0.3770497347375319	-2.7401138232154802	0.9879902878400606	0.01098305	null
+"GO:0007034"	"vacuolar transport"	0.3908702315163347	-2.5689519378835017	0.8823555343621414	0.01344053	null
+"GO:0006625"	"protein targeting to peroxisome"	0.00854581742048144	-1.834082104949853	0.8725964348976363	0.36459264	"vacuolar transport"
+"GO:0006821"	"chloride transport"	0.2974421964798616	-1.3251229752090368	0.939356762932109	0.24191747	"vacuolar transport"
+"GO:0015031"	"protein transport"	2.9737820130332575	-2.0556543989986436	0.8647082006789738	0.60009782	"vacuolar transport"
+"GO:0015804"	"neutral amino acid transport"	0.1977918612017477	-2.4446214778478783	0.9448588672214322	0.23353163	"vacuolar transport"
+"GO:0015881"	"creatine transmembrane transport"	0.0006202609418091367	-1.7202082598391935	0.9426979422016156	0.15675585	"vacuolar transport"
+"GO:0035418"	"protein localization to synapse"	0.038569400627576085	-1.3597969286465559	0.905434330274857	0.40558083	"vacuolar transport"
+"GO:0045324"	"late endosome to vacuole transport"	0.1579327116316796	-1.6614371172794635	0.8884043874498964	0.57593099	"vacuolar transport"
+"GO:0070327"	"thyroid hormone transport"	0.003820019768602303	-1.4772350417501316	0.8808565920108558	0.1748864	"vacuolar transport"
+"GO:0090110"	"COPII-coated vesicle cargo loading"	0.042706934925914014	-1.6614371172794635	0.8610280480758912	0.51931214	"vacuolar transport"
+"GO:0097401"	"synaptic vesicle lumen acidification"	0.001599879413396583	-1.4021027496495198	0.8725222449543082	0.5634974	"vacuolar transport"
+"GO:0007586"	"digestion"	0.03046170403107094	-1.6614371172794635	0.9832164568386881	-0	null
+"GO:0007416"	"synapse assembly"	0.03722550192032296	-1.4402113444088955	0.9259518763675343	0.40138421	"digestion"
+"GO:0016310"	"phosphorylation"	6.253736641437635	-2.370008876577403	0.9297059017341613	0.06335031	null
+"GO:0033209"	"tumor necrosis factor-mediated signaling pathway"	0.03243078638602058	-4.29073003902417	0.7774345159827729	-0	null
+"GO:0006986"	"response to unfolded protein"	0.1284161671309845	-1.353711362357366	0.9116302197497356	0.40073306	"tumor necrosis factor-mediated signaling pathway"
+"GO:0007165"	"signal transduction"	8.851839893322994	-1.3575677414186709	0.7615040332651394	0.45452038	"tumor necrosis factor-mediated signaling pathway"
+"GO:0007229"	"integrin-mediated signaling pathway"	0.08566246649914042	-3.7471469690201067	0.8051815477270508	0.52716849	"tumor necrosis factor-mediated signaling pathway"
+"GO:0007249"	"canonical NF-kappaB signal transduction"	0.028052039499201313	-2.879655779191396	0.8304690517993585	0.27261721	"tumor necrosis factor-mediated signaling pathway"
+"GO:0010637"	"negative regulation of mitochondrial fusion"	0.002488427826067608	-1.4772350417501316	0.8701257159638646	0.48603123	"tumor necrosis factor-mediated signaling pathway"
+"GO:0010898"	"positive regulation of triglyceride catabolic process"	0.005673418535198651	-1.370365706541513	0.8260490789988129	0.65450213	"tumor necrosis factor-mediated signaling pathway"
+"GO:0016525"	"negative regulation of angiogenesis"	0.02570390879092387	-1.3652740440268698	0.8555965240440847	0.66597799	"tumor necrosis factor-mediated signaling pathway"
+"GO:0031397"	"negative regulation of protein ubiquitination"	0.021199632903976567	-2.8072787032130533	0.8612190067309211	0.11748388	"tumor necrosis factor-mediated signaling pathway"
+"GO:0031640"	"killing of cells of another organism"	0.05167856640565331	-1.3597969286465559	0.934501154018371	0.66156325	"tumor necrosis factor-mediated signaling pathway"
+"GO:0032436"	"positive regulation of proteasomal ubiquitin-dependent protein catabolic process"	0.11581896276519417	-1.7506358349406106	0.7938470234688687	0.61203012	"tumor necrosis factor-mediated signaling pathway"
+"GO:0032728"	"positive regulation of interferon-beta production"	0.0036969521214179502	-3.1999706407558657	0.8314266675951599	0.35397709	"tumor necrosis factor-mediated signaling pathway"
+"GO:0034142"	"toll-like receptor 4 signaling pathway"	0.013645740719801007	-2.205233480721111	0.7335239990812561	0.6247118	"tumor necrosis factor-mediated signaling pathway"
+"GO:0035329"	"hippo signaling"	0.028901206264773348	-1.3611934346517915	0.83445149267725	0.3916997	"tumor necrosis factor-mediated signaling pathway"
+"GO:0038061"	"non-canonical NF-kappaB signal transduction"	0.00812738742005464	-1.9636900769220937	0.8417065299233281	0.54588696	"tumor necrosis factor-mediated signaling pathway"
+"GO:0042981"	"regulation of apoptotic process"	0.49277516609086597	-4.054531414868181	0.8905203045539228	0.15703478	"tumor necrosis factor-mediated signaling pathway"
+"GO:0043011"	"myeloid dendritic cell differentiation"	0.0020995340609650543	-1.6614371172794635	0.9360735322095219	0.55505599	"tumor necrosis factor-mediated signaling pathway"
+"GO:0043122"	"regulation of canonical NF-kappaB signal transduction"	0.11523069941165297	-1.8668347775393621	0.8543821311630314	0.63101487	"tumor necrosis factor-mediated signaling pathway"
+"GO:0045087"	"innate immune response"	0.24410221683721955	-2.28654263928013	0.8357131652715912	0.2099047	"tumor necrosis factor-mediated signaling pathway"
+"GO:0045600"	"positive regulation of fat cell differentiation"	0.011629892658921314	-1.400804606706318	0.8363096289229537	0.37807993	"tumor necrosis factor-mediated signaling pathway"
+"GO:0045995"	"regulation of embryonic development"	0.01487887854458822	-1.589256668214253	0.8744941484806764	0.49584349	"tumor necrosis factor-mediated signaling pathway"
+"GO:0046578"	"regulation of Ras protein signal transduction"	0.02872398885282788	-1.4021027496495198	0.8655394306381392	0.5759763	"tumor necrosis factor-mediated signaling pathway"
+"GO:0046825"	"regulation of protein export from nucleus"	0.004642111651793778	-1.4021027496495198	0.9179588451302437	0.11636377	"tumor necrosis factor-mediated signaling pathway"
+"GO:0048015"	"phosphatidylinositol-mediated signaling"	0.08115080655336206	-1.4203236416438372	0.8237222948832068	0.39093599	"tumor necrosis factor-mediated signaling pathway"
+"GO:0051893"	"regulation of focal adhesion assembly"	0.011585588305934947	-1.370365706541513	0.8992928305158301	0.46622055	"tumor necrosis factor-mediated signaling pathway"
+"GO:0070498"	"interleukin-1-mediated signaling pathway"	0.0043935150044813855	-2.048602927677311	0.8042750387201281	0.67180951	"tumor necrosis factor-mediated signaling pathway"
+"GO:0098586"	"cellular response to virus"	0.010187539833920702	-1.3700047736277996	0.8928064379342331	0.60765176	"tumor necrosis factor-mediated signaling pathway"
+"GO:1900153"	"positive regulation of nuclear-transcribed mRNA catabolic process, deadenylation-dependent decay"	0.0046494957106248385	-1.4021027496495198	0.8253072929915117	0.63308732	"tumor necrosis factor-mediated signaling pathway"
+"GO:1901096"	"regulation of autophagosome maturation"	0.014950257779955145	-2.1985413377121734	0.8431607427383925	0.180305	"tumor necrosis factor-mediated signaling pathway"
+"GO:1904263"	"positive regulation of TORC1 signaling"	0.04213836239592231	-4.045757490560675	0.8131311949010078	0.16017732	"tumor necrosis factor-mediated signaling pathway"
+"GO:0044550"	"secondary metabolite biosynthetic process"	0.46700972347634995	-2.7291877523176624	0.9552695625607915	0.04654874	null
+"GO:0006006"	"glucose metabolic process"	0.4804905535489239	-1.6156238411135826	0.9491060012266016	0.32166775	"secondary metabolite biosynthetic process"
+"GO:0006633"	"fatty acid biosynthetic process"	0.8341968169685278	-2.100467189866656	0.8989421899608869	0.17674047	"secondary metabolite biosynthetic process"
+"GO:0043651"	"linoleic acid metabolic process"	0.009119312656360522	-1.7202082598391935	0.9379654486619331	0.56257606	"secondary metabolite biosynthetic process"
+"GO:0071267"	"L-methionine salvage"	0.0800604271993087	-1.4772350417501316	0.9195013132397375	0.50872845	"secondary metabolite biosynthetic process"
+"GO:0045104"	"intermediate filament cytoskeleton organization"	0.08859639920801539	-2.048602927677311	0.92838699747405	0.01185841	null
+"GO:0030036"	"actin cytoskeleton organization"	0.7770466629690582	-1.3337684206251026	0.9186720577478324	0.6544067	"intermediate filament cytoskeleton organization"
+"GO:0098609"	"cell-cell adhesion"	0.542898157436109	-2.3276529100790944	0.9540849479614368	0.01389587	null
