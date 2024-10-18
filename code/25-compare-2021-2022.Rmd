@@ -48,7 +48,7 @@ head(unique21)
 
 write out DEG table unique to 2021: 
 ```{r}
-#write.table(unique21, "../analyses/25-compare-2021-2022/DEGlist_unique_2021.tab")
+#write.table(unique21, "../analyses/25-compare-2021-2022/DEGlist_unique_2021.tab", sep = '\t', row.names = T, quote = F)
 ```
 wrote out 2024-10-18.
 
@@ -64,7 +64,7 @@ head(unique22)
 
 write out table of DEGs unique to 2022 dataset: 
 ```{r}
-#write.table(unique22, "../analyses/25-compare-2021-2022/DEGlist_unique_2022.tab")
+#write.table(unique22, "../analyses/25-compare-2021-2022/DEGlist_unique_2022.tab", sep = '\t', row.names = T, quote = F)
 ```
 wrote out 2024-10-18
 
@@ -77,7 +77,7 @@ head(deg21_22)
 4,114 DEGs are the same across both years. 
 Write out table of DEGs that are same between 2021 and 2022 datasets:
 ```{r}
-#write.table(deg21_22, "../analyses/25-compare-2021-2022/DEGlist_same_2021-2022.tab")
+#write.table(deg21_22, "../analyses/25-compare-2021-2022/DEGlist_same_2021-2022.tab", sep = '\t', row.names = T, quote = F)
 ```
 
 wrote out 2024-10-18
