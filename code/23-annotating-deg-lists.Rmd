@@ -53,6 +53,18 @@ Subset the counts for the ones that the DEG lists was made from comparing:
 exp <- select(counts21, "gene_id", "PSC.56", "PSC.52", "PSC.54", "PSC.61", "PSC.64", "PSC.73", "PSC.76", "PSC.81", "PSC.59", "PSC.57", "PSC.69", "PSC.67", "PSC.71", "PSC.75", "PSC.78", "PSC.83")
 head(exp)
 ```
+2022 count matrix:
+```{r}
+counts22 <- read.csv("../data/gene_count_matrix_2022.csv")
+head(counts22)
+```
+subset just the counts for the libraries specified in the table above:
+```{r}
+counts22sub <- select(counts22, gene_id, PSC.0228, PSC.0187, PSC.0188, PSC.0174, PSC.0190, PSC.0231, PSC.0230, PSC.0219, PSC.0177, PSC.0186, PSC.0209, PSC.0203)
+head(counts22sub)
+```
+
+
 
 # 2021 DEG list annotation
 Read in the DEG list: 
@@ -93,6 +105,42 @@ WRite the table out!
 ```
 Wrote out 2024-10-15. Comment out code. 
 
+
+# 2022 DEG Lists
+
+## Control 6 vs Exposed 6
+```{r}
+deg1 <- read.table("../analyses/22-deseq2-2022/DEGlist_2022_controlVexposed.tab")
+head(deg1)
+```
+make rownames a column called "gene_id":
+```{r}
+library(tibble)
+deg1 <- tibble::rownames_to_column(deg1, "gene_id")
+head(deg1)
+```
+
+`join` the DEG list with the count matrix based on the "gene_id" column: 
+```{r}
+deg1count <- left_join(deg1, counts22sub, by = "gene_id")
+head(deg1count)
+```
+
+`join` with the BLAST output based on "gene_id" column: 
+```{r}
+deg1countblast <- left_join(deg1count, blast, by = "gene_id")
+head(deg1countblast)
+```
+`join` with uniprot GO list based on uniprot_accession column: 
+```{r}
+deg1countblastGO <- left_join(deg1countblast, unigo, by = "uniprot_accession")
+head(deg1countblastGO)
+```
+WRite the table out!
+```{r}
+#write.table(deg1countblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_annotated.tab", sep = '\t', row.names = T, quote = F)
+```
+Wrote out 2024-10-18. Comment out code. 
 
 
 
