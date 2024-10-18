@@ -3,3 +3,81 @@ title: "25-compare-2021-2022"
 output: html_document
 date: "2024-10-16"
 ---
+Rmd to compare the DEG lists from 2021 Control vs Exposed _P. helianthoides_ to the DEG list from 2022 Control vs Exposed _P. helianthoides_.
+
+I'm not totally sure the best way to approach this. 
+
+The 2021 dataset is just adults, 8 control vs 8 exposed. 
+
+The 2022 dataset is controls: 3 adults, 3 juveniles, and exposed: 3 adults, 3 juveniles. In other words, without taking age into account, 6 control vs 6 exposed. 
+
+Is this a fair comparison? Can/should I do something else to get a better picture? 
+
+Goal is to see if there's any difference in immune response across the two years. 
+
+These experiments are comparable in that the inoculum type was the same, though not from the same sources. The inoculum was blended tissue, centrifuged to pellet out chunks, from a wasting _P. helianthoides_. 
+
+```{r}
+library(dplyr)
+library(tidyverse)
+```
+
+2021 DEG list - get the annotated version:
+```{r}
+deg21annot <- read.delim("../analyses/23-annotating-deg-lists/DEGlist_2021_exposedVcontrol_annotated.tab")
+head(deg21annot)
+```
+6,938 DEGs
+
+
+
+
+2022 DEG list - get annotated
+```{r}
+deg22annot <- read.delim("../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_annotated.tab")
+head(deg22annot)
+```
+6,237 DEGs 
+
+Get a list of the genes that are unique to the 2021 dataset:
+```{r}
+unique21 <- anti_join(deg21annot, deg22annot, by = "gene_id")
+head(unique21)
+```
+2,824 DEGs that are in the 2021 list that aren't in the 2022 list. 
+
+write out DEG table unique to 2021: 
+```{r}
+#write.table(unique21, "../analyses/25-compare-2021-2022/DEGlist_unique_2021.tab")
+```
+wrote out 2024-10-18.
+
+
+
+
+Get a list of DEGs that are unique to the 2022 dataset: 
+```{r}
+unique22 <- anti_join(deg22annot, deg21annot, by = "gene_id")
+head(unique22)
+```
+2,123 genes that are in the 2022 list that aren't in the 2021 list 
+
+write out table of DEGs unique to 2022 dataset: 
+```{r}
+#write.table(unique22, "../analyses/25-compare-2021-2022/DEGlist_unique_2022.tab")
+```
+wrote out 2024-10-18
+
+use `inner_join` to  get the DEGs that match between the years:
+```{r}
+deg21_22 <- inner_join(deg21annot, deg22annot, by = "gene_id")
+head(deg21_22)
+```
+
+4,114 DEGs are the same across both years. 
+Write out table of DEGs that are same between 2021 and 2022 datasets:
+```{r}
+#write.table(deg21_22, "../analyses/25-compare-2021-2022/DEGlist_same_2021-2022.tab")
+```
+
+wrote out 2024-10-18
