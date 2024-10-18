@@ -1,0 +1,89 @@
+# WARNING - This exported Revigo data is only useful for the specific purpose of constructing a TreeMap visualization.
+# Do not use this table as a general list of non-redundant GO categories, as it sets an extremely permissive 
+# threshold to detect redundancies (c=0.10) and fill the 'representative' column, while normally c>=0.4 is recommended.
+# To export a reduced-redundancy set of GO terms, go to the Scatterplot or Table tab, and export from there.
+TermID	Name	Frequency	Value	Uniqueness	Dispensability	Representative
+"GO:0006629"	"lipid metabolic process"	5.980051423570241	-3.896196279044043	0.9516197451014515	0.09438531	null
+"GO:0006915"	"apoptotic process"	0.3770497347375319	-2.6682373430381627	0.9867162058943203	0.01344053	null
+"GO:0007034"	"vacuolar transport"	0.3908702315163347	-3.826813731587726	0.8878753842078294	0.0118606	null
+"GO:0006607"	"NLS-bearing protein import into nucleus"	0.03967947080517894	-1.996144215785521	0.8955355960333996	0.52542738	"vacuolar transport"
+"GO:0006625"	"protein targeting to peroxisome"	0.00854581742048144	-2.7644882182004498	0.8834787092586339	0.36459264	"vacuolar transport"
+"GO:0006821"	"chloride transport"	0.2974421964798616	-2.072251257217948	0.9281105382701703	0.24191747	"vacuolar transport"
+"GO:0015804"	"neutral amino acid transport"	0.1977918612017477	-1.5929542885686474	0.9379525368628345	0.23353163	"vacuolar transport"
+"GO:0016192"	"vesicle-mediated transport"	2.591260690701909	-2.0728290167007652	0.9199646192738193	0.29885355	"vacuolar transport"
+"GO:0031468"	"nuclear membrane reassembly"	0.012698119836481494	-1.6124368642315527	0.9211361871203231	0.56353001	"vacuolar transport"
+"GO:0043652"	"engulfment of apoptotic cell"	0.02980944550099387	-1.3767172908934906	0.8745588945970648	0.55205194	"vacuolar transport"
+"GO:0045026"	"plasma membrane fusion"	0.011026861187717988	-1.7353947972954296	0.9300221458805782	0.51951056	"vacuolar transport"
+"GO:0045324"	"late endosome to vacuole transport"	0.1579327116316796	-2.0110624712765954	0.8840403936929305	0.57593099	"vacuolar transport"
+"GO:0071340"	"skeletal muscle acetylcholine-gated channel clustering"	0.0006005701182596404	-1.902821293958782	0.8924364382370554	0.3094842	"vacuolar transport"
+"GO:0090110"	"COPII-coated vesicle cargo loading"	0.042706934925914014	-2.791644650984608	0.8483556219182758	0.51931214	"vacuolar transport"
+"GO:0097401"	"synaptic vesicle lumen acidification"	0.001599879413396583	-2.2715734087271398	0.8547070534766571	0.5634974	"vacuolar transport"
+"GO:1903804"	"glycine import across plasma membrane"	0.005038389475727392	-1.7353947972954296	0.9251767877557743	0.56206357	"vacuolar transport"
+"GO:0007229"	"integrin-mediated signaling pathway"	0.08566246649914042	-4.818156412055227	0.8197931011084909	-0	null
+"GO:0006805"	"xenobiotic metabolic process"	0.14736120073854372	-2.2138275971995145	0.8478412251134652	0.25123992	"integrin-mediated signaling pathway"
+"GO:0006986"	"response to unfolded protein"	0.1284161671309845	-2.198477064041579	0.9017398779383837	0.38221913	"integrin-mediated signaling pathway"
+"GO:0007035"	"vacuolar acidification"	0.05759565888227698	-1.902821293958782	0.9026625797437122	0.47110066	"integrin-mediated signaling pathway"
+"GO:0007165"	"signal transduction"	8.851839893322994	-2.217684495589154	0.765622717089528	0.66982833	"integrin-mediated signaling pathway"
+"GO:0007166"	"cell surface receptor signaling pathway"	1.7427092633657988	-1.486411875705875	0.7946538942678357	0.39774664	"integrin-mediated signaling pathway"
+"GO:0007169"	"cell surface receptor protein tyrosine kinase signaling pathway"	0.36239976201670654	-1.5844931150486379	0.8016013203844997	0.62749382	"integrin-mediated signaling pathway"
+"GO:0007219"	"Notch signaling pathway"	0.0884413339725631	-1.5385089166139747	0.8194249062285178	0.62907732	"integrin-mediated signaling pathway"
+"GO:0007249"	"canonical NF-kappaB signal transduction"	0.028052039499201313	-1.6636794828461046	0.8399741271738671	0.54588696	"integrin-mediated signaling pathway"
+"GO:0016525"	"negative regulation of angiogenesis"	0.02570390879092387	-1.8685307663555106	0.8838048276575252	0.51834293	"integrin-mediated signaling pathway"
+"GO:0031397"	"negative regulation of protein ubiquitination"	0.021199632903976567	-3.6635402661514704	0.8768575252475209	0.12483583	"integrin-mediated signaling pathway"
+"GO:0032436"	"positive regulation of proteasomal ubiquitin-dependent protein catabolic process"	0.11581896276519417	-1.8677544028489244	0.8304011644092015	0.61203012	"integrin-mediated signaling pathway"
+"GO:0032743"	"positive regulation of interleukin-2 production"	0.004885785593218795	-2.3603551615694203	0.8548300963916851	0.37490377	"integrin-mediated signaling pathway"
+"GO:0033209"	"tumor necrosis factor-mediated signaling pathway"	0.03243078638602058	-4.446116973356125	0.8085996445535879	0.52716849	"integrin-mediated signaling pathway"
+"GO:0034599"	"cellular response to oxidative stress"	0.33220388410355384	-1.4657669930265165	0.8556712593944347	0.61252549	"integrin-mediated signaling pathway"
+"GO:0034976"	"response to endoplasmic reticulum stress"	0.2589072547934972	-1.333509510032699	0.877804672932882	0.40351399	"integrin-mediated signaling pathway"
+"GO:0038061"	"non-canonical NF-kappaB signal transduction"	0.00812738742005464	-1.7407740895047306	0.8509074273063292	0.36164536	"integrin-mediated signaling pathway"
+"GO:0042059"	"negative regulation of epidermal growth factor receptor signaling pathway"	0.013803267308196981	-1.514193241617187	0.8804802070143285	0.50212227	"integrin-mediated signaling pathway"
+"GO:0042742"	"defense response to bacterium"	0.1321229646641772	-4.3851027839668655	0.8712031868247766	0.21538474	"integrin-mediated signaling pathway"
+"GO:0042981"	"regulation of apoptotic process"	0.49277516609086597	-2.5253209780013988	0.9049042368352145	0.16956823	"integrin-mediated signaling pathway"
+"GO:0043123"	"positive regulation of canonical NF-kappaB signal transduction"	0.08697436761812563	-3.910094888560602	0.8354670350622275	0.14854152	"integrin-mediated signaling pathway"
+"GO:0043536"	"positive regulation of blood vessel endothelial cell migration"	0.0102072306574702	-1.4259634397024443	0.8811406286394915	0.39191517	"integrin-mediated signaling pathway"
+"GO:0045672"	"positive regulation of osteoclast differentiation"	0.00399723718054777	-1.6489834760847855	0.865510849044777	0.5961754	"integrin-mediated signaling pathway"
+"GO:0046578"	"regulation of Ras protein signal transduction"	0.02872398885282788	-1.4844261216596792	0.88696756013692	0.60343125	"integrin-mediated signaling pathway"
+"GO:0046825"	"regulation of protein export from nucleus"	0.004642111651793778	-1.4844261216596792	0.9199639232309349	0.66185065	"integrin-mediated signaling pathway"
+"GO:0048015"	"phosphatidylinositol-mediated signaling"	0.08115080655336206	-1.8561356264268605	0.8325459671096265	0.31171567	"integrin-mediated signaling pathway"
+"GO:0048167"	"regulation of synaptic plasticity"	0.061676582062910115	-1.8734184202040527	0.8711667373885391	0.53440901	"integrin-mediated signaling pathway"
+"GO:0050821"	"protein stabilization"	0.09708806686373571	-2.5139878638469857	0.9073521308440626	0.13110392	"integrin-mediated signaling pathway"
+"GO:0060012"	"synaptic transmission, glycinergic"	0.008240609655464245	-1.7353947972954296	0.8978969776759277	0.26336432	"integrin-mediated signaling pathway"
+"GO:0070106"	"interleukin-27-mediated signaling pathway"	0.0008147078243604138	-1.7353947972954296	0.8429402560418602	0.61449606	"integrin-mediated signaling pathway"
+"GO:0071233"	"cellular response to L-leucine"	0.00837844542031072	-1.4844261216596792	0.9018055944791465	0.47082033	"integrin-mediated signaling pathway"
+"GO:1900153"	"positive regulation of nuclear-transcribed mRNA catabolic process, deadenylation-dependent decay"	0.0046494957106248385	-1.4844261216596792	0.8509580502174058	0.63308732	"integrin-mediated signaling pathway"
+"GO:1901096"	"regulation of autophagosome maturation"	0.014950257779955145	-2.2715734087271398	0.8919481928280569	0.180305	"integrin-mediated signaling pathway"
+"GO:1902455"	"negative regulation of stem cell population maintenance"	0.0006079541770907015	-1.4844261216596792	0.9041865589093193	0.61969039	"integrin-mediated signaling pathway"
+"GO:1903076"	"regulation of protein localization to plasma membrane"	0.02028893231481236	-1.8687556830148147	0.913746520568384	0.1346512	"integrin-mediated signaling pathway"
+"GO:1990253"	"cellular response to leucine starvation"	0.008415365714466026	-1.3587125374098752	0.9021242290056609	0.31716628	"integrin-mediated signaling pathway"
+"GO:0016310"	"phosphorylation"	6.253736641437635	-2.292115967974404	0.9194316615761194	0.09251203	null
+"GO:0016477"	"cell migration"	0.48278207313949656	-1.5095512975788203	0.9864406523595186	0.01467279	null
+"GO:0030036"	"actin cytoskeleton organization"	0.7770466629690582	-3.1456939581989194	0.9209149160454586	0.01437489	null
+"GO:0007517"	"muscle organ development"	0.07710926501982793	-1.3328956873196893	0.9715498328984752	0.48396291	"actin cytoskeleton organization"
+"GO:0033327"	"Leydig cell differentiation"	0.001016538765742752	-1.3767172908934906	0.9653534806345178	0.38472791	"actin cytoskeleton organization"
+"GO:0043011"	"myeloid dendritic cell differentiation"	0.0020995340609650543	-1.3767172908934906	0.9557793486394182	0.46678191	"actin cytoskeleton organization"
+"GO:0045104"	"intermediate filament cytoskeleton organization"	0.08859639920801539	-1.6124368642315527	0.930484307851588	0.6544067	"actin cytoskeleton organization"
+"GO:0048813"	"dendrite morphogenesis"	0.01966867137300322	-1.40071525864656	0.9251519167711778	0.27398857	"actin cytoskeleton organization"
+"GO:0043161"	"proteasome-mediated ubiquitin-dependent protein catabolic process"	0.6658968867380383	-7.730487055782084	0.8085867079615381	0	null
+"GO:0002181"	"cytoplasmic translation"	0.37754692803215667	-7.3214816209598865	0.8705400928894514	0.25505328	"proteasome-mediated ubiquitin-dependent protein catabolic process"
+"GO:0006412"	"translation"	4.432288697403288	-4.170696227168975	0.8372365727070166	0.40773812	"proteasome-mediated ubiquitin-dependent protein catabolic process"
+"GO:0006457"	"protein folding"	1.1925033490398829	-2.361882598370327	0.8334027536014668	0.59709358	"proteasome-mediated ubiquitin-dependent protein catabolic process"
+"GO:0006508"	"proteolysis"	5.329242630377004	-6.2247537402597635	0.8773555855273183	0.44662344	"proteasome-mediated ubiquitin-dependent protein catabolic process"
+"GO:0016266"	"O-glycan processing"	0.024975348319592503	-1.3767172908934906	0.889776610410485	0.36059508	"proteasome-mediated ubiquitin-dependent protein catabolic process"
+"GO:0016567"	"protein ubiquitination"	1.2480954666259985	-3.036212172654445	0.8717666636267359	0.28751212	"proteasome-mediated ubiquitin-dependent protein catabolic process"
+"GO:0030574"	"collagen catabolic process"	0.04133842268922402	-1.407360904074986	0.9233612521009937	0.34124814	"proteasome-mediated ubiquitin-dependent protein catabolic process"
+"GO:0031638"	"zymogen activation"	0.03279260526874257	-3.234331445240986	0.8485791223382118	0.42590156	"proteasome-mediated ubiquitin-dependent protein catabolic process"
+"GO:0035335"	"peptidyl-tyrosine dephosphorylation"	0.04028250227638227	-1.5360322471626748	0.8879288225247165	0.37472349	"proteasome-mediated ubiquitin-dependent protein catabolic process"
+"GO:0042026"	"protein refolding"	0.19468809513975832	-1.3767172908934906	0.8545388750219255	0.69676336	"proteasome-mediated ubiquitin-dependent protein catabolic process"
+"GO:0045116"	"protein neddylation"	0.03665200668444387	-2.1249075843347796	0.9019682536822079	0.68331221	"proteasome-mediated ubiquitin-dependent protein catabolic process"
+"GO:0051085"	"chaperone cofactor-dependent protein refolding"	0.1663160797578777	-1.5929542885686474	0.8562476374426161	0.68662808	"proteasome-mediated ubiquitin-dependent protein catabolic process"
+"GO:0097352"	"autophagosome maturation"	0.03528841715364124	-4.147520006363144	0.8441802231234428	0.33708197	"proteasome-mediated ubiquitin-dependent protein catabolic process"
+"GO:0043651"	"linoleic acid metabolic process"	0.009119312656360522	-2.751419146575303	0.9150608359416311	0.05161952	null
+"GO:0006006"	"glucose metabolic process"	0.4804905535489239	-1.6342400484855533	0.9483992939916115	0.22244567	"linoleic acid metabolic process"
+"GO:0006633"	"fatty acid biosynthetic process"	0.8341968169685278	-2.727267031068824	0.8732377378920525	0.56257606	"linoleic acid metabolic process"
+"GO:0006686"	"sphingomyelin biosynthetic process"	0.005695570711691835	-1.3587125374098752	0.9109951475224931	0.31173544	"linoleic acid metabolic process"
+"GO:0036092"	"phosphatidylinositol-3-phosphate biosynthetic process"	0.04038341774707344	-1.3216301350024886	0.8997277531564412	0.48210562	"linoleic acid metabolic process"
+"GO:0044550"	"secondary metabolite biosynthetic process"	0.46700972347634995	-3.2557070168773237	0.9486191799581029	0.04387789	null
+"GO:0048511"	"rhythmic process"	0.13974577473077598	-1.5284039639628773	1	-0	null
+"GO:0098742"	"cell-cell adhesion via plasma-membrane adhesion molecules"	0.2759619693403047	-2.3397924357246906	0.9505452572668723	0.01307375	null
+"GO:0033627"	"cell adhesion mediated by integrin"	0.05005899616870724	-1.3216301350024886	0.9551006723589764	0.67150311	"cell-cell adhesion via plasma-membrane adhesion molecules"
+"GO:0034446"	"substrate adhesion-dependent cell spreading"	0.02784774720487529	-1.5221084547601689	0.9565459027760578	0.64353182	"cell-cell adhesion via plasma-membrane adhesion molecules"
