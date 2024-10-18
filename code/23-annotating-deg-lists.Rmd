@@ -143,5 +143,44 @@ WRite the table out!
 Wrote out 2024-10-18. Comment out code. 
 
 
+## 2022 Control V Exposed taking Age into account
+```{r}
+deg2 <- read.table("../analyses/22-deseq2-2022/DEGlist_2022_controlVexposed_withAge.tab")
+head(deg2)
+```
+make rownames a column called "gene_id":
+```{r}
+library(tibble)
+deg2 <- tibble::rownames_to_column(deg2, "gene_id")
+head(deg2)
+```
+`join` the DEG list with the count matrix based on the "gene_id" column: 
+```{r}
+deg2count <- left_join(deg2, counts22sub, by = "gene_id")
+head(deg2count)
+```
+
+`join` with the BLAST output based on "gene_id" column: 
+```{r}
+deg2countblast <- left_join(deg2count, blast, by = "gene_id")
+head(deg2countblast)
+```
+
+`join` with uniprot GO list based on uniprot_accession column: 
+```{r}
+deg2countblastGO <- left_join(deg2countblast, unigo, by = "uniprot_accession")
+head(deg2countblastGO)
+```
+WRite the table out!
+```{r}
+#write.table(deg2countblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_withAge_annotated.tab", sep = '\t', row.names = T, quote = F)
+```
+Wrote out 2024-10-18. Comment out code. 
+
+
+
+
+
+
 
 
