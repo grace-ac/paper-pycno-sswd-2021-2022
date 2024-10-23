@@ -81,3 +81,33 @@ Write out table of DEGs that are same between 2021 and 2022 datasets:
 ```
 
 wrote out 2024-10-18
+
+# 2024-10-23
+subset gene_id column, uniprot accession id column, and GO ID column for GITHUB ISSUE asking for how to get GO Slim terms:
+```{r}
+same2122 <- read.delim("../analyses/25-compare-2021-2022/DEGlist_same_2021-2022.tab")
+head(same2122)
+```
+
+```{r}
+library(tidyverse)
+library(dplyr)
+forgoslim <- select(same2122, "gene_id", "uniprot_accession.x", "Gene.Ontology.IDs.x")
+head(forgoslim)
+```
+
+rename columns to remove .x from columns 2 and 3:
+```{r}
+forgoslim <- rename(forgoslim, "uniprot_accession" = "uniprot_accession.x", "Gene.Ontology.IDs" = "Gene.Ontology.IDs.x")
+head(forgoslim)
+```
+
+write out table:
+```{r}
+#write.table(forgoslim, "../analyses/25-compare-2021-2022/DEGlist_same_2021-2022_forGOslim.tab", sep = '\t', row.names = F, quote = F)
+
+```
+comment out 2024-10-23
+
+
+
