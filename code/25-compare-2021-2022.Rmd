@@ -80,7 +80,7 @@ Write out table of DEGs that are same between 2021 and 2022 datasets:
 #write.table(deg21_22, "../analyses/25-compare-2021-2022/DEGlist_same_2021-2022.tab", sep = '\t', row.names = F, quote = F)
 ```
 
-wrote out 2024-10-18
+wrote out 2024-10-25
 
 # 2024-10-23
 subset gene_id column, uniprot accession id column, and GO ID column for GITHUB ISSUE asking for how to get GO Slim terms:
@@ -107,7 +107,33 @@ write out table:
 #write.table(forgoslim, "../analyses/25-compare-2021-2022/DEGlist_same_2021-2022_forGOslim.tab", sep = '\t', row.names = F, quote = F)
 
 ```
-comment out 2024-10-23
+comment out 2024-10-25
 
+# 2024-10-25
+Get genes related to the top 9 enriched (Benjamini <0.05) processes from the shared 2021-2022 DEG list DAVID output: https://github.com/grace-ac/paper-pycno-sswd-2021-2022/blob/main/analyses/24-2021-2022-enrichment/2021-2022-same-DAVID.txt
 
+read in DAVID output:
+```{r}
+david <- read.delim("../analyses/24-2021-2022-enrichment/2021-2022-same-DAVID.txt")
+head(david)
+```
 
+rename the "Genes" column "uniprot_accession"
+```{r}
+colnames(david) <- c("Category", "Term", "Count", "%", "PValue", "uniprot_accession", "List Total", "Pop Hits", "Pop Total", "Fold Enrichment", "Bonferroni", "Benjamini", "FDR")
+head(david)
+```
+
+subset the top 9 enriched processes:
+```{r}
+top9 <- filter(david, Benjamini < 0.05) %>% top_n(9, wt = Benjamini)
+head(top9)
+```
+
+write out table:
+```{r}
+#write.table(top9, "../analyses/25-compare-2021-2022/2021-2022-same-DAVID-top9_enriched.tab", sep = '\t', row.names = F, quote = F)
+
+```
+
+wrote out 2024-10-25
