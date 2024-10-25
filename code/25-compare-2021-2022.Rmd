@@ -137,3 +137,37 @@ write out table:
 ```
 
 wrote out 2024-10-25
+
+Now get list of DEGs that have the uniprot accession IDs from that short 9 term list: 
+
+```{r}
+top9 <- read.delim("../analyses/25-compare-2021-2022/2021-2022-same-DAVID-top9_enriched.tab")
+head(top9)
+```
+
+read in deg list:
+```{r}
+shared2122 <- read.delim("../analyses/25-compare-2021-2022/DEGlist_same_2021-2022.tab")
+head(shared2122)
+```
+4,114 rows - good!
+
+https://stackoverflow.com/questions/35923311/match-find-rows-based-on-multiple-required-values-in-a-single-row-in-r 
+
+
+```{r}
+shareden2122 <- shared2122 %>% filter(uniprot_accession.x  top9$uniprot_accession)
+head(shareden2122)
+```
+
+
+
+
+
+
+
+
+
+
+
+
