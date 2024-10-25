@@ -138,7 +138,7 @@ head(deg1countblastGO)
 ```
 WRite the table out!
 ```{r}
-#write.table(deg1countblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_annotated.tab", sep = '\t', row.names = T, quote = F)
+#write.table(deg1countblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_annotated.tab", sep = '\t', row.names = F, quote = F)
 ```
 Wrote out 2024-10-18. Comment out code. 
 
@@ -173,7 +173,7 @@ head(deg2countblastGO)
 ```
 WRite the table out!
 ```{r}
-#write.table(deg2countblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_withAge_annotated.tab", sep = '\t', row.names = T, quote = F)
+#write.table(deg2countblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_withAge_annotated.tab", sep = '\t', row.names = F, quote = F)
 ```
 Wrote out 2024-10-18. Comment out code. 
 
@@ -213,7 +213,7 @@ head(deg3countblastGO)
 
 WRite the table out!
 ```{r}
-#write.table(deg3countblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_withAgeContrast_annotated.tab", sep = '\t', row.names = T, quote = F)
+#write.table(deg3countblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_withAgeContrast_annotated.tab", sep = '\t', row.names = F, quote = F)
 ```
 Wrote out 2024-10-18. Comment out code. 
 
