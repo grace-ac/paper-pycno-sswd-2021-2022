@@ -195,7 +195,7 @@ writeLines(matches, "search_results.txt")
 try other solution `bash` 
 ```{bash}
 # Extract unique `uniprot_accession.x` values from the file
-awk -F'\t' 'NR > 1 {print $6}' ../analyses/25-compare-2021-2022/2021-2022-same-DAVID-top9_enriched.tab | sort | uniq > accessions.txt
+awk -F'\t' 'NR > 1 {print $25}' ../analyses/25-compare-2021-2022/DEGlist_same_2021-2022.tab | sort | uniq > accessions.txt
 ```
 
 ```{bash}
