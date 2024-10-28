@@ -81,3 +81,22 @@ Write out table of DEGs that are same between 2021 and 2022 datasets:
 ```
 
 wrote out 2024-10-18
+
+
+# Get genes that contribute to the top 9 significantly enriched biological processes from DAVID output (Benjamini-Hochberg <0.05). 
+
+
+read in DAVID output of the top 9 enriched processes:
+```{r}
+sigen <- read.delim("../analyses/25-compare-2021-2022/")
+```
+
+
+
+
+
+
+
+
+
+
