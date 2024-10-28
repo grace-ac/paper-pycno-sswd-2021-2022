@@ -1,0 +1,38 @@
+# WARNING - This exported Revigo data is only useful for the specific purpose of constructing a TreeMap visualization.
+# Do not use this table as a general list of non-redundant GO categories, as it sets an extremely permissive 
+# threshold to detect redundancies (c=0.10) and fill the 'representative' column, while normally c>=0.4 is recommended.
+# To export a reduced-redundancy set of GO terms, go to the Scatterplot or Table tab, and export from there.
+TermID	Name	Frequency	Value	Uniqueness	Dispensability	Representative
+"GO:0006281"	"DNA repair"	2.8613720240950697	-4.5968794788241825	0.7669461440834971	0	null
+"GO:0006513"	"protein monoubiquitination"	0.044016374691955525	-1.3912137885903577	0.901464246281713	0.69364171	"DNA repair"
+"GO:0016567"	"protein ubiquitination"	1.2480954666259985	-2.8079264959590025	0.8810798098991061	0.18450179	"DNA repair"
+"GO:0019538"	"protein metabolic process"	18.90831760569825	-1.5190286431191067	0.916360079664826	0.28057972	"DNA repair"
+"GO:0034587"	"piRNA processing"	0.01849952872475187	-1.872741929214935	0.7648182280585979	0.2866978	"DNA repair"
+"GO:0045087"	"innate immune response"	0.24410221683721955	-1.389773134001276	0.8780987250633339	0.53071115	"DNA repair"
+"GO:0045947"	"negative regulation of translational initiation"	0.02279951231737315	-1.461123044519312	0.8231989057848704	0.53673536	"DNA repair"
+"GO:0048014"	"Tie signaling pathway"	0.003428664650556062	-1.461123044519312	0.8585884662571166	0.2466622	"DNA repair"
+"GO:0070534"	"protein K63-linked ubiquitination"	0.04617498122356907	-1.4591739112864646	0.901189579297057	0.69639444	"DNA repair"
+"GO:0006579"	"amino-acid betaine catabolic process"	0.0002732101767492626	-1.4546353526058455	0.9771005761284298	0.02782769	null
+"GO:0006897"	"endocytosis"	0.5813395677106135	-1.402695262350249	0.9674328636364359	0.01718416	null
+"GO:0016182"	"synaptic vesicle budding from endosome"	0.002660722532125702	-1.3091915446729525	0.9226723961659931	0.45381773	"endocytosis"
+"GO:0007020"	"microtubule nucleation"	0.06596672024375665	-2.5400253749364	0.9164896202772607	0.01374629	null
+"GO:0051382"	"kinetochore assembly"	0.030380479383929265	-2.006319883540865	0.9202622144665777	0.46907585	"microtubule nucleation"
+"GO:0007059"	"chromosome segregation"	0.6817307702247771	-1.5846824430569082	0.9506257366765255	0.01750462	null
+"GO:0032259"	"methylation"	2.6585910004764686	-2.459941824957301	0.9732419787984676	0.06341254	null
+"GO:0032728"	"positive regulation of interferon-beta production"	0.0036969521214179502	-2.431713068672292	0.8177474241549038	-0	null
+"GO:0010637"	"negative regulation of mitochondrial fusion"	0.002488427826067608	-1.4546353526058455	0.8127865561981931	0.42370881	"positive regulation of interferon-beta production"
+"GO:0032024"	"positive regulation of insulin secretion"	0.013114088483964604	-1.402611428905802	0.8657254230854412	0.3323947	"positive regulation of interferon-beta production"
+"GO:0032204"	"regulation of telomere maintenance"	0.030747220972538635	-2.219280917290099	0.7702785406842428	0.63574749	"positive regulation of interferon-beta production"
+"GO:0032784"	"regulation of DNA-templated transcription elongation"	0.1820096661268263	-1.4546353526058455	0.8482146262127306	0.27632989	"positive regulation of interferon-beta production"
+"GO:0040029"	"epigenetic regulation of gene expression"	0.1618659536356915	-1.7659553574095859	0.8056217551394231	0.26906939	"positive regulation of interferon-beta production"
+"GO:0045722"	"positive regulation of gluconeogenesis"	0.0016466451193266366	-1.6612940579383115	0.8489241447021684	0.36155622	"positive regulation of interferon-beta production"
+"GO:0045859"	"regulation of protein kinase activity"	0.3288662895119142	-2.006319883540865	0.8082517595702915	0.20520561	"positive regulation of interferon-beta production"
+"GO:0045995"	"regulation of embryonic development"	0.01487887854458822	-1.3566407957185664	0.8595146326538342	0.49584349	"positive regulation of interferon-beta production"
+"GO:0051893"	"regulation of focal adhesion assembly"	0.011585588305934947	-1.461123044519312	0.8618998141660676	0.10877265	"positive regulation of interferon-beta production"
+"GO:1904354"	"negative regulation of telomere capping"	0.0008393213537972843	-1.4546353526058455	0.7823073912417101	0.53266164	"positive regulation of interferon-beta production"
+"GO:2001034"	"positive regulation of double-strand break repair via nonhomologous end joining"	0.0027001041792246946	-2.219280917290099	0.7938876469893208	0.33993818	"positive regulation of interferon-beta production"
+"GO:0042574"	"retinal metabolic process"	0.00967311706869011	-1.461123044519312	0.9651769621606099	0.05773797	null
+"GO:0051301"	"cell division"	1.377833380287743	-1.5999959597061775	0.9886179102959635	0.01907594	null
+"GO:0055013"	"cardiac muscle cell development"	0.020468611079701514	-1.3923270692487866	0.9364054713772081	0.01241106	null
+"GO:0050881"	"musculoskeletal movement"	0.01895980172522135	-1.3091915446729525	0.9812802682891505	0.37616337	"cardiac muscle cell development"
+"GO:0071267"	"L-methionine salvage"	0.0800604271993087	-2.414394116310539	0.9564580539289816	0.06915926	null

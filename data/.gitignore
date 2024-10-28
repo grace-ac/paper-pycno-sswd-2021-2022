@@ -10,3 +10,4 @@ uniprot_sprot_r2023_04.fasta.gz
 augustus.hints.codingseq
 blast_dbs
 2022_trimmed
+~$RNAseq_library_metadata.xlsx

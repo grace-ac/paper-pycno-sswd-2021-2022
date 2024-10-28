@@ -1,0 +1,57 @@
+# WARNING - This exported Revigo data is only useful for the specific purpose of constructing a TreeMap visualization.
+# Do not use this table as a general list of non-redundant GO categories, as it sets an extremely permissive 
+# threshold to detect redundancies (c=0.10) and fill the 'representative' column, while normally c>=0.4 is recommended.
+# To export a reduced-redundancy set of GO terms, go to the Scatterplot or Table tab, and export from there.
+TermID	Name	Frequency	Value	Uniqueness	Dispensability	Representative
+"GO:0001695"	"histamine catabolic process"	0.00012799035307172664	-1.6839594178110875	0.9869937109701518	0.01697534	null
+"GO:0001732"	"formation of cytoplasmic translation initiation complex"	0.08415365714466026	-2.2762390335051705	0.8685891415285625	0.08823333	null
+"GO:0009451"	"RNA modification"	1.762112108620884	-1.5853493023201055	0.9544514671950458	0.13170936	"formation of cytoplasmic translation initiation complex"
+"GO:0010467"	"gene expression"	13.02581206063927	-1.7352265056134146	0.9330816351486797	0.3335648	"formation of cytoplasmic translation initiation complex"
+"GO:0051289"	"protein homotetramerization"	0.015538521133496352	-1.7138471484695832	0.9115583118620776	0.45643929	"formation of cytoplasmic translation initiation complex"
+"GO:0071340"	"skeletal muscle acetylcholine-gated channel clustering"	0.0006005701182596404	-1.4822406505168326	0.898552275922249	0.19206688	"formation of cytoplasmic translation initiation complex"
+"GO:0003341"	"cilium movement"	0.13264477148823883	-8.730487055782083	0.8306995801892181	0	null
+"GO:0036158"	"outer dynein arm assembly"	0.023478845729830774	-2.848483979245724	0.7671430465386585	0.56664823	"cilium movement"
+"GO:0044782"	"cilium organization"	0.4626580514719112	-1.5614871747493722	0.863163176171722	0.66499882	"cilium movement"
+"GO:0007186"	"G protein-coupled receptor signaling pathway"	1.464221945905271	-2.63132790775282	0.8678215688043547	0.01378246	null
+"GO:0000079"	"regulation of cyclin-dependent protein serine/threonine kinase activity"	0.14135303820300363	-1.5142133065169636	0.9320942016724105	0.19432501	"G protein-coupled receptor signaling pathway"
+"GO:0003356"	"regulation of cilium beat frequency"	0.009567278892111565	-1.313585536701908	0.9423622408694662	0.15549999	"G protein-coupled receptor signaling pathway"
+"GO:0007162"	"negative regulation of cell adhesion"	0.07246715336803414	-2.4031974602180335	0.919017224754244	0.18298941	"G protein-coupled receptor signaling pathway"
+"GO:0007167"	"enzyme-linked receptor protein signaling pathway"	0.5096157429315727	-1.9577456219366525	0.8689860108948868	0.5793757	"G protein-coupled receptor signaling pathway"
+"GO:0007626"	"locomotory behavior"	0.027473621557434862	-1.3324224551559736	0.9004597756632527	0.38538202	"G protein-coupled receptor signaling pathway"
+"GO:0008285"	"negative regulation of cell population proliferation"	0.12504657495107693	-1.750913350174709	0.8950964797213125	0.43258599	"G protein-coupled receptor signaling pathway"
+"GO:0009954"	"proximal/distal pattern formation"	0.009586969715661062	-1.8153470613010616	0.8394429741578926	0.42180162	"G protein-coupled receptor signaling pathway"
+"GO:0010447"	"response to acidic pH"	0.005616807417493849	-1.9310846910321136	0.9494861000406811	0.21047621	"G protein-coupled receptor signaling pathway"
+"GO:0030154"	"cell differentiation"	2.06266791657451	-1.3486940195009844	0.8412181721975636	0.61200121	"G protein-coupled receptor signaling pathway"
+"GO:0030279"	"negative regulation of ossification"	0.006254297829908795	-1.394810644625855	0.918292696807668	0.55842613	"G protein-coupled receptor signaling pathway"
+"GO:0045807"	"positive regulation of endocytosis"	0.023998191200948742	-2.592900876236441	0.9214538017549023	0.16688662	"G protein-coupled receptor signaling pathway"
+"GO:0050769"	"positive regulation of neurogenesis"	0.0741113371344171	-1.5142133065169636	0.9027200170945335	0.4094362	"G protein-coupled receptor signaling pathway"
+"GO:0050966"	"detection of mechanical stimulus involved in sensory perception of pain"	0.0009254687068263311	-1.6839594178110875	0.862584790254045	0.433337	"G protein-coupled receptor signaling pathway"
+"GO:0150099"	"neuron-glial cell signaling"	0.00012306764718435253	-1.8153470613010616	0.9387665733109535	0.24319777	"G protein-coupled receptor signaling pathway"
+"GO:1902287"	"semaphorin-plexin signaling pathway involved in axon guidance"	0.02124639860990662	-1.9577456219366525	0.6532851934047628	0.34855303	"G protein-coupled receptor signaling pathway"
+"GO:1990834"	"response to odorant"	0.003175145297356295	-1.9310846910321136	0.9691356528950991	0.20224259	"G protein-coupled receptor signaling pathway"
+"GO:0015881"	"creatine transmembrane transport"	0.0006202609418091367	-3.2211255279972604	0.9434852422465225	0.00803228	null
+"GO:0006811"	"monoatomic ion transport"	4.917982551075166	-1.5764341116023577	0.9053121992858211	0.33248248	"creatine transmembrane transport"
+"GO:0006814"	"sodium ion transport"	0.6144767623914722	-1.4679777118765245	0.8862458327506073	0.69525831	"creatine transmembrane transport"
+"GO:0008104"	"protein localization"	3.933557057188699	-1.496818764091597	0.8935082467118802	0.41885766	"creatine transmembrane transport"
+"GO:0034220"	"monoatomic ion transmembrane transport"	4.298600312266925	-1.7928597923585377	0.8621705770109318	0.68679442	"creatine transmembrane transport"
+"GO:0035725"	"sodium ion transmembrane transport"	0.5221267999443341	-2.4864319085542217	0.8779757886359373	0.20632003	"creatine transmembrane transport"
+"GO:0055085"	"transmembrane transport"	12.953593503918547	-2.9365244019334704	0.8830407024185051	0.54364926	"creatine transmembrane transport"
+"GO:0071805"	"potassium ion transmembrane transport"	0.5551483110368395	-2.1860201907243613	0.8773502021764576	0.68381038	"creatine transmembrane transport"
+"GO:0031100"	"animal organ regeneration"	0.0019173939431322126	-1.841812105250572	0.8867892702537514	-0	null
+"GO:0007286"	"spermatid development"	0.06198917388675837	-1.5602903285016758	0.8248958085784337	0.69486164	"animal organ regeneration"
+"GO:0008584"	"male gonad development"	0.022481997787637518	-1.7659148468840695	0.7873988989993341	0.53518074	"animal organ regeneration"
+"GO:0031016"	"pancreas development"	0.02080335508004295	-1.8083145465713033	0.8728723161035724	0.4670579	"animal organ regeneration"
+"GO:0048738"	"cardiac muscle tissue development"	0.04471786028090634	-1.394810644625855	0.8075726407551407	0.56059859	"animal organ regeneration"
+"GO:1905072"	"cardiac jelly development"	0.0004504275886947302	-1.3346964926572653	0.8439686740677745	0.6255705	"animal organ regeneration"
+"GO:0034418"	"urate biosynthetic process"	0.0001747560590017806	-2.932029111540097	0.9514186676658799	-0	null
+"GO:0003254"	"regulation of membrane depolarization"	0.02444123473081241	-1.5853493023201055	0.9048884716727774	0.53977915	"urate biosynthetic process"
+"GO:0009156"	"ribonucleoside monophosphate biosynthetic process"	0.8369092279124709	-1.5853493023201055	0.9083275173760829	0.42754466	"urate biosynthetic process"
+"GO:0010917"	"negative regulation of mitochondrial membrane potential"	0.0005168841181742806	-1.6839594178110875	0.9248105763557762	0.33240894	"urate biosynthetic process"
+"GO:0016126"	"sterol biosynthetic process"	0.15050680980057576	-1.6463391724079324	0.9533018930392406	0.54885777	"urate biosynthetic process"
+"GO:0042391"	"regulation of membrane potential"	0.3881799727488847	-1.4969904830064544	0.903380535321191	0.49210894	"urate biosynthetic process"
+"GO:0042572"	"retinol metabolic process"	0.02663430020363757	-1.9681032593428323	0.8535362903817532	0.15156118	"urate biosynthetic process"
+"GO:0046101"	"hypoxanthine biosynthetic process"	0.020392309138447216	-1.9324498610718384	0.9203100829300722	0.35824043	"urate biosynthetic process"
+"GO:0046449"	"creatinine metabolic process"	0.0008639348832341547	-1.5853493023201055	0.9683132468124811	0.16373876	"urate biosynthetic process"
+"GO:0043473"	"pigmentation"	0.043122903573397126	-1.5614871747493722	1	-0	null
+"GO:0097017"	"renal protein absorption"	0.0006227222947528239	-1.5853493023201055	0.9092671939932422	-0	null
+"GO:0150094"	"amyloid-beta clearance by cellular catabolic process"	0.0022176790022620328	-1.3346964926572653	0.8860988671101148	0.28274144	"renal protein absorption"

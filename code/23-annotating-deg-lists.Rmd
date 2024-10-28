@@ -33,12 +33,12 @@ head(blast)
 
 Downloaded from uniprot.org ID mapping tool (copy and pasted the uniprot accession IDs from the BLAST output into the ID Mapping tool, downloaded as .tsv, then pasted into 23-annotating-deg-lists analyses folder).
 ```{r}
-unigo <- read.delim("../analyses/23-annotating-deg-lists/idmapping_2024_10_15.tsv")
+unigo <- read.delim("../analyses/23-annotating-deg-lists/idmapping_2024_10_25_GOBPterms.tsv")
 head(unigo)
 ```
 Rename column 1 to match BLAST output file: 
 ```{r}
-colnames(unigo) <- c("uniprot_accession", "Entry", "Reviewed", "Entry.Name", "Protein.names", "Gene.Names", "Organism", "Length", "Gene.Ontology.IDs")
+colnames(unigo) <- c("uniprot_accession", "Entry", "Reviewed", "Entry.Name", "Protein.names", "Gene.Names", "Organism", "Length", "Gene.Ontology.biological.process", "Gene.Ontology.IDs")
 head(unigo)
 ```
 
@@ -101,7 +101,7 @@ head(DEGcountblastGO)
 
 WRite the table out!
 ```{r}
-#write.table(DEGcountblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2021_exposedVcontrol_annotated.tab", sep = '\t', row.names = T, quote = F)
+#write.table(DEGcountblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2021_exposedVcontrol_annotated.tab", sep = '\t', row.names = F, quote = F)
 ```
 Wrote out 2024-10-15. Comment out code. 
 
@@ -138,7 +138,7 @@ head(deg1countblastGO)
 ```
 WRite the table out!
 ```{r}
-#write.table(deg1countblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_annotated.tab", sep = '\t', row.names = T, quote = F)
+#write.table(deg1countblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_annotated.tab", sep = '\t', row.names = F, quote = F)
 ```
 Wrote out 2024-10-18. Comment out code. 
 
@@ -173,7 +173,7 @@ head(deg2countblastGO)
 ```
 WRite the table out!
 ```{r}
-#write.table(deg2countblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_withAge_annotated.tab", sep = '\t', row.names = T, quote = F)
+#write.table(deg2countblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_withAge_annotated.tab", sep = '\t', row.names = F, quote = F)
 ```
 Wrote out 2024-10-18. Comment out code. 
 
@@ -213,7 +213,7 @@ head(deg3countblastGO)
 
 WRite the table out!
 ```{r}
-#write.table(deg3countblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_withAgeContrast_annotated.tab", sep = '\t', row.names = T, quote = F)
+#write.table(deg3countblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_withAgeContrast_annotated.tab", sep = '\t', row.names = F, quote = F)
 ```
 Wrote out 2024-10-18. Comment out code. 
 
