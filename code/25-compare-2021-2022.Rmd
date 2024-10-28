@@ -48,9 +48,9 @@ head(unique21)
 
 write out DEG table unique to 2021: 
 ```{r}
-#write.table(unique21, "../analyses/25-compare-2021-2022/DEGlist_unique_2021.tab", sep = '\t', row.names = T, quote = F)
+#write.table(unique21, "../analyses/25-compare-2021-2022/DEGlist_unique_2021.tab", sep = '\t', row.names = F, quote = F)
 ```
-wrote out 2024-10-18.
+wrote out 2024-10-25.
 
 
 
@@ -64,9 +64,9 @@ head(unique22)
 
 write out table of DEGs unique to 2022 dataset: 
 ```{r}
-#write.table(unique22, "../analyses/25-compare-2021-2022/DEGlist_unique_2022.tab", sep = '\t', row.names = T, quote = F)
+#write.table(unique22, "../analyses/25-compare-2021-2022/DEGlist_unique_2022.tab", sep = '\t', row.names = F, quote = F)
 ```
-wrote out 2024-10-18
+wrote out 2024-10-25
 
 use `inner_join` to  get the DEGs that match between the years:
 ```{r}
@@ -77,9 +77,10 @@ head(deg21_22)
 4,114 DEGs are the same across both years. 
 Write out table of DEGs that are same between 2021 and 2022 datasets:
 ```{r}
-#write.table(deg21_22, "../analyses/25-compare-2021-2022/DEGlist_same_2021-2022.tab", sep = '\t', row.names = T, quote = F)
+#write.table(deg21_22, "../analyses/25-compare-2021-2022/DEGlist_same_2021-2022.tab", sep = '\t', row.names = F, quote = F)
 ```
 
+<<<<<<< HEAD
 wrote out 2024-10-18
 
 
@@ -90,6 +91,89 @@ read in DAVID output of the top 9 enriched processes:
 ```{r}
 sigen <- read.delim("../analyses/25-compare-2021-2022/")
 ```
+=======
+wrote out 2024-10-25
+
+# 2024-10-23
+subset gene_id column, uniprot accession id column, and GO ID column for GITHUB ISSUE asking for how to get GO Slim terms:
+```{r}
+same2122 <- read.delim("../analyses/25-compare-2021-2022/DEGlist_same_2021-2022.tab")
+head(same2122)
+```
+
+```{r}
+library(tidyverse)
+library(dplyr)
+forgoslim <- select(same2122, "gene_id", "uniprot_accession.x", "Gene.Ontology.IDs.x")
+head(forgoslim)
+```
+
+rename columns to remove .x from columns 2 and 3:
+```{r}
+forgoslim <- rename(forgoslim, "uniprot_accession" = "uniprot_accession.x", "Gene.Ontology.IDs" = "Gene.Ontology.IDs.x")
+head(forgoslim)
+```
+
+write out table:
+```{r}
+#write.table(forgoslim, "../analyses/25-compare-2021-2022/DEGlist_same_2021-2022_forGOslim.tab", sep = '\t', row.names = F, quote = F)
+
+```
+comment out 2024-10-25
+
+# 2024-10-25
+Get genes related to the top 9 enriched (Benjamini <0.05) processes from the shared 2021-2022 DEG list DAVID output: https://github.com/grace-ac/paper-pycno-sswd-2021-2022/blob/main/analyses/24-2021-2022-enrichment/2021-2022-same-DAVID.txt
+
+read in DAVID output:
+```{r}
+david <- read.delim("../analyses/24-2021-2022-enrichment/2021-2022-same-DAVID.txt")
+head(david)
+```
+
+rename the "Genes" column "uniprot_accession"
+```{r}
+colnames(david) <- c("Category", "Term", "Count", "%", "PValue", "uniprot_accession", "List Total", "Pop Hits", "Pop Total", "Fold Enrichment", "Bonferroni", "Benjamini", "FDR")
+head(david)
+```
+
+subset the top 9 enriched processes:
+```{r}
+top9 <- filter(david, Benjamini < 0.05) %>% top_n(9, wt = Benjamini)
+head(top9)
+```
+
+write out table:
+```{r}
+#write.table(top9, "../analyses/25-compare-2021-2022/2021-2022-same-DAVID-top9_enriched.tab", sep = '\t', row.names = F, quote = F)
+
+```
+
+wrote out 2024-10-25
+
+Now get list of DEGs that have the uniprot accession IDs from that short 9 term list: 
+
+```{r}
+top9 <- read.delim("../analyses/25-compare-2021-2022/2021-2022-same-DAVID-top9_enriched.tab")
+head(top9)
+```
+
+read in deg list:
+```{r}
+shared2122 <- read.delim("../analyses/25-compare-2021-2022/DEGlist_same_2021-2022.tab")
+head(shared2122)
+```
+4,114 rows - good!
+
+https://stackoverflow.com/questions/35923311/match-find-rows-based-on-multiple-required-values-in-a-single-row-in-r 
+
+
+```{r}
+shareden2122 <- shared2122 %>% filter(uniprot_accession.x  top9$uniprot_accession)
+head(shareden2122)
+```
+
+
+>>>>>>> 78351d252dc0a04b52d1ce88c93628ec41067f01
 
 
 
