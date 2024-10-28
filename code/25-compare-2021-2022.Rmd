@@ -121,7 +121,7 @@ write out table:
 ```
 comment out 2024-10-25
 
-# 2024-10-25
+# 2024-10-28
 Get genes related to the top 9 enriched (Benjamini <0.05) processes from the shared 2021-2022 DEG list DAVID output: https://github.com/grace-ac/paper-pycno-sswd-2021-2022/blob/main/analyses/24-2021-2022-enrichment/2021-2022-same-DAVID.txt
 
 read in DAVID output:
@@ -164,20 +164,57 @@ head(shared2122)
 ```
 4,114 rows - good!
 
-https://stackoverflow.com/questions/35923311/match-find-rows-based-on-multiple-required-values-in-a-single-row-in-r 
-
+https://chatgpt.com/share/671fc096-4b08-800a-941e-9a9b85eb58d7
+https://github.com/RobertsLab/resources/issues/1996 
 
 ```{r}
-shareden2122 <- shared2122 %>% filter(uniprot_accession.x  top9$uniprot_accession)
-head(shareden2122)
+# Load necessary library
+library(dplyr)
+``` 
+# Read in the main file
+```{r}
+data <- read.delim("../analyses/25-compare-2021-2022/DEGlist_same_2021-2022.tab", header = TRUE, sep = "\t", stringsAsFactors = FALSE)
+head(data)
+```
+# Extract unique `uniprot_accession.x` values
+```{r}
+accessions <- unique(data$uniprot_accession.x)
+head(accessions)
+```
+# Read target file line by line and filter lines containing any accession
+```{r}
+target_file <- data
+search_results <- readLines(target_file)
+matches <- grep(paste(accessions, collapse = "|"), search_results, value = TRUE)
+```
+# Write results to a new file
+writeLines(matches, "search_results.txt")
+
+
+
+try other solution `bash` 
+```{bash}
+# Extract unique `uniprot_accession.x` values from the file
+awk -F'\t' 'NR > 1 {print $6}' ../analyses/25-compare-2021-2022/2021-2022-same-DAVID-top9_enriched.tab | sort | uniq > accessions.txt
+```
+
+```{bash}
+# Search for these accessions in the target file (replace target_file.txt with your filename)
+while read accession; do
+    grep "$uniprot_accession" ../analyses/25-compare-2021-2022/DEGlist_same_2021-2022.tab >> ../analyses/25-compare-2021-2022/DEGlist-top9-enriched-processes.txt
+done < accessions.txt
 ```
 
 
->>>>>>> 78351d252dc0a04b52d1ce88c93628ec41067f01
+look at the head of the search_results.txt:
+```{bash}
+head -5 search_results.txt
+```
 
-
-
-
+write out the file:
+```{r}
+write.table(search_results.txt, "../analyses/25-compare-2021-2022/DEGlist_top9_enriched_processes.tab", sep = '\t', row.names = T, quote = F)
+```
 
 
 
