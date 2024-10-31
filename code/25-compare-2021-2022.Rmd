@@ -168,10 +168,6 @@ https://chatgpt.com/share/671c1bb2-c178-8013-aa40-fe7f974859ac --> use R option
 https://github.com/RobertsLab/resources/issues/1996 
 
 
-write out the file:
-```{r}
-write.table(search_results.txt, "../analyses/25-compare-2021-2022/DEGlist_top9_enriched_processes.tab", sep = '\t', row.names = T, quote = F)
-```
 
 
 ```{r}
@@ -185,7 +181,7 @@ library(tidyverse)
 
 # Separate the values by commas into rows
 data_long <- top9 %>%
-  separate_rows(uniprot_accession, sep = ",")
+  separate_rows(uniprot_accession, sep = ", ")
 
 # View the output
 print(data_long)
@@ -205,9 +201,7 @@ shared2122 <- read.delim("../analyses/25-compare-2021-2022/DEGlist_same_2021-202
 head(shared2122)
 ```
 rename uniprot_accession.x to uniprot_accession
-# df = dataframe
-# old.var.name = The name you don't like anymore
-# new.var.name = The name you want to get
+
 ```{r}
 names(shared2122)[names(shared2122) == 'uniprot_accession.x'] <- 'uniprot_accession'
 head(shared2122)
@@ -215,21 +209,22 @@ head(shared2122)
 yay
 
 `join` shared2122 with data_long_sub
-use `left_join` with shared2122 first because may be multiple uniprot_accession ids per gene or something 
+use `left_join` with shared2122 first because may be multiple genes per uniprot_accession 
 ```{r}
 top9genelist <- left_join(data_long_sub, shared2122, by = "uniprot_accession")
 head(top9genelist)
 ```
-drop rows with na in Term column:
+YAY `
 
+488 ROW - makes sense because some uniprot_accession IDs can have multiple genes 
 
-
-
-then final table --> tells what genes are associated with top9 BProcesses
 
 wrrite out table: 
+```{r}
+#write.table(top9genelist, "../analyses/25-compare-2021-2022/DEGlist_enrichedprocesses_2021-2022.tab", sep = '\t',  row.names = F, quote = F)
+```
 
-
+wrote out 2024-10-30
 
 
 
