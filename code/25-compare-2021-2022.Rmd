@@ -204,6 +204,25 @@ read in deg list:
 shared2122 <- read.delim("../analyses/25-compare-2021-2022/DEGlist_same_2021-2022.tab")
 head(shared2122)
 ```
+rename uniprot_accession.x to uniprot_accession
+# df = dataframe
+# old.var.name = The name you don't like anymore
+# new.var.name = The name you want to get
+```{r}
+names(shared2122)[names(shared2122) == 'uniprot_accession.x'] <- 'uniprot_accession'
+head(shared2122)
+```
+yay
+
+`join` shared2122 with data_long_sub
+use `left_join` with shared2122 first because may be multiple uniprot_accession ids per gene or something 
+```{r}
+top9genelist <- left_join(data_long_sub, shared2122, by = "uniprot_accession")
+head(top9genelist)
+```
+drop rows with na in Term column:
+
+
 
 
 then final table --> tells what genes are associated with top9 BProcesses
