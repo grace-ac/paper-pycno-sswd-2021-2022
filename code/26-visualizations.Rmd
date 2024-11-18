@@ -4,3 +4,64 @@ output: html_document
 date: "2024-11-18"
 ---
 Rmd to make visualizations for paper. 
+
+https://yulab-smu.top/biomedical-knowledge-mining-book/enrichplot.html 
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+library(RColorBrewer)
+```
+
+
+# Make a figure of the enriched GO Processes
+
+Read in the list of 9 top enriched processes:
+```{r}
+top9 <- read.delim("../analyses/25-compare-2021-2022/2021-2022-entichedtop9_DAVID_separated.txt")
+head(top9)
+```
+Goal: plots of the terms, x-axis is counts and color is benjamini value. 
+
+
+```{r}
+
+# Basic barplot
+p <- ggplot(data=top9, aes(x=Count, y=Term, fill=Benjamini)) +
+  geom_bar(stat="identity")+theme_minimal()
+p
+
+# Rename y-axis:
+
+
+# Horizontal bar plot
+p + coord_flip()
+```
+
+# Make a Venn Diagram of the DEGs for 2021, 2022, and the overlap... is this just numbers??
+
+Total DEGS for 2021 --> 6938
+Total amount unique to 2021 --> (6938-4114 =) 2824
+Total DEGs for 2022 --> 6237
+Total amount unique to 2022 --> (6237-4114 =) 2123
+```{r}
+#install.packages("ggVennDiagram")
+library(ggVennDiagram)
+```
+```{r}
+#install.packages("VennDiagram")
+library(VennDiagram)
+```
+
+
+
+```{r}
+# create pairwise Venn diagram 
+draw.pairwise.venn(area1=6938, area2=6237,cross.area=4114, 
+                   category=c("A","B"),fill=c("Red","Yellow"))
+# 2D Venn diagram
+ggVennDiagram(x) 
+```
+
+
