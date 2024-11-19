@@ -78,7 +78,7 @@ sd(rates)
 
 
 ```{r}
-standarderror <- sd(rates)/sqrt(length(rates))
+sd(rates)/sqrt(length(rates))
 ```
 
 
