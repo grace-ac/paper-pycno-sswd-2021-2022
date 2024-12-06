@@ -1,4 +1,4 @@
-Sample_ID,Disease_Sign,Start_date,End_Date,Sample_Date
+Sample_ID,Disease_Sign,start,end,Sample_Date
 56,Healthy,10/5/21,10/18/21,10/14/21
 81,Healthy,10/5/21,10/18/21,10/18/21
 76,Healthy,10/5/21,10/18/21,10/17/21
