@@ -28,7 +28,7 @@ Goal: plots of the terms, x-axis is counts and color is benjamini value.
 ```{r}
 
 # Basic barplot
-p <- ggplot(data=top9, aes(x=Count, y=Term, fill=Benjamini)) +
+p <- ggplot(data=top9, aes(x=Count, y=Term, fill=Fold.Enrichment)) +
   geom_bar(stat="identity")+theme_minimal()
 p
 
@@ -64,4 +64,11 @@ draw.pairwise.venn(area1=6938, area2=6237,cross.area=4114,
 ggVennDiagram(x) 
 ```
 
+# Disease Progression and Mortality figure: 
+Focusing on just the observations for the n=16 stars in 2021 (Exp A) and n=12 stars in 2022 (Exp B) 
+
+https://cran.r-project.org/web/packages/vistime/vignettes/gg_vistime-vignette.html \    
+https://shosaco.github.io/vistime/ 
+
+ Goal -- timeline color-coded horizontal stacked bar... 
 
