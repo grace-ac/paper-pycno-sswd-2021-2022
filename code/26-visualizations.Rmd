@@ -74,7 +74,8 @@ https://shosaco.github.io/vistime/
  Goal -- timeline color-coded horizontal stacked bar... 
 
 ```{r}
-install.packages("vistime")
+#install.packages("vistime")
+#install.packages("cowplot")
 ```
 
 
