@@ -73,3 +73,76 @@ https://shosaco.github.io/vistime/
 
  Goal -- timeline color-coded horizontal stacked bar... 
 
+```{r}
+install.packages("vistime")
+```
+
+
+```{r}
+### Load packages
+library("vistime")
+library("tidyverse")
+library("RColorBrewer")
+library("scales")
+library("cowplot")
+```
+
+load in data
+```{r}
+data <- read.csv("../analyses/26-visualizations/expA-phenotype-data-for-figure.csv")
+head(data)
+```
+https://github.com/wlhamilton/Patient-ward-movement-timelines/blob/main/R%20script%20to%20generate%20example%20ward%20movement%20plot.R 
+
+```{r}
+### Preparing for plot
+## Colours
+# Define number of colours needed
+cols_n <- as.numeric(n_distinct(data$Disease_Sign))
+# Check we have enough colours
+ifelse(cols_n>12, 
+       "More than 12 wards - not enough colours!",
+       "12 wards or fewer - using Set3 colours")
+# Select the colours from Set3 palette in RColorBrewer
+cols_to_use <- brewer.pal(n = cols_n, name = "Set3")
+```
+
+
+```{r}
+# Create mapping of colours to wards
+col_sign_mapping <- data.frame(Disease_Sign=unique(c(as.character(data$Disease_Sign))), color=cols_to_use)
+# merge in the mapping to the df
+data_2 <- merge(data,
+                      col_sign_mapping,
+                      by="Disease_Sign",
+                      all.x=T,all.y=T) %>%
+  select(Sample_ID, Disease_Sign, start, end, Sample_Date, color) %>%
+  arrange(Sample_Date, Sample_ID, start)
+data_2
+```
+
+```{r}
+## Extract sample dates
+sample_dates <- data_2 %>%
+  select(Sample_ID, Sample_Date) %>%
+  distinct(Sample_ID, .keep_all=TRUE) %>%
+  arrange(Sample_Date)
+```
+
+```{r}
+### Plotting
+# Produce the basic plot
+plot_data <- gg_vistime(data = data_2,
+                        col.group = "Sample_ID", # Each row will be a sample_ID - proxy for unique star
+                        col.event = "Disease_Sign", # Rows will be coloured by the disease-sign
+                        show_labels = FALSE, # Remove labels indicating the ward
+                        linewidth = 20,
+                        title = "Disease Progression timeline")
+```
+
+
+
+
+
+
+
