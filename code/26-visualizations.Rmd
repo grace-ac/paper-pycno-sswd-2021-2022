@@ -28,7 +28,7 @@ Goal: plots of the terms, x-axis is counts and color is benjamini value.
 ```{r}
 
 # Basic barplot
-p <- ggplot(data=top9, aes(x=Count, y=Term, fill=Fold.Enrichment)) +
+p <- ggplot(data=top9, aes(x=Fold.Enrichment, y=Term, fill=Count)) +
   geom_bar(stat="identity")+theme_minimal()
 p
 
