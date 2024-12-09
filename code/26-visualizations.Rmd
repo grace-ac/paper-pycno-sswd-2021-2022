@@ -136,7 +136,8 @@ plot_data <- gg_vistime(data = data_2,
                         col.group = "Sample_ID", # Each row will be a sample_ID - proxy for unique star
                         col.event = "Disease_Sign", # Rows will be coloured by the disease-sign
                         show_labels = FALSE, # Remove labels indicating the ward
-                        linewidth = 20,
+                        axis.ticks.x = FALSE,
+                        axis.ticks.y = FALSE,
                         title = "Disease Progression timeline")
 plot_data
 ```
@@ -156,9 +157,22 @@ plot_data
 ```{r}
 # Adding date of sample 
 plot_data <- plot_data +
-  annotate("point", x = as.POSIXct(sample_dates[1,2]), y = 5, size = 5, colour = "black") +
-  annotate("point", x = as.POSIXct(sample_dates[2,2]), y = 3, size = 5, colour = "black") +
-  annotate("point", x = as.POSIXct(sample_dates[3,2]), y = 1, size = 5, colour = "black")
+  annotate("point", x = as.POSIXct(sample_dates[13,2]), y = 38, size = 1, colour = "black") + #78
+  annotate("point", x = as.POSIXct(sample_dates[11,2]), y = 35, size = 1, colour = "black") + #75
+  annotate("point", x = as.POSIXct(sample_dates[6,2]), y = 32, size = 1, colour = "black") + #71
+  annotate("point", x = as.POSIXct(sample_dates[7,2]), y = 29, size = 1, colour = "black") + #67
+  annotate("point", x = as.POSIXct(sample_dates[1,2]), y = 26, size = 1, colour = "black") + #59
+  annotate("point", x = as.POSIXct(sample_dates[8,2]), y = 23, size = 1, colour = "black") + #69
+  annotate("point", x = as.POSIXct(sample_dates[2,2]), y = 20, size = 1, colour = "black") + #57
+  annotate("point", x = as.POSIXct(sample_dates[15,2]), y = 17, size = 1, colour = "black") + #83
+  annotate("point", x = as.POSIXct(sample_dates[3,2]), y = 15, size = 1, colour = "black") + #56
+  annotate("point", x = as.POSIXct(sample_dates[16,2]), y = 13, size = 1, colour = "black") + #81
+  annotate("point", x = as.POSIXct(sample_dates[14,2]), y = 11, size = 1, colour = "black") + #76
+  annotate("point", x = as.POSIXct(sample_dates[4,2]), y = 9, size = 1, colour = "black") + #52
+  annotate("point", x = as.POSIXct(sample_dates[9,2]), y = 7, size = 1, colour = "black") + #61
+  annotate("point", x = as.POSIXct(sample_dates[5,2]), y = 5, size =1, colour = "black") + #54
+  annotate("point", x = as.POSIXct(sample_dates[12,2]), y = 3, size =1, colour = "black") + #73
+  annotate("point", x = as.POSIXct(sample_dates[10,2]), y = 1, size =1, colour = "black")  #64
 plot_data
 ```
 
@@ -175,7 +189,7 @@ plot_legend <- gg_vistime(data = data_legend,
                           col.group = "Sample_ID",
                           col.event = "Disease_Sign",
                           show_labels = TRUE,
-                          linewidth = 20,
+                          linewidth = 10,
                           title = "Legend")
 plot_legend
 ```
