@@ -221,6 +221,100 @@ plot_combined
 ggplot2::ggsave(plot_combined, file = "../analyses/26-visualizations/ExpA_disease-progression-phenotype-timeline.pdf", dpi=300, height=4, width=7, units="in")
 ```
 
+# Make a PCA of RNAseq data for both experiments combined, pre-DEG analyses
+Color code by Experiment (A 2021; B 2022) and exposed and control, and also add in juvenile/adult?? make an option with/without the age class for Exp B 
+
+Read in count matrices 
+```{r}
+expAcounts <- read.csv("../data/gene_count_matrix_2021.csv")
+head(expAcounts)
+```
+
+```{r}
+expBcounts <- read.csv("../data/gene_count_matrix_2022.csv")
+head(expBcounts)
+```
+
+combine the two tables: 
+```{r}
+expABcounts <- left_join(expAcounts, expBcounts, by="gene_id")
+head(expABcounts)
+```
+only keep libraries that we did comparisons for: 
+```{r}
+expABcounts_sm <- select(expABcounts, "gene_id", "PSC.56", "PSC.52", "PSC.54", "PSC.61", "PSC.64", "PSC.73", "PSC.76", "PSC.81", "PSC.59", "PSC.57", "PSC.69", "PSC.67", "PSC.71", "PSC.75", "PSC.78", "PSC.83", "PSC.0228", "PSC.0187", "PSC.0188", "PSC.0174", "PSC.0190", "PSC.0231", "PSC.0230", "PSC.0219", "PSC.0177", "PSC.0186", "PSC.0209", "PSC.0203")
+```
+
+
+
+Make a PCA:
+```{r}
+#install.packages("ggfortify")
+```
+
+
+```{r}
+library(ggfortify)
+library(plotly)
+```
+
+
+```{r}
+expABcounts_transpose = t(expABcounts_sm)
+```
+
+make first row into column names: 
+```{r}
+colnames(expABcounts_transpose)=expABcounts_transpose[c(1),]
+```
+
+remove first row: 
+```{r}
+expABcounts_transpose=expABcounts_transpose[-c(1), ]
+```
+
+make it a dataframe
+```{r}
+expABcounts_transpose <- as.data.frame(expABcounts_transpose)
+```
+
+
+make rownames a column called SampleID
+```{r}
+library(tibble)
+expABcounts_transpose <- tibble::rownames_to_column(expABcounts_transpose, "Sample_ID")
+```
+
+make the sample_ID into rownames:
+```{r}
+#expABcounts_transpose <- data.frame(expABcounts_transpose, row.names = 1)
+```
+
+
+
+```{r}
+library(dplyr)
+expABcounts_transpose <- expABcounts_transpose %>% mutate_at(2:23465, as.numeric)
+```
+
+change Sample_ID s into descriptions 
+
+Example, PSC.## would be changed to Adult.Control 
+```{r}
+expABcounts_transpose$Sample_ID <- gsub("PSC.19", "Adult.Control
+```
+
+
+
+```{r}
+df_nums <- expABcounts_transpose[2:23465]
+pca <- prcomp(df_nums)
+
+
+p <- autoplot(pca, data = expABcounts_transpose, colour = 'Sample_ID')
+
+ggplotly(p)
+```
 
 
 
