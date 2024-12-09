@@ -117,7 +117,7 @@ data_2 <- merge(data,
                       col_sign_mapping,
                       by="Disease_Sign",
                       all.x=T,all.y=T) %>%
-  select(Sample_ID, Sample_Date, Disease_Sign, start, end, color)
+  select(Sample_ID, Sample_Date, Disease_Sign, start, end, color, Treatment)
 data_2
 ```
 
@@ -135,14 +135,14 @@ sample_dates <- data_2 %>%
 plot_data <- gg_vistime(data = data_2,
                         col.group = "Sample_ID", # Each row will be a sample_ID - proxy for unique star
                         col.event = "Disease_Sign", # Rows will be coloured by the disease-sign
-                        show_labels = FALSE, # Remove labels indicating the ward
+                        show_labels = FALSE, # Remove labels indicating the disease sign
                         axis.ticks.x = FALSE,
                         axis.ticks.y = FALSE,
                         title = "Disease Progression Timeline")
 plot_data
 ```
 
-
+https://stackoverflow.com/questions/40598672/adding-two-y-axis-titles-on-the-same-axis
 ```{r}
 # Tweak the plot
 plot_data <- plot_data + theme_bw() +
@@ -220,6 +220,11 @@ plot_combined
 ### Save plot
 ggplot2::ggsave(plot_combined, file = "../analyses/26-visualizations/ExpA_disease-progression-phenotype-timeline.pdf", dpi=300, height=4, width=7, units="in")
 ```
+
+
+
+
+---
 
 # Make a PCA of RNAseq data for both experiments combined, pre-DEG analyses
 Color code by Experiment (A 2021; B 2022) and exposed and control, and also add in juvenile/adult?? make an option with/without the age class for Exp B 
