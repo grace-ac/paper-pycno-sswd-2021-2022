@@ -138,7 +138,7 @@ plot_data <- gg_vistime(data = data_2,
                         show_labels = FALSE, # Remove labels indicating the ward
                         axis.ticks.x = FALSE,
                         axis.ticks.y = FALSE,
-                        title = "Disease Progression timeline")
+                        title = "Disease Progression Timeline")
 plot_data
 ```
 
@@ -155,15 +155,15 @@ plot_data
 ```
 
 ```{r}
-# Adding date of sample 
+# Adding date of sample - based on dates that can be found in the object "sample_dates" we made above
 plot_data <- plot_data +
-  annotate("point", x = as.POSIXct(sample_dates[13,2]), y = 38, size = 1, colour = "black") + #78
-  annotate("point", x = as.POSIXct(sample_dates[11,2]), y = 35, size = 1, colour = "black") + #75
-  annotate("point", x = as.POSIXct(sample_dates[6,2]), y = 32, size = 1, colour = "black") + #71
-  annotate("point", x = as.POSIXct(sample_dates[7,2]), y = 29, size = 1, colour = "black") + #67
-  annotate("point", x = as.POSIXct(sample_dates[1,2]), y = 26, size = 1, colour = "black") + #59
-  annotate("point", x = as.POSIXct(sample_dates[8,2]), y = 23, size = 1, colour = "black") + #69
-  annotate("point", x = as.POSIXct(sample_dates[2,2]), y = 20, size = 1, colour = "black") + #57
+  annotate("point", x = as.POSIXct(sample_dates[13,2]), y = 31, size = 1, colour = "black") + #78
+  annotate("point", x = as.POSIXct(sample_dates[11,2]), y = 29, size = 1, colour = "black") + #75
+  annotate("point", x = as.POSIXct(sample_dates[6,2]), y = 27, size = 1, colour = "black") + #71
+  annotate("point", x = as.POSIXct(sample_dates[7,2]), y = 25, size = 1, colour = "black") + #67
+  annotate("point", x = as.POSIXct(sample_dates[1,2]), y = 23, size = 1, colour = "black") + #59
+  annotate("point", x = as.POSIXct(sample_dates[8,2]), y = 21, size = 1, colour = "black") + #69
+  annotate("point", x = as.POSIXct(sample_dates[2,2]), y = 19, size = 1, colour = "black") + #57
   annotate("point", x = as.POSIXct(sample_dates[15,2]), y = 17, size = 1, colour = "black") + #83
   annotate("point", x = as.POSIXct(sample_dates[3,2]), y = 15, size = 1, colour = "black") + #56
   annotate("point", x = as.POSIXct(sample_dates[16,2]), y = 13, size = 1, colour = "black") + #81
