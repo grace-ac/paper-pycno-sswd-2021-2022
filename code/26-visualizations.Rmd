@@ -218,7 +218,7 @@ plot_combined
 
 ```{r}
 ### Save plot
-ggplot2::ggsave(plot_combined, file = "../analyses/ExpA_disease-progression-phenotype-timeline.pdf", dpi=300, height=4, width=7, units="in")
+ggplot2::ggsave(plot_combined, file = "../analyses/26-visualizations/ExpA_disease-progression-phenotype-timeline.pdf", dpi=300, height=4, width=7, units="in")
 ```
 
 
