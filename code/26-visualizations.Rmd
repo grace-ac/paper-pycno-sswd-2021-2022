@@ -117,8 +117,7 @@ data_2 <- merge(data,
                       col_sign_mapping,
                       by="Disease_Sign",
                       all.x=T,all.y=T) %>%
-  select(Sample_ID, Disease_Sign, start, end, Sample_Date, color) %>%
-  arrange(Sample_Date, Sample_ID, start)
+  select(Sample_ID, Sample_Date, Disease_Sign, start, end, color)
 data_2
 ```
 
@@ -139,10 +138,74 @@ plot_data <- gg_vistime(data = data_2,
                         show_labels = FALSE, # Remove labels indicating the ward
                         linewidth = 20,
                         title = "Disease Progression timeline")
+plot_data
 ```
 
 
+```{r}
+# Tweak the plot
+plot_data <- plot_data + theme_bw() +
+  ggplot2::theme(
+    plot.title = element_text(size=24),
+    axis.text.x = element_text(size = 12, color = "black", angle = 30, vjust = 1, hjust = 1),
+    axis.text.y = element_text(size = 12, color = "black")) +
+  scale_x_datetime(breaks = breaks_width("1 days"), labels = date_format("%b %d"))
+plot_data
+```
 
+```{r}
+# Adding date of sample 
+plot_data <- plot_data +
+  annotate("point", x = as.POSIXct(sample_dates[1,2]), y = 5, size = 5, colour = "black") +
+  annotate("point", x = as.POSIXct(sample_dates[2,2]), y = 3, size = 5, colour = "black") +
+  annotate("point", x = as.POSIXct(sample_dates[3,2]), y = 1, size = 5, colour = "black")
+plot_data
+```
+
+```{r}
+### Create a legend
+data_legend <- data_2 %>%
+  distinct(Disease_Sign, .keep_all=T) %>%
+  arrange(Disease_Sign)
+data_legend$start <- as.Date("2021-10-05")
+data_legend$end <- as.Date("2021-10-18")
+data_legend$Sample_ID <- "Key"
+data_legend
+plot_legend <- gg_vistime(data = data_legend,
+                          col.group = "Sample_ID",
+                          col.event = "Disease_Sign",
+                          show_labels = TRUE,
+                          linewidth = 20,
+                          title = "Legend")
+plot_legend
+```
+
+
+```{r}
+# Tweak the legend plot
+plot_legend <- plot_legend + theme_void() +
+  ggplot2::theme(
+    plot.title = element_text(size=11),
+    axis.title.x=element_blank(),
+    axis.text.x=element_blank(),
+    axis.ticks.x=element_blank(),
+    axis.title.y=element_blank(),
+    axis.text.y=element_blank(),
+    axis.ticks.y=element_blank())
+plot_legend
+```
+
+```{r}
+### Combine the main plot and legend into a single figure
+plot_combined <- plot_grid(plot_data, plot_legend,
+                           rel_widths = c(1, 0.15))
+plot_combined
+```
+
+```{r}
+### Save plot
+ggplot2::ggsave(plot_combined, file = "timeline_plot_mock_data.pdf", dpi=300, height=4, width=7, units="in")
+```
 
 
 
