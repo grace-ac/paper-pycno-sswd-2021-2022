@@ -304,11 +304,18 @@ expABcounts_transpose <- expABcounts_transpose %>% mutate_at(2:23465, as.numeric
 
 change Sample_ID s into descriptions 
 
-Example, PSC.## would be changed to Adult.Control 
+
+
+add a column that tells the treatment group of each sample: 
 ```{r}
-expABcounts_transpose$Sample_ID <- gsub("PSC.19", "Adult.Control
+expABcounts_transpose$Treatment <- c("Control_Adult", "Control_Adult", "Control_Adult", "Control_Adult", "Control_Adult", "Control_Adult", "Control_Adult", "Control_Adult", "Exposed_Adult", "Exposed_Adult", "Exposed_Adult", "Exposed_Adult", "Exposed_Adult", "Exposed_Adult", "Exposed_Adult", "Exposed_Adult", "Exposed_Juvenile", "Exposed_Juvenile", "Exposed_Juvenile", "Exposed_Adult", "Exposed_Adult", "Exposed_Adult", "Control_Juvenile", "Control_Juvenile", "Control_Juvenile", "Control_Adult", "Control_Adult", "Control_Adult")
+
 ```
 
+```{r}
+expABcounts_trtmnt <- as.data.frame(expABcounts_trtmnt)
+
+```
 
 
 ```{r}
@@ -316,7 +323,7 @@ df_nums <- expABcounts_transpose[2:23465]
 pca <- prcomp(df_nums)
 
 
-p <- autoplot(pca, data = expABcounts_transpose, colour = 'Sample_ID')
+p <- autoplot(pca, data = expABcounts_transpose, colour = 'Treatment')
 
 ggplotly(p)
 ```
