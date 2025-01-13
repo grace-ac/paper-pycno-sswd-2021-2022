@@ -137,8 +137,7 @@ plot_data <- gg_vistime(data = data_2,
                         col.event = "Disease_Sign", # Rows will be coloured by the disease-sign
                         show_labels = FALSE, # Remove labels indicating the disease sign
                         axis.ticks.x = FALSE,
-                        axis.ticks.y = FALSE,
-                        title = "Exp A Disease Progression Timeline")
+                        axis.ticks.y = FALSE)
 plot_data
 ```
 
@@ -189,8 +188,7 @@ plot_legend <- gg_vistime(data = data_legend,
                           col.group = "Sample_ID",
                           col.event = "Disease_Sign",
                           show_labels = TRUE,
-                          linewidth = 10,
-                          title = "Legend")
+                          linewidth = 10)
 plot_legend
 ```
 
@@ -278,8 +276,7 @@ plot_data <- gg_vistime(data = datab_2,
                         col.event = "Disease_Sign", # Rows will be coloured by the disease-sign
                         show_labels = FALSE, # Remove labels indicating the disease sign
                         axis.ticks.x = FALSE,
-                        axis.ticks.y = FALSE,
-                        title = "Exp B Disease Progression Timeline")
+                        axis.ticks.y = FALSE)
 plot_data
 ```
 
@@ -327,8 +324,7 @@ plot_legend <- gg_vistime(data = data_legend,
                           col.group = "Sample_ID",
                           col.event = "Disease_Sign",
                           show_labels = TRUE,
-                          linewidth = 10,
-                          title = "Legend")
+                          linewidth = 10)
 plot_legend
 ```
 
