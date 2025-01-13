@@ -1,4 +1,4 @@
-﻿Sample_ID,Didsease_Sign,start,end,Sample_Date,Treatment,Age,Star_ID
+﻿Sample_ID,Disease_Sign,start,end,Sample_Date,Treatment,Age,Star_ID
 186,Healthy,2022-06-22,2022-07-09,2022-07-02,Control,Adult,15
 203,Healthy,2022-06-22,2022-07-09,2022-07-03,Control,Adult,31
 209,Healthy,2022-06-22,2022-07-09,2022-07-04,Control,Adult,9
