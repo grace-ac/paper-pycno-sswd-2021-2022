@@ -138,7 +138,7 @@ plot_data <- gg_vistime(data = data_2,
                         show_labels = FALSE, # Remove labels indicating the disease sign
                         axis.ticks.x = FALSE,
                         axis.ticks.y = FALSE,
-                        title = "Disease Progression Timeline")
+                        title = "Exp A Disease Progression Timeline")
 plot_data
 ```
 
