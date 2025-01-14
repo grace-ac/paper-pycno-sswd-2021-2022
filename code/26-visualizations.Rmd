@@ -455,7 +455,7 @@ df_nums <- expABcounts_transpose[2:23465]
 pca <- prcomp(df_nums)
 
 
-p <- autoplot(pca, data = expABcounts_transpose, colour = 'Treatment')
+p <- autoplot(pca, data = expABcounts_transpose, colour = 'Treatment', frame = TRUE)
 
 ggplotly(p)
 ```
