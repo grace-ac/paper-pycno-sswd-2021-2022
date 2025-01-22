@@ -507,7 +507,8 @@ ggplot(mortexpb, aes(age, average_days_to_death)) +
   geom_point(size = 2) +
   geom_errorbar(aes(ymin=average_days_to_death-sd, ymax=average_days_to_death+sd), width = 0.05) +
   labs(x="Age", y="Days To Mortality Post-Exposure") +
-  theme_bw() + 
+  ylim(0, 20) +
+  theme_bw(base_size = 18) + 
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 ```
 
