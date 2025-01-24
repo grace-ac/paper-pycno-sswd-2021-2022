@@ -503,9 +503,11 @@ print(mortexpb)
 
 ```{r}
 # scatterplot
+options(repr.plot.width=2, repr.plot.height=4) 
+
 ggplot(mortexpb, aes(age, average_days_to_death)) + 
-  geom_point(size = 2) +
-  geom_errorbar(aes(ymin=average_days_to_death-sd, ymax=average_days_to_death+sd), width = 0.05) +
+  geom_point(size = 5) +
+  geom_errorbar(aes(ymin=average_days_to_death-sd, ymax=average_days_to_death+sd), width = 1) +
   labs(x="Age", y="Days To Mortality Post-Exposure") +
   ylim(0, 20) +
   theme_bw(base_size = 18) + 
@@ -516,3 +518,113 @@ ggplot(mortexpb, aes(age, average_days_to_death)) +
 # saving the final figure
 ggsave("../analyses/26-visualizations/ExpB_mort_scatterplot.png", width = 4, height = 2.5, dpi = 1000)
 ```
+
+
+## Make a PCA for both experiments' raw RNAseq data, grouping by treatments for all experiments 
+Read in count matrices 
+```{r}
+expAcounts <- read.csv("../data/gene_count_matrix_2021.csv")
+head(expAcounts)
+```
+
+```{r}
+expBcounts <- read.csv("../data/gene_count_matrix_2022.csv")
+head(expBcounts)
+```
+
+combine the two tables: 
+```{r}
+expABcounts <- left_join(expAcounts, expBcounts, by="gene_id")
+head(expABcounts)
+```
+only keep libraries that we did comparisons for: 
+```{r}
+expABcounts_sm <- select(expABcounts, "gene_id", "PSC.56", "PSC.52", "PSC.54", "PSC.61", "PSC.64", "PSC.73", "PSC.76", "PSC.81", "PSC.59", "PSC.57", "PSC.69", "PSC.67", "PSC.71", "PSC.75", "PSC.78", "PSC.83", "PSC.0228", "PSC.0187", "PSC.0188", "PSC.0174", "PSC.0190", "PSC.0231", "PSC.0230", "PSC.0219", "PSC.0177", "PSC.0186", "PSC.0209", "PSC.0203")
+```
+
+Make a PCA:
+```{r}
+#install.packages("ggfortify")
+```
+
+
+```{r}
+library(ggfortify)
+library(plotly)
+```
+
+
+```{r}
+expABcounts_transpose = t(expABcounts_sm)
+```
+
+make first row into column names: 
+```{r}
+colnames(expABcounts_transpose)=expABcounts_transpose[c(1),]
+```
+
+remove first row: 
+```{r}
+expABcounts_transpose=expABcounts_transpose[-c(1), ]
+```
+
+make it a dataframe
+```{r}
+expABcounts_transpose <- as.data.frame(expABcounts_transpose)
+```
+
+
+make rownames a column called SampleID
+```{r}
+library(tibble)
+expABcounts_transpose <- tibble::rownames_to_column(expABcounts_transpose, "Sample_ID")
+```
+
+make the sample_ID into rownames:
+```{r}
+#expABcounts_transpose <- data.frame(expABcounts_transpose, row.names = 1)
+```
+
+
+
+```{r}
+library(dplyr)
+expABcounts_transpose <- expABcounts_transpose %>% mutate_at(2:23465, as.numeric)
+```
+
+change Sample_ID s into descriptions 
+
+
+
+add a column that tells the treatment group of each sample: 
+```{r}
+expABcounts_transpose$Treatment <- c("Control_Adult_SSWD_Challenge", "Control_Adult_SSWD_Challenge", "Control_Adult_SSWD_Challenge", "Control_Adult_SSWD_Challenge", "Control_Adult_SSWD_Challenge", "Control_Adult_SSWD_Challenge", "Control_Adult_SSWD_Challenge", "Control_Adult_SSWD_Challenge", "Exposed_Adult_SSWD_Challenge", "Exposed_Adult_SSWD_Challenge", "Exposed_Adult_SSWD_Challenge", "Exposed_Adult_SSWD_Challenge", "Exposed_Adult_SSWD_Challenge", "Exposed_Adult_SSWD_Challenge", "Exposed_Adult_SSWD_Challenge", "Exposed_Adult_SSWD_Challenge", "Exposed_Juvenile_AgeClass_SSWD_Challenge", "Exposed_Juvenile_AgeClass_SSWD_Challenge", "Exposed_Juvenile_AgeClass_SSWD_Challenge", "Exposed_Adult_AgeClass_SSWD_Challenge", "Exposed_Adult_AgeClass_SSWD_Challenge", "Exposed_Adult_AgeClass_SSWD_Challenge", "Control_Juvenile_AgeClass_SSWD_Challenge", "Control_Juvenile_AgeClass_SSWD_Challenge", "Control_Juvenile_AgeClass_SSWD_Challenge", "Control_Adult_AgeClass_SSWD_Challenge", "Control_Adult_AgeClass_SSWD_Challenge", "Control_Adult_AgeClass_SSWD_Challenge")
+
+```
+
+```{r}
+expABcounts_transpose <- as.data.frame(expABcounts_tra)
+
+```
+
+
+```{r}
+df_nums <- expABcounts_transpose[2:23465]
+pca <- prcomp(df_nums)
+
+
+p <- autoplot(pca, data = expABcounts_transpose, colour = 'Treatment', frame = TRUE)
+
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+
+
