@@ -5,7 +5,6 @@
 10-hisat-deseq2
 03-hisat2
 12-fix-gff
-13-hisat-deseq2
 15-hisat2-deseq2-summer2022/*sam
 15-hisat2-deseq2-summer2022/*bam
 15-hisat2-deseq2-summer2022/*bam*
