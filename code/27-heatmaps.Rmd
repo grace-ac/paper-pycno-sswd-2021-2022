@@ -1,0 +1,8 @@
+---
+title: "27-heatmaps"
+output: html_document
+date: "2025-04-21"
+---
+
+Rmd to make heatmaps of genes contributing to the top 9 enriched biological processes across all individuals to look at expression patterns. 
+
