@@ -6,3 +6,75 @@ date: "2025-04-21"
 
 Rmd to make heatmaps of genes contributing to the top 9 enriched biological processes across all individuals to look at expression patterns. 
 
+### Load packages
+```{r}
+library(dplyr)
+library(tidyverse)
+library(pheatmap)
+library(data.table)
+library(RColorBrewer)
+```
+
+## Read in files: 
+### ubiquitin-dependent protein catabolic process 
+```{r}
+ubiqdep <- read.csv("../analyses/27-heatmaps/uniq-dep-prot-cat_genes_counts.csv")
+head(ubiqdep)
+```
+
+Select columns for heatmap:     
+Gene Names and counts for each library:     
+```{r}
+ubiqheat <- select(ubiqdep, "gene_id", "PSC.56", "PSC.52", "PSC.54", "PSC.61","PSC.64", "PSC.73", "PSC.76", "PSC.81", "PSC.59", "PSC.57", "PSC.69", "PSC.67", "PSC.71", "PSC.75", "PSC.78", "PSC.83", "PSC.0228", "PSC.0187", "PSC.0188", "PSC.0174", "PSC.0190", "PSC.0231", "PSC.0230", "PSC.0219", "PSC.0177", "PSC.0186", "PSC.0209", "PSC.0203")
+ubiqheat
+```
+
+Set heatmap colors:
+```{r}
+heatmapBrBG <- RColorBrewer::brewer.pal(11, "BrBG")
+```
+
+
+
+Have to make gene_id column into rownames:
+Set as row names:
+```{r}
+rownames(ubiqheat) <- ubiqheat$gene_id #set gene IDs as rownames
+ubiqheat <- ubiqheat[,-1] #remove redundant column
+head(ubiqheat)
+```
+Create an annotation for the libraries: 
+Add column annotations for the samples denoting age, and treatment  :
+```{r}
+sample_col <- data.frame(age = c("adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult" ,"adult", "adult", "adult", "adult", "adult", "juvenile", "juvenile", "juvenile", "adult", "adult", "adult", "juvenile", "juvenile", "juvenile", "adult", "adult", "adult"))
+#add infection status info:
+sample_col$treatment <- c("Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Control", "Control", "Control", "Control", "Control", "Control")
+
+row.names(sample_col) <-colnames(ubiqheat)
+sample_col
+```
+
+```{r}
+ann_colors <- list(
+  age = c("juvenile" = "#7570B3", "adult" = "#708238"), 
+  treatment = c("Control" = "#E7298A","Exposed" = "#D95F02")
+)
+```
+
+```{r}
+pheatmap(ubiqheat, scale = "row", cluster_row = TRUE, cluster_cols = FALSE, clustering_distance_rows = "euclidean", clustering_method = "average", show_rownames = TRUE, show_colnames = TRUE, treeheight_col = 300, annotation_colors = ann_colors, annotation_col = sample_col, legend = TRUE, color = heatmapBrBG, fontsize_col = 12, fontsize_row = 12)
+
+```
+
+Save heatmap to analyses/pheatmap:
+```{r}
+pdf("../analyses/27-heatmaps/ubiq-dep-prot-cat-proc-heatmap.pdf", width = 11, height = 8.5)
+pheatmap(ubiqheat, scale = "row", cluster_row = TRUE, cluster_cols = FALSE, clustering_distance_rows = "euclidean", clustering_method = "average", show_rownames = TRUE, show_colnames = TRUE, treeheight_col = 300, annotation_colors = ann_colors, annotation_col = sample_col, legend = TRUE, color = heatmapBrBG, fontsize_col = 12, fontsize_row = 12)
+dev.off()
+```
+
+
+
+
+
+
