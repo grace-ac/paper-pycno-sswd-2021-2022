@@ -1,0 +1,21 @@
+---
+title: "28-circos"
+output: html_document
+date: "2025-05-30"
+---
+Circos plot of DEGs from the study. 
+
+🔧 Concept:
+A circular ideogram with three arcs:
+• Arc A: DEGs from Adult-only experiment
+• Arc B: DEGs from Age-structured experiment
+• Arc C: Shared DEGs, with immune-related genes highlighted
+• Chords (connecting bands) link genes that appear in:
+• Multiple experiments
+• Multiple GO/KEGG immune pathways
+
+It seems like Circos isn't an R package... but there is an R package called `circlize` that i'll use. 
+
+
+
+

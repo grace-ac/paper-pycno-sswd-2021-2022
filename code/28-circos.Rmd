@@ -1,7 +1,0 @@
----
-title: "28-circos"
-output: html_document
-date: "2025-05-30"
----
-Circos plot of DEGs from the study. 
-
