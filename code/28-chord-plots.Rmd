@@ -16,6 +16,49 @@ A circular ideogram with three arcs:
 
 It seems like Circos isn't an R package... but there is an R package called `circlize` that i'll use. 
 
+example: https://bioinfo4all.wordpress.com/2021/03/13/tutorial-7-how-to-do-chord-diagram-using-r/ 
+
+https://jokergoo.github.io/circlize_book/book/the-chorddiagram-function.html 
+
+install `circlize` package:
+```{r}
+#install.packages("circlize")
+```
+installed 2025-06-02
+
+load package and others needed:
+```{r}
+library(circlize)
+library(tidyverse)
+library(dplyr)
+library(RColorBrewer)
+```
+
+View annotated DEG list from Adult-only experiment:
+```{r}
+adultDEGsannot <- read.delim("../supplemental/S02-DEGlist_2021_exposedVcontrol_annotated.tab")
+head(adultDEGsannot)
+```
+
+resource: https://r-charts.com/flow/chord-diagram/ 
+Format of data for `circlize` plot should be:
+
+        exp 1         exp 2       shared
+GO BP   #degs         #degs       #degs
+GO BP   #degs         #degs       #degs
+
+and so on
+
+If a DEG has multiple GO BP terms associated with it, the data frame would look like: 
+SOMETHING
+
+I want the figure to look like one linked here: 
+https://www.researchgate.net/figure/Chord-plots-displaying-relationships-between-RNAseq-gene-expression-data-and-gene_fig6_366322182 
+
+
+there are  TON of DEGs in each list... so i need to think about how to shorten. Pick a metric and pick the top X number of DEGs in each experiment?? How best to do that? 
+
+I'm going to play around a little bit to figure out how to use the package before using the bigger tables.
 
 
 
