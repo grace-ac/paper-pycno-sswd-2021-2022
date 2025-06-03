@@ -1,29 +1,29 @@
-sample_id	year	age	treatment	alignment_rate
-PSC-52	2021	adult	control	79.46%
-PSC-54	2021	adult	control	80.32%
-PSC-56	2021	adult	control	74.91%
-PSC-57	2021	adult	exposed	83.37%
-PSC-59	2021	adult	exposed	78.12%
-PSC-61	2021	adult	control	78.81%
-PSC-64	2021	adult	control	80.71%
-PSC-67	2021	adult	exposed	77.36%
-PSC-69	2021	adult	exposed	77.95%
-PSC-71	2021	adult	exposed	77.85%
-PSC-73	2021	adult	control	79.39%
-PSC-75	2021	adult	exposed	46.60%
-PSC-76	2021	adult	control	79.14%
-PSC-78	2021	adult	exposed	63.35%
-PSC-81	2021	adult	control	77.74%
-PSC-83	2021	adult	exposed	81.64%
-PSC-0174	2022	adult	exposed	80.67%
-PSC-0177	2022	juvenile	control	77.98%
-PSC-0186	2022	adult	control	74.86%
-PSC-0187	2022	juvenile	exposed	77.80%
-PSC-0188	2022	juvenile	exposed	78.29%
-PSC-0190	2022	adult	exposed	80.51%
-PSC-0203	2022	adult	control	73.65%
-PSC-0209	2022	adult	control	73.47%
-PSC-0219	2022	juvenile	control	78.04%
-PSC-0228	2022	juvenile	exposed	80.29%
-PSC-0230	2022	juvenile	control	78.41%
-PSC-0231	2022	adult	exposed	80.88%
+sample_id	year	age	radius_cm	treatment	alignment_rate
+PSC-52	2021	adult	15	control	79.46%
+PSC-54	2021	adult	12	control	80.32%
+PSC-56	2021	adult	17	control	74.91%
+PSC-57	2021	adult	16	exposed	83.37%
+PSC-59	2021	adult	23	exposed	78.12%
+PSC-61	2021	adult	13	control	78.81%
+PSC-64	2021	adult	25	control	80.71%
+PSC-67	2021	adult	15	exposed	77.36%
+PSC-69	2021	adult	16	exposed	77.95%
+PSC-71	2021	adult	14	exposed	77.85%
+PSC-73	2021	adult	25	control	79.39%
+PSC-75	2021	adult	24	exposed	46.60%
+PSC-76	2021	adult	26	control	79.14%
+PSC-78	2021	adult	25	exposed	63.35%
+PSC-81	2021	adult	16	control	77.74%
+PSC-83	2021	adult	15	exposed	81.64%
+PSC-0174	2022	adult	16	exposed	80.67%
+PSC-0177	2022	juvenile	7	control	77.98%
+PSC-0186	2022	adult	18	control	74.86%
+PSC-0187	2022	juvenile	5	exposed	77.80%
+PSC-0188	2022	juvenile	5	exposed	78.29%
+PSC-0190	2022	adult	22	exposed	80.51%
+PSC-0203	2022	adult	21	control	73.65%
+PSC-0209	2022	adult	19	control	73.47%
+PSC-0219	2022	juvenile	4	control	78.04%
+PSC-0228	2022	juvenile	5	exposed	80.29%
+PSC-0230	2022	juvenile	6	control	78.41%
+PSC-0231	2022	adult	17	exposed	80.88%
