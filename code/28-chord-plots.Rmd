@@ -60,5 +60,168 @@ there are  TON of DEGs in each list... so i need to think about how to shorten. 
 
 I'm going to play around a little bit to figure out how to use the package before using the bigger tables.
 
+load practice data:
+```{r}
+data <- read.delim("../analyses/28-chord-plots/practice_data.csv", sep = ",")
+head(data)
+```
+make first column into rownames:
+```{r}
+library(tidyverse)
+
+#use values from 'X' column as row names
+data <- data %>% remove_rownames %>% column_to_rownames(var='X')
+
+```
+
+make the data into a matrix:
+```{r}
+# Converting into numeric matrix
+data2 <- data.matrix(data)
+data2
+```
+
+
+Create plot:
+```{r}
+# install.packages("circlize")
+library(circlize)
+
+chordDiagram(data2)
+
+```
+
+Wait...
+
+actually... i could have this just be of the enriched processes (9) and the DEGs associated with them!!!! maybe that would be cool? 
+
+try (note: several DEGs in each list have multiple annotations - need to figure out how to do split chords)
+```{r}
+data <- read.delim("../analyses/28-chord-plots/top9-degs-for-circle-plot.csv", sep = ",")
+head(data)
+```
+make first column into rownames:
+```{r}
+library(tidyverse)
+
+#use values from 'X' column as row names
+data <- data %>% remove_rownames %>% column_to_rownames(var='X')
+
+```
+
+make the data into a matrix:
+```{r}
+# Converting into numeric matrix
+data2 <- data.matrix(data)
+data2
+```
+
+Create plot:
+```{r}
+# install.packages("circlize")
+library(circlize)
+
+chordDiagram(data2)
+
+```
+
+Try a new orientation where it's the unique DEGs for 2021, unique DEGs for 2022, and then the shared, with chords 
+
+# Try with unique DEGs to 2021 and 2022 separated, with shared being it's own band
+
+```{r}
+data <- read.delim("../analyses/28-chord-plots/top9-degs-for-chord-uniq20212022.csv", sep = ",")
+head(data)
+```
+
+make first column into rownames:
+```{r}
+library(tidyverse)
+
+#use values from 'X' column as row names
+data <- data %>% remove_rownames %>% column_to_rownames(var='X')
+
+```
+
+make the data into a matrix:
+```{r}
+# Converting into numeric matrix
+data2 <- data.matrix(data)
+data2
+```
+ 
+ 
+                                                                            Adult.SSWD.Experiment Age.Class.SSWD.Experiment Shared
+GO:0043161~proteasome-mediated ubiquitin-dependent protein catabolic process                    16                        15     87
+GO:0002181~cytoplasmic translation                                                               6                         4     24
+GO:0006508~proteolysis                                                                          48                        59    131
+GO:0006511~ubiquitin-dependent protein catabolic process                                        13                        21     58
+GO:0007229~integrin-mediated signaling pathway                                                   2                         4     23
+GO:0033209~tumor necrosis factor-mediated signaling pathway                                      1                         3     16
+GO:0042742~defense response to bacterium                                                         7                         6     28
+GO:0006412~translation                                                                          14                        18     44
+GO:0097352~autophagosome maturation                                                              2                         3     16
+
+
+Create plot:
+```{r}
+# install.packages("circlize")
+library(circlize)
+
+chordDiagramFromMatrix(data2, )
+
+```
+
+# change of package!!! I'll now try `GOPlot` R package
+https://wencke.github.io
+
+```{r}
+# Installation of the latest released version
+install.packages('GOplot')
+```
+Installed 2025-06-02
+
+```{r}
+library(GOplot)
+```
+follolwing this: https://wencke.github.io 
+
+read in the DAVID output from the top9 BP:
+```{r}
+davidout <- read.delim("../supplemental/S09-2021-2022-same-DAVID-top9_enriched.tab")
+head(davidout)
+```
+
+
+
+load genes (from shared 4,114 of degs that are associated with the top 9 enriched terms) with log2fc
+```{r}
+genelog <- read.csv("../analyses/28-chord-plots/genes-log2fc.csv")
+head(genelog)
+```
+make it a dataframe:
+```{r}
+genelog <- as.data.frame(genelog)
+head(genelog)
+```
+
+create a vector of the top 9 enriched BP: 
+```{r}
+processes <- c("proteasome-mediated ubiquitin-dependent protein catabolic process", "cytoplasmic translation", "proteolysis", "ubiquitin-dependent protein catabolic process", "integrin-mediated signaling pathway", "tumor necrosis factor-mediated signaling pathway", "defense response to bacterium", "translation", "autophagosome maturation")
+head(processes)
+```
+
+```{r}
+# Generate the plotting object
+circ <- circle_dat(davidout, genelog)
+```
+
+
+```{r}
+# Now it is time to generate the binary matrix
+chord <- chord_dat(circ, genelog, processes)
+head(chord)
+```
+
 
 

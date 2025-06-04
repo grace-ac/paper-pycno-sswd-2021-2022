@@ -23,9 +23,12 @@ head(ubiqdep)
 ```
 
 Select columns for heatmap:     
-Gene Names and counts for each library:     
+Gene Names and counts for each library:   
+Call out Library IDs in order of star size:
+
+
 ```{r}
-ubiqheat <- select(ubiqdep, "gene_id", "PSC.56", "PSC.52", "PSC.54", "PSC.61","PSC.64", "PSC.73", "PSC.76", "PSC.81", "PSC.59", "PSC.57", "PSC.69", "PSC.67", "PSC.71", "PSC.75", "PSC.78", "PSC.83", "PSC.0228", "PSC.0187", "PSC.0188", "PSC.0174", "PSC.0190", "PSC.0231", "PSC.0230", "PSC.0219", "PSC.0177", "PSC.0186", "PSC.0209", "PSC.0203")
+ubiqheat <- select(ubiqdep, "gene_id", "PSC.0219", "PSC.0230", "PSC.0177", "PSC.54", "PSC.61", "PSC.52", "PSC.81", "PSC.56", "PSC.0186", "PSC.0209", "PSC.0203", "PSC.64", "PSC.73", "PSC.76", "PSC.0187", "PSC.0188", "PSC.0228", "PSC.71", "PSC.67", "PSC.83", "PSC.57", "PSC.69", "PSC.0174", "PSC.0231", "PSC.59", "PSC.75", "PSC.75", "PSC.78")
 ubiqheat
 ```
 
@@ -34,7 +37,24 @@ Set heatmap colors:
 heatmapBrBG <- RColorBrewer::brewer.pal(11, "BrBG")
 ```
 
+Have to make gene_id column into rownames:
+Set as row names:
+```{r}
+rownames(ubiqheat) <- ubiqheat$gene_id #set gene IDs as rownames
+ubiqheat <- ubiqheat[,-1] #remove redundant column
+head(ubiqheat)
+```
 
+Create an annotation for the libraries: 
+Add column annotations for the samples denoting age, and treatment  :
+```{r}
+sample_col <- data.frame(age = c("juvenile", "juvenile", "juvenile", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "juvenile", "juvenile", "juvenile", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult"))
+#add infection status info:
+sample_col$treatment <- c("Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed")
+
+row.names(sample_col) <-colnames(ubiqheat)
+sample_col
+```
 
 Have to make gene_id column into rownames:
 Set as row names:
@@ -43,16 +63,7 @@ rownames(ubiqheat) <- ubiqheat$gene_id #set gene IDs as rownames
 ubiqheat <- ubiqheat[,-1] #remove redundant column
 head(ubiqheat)
 ```
-Create an annotation for the libraries: 
-Add column annotations for the samples denoting age, and treatment  :
-```{r}
-sample_col <- data.frame(age = c("adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult" ,"adult", "adult", "adult", "adult", "adult", "juvenile", "juvenile", "juvenile", "adult", "adult", "adult", "juvenile", "juvenile", "juvenile", "adult", "adult", "adult"))
-#add infection status info:
-sample_col$treatment <- c("Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Control", "Control", "Control", "Control", "Control", "Control")
 
-row.names(sample_col) <-colnames(ubiqheat)
-sample_col
-```
 
 ```{r}
 ann_colors <- list(
@@ -82,7 +93,7 @@ head(tumor)
 Select columns for heatmap:     
 Gene Names and counts for each library:     
 ```{r}
-tumorheat <- select(tumor, "gene_id", "PSC.56", "PSC.52", "PSC.54", "PSC.61","PSC.64", "PSC.73", "PSC.76", "PSC.81", "PSC.59", "PSC.57", "PSC.69", "PSC.67", "PSC.71", "PSC.75", "PSC.78", "PSC.83", "PSC.0228", "PSC.0187", "PSC.0188", "PSC.0174", "PSC.0190", "PSC.0231", "PSC.0230", "PSC.0219", "PSC.0177", "PSC.0186", "PSC.0209", "PSC.0203")
+tumorheat <- select(tumor, "gene_id", "PSC.0219", "PSC.0230", "PSC.0177", "PSC.54", "PSC.61", "PSC.52", "PSC.81", "PSC.56", "PSC.0186", "PSC.0209", "PSC.0203", "PSC.64", "PSC.73", "PSC.76", "PSC.0187", "PSC.0188", "PSC.0228", "PSC.71", "PSC.67", "PSC.83", "PSC.57", "PSC.69", "PSC.0174", "PSC.0231", "PSC.59", "PSC.75", "PSC.75", "PSC.78")
 tumorheat
 ```
 
@@ -91,22 +102,23 @@ Set heatmap colors:
 heatmapBrBG <- RColorBrewer::brewer.pal(11, "BrBG")
 ```
 
+Create an annotation for the libraries: 
+Add column annotations for the samples denoting age, and treatment  :
+```{r}
+sample_col <- data.frame(age = c("juvenile", "juvenile", "juvenile", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "juvenile", "juvenile", "juvenile", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult"))
+#add infection status info:
+sample_col$treatment <- c("Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed")
+
+row.names(sample_col) <-colnames(tumorheat)
+sample_col
+```
+
 Have to make gene_id column into rownames:
 Set as row names:
 ```{r}
 rownames(tumorheat) <- tumorheat$gene_id #set gene IDs as rownames
 tumorheat <- tumorheat[,-1] #remove redundant column
 head(tumorheat)
-```
-Create an annotation for the libraries: 
-Add column annotations for the samples denoting age, and treatment  :
-```{r}
-sample_col <- data.frame(age = c("adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult" ,"adult", "adult", "adult", "adult", "adult", "juvenile", "juvenile", "juvenile", "adult", "adult", "adult", "juvenile", "juvenile", "juvenile", "adult", "adult", "adult"))
-#add infection status info:
-sample_col$treatment <- c("Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Control", "Control", "Control", "Control", "Control", "Control")
-
-row.names(sample_col) <-colnames(tumorheat)
-sample_col
 ```
 
 ```{r}
@@ -137,7 +149,7 @@ head(bacterium)
 Select columns for heatmap:     
 Gene Names and counts for each library:     
 ```{r}
-bacterium <- select(bacterium, "gene_id", "PSC.56", "PSC.52", "PSC.54", "PSC.61","PSC.64", "PSC.73", "PSC.76", "PSC.81", "PSC.59", "PSC.57", "PSC.69", "PSC.67", "PSC.71", "PSC.75", "PSC.78", "PSC.83", "PSC.0228", "PSC.0187", "PSC.0188", "PSC.0174", "PSC.0190", "PSC.0231", "PSC.0230", "PSC.0219", "PSC.0177", "PSC.0186", "PSC.0209", "PSC.0203")
+bacterium <- select(bacterium, "gene_id", "PSC.0219", "PSC.0230", "PSC.0177", "PSC.54", "PSC.61", "PSC.52", "PSC.81", "PSC.56", "PSC.0186", "PSC.0209", "PSC.0203", "PSC.64", "PSC.73", "PSC.76", "PSC.0187", "PSC.0188", "PSC.0228", "PSC.71", "PSC.67", "PSC.83", "PSC.57", "PSC.69", "PSC.0174", "PSC.0231", "PSC.59", "PSC.75", "PSC.75", "PSC.78")
 bacterium
 ```
 
@@ -146,6 +158,18 @@ Set heatmap colors:
 heatmapBrBG <- RColorBrewer::brewer.pal(11, "BrBG")
 ```
 
+Create an annotation for the libraries: 
+Add column annotations for the samples denoting age, and treatment  :
+```{r}
+sample_col <- data.frame(age = c("juvenile", "juvenile", "juvenile", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "juvenile", "juvenile", "juvenile", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult"))
+#add infection status info:
+sample_col$treatment <- c("Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed")
+
+row.names(sample_col) <-colnames(bacterium)
+sample_col
+```
+
+
 Have to make gene_id column into rownames:
 Set as row names:
 ```{r}
@@ -153,16 +177,7 @@ rownames(bacterium) <- bacterium$gene_id #set gene IDs as rownames
 bacterium <- bacterium[,-1] #remove redundant column
 head(bacterium)
 ```
-Create an annotation for the libraries: 
-Add column annotations for the samples denoting age, and treatment  :
-```{r}
-sample_col <- data.frame(age = c("adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult", "adult" ,"adult", "adult", "adult", "adult", "adult", "juvenile", "juvenile", "juvenile", "adult", "adult", "adult", "juvenile", "juvenile", "juvenile", "adult", "adult", "adult"))
-#add infection status info:
-sample_col$treatment <- c("Control", "Control", "Control", "Control", "Control", "Control", "Control", "Control", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Exposed", "Control", "Control", "Control", "Control", "Control", "Control")
 
-row.names(sample_col) <-colnames(bacterium)
-sample_col
-```
 
 ```{r}
 ann_colors <- list(
