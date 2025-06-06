@@ -4,3 +4,51 @@ output: html_document
 date: "2025-06-06"
 ---
 
+plot to show relationship between sea star diameter (cm) and days to death for experiment in 2022 comparing juveniles (<20cm diameter) and adults (>30cm diameter). 
+
+star diameters were measured in imageJ based on the dimensions of the bins they were in: https://docs.google.com/spreadsheets/d/1WSAcRbqwRwUAX3mfpVVmDG2tRcDaCZ5v7klXZ0aT3rM/edit?gid=185318957#gid=185318957 
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+```
+
+
+create dataframe of values: 
+```{r}
+diameter.data <- data.frame(
+  diameter.cm = c(8.30082, 11.57224, 11.80592, 13.0048, 14.53896, 15.0368, 15.84452, 16.5608, 16.70304, 16.70812, 30.494, 34.01, 34.3, 35.35, 38.17, 38.84, 45.978, 50.706, 51.582),
+  days.to.death = c(11, 11, 12, 11, 12, 15, 11, 15, 13, 12, 14, 17, 12, 13, 14, 14, 13, 14, 16),
+  stringsAsFactors = FALSE
+)
+
+```
+
+
+
+diameters (cm) :
+```{r}
+#diam <- c(8.30082, 11.57224, 11.80592, 13.0048, 14.53896, 15.0368, 15.84452, 16.5608, 16.70304, 16.70812, 30.494, 34.01, 34.3, 35.35, 38.17, 38.84, 45.978, 50.706, 51.582)
+```
+
+days to death:
+```{r}
+#day <- c(11, 11, 12, 11, 12, 15, 11, 15, 13, 12, 14, 17, 12, 13, 14, 14, 13, 14, 16)
+```
+
+
+create linear model:
+```{r}
+model.lm <- lm(diameter.data$days.to.death ~ diameter.data$diameter.cm)
+summary(model.lm)
+```
+
+```{r}
+plot(diameter.data$diameter.cm, diameter.data$days.to.death, pch = 16, cex = 1.3, xlab = "Sea Star Diameter (cm)", ylab = "Days to Death")
+abline(model.lm, col = 4, lwd = 3)
+```
+
+
+Then... i downloaded image, and added opaque orange (30cm +) and purple (<20cm) to show juves vs adults - in analyses folder for this 
+
+
