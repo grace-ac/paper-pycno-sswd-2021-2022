@@ -50,6 +50,4 @@ abline(model.lm, col = 4, lwd = 3)
 ```
 
 
-Then... i downloaded image, and added opaque orange (30cm +) and purple (<20cm) to show juves vs adults - in analyses folder for this 
-
 
