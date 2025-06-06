@@ -43,8 +43,9 @@ model.lm <- lm(diameter.data$days.to.death ~ diameter.data$diameter.cm)
 summary(model.lm)
 ```
 
+
 ```{r}
-plot(diameter.data$diameter.cm, diameter.data$days.to.death, pch = 16, cex = 1.3, xlab = "Sea Star Diameter (cm)", ylab = "Days to Death")
+plot(diameter.data$diameter.cm, diameter.data$days.to.death, pch = 16, cex = 1.3, xlab = "Sea Star Diameter (cm)", ylab = "Days to Death", col=ifelse(diameter.data$diameter.cm<20, "purple", "orange"))
 abline(model.lm, col = 4, lwd = 3)
 ```
 
