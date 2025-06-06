@@ -1,0 +1,6 @@
+---
+title: "29-linear-regression"
+output: html_document
+date: "2025-06-06"
+---
+
