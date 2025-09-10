@@ -476,7 +476,78 @@ res1 <- results(ddsCvEwA,
                                       group2 = list(c("age", "juvenile", c("condition", "control")))))
 head(res1,3)
 ```
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res1[!is.na(res1$padj) & res1$padj <= 0.05, ])
+```
+982 degs 
 
 
+```{r}
+# adult vs juvenile (in exposed group)
+res2 <- results(ddsCvEwA, 
+                contrast = contraster(ddsCvEwA,
+                                      group1 = list(c("age", "adult"), c("condition", "exposed")),
+                                      group2 = list(c("age", "juvenile", c("condition", "exposed")))))
+head(res2,3)
+```
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res2[!is.na(res2$padj) & res2$padj <= 0.05, ])
+```
+2797
+
+```{r}
+# exposed vs control (for adults)
+res3 <- results(ddsCvEwA, 
+                contrast = contraster(ddsCvEwA,
+                                      group1 = list(c("age", "adult"), c("condition", "exposed")),
+                                      group2 = list(c("age", "adult", c("condition", "control")))))
+head(res3,3)
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res3[!is.na(res3$padj) & res3$padj <= 0.05, ])
+```
+4841
+
+```{r}
+# exposed vs control (for juveniles)
+res4 <- results(ddsCvEwA, 
+                contrast = contraster(ddsCvEwA,
+                                      group1 = list(c("age", "juvenile"), c("condition", "exposed")),
+                                      group2 = list(c("age", "juvenile", c("condition", "control")))))
+head(res4,3)
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res4[!is.na(res4$padj) & res4$padj <= 0.05, ])
+```
+2927
+
+## See interaction 
+```{r}
+# adult vs juvenile in exposed group 
+diff1 <- contraster(ddsCvEwA,
+                    group1 = list(c("age", "adult"), c("condition", "exposed")),
+                    group2 = list(c("age", "juvenile"), c("condition", "exposed")))
+
+# adult vs juvenile in control group
+diff2 <- contraster(ddsCvEwA,
+                    group1 = list(c("age", "adult"), c("condition", "control")),
+                    group2 = list(c("age", "juvenile"), c("condition", "control")))
+
+res5 <- results(ddsCvEwA,
+                contrast = diff1-diff2)
+
+head(res5, 3)
+```
 
 
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res5[!is.na(res5$padj) & res5$padj <= 0.05, ])
+```
+140 DEGs 
