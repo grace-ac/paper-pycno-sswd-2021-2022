@@ -771,7 +771,7 @@ databEx_2 <- merge(databEx,
                       col_sign_mapping,
                       by="Disease_Sign",
                       all.x=T,all.y=T) %>%
-  select(Sample_ID, Sample_Date, Disease_Sign, start, end, color, Treatment)
+  select(Disease_Sign, Sample_ID, start, end, color, Treatment)
 databEx_2
 ```
 
