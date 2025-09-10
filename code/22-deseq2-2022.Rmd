@@ -12,6 +12,7 @@ library(DESeq2)
 library(dplyr)
 library(ggplot2)
 library(pheatmap)
+library(tidyverse)
 ```
 
 
@@ -551,3 +552,23 @@ head(res5, 3)
 dim(res5[!is.na(res5$padj) & res5$padj <= 0.05, ])
 ```
 140 DEGs 
+
+```{r}
+plot5 <- res5
+# The main plot
+plot(plot5$baseMean, plot5$log2FoldChange, pch=20, cex=0.45, ylim=c(-3, 3), log="x", col="darkgray",
+     main="DEGs of interaction between age and exposure (pval <= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+plot5.sig <- res5[!is.na(res5$padj) & res5$padj <= 0.05, ]
+points(plot5.sig$baseMean, plot5.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
+
+Write out differentially expressed gene list: 
+```{r}
+#write.table(plot5.sig, "../analyses/22-deseq2-2022/DEGlist_2022_controlVexposed-with-age-interaction.tab", sep = '\t', row.names = T, quote = F)
+```
+
