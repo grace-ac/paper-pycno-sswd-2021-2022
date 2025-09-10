@@ -272,72 +272,73 @@ wrote out 2024-10-16
 
 ## Compare Exposed to Control Taking Size Into Account (as a proxy for age)
 2025-06-03
+NOTE --> DOES NOT WORK - commenting out the code chunks
 
-```{r}
+#```{r}
 colDataCvEwS <- data.frame(condition=factor(c("exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "control", "control", "control", "control", "control", "control")), 
                              type=factor(rep("paired-end", 12)),
                              size=factor(c("10cm", "10cm", "10cm", "32cm", "44cm", "34cm", "12cm", "8cm", "14cm", "36cm", "38cm", "42cm")))
 rownames(colDataCvEwS) <- colnames(counts22sub)
-```
+#```
 
 
-```{r}
+#```{r}
 # Check all sample IDs in colData are also in CountData and match their orders
 all(rownames(colDataCvEwS) %in% colnames(counts22sub)) #should return TRUE
-```
+#```
 
-```{r}
+#```{r}
 counts22sub <- counts22sub[, rownames(colDataCvEwS)]
 all(rownames(colDataCvEwS) == colnames(counts22sub)) # This should also return TRUE
-```
+#```
 
 modelled after crab paper https://github.com/RobertsLab/paper-tanner-crab/blob/master/scripts/DESeq.Rmd 
 
-```{r}
+#```{r}
 # Create a DESeqDataSet from count matrix and labels, with the design taking age into account
 ddsCvEwS <- DESeqDataSetFromMatrix(countData = counts22sub,
                                      colData = colDataCvEwS, 
                                      design = ~ condition + size)
-```
+#```
 
 Check levels of age and condition 
-```{r}
+#```{r}
 levels(ddsCvEwS$size)
-```
+#```
 
 
-```{r}
+#```{r}
 levels(ddsCvEwS$condition)
-```
+#```
 
 note: `DESeq2` automatically puts the levels in alphabetical order and the first listed level is the reference level for the factor. 
 
 So, Control is reference. 
 
 The following will pull the results from `condition` because that is our variable of interest. This tells us how age contributes to the DEGs
-```{r}
+#```{r}
 design(ddsCvEwS) <- formula(~ size + condition)
 ddsCvEwS <- DESeq(ddsCvEwS)
-```
+#```
 
 Access results:
-```{r}
+#```{r}
 ddsCvEwS.res <- results(ddsCvEwS)
 head(ddsCvEwS.res)
-```
+#```
 
 
-```{r}
+#```{r}
 summary(ddsCvEwS.res)
-```
+#```
 
-```{r}
+#```{r}
 # Count number of hits with adjusted p-value less then 0.05
 dim(ddsCvEwS.res[!is.na(ddsCvEwS.res$padj) & ddsCvEwS.res$padj <= 0.05, ])
-```
+#```
 6202
 
-```{r}
+#```{r}
 CvEwS <- ddsCvEwS.res
 # The main plot
 plot(CvEwA$baseMean, CvEwS$log2FoldChange, pch=20, cex=0.45, ylim=c(-15, 15), log="x", col="darkgray",
@@ -349,4 +350,133 @@ CvEwS.sig <- ddsCvEwS.res[!is.na(ddsCvEwS.res$padj) & ddsCvEwS.res$padj <= 0.05,
 points(CvEwS.sig$baseMean, CvEwS.sig$log2FoldChange, pch=20, cex=0.45, col="red")
 # 2 FC lines
 abline(h=c(-1,1), col="blue")
+#```
+
+#################################################################
+
+# Summer 2025
+Revisions from Reviewer Comments
+
+Tutorial linked to by reviewer: https://www.atakanekiz.com/technical/a-guide-to-designs-and-contrasts-in-DESeq2/ 
+
+Section 3 "Two factors with interaction" is the right section for my data. Their model is based on a treatment, and comparing it between males and females. So there's control and exposed females, and control and exposed males. In our case, we have control and exposed adults, and control and exposed juveniles. 
+
+I'll model it off of what is in the tutorial. 
+
+1. Read in the data: 
+Read in gene count matrix:
+```{r}
+counts22 <- read.csv("../data/gene_count_matrix_2022.csv")
+head(counts22)
 ```
+
+subset just the counts for the libraries specified in the table above:
+```{r}
+counts22sub <- select(counts22, gene_id, PSC.0228, PSC.0187, PSC.0188, PSC.0174, PSC.0190, PSC.0231, PSC.0230, PSC.0219, PSC.0177, PSC.0186, PSC.0209, PSC.0203)
+head(counts22sub)
+```
+
+set column one (gene_id) as rownames: 
+```{r}
+counts22sub <- counts22sub %>% remove_rownames %>% column_to_rownames(var='gene_id')
+head(counts22sub)
+```
+
+Create the Deseq data set - set the conditions and the age 
+CvEwA = Control vs Exposed with Age
+```{r}
+colDataCvEwA <- data.frame(condition=factor(c("exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "control", "control", "control", "control", "control", "control")), 
+                             type=factor(rep("paired-end", 12)),
+                             age=factor(c("juvenile", "juvenile", "juvenile", "adult", "adult", "adult", "juvenile", "juvenile", "juvenile", "adult", "adult", "adult")))
+rownames(colDataCvEwA) <- colnames(counts22sub)
+```
+
+New addition to below code chunk from the tutorial: `design = ~ condition + age + condition:age`
+
+```{r}
+# Create a DESeqDataSet from count matrix and labels, with the design taking age into account
+ddsCvEwA <- DESeqDataSetFromMatrix(countData = counts22sub,
+                                     colData = colDataCvEwA, 
+                                     design = ~ condition + age + condition:age)
+```
+
+```{r}
+ddsCvEwA <- DESeq(ddsCvEwA)
+resultsNames(ddsCvEwA)
+```
+
+
+Check levels of age and condition 
+```{r}
+levels(ddsCvEwA$age)
+```
+
+
+```{r}
+levels(ddsCvEwA$condition)
+```
+
+
+2. Follow section 3.1 from the tutorial 
+
+create a function called `contraster`:
+
+```{r}
+contraster <- function(dds,    # should contain colData and design
+                       group1, # list of character vectors each with 2 or more items 
+                       group2, # list of character vectors each with 2 or more items
+                       weighted = F
+){
+  
+  
+  mod_mat <- model.matrix(design(dds), colData(dds))
+  
+  grp1_rows <- list()
+  grp2_rows <- list()
+  
+  
+  for(i in 1:length(group1)){
+    
+    grp1_rows[[i]] <- colData(dds)[[group1[[i]][1]]] %in% group1[[i]][2:length(group1[[i]])]
+    
+  }
+  
+  
+  for(i in 1:length(group2)){
+    
+    grp2_rows[[i]] <- colData(dds)[[group2[[i]][1]]] %in% group2[[i]][2:length(group2[[i]])]
+    
+  }
+  
+  grp1_rows <- Reduce(function(x, y) x & y, grp1_rows)
+  grp2_rows <- Reduce(function(x, y) x & y, grp2_rows)
+  
+  mod_mat1 <- mod_mat[grp1_rows, ,drop=F]
+  mod_mat2 <- mod_mat[grp2_rows, ,drop=F]
+  
+  if(!weighted){
+    
+    mod_mat1 <- mod_mat1[!duplicated(mod_mat1),,drop=F]
+    mod_mat2 <- mod_mat2[!duplicated(mod_mat2),,drop=F]
+    
+  }
+  
+  return(colMeans(mod_mat1)-colMeans(mod_mat2))
+  
+  
+}
+```
+
+
+```{r}
+# adult vs juvenile (in the control group) 
+res1 <- results(ddsCvEwA, 
+                contrast = contraster(ddsCvEwA,
+                                      group1 = list(c("age", "adult"), c("condition", "control")),
+                                      group2 = list(c("age", "juvenile", c("condition", "control")))))
+head(res1,3)
+```
+
+
+
+
