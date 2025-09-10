@@ -775,6 +775,12 @@ databEx_2 <- merge(databEx,
 databEx_2
 ```
 
+write out the data set:
+```{r}
+#write.csv(databEx_2, "../analyses/26-visualizations/expB-phenotype-data-with-colors-Exposed_all.csv", row.names = FALSE, quote = FALSE)
+```
+
+
 ```{r}
 ## Extract sample dates
 sample_dates <- databEx_2 %>%
@@ -851,7 +857,7 @@ plot_combined
 
 ```{r}
 ### Save plot
-ggplot2::ggsave(plot_combined, file = "../analyses/26-visualizations/ExpB_disease-progression-phenotype-timeline-ExposedOnly.pdf", dpi=300, height=4, width=7, units="in")
+#ggplot2::ggsave(plot_combined, file = "../analyses/26-visualizations/ExpB_disease-progression-phenotype-timeline-ExposedOnly.pdf", dpi=300, height=4, width=7, units="in")
 ```
 
 
