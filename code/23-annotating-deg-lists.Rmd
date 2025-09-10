@@ -217,7 +217,43 @@ WRite the table out!
 ```
 Wrote out 2024-10-18. Comment out code. 
 
+## Interaction of Age with Exposure (from 2025-09-10)
+```{r}
+deglist <- read.table("../analyses/22-deseq2-2022/DEGlist_2022_controlVexposed-with-age-interaction.tab")
+head(deglist)
+```
+make rownames a column called "gene_id":
+```{r}
+library(tibble)
+deglist <- tibble::rownames_to_column(deglist, "gene_id")
+head(deglist)
+```
 
+
+`join` the DEG list with the count matrix based on the "gene_id" column: 
+```{r}
+deglistcount <- left_join(deglist, counts22sub, by = "gene_id")
+head(deglistcount)
+```
+
+
+`join` with the BLAST output based on "gene_id" column: 
+```{r}
+deglistcountblast <- left_join(deglistcount, blast, by = "gene_id")
+head(deglistcountblast)
+```
+
+`join` with uniprot GO list based on uniprot_accession column: 
+```{r}
+deglistcountblastGO <- left_join(deglistcountblast, unigo, by = "uniprot_accession")
+head(deglistcountblastGO)
+```
+
+
+WRite the table out!
+```{r}
+#write.table(deglistcountblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_withAge-interaction_annotated.tab", sep = '\t', row.names = F, quote = F)
+```
 
 
 
