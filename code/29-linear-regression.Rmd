@@ -28,16 +28,54 @@ diameter.data <- data.frame(
 
 diameters (cm) :
 ```{r}
-#diam <- c(8.30082, 11.57224, 11.80592, 13.0048, 14.53896, 15.0368, 15.84452, 16.5608, 16.70304, 16.70812, 30.494, 34.01, 34.3, 35.35, 38.17, 38.84, 45.978, 50.706, 51.582)
+diam <- c(8.30082, 11.57224, 11.80592, 13.0048, 14.53896, 15.0368, 15.84452, 16.5608, 16.70304, 16.70812, 30.494, 34.01, 34.3, 35.35, 38.17, 38.84, 45.978, 50.706, 51.582)
 ```
+
+mean diameter: juvenile: 
+```{r}
+meanjuvediam <- mean(c(8.30082, 11.57224, 11.80592, 13.0048, 14.53896, 15.0368, 15.84452, 16.5608, 16.70304, 16.70812))
+head(meanjuvediam)
+```
+mean diamter: adult: 
+```{r}
+meanadultdiam <- mean(c(30.494, 34.01, 34.3, 35.35, 38.17, 38.84, 45.978, 50.706, 51.582))
+head(meanadultdiam)
+```
+
 
 days to death:
 ```{r}
-#day <- c(11, 11, 12, 11, 12, 15, 11, 15, 13, 12, 14, 17, 12, 13, 14, 14, 13, 14, 16)
+day <- c(11, 11, 12, 11, 12, 15, 11, 15, 13, 12, 14, 17, 12, 13, 14, 14, 13, 14, 16)
+```
+
+mean juvenile days to death: 
+```{r}
+meanjddt <- mean(c(11, 11, 12, 11, 12, 15, 11, 15, 13, 12))
+head(meanjddt)
+```
+
+mean adult days to death:
+```{r}
+meanaddt <- mean(c(14, 17, 12, 13, 14, 14, 13, 14, 16))
+head(meanaddt)
+```
+
+# ANOVA on the means of days to death: 
+```{r}
+    data <- data.frame(
+      daystodeath = c(11, 11, 12, 11, 12, 15, 11, 15, 13, 12, 14, 17, 12, 13, 14, 14, 13, 14, 16),
+      ageclass = factor(c(rep("Juvenile", 10), rep("Adult", 9)))
+    )
+
+```
+
+```{r}
+    anova_model <- aov(daystodeath ~ ageclass, data = data)
+    summary(anova_model)
 ```
 
 
-create linear model:
+# create linear model:
 ```{r}
 model.lm <- lm(diameter.data$days.to.death ~ diameter.data$diameter.cm)
 summary(model.lm)
