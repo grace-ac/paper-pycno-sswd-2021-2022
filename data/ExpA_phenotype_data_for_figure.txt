@@ -1,0 +1,17 @@
+sample_ID	treatment	normal	arm_twist	arm_drop	mortality
+56	control	14	0	0	0
+81	control	14	0	0	0
+76	control	14	0	0	0
+52	control	14	0	0	0
+61	control	14	0	0	0
+54	control	14	0	0	0
+73	control	14	0	0	0
+64	control	14	0	0	0
+59	exposed	6	1	3	1
+69	exposed	5	1	3	1
+57	exposed	5	1	3	1
+83	exposed	6	8	0	0
+78	exposed	6	4	1	1
+75	exposed	6	8	0	0
+71	exposed	4	4	1	1
+67	exposed	7	1	1	1
