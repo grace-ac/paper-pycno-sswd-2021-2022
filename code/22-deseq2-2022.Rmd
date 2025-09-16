@@ -572,3 +572,120 @@ Write out differentially expressed gene list:
 #write.table(plot5.sig, "../analyses/22-deseq2-2022/DEGlist_2022_controlVexposed-with-age-interaction.tab", sep = '\t', row.names = T, quote = F)
 ```
 
+#############################################################################
+# Sept 15, 2025 - Arm Twist Duration * Age 
+
+**CLEAR R ENVIRONMENT**     
+Read in gene count matrix:    
+```{r}
+counts22 <- read.csv("../data/gene_count_matrix_2022.csv")
+head(counts22)
+```
+
+subset just the counts for the libraries specified in the table above, and JUST the exposed:
+```{r}
+counts22expose <- select(counts22, gene_id, PSC.0228, PSC.0187, PSC.0188, PSC.0174, PSC.0190, PSC.0231)
+head(counts22expose)
+```
+
+set column one (gene_id) as rownames: 
+```{r}
+counts22expose <- counts22expose %>% remove_rownames %>% column_to_rownames(var='gene_id')
+head(counts22expose)
+```
+
+
+Create the Deseq data set - set the conditions ( number of days arm twisting) and the age 
+twist = number days twisting with age
+```{r}
+colDatatwist <- data.frame(condition=factor(c("7", "5", "3", "3", "4", "8")), 
+                             type=factor(rep("paired-end", 6)),
+                             age=factor(c("juvenile", "juvenile", "juvenile", "adult", "adult", "adult")))
+rownames(colDatatwist) <- colnames(counts22expose)
+```
+ID  days twisting 
+174	3
+190	4
+231	8
+187	5
+188	3
+228	7
+
+run deseq2
+```{r}
+ddstwist <- DESeqDataSetFromMatrix(countData = counts22expose,
+                              colData = colDatatwist,
+                              design = ~ condition)
+```
+
+```{r}
+# Check all sample IDs in colData are also in CountData and match their orders
+all(rownames(colData) %in% colnames(counts22expose)) #should return TRUE
+```
+```{r}
+counts22expose <- counts22expose[, rownames(colData)]
+all(rownames(colData) == colnames(counts22expose)) # This should also return TRUE
+```
+
+```{r}
+# Create a DESeqDataSet from count matrix and labels
+ddstwist <- DESeqDataSetFromMatrix(countData = counts22expose,
+                              colData = colDatatwist,
+                              design = ~ condition)
+
+
+# Run the default analysis for DESeq2 and generate results table
+ddstwist <- DESeq(ddstwist)
+deseq2.res <- results(ddstwist)
+
+# Sort by adjusted p-value and display
+resOrdered <- deseq2.res[order(deseq2.res$padj), ]
+vsd <- vst(ddstwist, blind = FALSE)
+exp22PCA <- plotPCA(vsd, intgroup = "condition")
+nudge <- position_nudge(y = 4)
+exp22PCA + geom_text(aes(label = name), position = nudge)
+```
+
+```{r}
+# Select top 50 differentially expressed genes
+res <- results(ddstwist)
+res_ordered <- res[order(res$padj), ]
+top_genes <- row.names(res_ordered)[1:50]
+
+# Extract counts and normalize
+counts <- counts(ddstwist, normalized = TRUE)
+counts_top <- counts[top_genes, ]
+
+# Log-transform counts
+log_counts_top <- log2(counts_top + 1)
+
+# Generate heatmap
+pheatmap(log_counts_top, scale = "row")
+
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ])
+```
+8 DEGs 
+
+```{r}
+exp22 <- deseq2.res
+# The main plot
+plot(exp22$baseMean, exp22$log2FoldChange, pch=20, cex=0.45, ylim=c(-3, 3), log="x", col="darkgray",
+     main="DEG SSWD Exposed  (pval <= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+exp22.sig <- deseq2.res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ]
+points(exp22.sig$baseMean, exp22.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
+
+Write out differentially expressed gene list: 
+```{r}
+#write.table(exp22.sig, "../analyses/22-deseq2-2022/DEGlist_2022_armtwistduration_age.tab", sep = '\t', row.names = T, quote = F)
+```
+
