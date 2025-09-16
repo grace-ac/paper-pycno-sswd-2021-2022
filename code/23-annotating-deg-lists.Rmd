@@ -255,5 +255,47 @@ WRite the table out!
 #write.table(deglistcountblastGO, "../analyses/23-annotating-deg-lists/DEGlist_2022_exposedVcontrol_withAge-interaction_annotated.tab", sep = '\t', row.names = F, quote = F)
 ```
 
+# Sept 15, 2025
+Annotate 8 DEGs that were found from the days of arm twist and age of 2022 experiment 
 
+subset just the counts for the libraries specified in the table above, and JUST the exposed:
+```{r}
+counts22expose <- select(counts22, gene_id, PSC.0228, PSC.0187, PSC.0188, PSC.0174, PSC.0190, PSC.0231)
+head(counts22expose)
+```
 
+read in 8 DEGs table:
+```{r}
+deglisttwist <- read.table("../analyses/22-deseq2-2022/DEGlist_2022_armtwistduration_age.tab")
+head(deglisttwist)
+```
+
+make rownames a column called "gene_id":
+```{r}
+library(tibble)
+deglisttwist <- tibble::rownames_to_column(deglisttwist, "gene_id")
+head(deglisttwist)
+```
+
+`join` the DEG list with the count matrix based on the "gene_id" column: 
+```{r}
+deglistcounttwist <- left_join(deglisttwist, counts22expose, by = "gene_id")
+head(deglistcounttwist)
+```
+
+`join` with the BLAST output based on "gene_id" column: 
+```{r}
+deglistcountblasttwist <- left_join(deglistcounttwist, blast, by = "gene_id")
+head(deglistcountblasttwist)
+```
+
+`join` with uniprot GO list based on uniprot_accession column: 
+```{r}
+deglistcountblastGOtwist <- left_join(deglistcountblasttwist, unigo, by = "uniprot_accession")
+head(deglistcountblastGOtwist)
+```
+
+WRite the table out!
+```{r}
+#write.table(deglistcountblastGOtwist, "../analyses/23-annotating-deg-lists/DEGlist_2022_armtwistduration_age_annotated.tab", sep = '\t', row.names = F, quote = F)
+```
