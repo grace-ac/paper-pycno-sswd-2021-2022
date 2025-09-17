@@ -971,6 +971,104 @@ plot_combined
 #ggplot2::ggsave(plot_combined, file = "../analyses/26-visualizations/ExpB_disease-progression-phenotype-timeline-JUVENILE-ExposedOnly.pdf", dpi=300, height=4, width=7, units="in")
 ```
 
+## Re-do with just Adults 
+load in the data
+```{r}
+databExA <- read.csv("../analyses/26-visualizations/expB_datafor_timeline_adults_exposed_all.csv")
+head(databExA)
+```
+
+```{r}
+### Preparing for plot
+## Colours
+# Define number of colours needed
+cols_n <- as.numeric(n_distinct(databExA$Disease_Sign))
+# Check we have enough colours
+ifelse(cols_n>12, 
+       "More than 12 wards - not enough colours!",
+       "12 wards or fewer - using Set3 colours")
+# Select the colours from Set3 palette in RColorBrewer
+cols_to_use <- brewer.pal(n = cols_n, name = "Set3")
+```
+
+```{r}
+# Create mapping of colours to wards
+col_sign_mapping <- data.frame(Disease_Sign=unique(c(as.character(databExA$Disease_Sign))), color=cols_to_use)
+# merge in the mapping to the df
+databExA_2 <- merge(databExA,
+                      col_sign_mapping,
+                      by="Disease_Sign",
+                      all.x=T,all.y=T) %>%
+  select(Disease_Sign, Sample_ID, start, end, color, Treatment)
+databExA_2
+```
+```{r}
+### Plotting
+# Produce the basic plot
+plot_data <- gg_vistime(data = databExA_2,
+                        col.group = "Sample_ID", # Each row will be a sample_ID - proxy for unique star
+                        col.event = "Disease_Sign", # Rows will be coloured by the disease-sign
+                        show_labels = FALSE, # Remove labels indicating the disease sign
+                        axis.ticks.x = FALSE,
+                        axis.ticks.y = FALSE,
+                        optimize_y = T)
+plot_data
+```
+
+```{r}
+# Tweak the plot
+plot_data <- plot_data + theme_bw() +
+  ggplot2::theme(
+    plot.title = element_text(size=24),
+    axis.text.x = element_text(size = 12, color = "black", angle = 30, vjust = 1, hjust = 1),
+    axis.text.y = element_text(size = 12, color = "black")) +
+  scale_x_datetime(breaks = breaks_width("1 days"), labels = date_format("%b %d"))
+plot_data
+```
+
+
+```{r}
+### Create a legend
+data_legend <- databExA_2 %>%
+  distinct(Disease_Sign, .keep_all=T) %>%
+  arrange(Disease_Sign)
+data_legend$start <- as.Date("2021-10-05")
+data_legend$end <- as.Date("2021-10-18")
+data_legend$Sample_ID <- "Key"
+data_legend
+plot_legend <- gg_vistime(data = data_legend,
+                          col.group = "Sample_ID",
+                          col.event = "Disease_Sign",
+                          show_labels = TRUE,
+                          linewidth = 10)
+plot_legend
+```
+
+```{r}
+# Tweak the legend plot
+plot_legend <- plot_legend + theme_void() +
+  ggplot2::theme(
+    plot.title = element_text(size=11),
+    axis.title.x=element_blank(),
+    axis.text.x=element_blank(),
+    axis.ticks.x=element_blank(),
+    axis.title.y=element_blank(),
+    axis.text.y=element_blank(),
+    axis.ticks.y=element_blank())
+plot_legend
+```
+
+```{r}
+### Combine the main plot and legend into a single figure
+plot_combined <- plot_grid(plot_data, plot_legend,
+                           rel_widths = c(1, 0.15))
+plot_combined
+```
+
+```{r}
+### Save plot
+#ggplot2::ggsave(plot_combined, file = "../analyses/26-visualizations/ExpB_disease-progression-phenotype-timeline-ADULT-ExposedOnly.pdf", dpi=300, height=4, width=7, units="in")
+```
 
 
 
