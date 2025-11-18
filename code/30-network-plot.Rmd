@@ -1,0 +1,39 @@
+---
+title: "30-network-plot"
+output: html_document
+date: "2025-11-17"
+---
+rmd to create a cnetwork plot of the top9 enriched biological processes from the list of shared DEGs
+
+https://yulab-smu.top/biomedical-knowledge-mining-book/enrichplot.html
+
+Figure will be:
+nodes --> GO BP processes
+connections --> shared genes
+color --> whether under or overexpressed 
+
+It’s very likely that the functional processes identified with DAVID have shared genes and the problem with the bar graph is that it doesn’t show how these processes are connected to each other or whether the genes within the process are over or under expressed. As suggested in the previous revisions, I strongly suggest including a network diagram where genes are connected to the process nodes and different processes are connected by shared genes and the gene color represents under or over DGE. I think these networks are called cnet or cnetworks
+
+```{r}
+sessionInfo()
+```
+
+```{r}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install(version = "3.16")
+```
+
+```{r}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("enrichplot")
+```
+
+```{r}
+install.packages("ggtree")
+```
+
+
+
