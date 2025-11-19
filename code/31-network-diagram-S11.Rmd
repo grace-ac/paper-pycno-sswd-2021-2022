@@ -1,0 +1,227 @@
+---
+title: "31-network-diagram-S11"
+output: html_document
+date: "2025-11-19"
+---
+
+# Network Diagram for Enriched Processes
+
+This R Markdown document creates a network diagram showing the relationships between 
+GO Biological Process terms and UniProt IDs from the supplemental file 
+`S11-DEGlist_enrichedprocesses_2021-2022.tab`.
+
+The network diagram will show:
+- GO terms as one set of nodes
+- UniProt IDs as another set of nodes
+- Connections showing which IDs are associated with which GO terms
+- This helps visualize how certain genes/proteins may be involved in multiple biological processes
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+## Install and Load Required Packages
+
+```{r install-packages, eval=FALSE}
+# Install packages if needed
+if (!require("igraph")) install.packages("igraph")
+if (!require("ggraph")) install.packages("ggraph")
+if (!require("tidyverse")) install.packages("tidyverse")
+if (!require("ggplot2")) install.packages("ggplot2")
+```
+
+```{r load-libraries}
+library(igraph)
+library(ggraph)
+library(tidyverse)
+library(ggplot2)
+```
+
+## Read the Data
+
+```{r read-data}
+# Read the supplemental file
+data <- read.table("../supplemental/S11-DEGlist_enrichedprocesses_2021-2022.tab", 
+                   header = TRUE, 
+                   sep = "\t",
+                   stringsAsFactors = FALSE)
+
+# Check the structure
+head(data)
+dim(data)
+
+# Extract only the first two columns
+network_data <- data[, 1:2]
+colnames(network_data) <- c("GO_Term", "UniProt_ID")
+
+# Summary statistics
+cat("Number of unique GO terms:", length(unique(network_data$GO_Term)), "\n")
+cat("Number of unique UniProt IDs:", length(unique(network_data$UniProt_ID)), "\n")
+cat("Total connections:", nrow(network_data), "\n")
+```
+
+## Prepare Network Data
+
+```{r prepare-network}
+# Create a simplified term name for better visualization
+network_data$GO_Term_Short <- gsub("GO:[0-9]+~", "", network_data$GO_Term)
+
+# Count how many times each UniProt ID appears (degree)
+id_counts <- network_data %>%
+  group_by(UniProt_ID) %>%
+  summarise(degree = n()) %>%
+  arrange(desc(degree))
+
+cat("Top 10 most connected UniProt IDs:\n")
+print(head(id_counts, 10))
+
+# Count how many IDs are associated with each GO term
+term_counts <- network_data %>%
+  group_by(GO_Term_Short) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count))
+
+cat("\nGO terms and their associated ID counts:\n")
+print(term_counts)
+```
+
+## Create Network Graph
+
+```{r create-graph}
+# Create a bipartite graph
+# We'll use igraph to create the network
+edges <- network_data[, c("GO_Term_Short", "UniProt_ID")]
+
+# Create the graph from the edge list
+g <- graph_from_data_frame(edges, directed = FALSE)
+
+# Set vertex types for bipartite layout
+V(g)$type <- V(g)$name %in% network_data$GO_Term_Short
+
+# Color nodes by type
+V(g)$color <- ifelse(V(g)$type, "lightblue", "lightcoral")
+V(g)$label.color <- "black"
+
+# Size GO term nodes by number of connections
+go_sizes <- term_counts$count[match(V(g)$name, term_counts$GO_Term_Short)]
+id_sizes <- id_counts$degree[match(V(g)$name, id_counts$UniProt_ID)]
+V(g)$size <- ifelse(V(g)$type, 
+                    10 + (go_sizes / max(go_sizes, na.rm = TRUE) * 20),
+                    3)
+
+cat("Network created with", vcount(g), "nodes and", ecount(g), "edges\n")
+```
+
+## Visualize the Network - Basic Plot
+
+```{r plot-basic, fig.width=12, fig.height=10}
+# Plot the basic network
+set.seed(123)  # For reproducibility
+plot(g, 
+     layout = layout_with_fr(g),
+     vertex.label.cex = 0.7,
+     vertex.frame.color = "gray50",
+     edge.color = "gray80",
+     main = "Network: GO Terms and UniProt IDs\n(Blue = GO Terms, Red = UniProt IDs)")
+```
+
+## Visualize with ggraph
+
+```{r plot-ggraph, fig.width=14, fig.height=12}
+set.seed(123)
+# Create a more sophisticated visualization with ggraph
+ggraph(g, layout = 'fr') + 
+  geom_edge_link(alpha = 0.2, color = "gray50") +
+  geom_node_point(aes(color = type, size = size)) +
+  scale_color_manual(values = c("TRUE" = "steelblue", "FALSE" = "coral"),
+                     labels = c("TRUE" = "GO Terms", "FALSE" = "UniProt IDs"),
+                     name = "Node Type") +
+  scale_size_continuous(range = c(1, 8), guide = "none") +
+  geom_node_text(aes(label = ifelse(type, name, "")), 
+                 repel = TRUE, size = 3, fontface = "bold") +
+  theme_void() +
+  labs(title = "Network Diagram: GO Biological Processes and Associated UniProt IDs",
+       subtitle = "Lines connect UniProt IDs to their associated GO terms",
+       caption = "Data: S11-DEGlist_enrichedprocesses_2021-2022.tab") +
+  theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+        plot.subtitle = element_text(size = 12, hjust = 0.5),
+        legend.position = "bottom")
+```
+
+## Alternative: Bipartite Layout
+
+```{r plot-bipartite, fig.width=14, fig.height=12}
+# Create a bipartite layout showing GO terms on one side and IDs on the other
+set.seed(123)
+ggraph(g, layout = 'bipartite') + 
+  geom_edge_link(alpha = 0.15, color = "gray60") +
+  geom_node_point(aes(color = type, size = size)) +
+  scale_color_manual(values = c("TRUE" = "steelblue", "FALSE" = "coral"),
+                     labels = c("TRUE" = "GO Terms", "FALSE" = "UniProt IDs"),
+                     name = "Node Type") +
+  scale_size_continuous(range = c(1, 8), guide = "none") +
+  geom_node_text(aes(label = ifelse(type, name, "")), 
+                 repel = FALSE, size = 2.5, angle = 90, hjust = 0, fontface = "bold") +
+  theme_void() +
+  labs(title = "Bipartite Network: GO Terms ↔ UniProt IDs",
+       subtitle = "GO terms on the left, UniProt IDs on the right",
+       caption = "Data: S11-DEGlist_enrichedprocesses_2021-2022.tab") +
+  theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+        plot.subtitle = element_text(size = 12, hjust = 0.5),
+        legend.position = "bottom")
+```
+
+## Network Statistics
+
+```{r network-stats}
+cat("Network Statistics:\n")
+cat("===================\n")
+cat("Nodes:", vcount(g), "\n")
+cat("Edges:", ecount(g), "\n")
+cat("Density:", edge_density(g), "\n")
+cat("Average degree:", mean(degree(g)), "\n")
+cat("\n")
+
+# Find which GO terms share the most UniProt IDs
+cat("GO Term Overlap Analysis:\n")
+cat("=========================\n")
+
+# Calculate Jaccard similarity between GO terms
+go_terms <- unique(network_data$GO_Term_Short)
+overlap_matrix <- matrix(0, nrow = length(go_terms), ncol = length(go_terms))
+rownames(overlap_matrix) <- colnames(overlap_matrix) <- go_terms
+
+for(i in 1:length(go_terms)) {
+  for(j in i:length(go_terms)) {
+    ids_i <- network_data$UniProt_ID[network_data$GO_Term_Short == go_terms[i]]
+    ids_j <- network_data$UniProt_ID[network_data$GO_Term_Short == go_terms[j]]
+    intersection <- length(intersect(ids_i, ids_j))
+    union <- length(union(ids_i, ids_j))
+    overlap_matrix[i, j] <- overlap_matrix[j, i] <- intersection / union
+  }
+}
+
+# Show pairs with highest overlap (excluding diagonal)
+diag(overlap_matrix) <- 0
+max_overlap <- which(overlap_matrix == max(overlap_matrix), arr.ind = TRUE)[1, ]
+cat("Highest overlap between:\n")
+cat("  -", go_terms[max_overlap[1]], "\n")
+cat("  -", go_terms[max_overlap[2]], "\n")
+cat("  Jaccard similarity:", overlap_matrix[max_overlap[1], max_overlap[2]], "\n")
+```
+
+## Save the Network Diagram
+
+```{r save-plot}
+# Save the main network diagram
+ggsave("../analyses/network-diagram-S11-GO-UniProt.png", 
+       width = 14, height = 12, dpi = 300, bg = "white")
+
+cat("Network diagram saved to: ../analyses/network-diagram-S11-GO-UniProt.png\n")
+```
+
+## Session Info
+
+```{r session-info}
+sessionInfo()
+```
