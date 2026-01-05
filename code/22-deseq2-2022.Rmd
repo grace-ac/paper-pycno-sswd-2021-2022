@@ -1257,5 +1257,93 @@ Write out differentially expressed gene list:
 ```
 comment out the code - wrote out 2026-01-06
 
+## ADULTS
+set column one (gene_id) as rownames: 
+```{r}
+adul <- adul %>% remove_rownames %>% column_to_rownames(var='gene_id')
+head(adul)
+```
+comparing exposed and control without doing anything with age. 
+```{r}
+colData <- data.frame(condition=factor(c("control", "control", "control", "exposed", "exposed", "exposed")),
+                      type=factor(rep("paired-end",6)))
+rownames(colData) <- colnames(adul)
+ddsj <- DESeqDataSetFromMatrix(countData = adul,
+                              colData = colData,
+                              design = ~ condition)
+```
 
+```{r}
+# Check all sample IDs in colData are also in CountData and match their orders
+all(rownames(colData) %in% colnames(adul)) #should return TRUE
+```
+
+```{r}
+adul <- adul[, rownames(colData)]
+all(rownames(colData) == colnames(adul)) # This should also return TRUE
+```
+
+```{r}
+# Create a DESeqDataSet from count matrix and labels
+ddsa <- DESeqDataSetFromMatrix(countData = adul,
+                              colData = colData, design = ~ condition)
+
+
+# Run the default analysis for DESeq2 and generate results table
+ddsa <- DESeq(ddsa)
+deseq2.res <- results(ddsa)
+
+# Sort by adjusted p-value and display
+resOrdered <- deseq2.res[order(deseq2.res$padj), ]
+vsd <- vst(ddsa, blind = FALSE)
+adul22PCA <- plotPCA(vsd, intgroup = "condition")
+nudge <- position_nudge(y = 4)
+adul22PCA + geom_text(aes(label = name), position = nudge)
+```
+
+
+```{r}
+# Select top 50 differentially expressed genes
+res <- results(ddsa)
+res_ordered <- res[order(res$padj), ]
+top_genes <- row.names(res_ordered)[1:50]
+
+# Extract counts and normalize
+counts <- counts(ddsa, normalized = TRUE)
+counts_top <- counts[top_genes, ]
+
+# Log-transform counts
+log_counts_top <- log2(counts_top + 1)
+
+# Generate heatmap
+pheatmap(log_counts_top, scale = "row")
+
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ])
+```
+2857 degs!
+just comparing exposed and control
+
+
+```{r}
+exp22a <- deseq2.res
+# The main plot
+plot(exp22a$baseMean, exp22a$log2FoldChange, pch=20, cex=0.45, ylim=c(-3, 3), log="x", col="darkgray",
+     main="DEG SSWD Exposed  (pval <= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+exp22.sig <- deseq2.res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ]
+points(exp22.sig$baseMean, exp22.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
+Write out differentially expressed gene list: 
+```{r}
+#write.table(exp22.sig, "../analyses/22-deseq2-2022/DEGlist_2022_controlVexposed_ADULTS.tab", sep = '\t', row.names = T, quote = F)
+```
+comment out the code - wrote out 2026-01-06
 
