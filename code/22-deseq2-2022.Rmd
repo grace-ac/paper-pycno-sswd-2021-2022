@@ -949,8 +949,8 @@ head(filtercounts22)
 
 set column one (gene_id) as rownames: 
 ```{r}
-counts22sub <- counts22sub %>% remove_rownames %>% column_to_rownames(var='gene_id')
-head(counts22sub)
+filtercounts22 <- filtercounts22 %>% remove_rownames %>% column_to_rownames(var='gene_id')
+head(filtercounts22)
 ```
 
 Create the Deseq data set - set the conditions and the age 
@@ -959,14 +959,14 @@ CvEwA = Control vs Exposed with Age
 colDataCvEwA <- data.frame(condition=factor(c("exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "control", "control", "control", "control", "control", "control")), 
                              type=factor(rep("paired-end", 12)),
                              age=factor(c("juvenile", "juvenile", "juvenile", "adult", "adult", "adult", "juvenile", "juvenile", "juvenile", "adult", "adult", "adult")))
-rownames(colDataCvEwA) <- colnames(counts22sub)
+rownames(colDataCvEwA) <- colnames(filtercounts22)
 ```
 
 New addition to below code chunk from the tutorial: `design = ~ age + condition + age:condition`
 
 ```{r}
 # Create a DESeqDataSet from count matrix and labels, with the design taking age into account
-ddsCvEwA <- DESeqDataSetFromMatrix(countData = counts22sub,
+ddsCvEwA <- DESeqDataSetFromMatrix(countData = filtercounts22,
                                      colData = colDataCvEwA, 
                                      design = ~ age + condition + age:condition)
 ```
@@ -1052,7 +1052,7 @@ head(res1,3)
 # Count number of hits with adjusted p-value less then 0.05
 dim(res1[!is.na(res1$padj) & res1$padj <= 0.05, ])
 ```
-982 degs 
+982 degs before, now 961
 
 
 ```{r}
@@ -1068,7 +1068,7 @@ head(res2,3)
 # Count number of hits with adjusted p-value less then 0.05
 dim(res2[!is.na(res2$padj) & res2$padj <= 0.05, ])
 ```
-2797
+2797 before, now 2784
 
 ```{r}
 # exposed vs control (for adults)
@@ -1083,7 +1083,7 @@ head(res3,3)
 # Count number of hits with adjusted p-value less then 0.05
 dim(res3[!is.na(res3$padj) & res3$padj <= 0.05, ])
 ```
-4841
+4841 before, now 4785 
 
 ```{r}
 # exposed vs control (for juveniles)
@@ -1098,7 +1098,7 @@ head(res4,3)
 # Count number of hits with adjusted p-value less then 0.05
 dim(res4[!is.na(res4$padj) & res4$padj <= 0.05, ])
 ```
-2927
+2927 before, now 2894
 
 ## See interaction 
 ```{r}
@@ -1123,7 +1123,7 @@ head(res5, 3)
 # Count number of hits with adjusted p-value less then 0.05
 dim(res5[!is.na(res5$padj) & res5$padj <= 0.05, ])
 ```
-140 DEGs 
+140 DEGs before, now 142
 
 ```{r}
 plot5 <- res5
@@ -1138,4 +1138,124 @@ points(plot5.sig$baseMean, plot5.sig$log2FoldChange, pch=20, cex=0.45, col="red"
 # 2 FC lines
 abline(h=c(-1,1), col="blue")
 ```
+Write out differentially expressed gene list: 
+```{r}
+#write.table(plot5.sig, "../analyses/22-deseq2-2022/DEGlist_2022_controlVexposed-with-age-interaction_filteroutlowcountgenes.tab", sep = '\t', row.names = T, quote = F)
+```
+
+# January 2026
+Compare Juvenile Exposed and Control DEG list to Adult Exposed and Control DEG list: 
+
+1. Read in the data: 
+Read in gene count matrix:
+```{r}
+counts22 <- read.csv("../data/gene_count_matrix_2022.csv")
+head(counts22)
+```
+subset just the counts for the libraries specified in the table above:
+```{r}
+counts22sub <- select(counts22, gene_id, PSC.0228, PSC.0187, PSC.0188, PSC.0174, PSC.0190, PSC.0231, PSC.0230, PSC.0219, PSC.0177, PSC.0186, PSC.0209, PSC.0203)
+head(counts22sub)
+```
+Subset the juveniles: 
+```{r}
+juve <- select(counts22sub, gene_id, PSC.0177, PSC.0219, PSC.0230, PSC.0187, PSC.0188, PSC.0228)
+head(juve)
+```
+
+```{r}
+adul <- select(counts22sub, gene_id, PSC.0186, PSC.0203, PSC.0209, PSC.0174, PSC.0190, PSC.0231)
+head(adul)
+```
+
+## JUVENILES:
+set column one (gene_id) as rownames: 
+```{r}
+juve <- juve %>% remove_rownames %>% column_to_rownames(var='gene_id')
+head(juve)
+```
+comparing exposed and control without doing anything with age. 
+```{r}
+colData <- data.frame(condition=factor(c("control", "control", "control", "exposed", "exposed", "exposed")),
+                      type=factor(rep("paired-end",6)))
+rownames(colData) <- colnames(juve)
+ddsj <- DESeqDataSetFromMatrix(countData = juve,
+                              colData = colData,
+                              design = ~ condition)
+```
+
+```{r}
+# Check all sample IDs in colData are also in CountData and match their orders
+all(rownames(colData) %in% colnames(juve)) #should return TRUE
+```
+
+```{r}
+juve <- juve[, rownames(colData)]
+all(rownames(colData) == colnames(juve)) # This should also return TRUE
+```
+
+```{r}
+# Create a DESeqDataSet from count matrix and labels
+ddsj <- DESeqDataSetFromMatrix(countData = juve,
+                              colData = colData, design = ~ condition)
+
+
+# Run the default analysis for DESeq2 and generate results table
+ddsj <- DESeq(ddsj)
+deseq2.res <- results(ddsj)
+
+# Sort by adjusted p-value and display
+resOrdered <- deseq2.res[order(deseq2.res$padj), ]
+vsd <- vst(ddsj, blind = FALSE)
+juve22PCA <- plotPCA(vsd, intgroup = "condition")
+nudge <- position_nudge(y = 4)
+juve22PCA + geom_text(aes(label = name), position = nudge)
+```
+
+```{r}
+# Select top 50 differentially expressed genes
+res <- results(ddsj)
+res_ordered <- res[order(res$padj), ]
+top_genes <- row.names(res_ordered)[1:50]
+
+# Extract counts and normalize
+counts <- counts(ddsj, normalized = TRUE)
+counts_top <- counts[top_genes, ]
+
+# Log-transform counts
+log_counts_top <- log2(counts_top + 1)
+
+# Generate heatmap
+pheatmap(log_counts_top, scale = "row")
+
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ])
+```
+4867 degs!
+just comparing exposed and control
+
+```{r}
+exp22j <- deseq2.res
+# The main plot
+plot(exp22j$baseMean, exp22j$log2FoldChange, pch=20, cex=0.45, ylim=c(-3, 3), log="x", col="darkgray",
+     main="DEG SSWD Exposed  (pval <= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+exp22.sig <- deseq2.res[!is.na(deseq2.res$padj) & deseq2.res$padj <= 0.05, ]
+points(exp22.sig$baseMean, exp22.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
+
+Write out differentially expressed gene list: 
+```{r}
+#write.table(exp22.sig, "../analyses/22-deseq2-2022/DEGlist_2022_controlVexposed_JUVENILES.tab", sep = '\t', row.names = T, quote = F)
+```
+comment out the code - wrote out 2026-01-06
+
+
 
