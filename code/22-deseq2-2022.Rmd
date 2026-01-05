@@ -689,3 +689,453 @@ Write out differentially expressed gene list:
 #write.table(exp22.sig, "../analyses/22-deseq2-2022/DEGlist_2022_armtwistduration_age.tab", sep = '\t', row.names = T, quote = F)
 ```
 
+# JANUARY 2026
+Revisions from Reviewer Comments
+
+Tutorial linked to by reviewer: https://www.atakanekiz.com/technical/a-guide-to-designs-and-contrasts-in-DESeq2/ 
+
+Section 3 "Two factors with interaction" is the right section for my data. Their model is based on a treatment, and comparing it between males and females. So there's control and exposed females, and control and exposed males. In our case, we have control and exposed adults, and control and exposed juveniles. 
+
+I'll model it off of what is in the tutorial. 
+
+NEW THING FOR THIS VERSION: have it be: " ~age + condition + age:condition" 
+instead of what I did above which was "~condition + age + condition:age"
+
+1. Read in the data: 
+Read in gene count matrix:
+```{r}
+counts22 <- read.csv("../data/gene_count_matrix_2022.csv")
+head(counts22)
+```
+
+subset just the counts for the libraries specified in the table above:
+```{r}
+counts22sub <- select(counts22, gene_id, PSC.0228, PSC.0187, PSC.0188, PSC.0174, PSC.0190, PSC.0231, PSC.0230, PSC.0219, PSC.0177, PSC.0186, PSC.0209, PSC.0203)
+head(counts22sub)
+```
+
+set column one (gene_id) as rownames: 
+```{r}
+counts22sub <- counts22sub %>% remove_rownames %>% column_to_rownames(var='gene_id')
+head(counts22sub)
+```
+
+Create the Deseq data set - set the conditions and the age 
+CvEwA = Control vs Exposed with Age
+```{r}
+colDataCvEwA <- data.frame(condition=factor(c("exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "control", "control", "control", "control", "control", "control")), 
+                             type=factor(rep("paired-end", 12)),
+                             age=factor(c("juvenile", "juvenile", "juvenile", "adult", "adult", "adult", "juvenile", "juvenile", "juvenile", "adult", "adult", "adult")))
+rownames(colDataCvEwA) <- colnames(counts22sub)
+```
+
+New addition to below code chunk from the tutorial: `design = ~ age + condition + age:condition`
+
+```{r}
+# Create a DESeqDataSet from count matrix and labels, with the design taking age into account
+ddsCvEwA <- DESeqDataSetFromMatrix(countData = counts22sub,
+                                     colData = colDataCvEwA, 
+                                     design = ~ age + condition + age:condition)
+```
+
+```{r}
+ddsCvEwA <- DESeq(ddsCvEwA)
+resultsNames(ddsCvEwA)
+```
+
+
+Check levels of age and condition 
+```{r}
+levels(ddsCvEwA$age)
+```
+
+
+```{r}
+levels(ddsCvEwA$condition)
+```
+
+
+2. Follow section 3.1 from the tutorial 
+
+create a function called `contraster`:
+
+```{r}
+contraster <- function(dds,    # should contain colData and design
+                       group1, # list of character vectors each with 2 or more items 
+                       group2, # list of character vectors each with 2 or more items
+                       weighted = F
+){
+  
+  
+  mod_mat <- model.matrix(design(dds), colData(dds))
+  
+  grp1_rows <- list()
+  grp2_rows <- list()
+  
+  
+  for(i in 1:length(group1)){
+    
+    grp1_rows[[i]] <- colData(dds)[[group1[[i]][1]]] %in% group1[[i]][2:length(group1[[i]])]
+    
+  }
+  
+  
+  for(i in 1:length(group2)){
+    
+    grp2_rows[[i]] <- colData(dds)[[group2[[i]][1]]] %in% group2[[i]][2:length(group2[[i]])]
+    
+  }
+  
+  grp1_rows <- Reduce(function(x, y) x & y, grp1_rows)
+  grp2_rows <- Reduce(function(x, y) x & y, grp2_rows)
+  
+  mod_mat1 <- mod_mat[grp1_rows, ,drop=F]
+  mod_mat2 <- mod_mat[grp2_rows, ,drop=F]
+  
+  if(!weighted){
+    
+    mod_mat1 <- mod_mat1[!duplicated(mod_mat1),,drop=F]
+    mod_mat2 <- mod_mat2[!duplicated(mod_mat2),,drop=F]
+    
+  }
+  
+  return(colMeans(mod_mat1)-colMeans(mod_mat2))
+  
+  
+}
+```
+
+
+```{r}
+# adult vs juvenile (in the control group) 
+res1 <- results(ddsCvEwA, 
+                contrast = contraster(ddsCvEwA,
+                                      group1 = list(c("age", "adult"), c("condition", "control")),
+                                      group2 = list(c("age", "juvenile", c("condition", "control")))))
+head(res1,3)
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res1[!is.na(res1$padj) & res1$padj <= 0.05, ])
+```
+982 degs 
+
+
+```{r}
+# adult vs juvenile (in exposed group)
+res2 <- results(ddsCvEwA, 
+                contrast = contraster(ddsCvEwA,
+                                      group1 = list(c("age", "adult"), c("condition", "exposed")),
+                                      group2 = list(c("age", "juvenile", c("condition", "exposed")))))
+head(res2,3)
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res2[!is.na(res2$padj) & res2$padj <= 0.05, ])
+```
+2797
+
+```{r}
+# exposed vs control (for adults)
+res3 <- results(ddsCvEwA, 
+                contrast = contraster(ddsCvEwA,
+                                      group1 = list(c("age", "adult"), c("condition", "exposed")),
+                                      group2 = list(c("age", "adult", c("condition", "control")))))
+head(res3,3)
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res3[!is.na(res3$padj) & res3$padj <= 0.05, ])
+```
+4841
+
+```{r}
+# exposed vs control (for juveniles)
+res4 <- results(ddsCvEwA, 
+                contrast = contraster(ddsCvEwA,
+                                      group1 = list(c("age", "juvenile"), c("condition", "exposed")),
+                                      group2 = list(c("age", "juvenile", c("condition", "control")))))
+head(res4,3)
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res4[!is.na(res4$padj) & res4$padj <= 0.05, ])
+```
+2927
+
+## See interaction 
+```{r}
+# adult vs juvenile in exposed group 
+diff1 <- contraster(ddsCvEwA,
+                    group1 = list(c("age", "adult"), c("condition", "exposed")),
+                    group2 = list(c("age", "juvenile"), c("condition", "exposed")))
+
+# adult vs juvenile in control group
+diff2 <- contraster(ddsCvEwA,
+                    group1 = list(c("age", "adult"), c("condition", "control")),
+                    group2 = list(c("age", "juvenile"), c("condition", "control")))
+
+res5 <- results(ddsCvEwA,
+                contrast = diff1-diff2)
+
+head(res5, 3)
+```
+
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res5[!is.na(res5$padj) & res5$padj <= 0.05, ])
+```
+140 DEGs 
+
+```{r}
+plot5 <- res5
+# The main plot
+plot(plot5$baseMean, plot5$log2FoldChange, pch=20, cex=0.45, ylim=c(-3, 3), log="x", col="darkgray",
+     main="DEGs of interaction between age and exposure (pval <= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+plot5.sig <- res5[!is.na(res5$padj) & res5$padj <= 0.05, ]
+points(plot5.sig$baseMean, plot5.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
+
+NOTE: this model yields the exact same results... 
+
+Write out differentially expressed gene list: 
+```{r}
+#write.table(plot5.sig, "../analyses/22-deseq2-2022/DEGlist_2022_controlVexposed-with-age-interaction.tab", sep = '\t', row.names = T, quote = F)
+```
+
+#############################
+do above again, but filter out genes that have less that 10 counts per gene per sample in a group 
+
+# JANUARY 2026 - FILTER OUT LOW COUNT GENES
+Revisions from Reviewer Comments
+
+Tutorial linked to by reviewer: https://www.atakanekiz.com/technical/a-guide-to-designs-and-contrasts-in-DESeq2/ 
+
+Section 3 "Two factors with interaction" is the right section for my data. Their model is based on a treatment, and comparing it between males and females. So there's control and exposed females, and control and exposed males. In our case, we have control and exposed adults, and control and exposed juveniles. 
+
+I'll model it off of what is in the tutorial. 
+
+NEW THING FOR THIS VERSION: have it be: " ~age + condition + age:condition" 
+instead of what I did above which was "~condition + age + condition:age"
+
+1. Read in the data: 
+Read in gene count matrix:
+```{r}
+counts22 <- read.csv("../data/gene_count_matrix_2022.csv")
+head(counts22)
+```
+
+subset just the counts for the libraries specified in the table above:
+```{r}
+counts22sub <- select(counts22, gene_id, PSC.0228, PSC.0187, PSC.0188, PSC.0174, PSC.0190, PSC.0231, PSC.0230, PSC.0219, PSC.0177, PSC.0186, PSC.0209, PSC.0203)
+head(counts22sub)
+```
+filter out low count genes: (keep genes that have at least counts of 10 for at least three samples)
+```{r}
+filtercounts22 <- counts22sub[rowSums(counts22 >= 10) >= 3, ]
+head(filtercounts22)
+```
+19217 rows (lost 4247 genes)
+
+set column one (gene_id) as rownames: 
+```{r}
+counts22sub <- counts22sub %>% remove_rownames %>% column_to_rownames(var='gene_id')
+head(counts22sub)
+```
+
+Create the Deseq data set - set the conditions and the age 
+CvEwA = Control vs Exposed with Age
+```{r}
+colDataCvEwA <- data.frame(condition=factor(c("exposed", "exposed", "exposed", "exposed", "exposed", "exposed", "control", "control", "control", "control", "control", "control")), 
+                             type=factor(rep("paired-end", 12)),
+                             age=factor(c("juvenile", "juvenile", "juvenile", "adult", "adult", "adult", "juvenile", "juvenile", "juvenile", "adult", "adult", "adult")))
+rownames(colDataCvEwA) <- colnames(counts22sub)
+```
+
+New addition to below code chunk from the tutorial: `design = ~ age + condition + age:condition`
+
+```{r}
+# Create a DESeqDataSet from count matrix and labels, with the design taking age into account
+ddsCvEwA <- DESeqDataSetFromMatrix(countData = counts22sub,
+                                     colData = colDataCvEwA, 
+                                     design = ~ age + condition + age:condition)
+```
+
+```{r}
+ddsCvEwA <- DESeq(ddsCvEwA)
+resultsNames(ddsCvEwA)
+```
+
+
+Check levels of age and condition 
+```{r}
+levels(ddsCvEwA$age)
+```
+
+
+```{r}
+levels(ddsCvEwA$condition)
+```
+
+
+2. Follow section 3.1 from the tutorial 
+
+create a function called `contraster`:
+
+```{r}
+contraster <- function(dds,    # should contain colData and design
+                       group1, # list of character vectors each with 2 or more items 
+                       group2, # list of character vectors each with 2 or more items
+                       weighted = F
+){
+  
+  
+  mod_mat <- model.matrix(design(dds), colData(dds))
+  
+  grp1_rows <- list()
+  grp2_rows <- list()
+  
+  
+  for(i in 1:length(group1)){
+    
+    grp1_rows[[i]] <- colData(dds)[[group1[[i]][1]]] %in% group1[[i]][2:length(group1[[i]])]
+    
+  }
+  
+  
+  for(i in 1:length(group2)){
+    
+    grp2_rows[[i]] <- colData(dds)[[group2[[i]][1]]] %in% group2[[i]][2:length(group2[[i]])]
+    
+  }
+  
+  grp1_rows <- Reduce(function(x, y) x & y, grp1_rows)
+  grp2_rows <- Reduce(function(x, y) x & y, grp2_rows)
+  
+  mod_mat1 <- mod_mat[grp1_rows, ,drop=F]
+  mod_mat2 <- mod_mat[grp2_rows, ,drop=F]
+  
+  if(!weighted){
+    
+    mod_mat1 <- mod_mat1[!duplicated(mod_mat1),,drop=F]
+    mod_mat2 <- mod_mat2[!duplicated(mod_mat2),,drop=F]
+    
+  }
+  
+  return(colMeans(mod_mat1)-colMeans(mod_mat2))
+  
+  
+}
+```
+
+
+```{r}
+# adult vs juvenile (in the control group) 
+res1 <- results(ddsCvEwA, 
+                contrast = contraster(ddsCvEwA,
+                                      group1 = list(c("age", "adult"), c("condition", "control")),
+                                      group2 = list(c("age", "juvenile", c("condition", "control")))))
+head(res1,3)
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res1[!is.na(res1$padj) & res1$padj <= 0.05, ])
+```
+982 degs 
+
+
+```{r}
+# adult vs juvenile (in exposed group)
+res2 <- results(ddsCvEwA, 
+                contrast = contraster(ddsCvEwA,
+                                      group1 = list(c("age", "adult"), c("condition", "exposed")),
+                                      group2 = list(c("age", "juvenile", c("condition", "exposed")))))
+head(res2,3)
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res2[!is.na(res2$padj) & res2$padj <= 0.05, ])
+```
+2797
+
+```{r}
+# exposed vs control (for adults)
+res3 <- results(ddsCvEwA, 
+                contrast = contraster(ddsCvEwA,
+                                      group1 = list(c("age", "adult"), c("condition", "exposed")),
+                                      group2 = list(c("age", "adult", c("condition", "control")))))
+head(res3,3)
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res3[!is.na(res3$padj) & res3$padj <= 0.05, ])
+```
+4841
+
+```{r}
+# exposed vs control (for juveniles)
+res4 <- results(ddsCvEwA, 
+                contrast = contraster(ddsCvEwA,
+                                      group1 = list(c("age", "juvenile"), c("condition", "exposed")),
+                                      group2 = list(c("age", "juvenile", c("condition", "control")))))
+head(res4,3)
+```
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res4[!is.na(res4$padj) & res4$padj <= 0.05, ])
+```
+2927
+
+## See interaction 
+```{r}
+# adult vs juvenile in exposed group 
+diff1 <- contraster(ddsCvEwA,
+                    group1 = list(c("age", "adult"), c("condition", "exposed")),
+                    group2 = list(c("age", "juvenile"), c("condition", "exposed")))
+
+# adult vs juvenile in control group
+diff2 <- contraster(ddsCvEwA,
+                    group1 = list(c("age", "adult"), c("condition", "control")),
+                    group2 = list(c("age", "juvenile"), c("condition", "control")))
+
+res5 <- results(ddsCvEwA,
+                contrast = diff1-diff2)
+
+head(res5, 3)
+```
+
+
+```{r}
+# Count number of hits with adjusted p-value less then 0.05
+dim(res5[!is.na(res5$padj) & res5$padj <= 0.05, ])
+```
+140 DEGs 
+
+```{r}
+plot5 <- res5
+# The main plot
+plot(plot5$baseMean, plot5$log2FoldChange, pch=20, cex=0.45, ylim=c(-3, 3), log="x", col="darkgray",
+     main="DEGs of interaction between age and exposure (pval <= 0.05)",
+     xlab="mean of normalized counts",
+     ylab="Log2 Fold Change")
+# Getting the significant points and plotting them again so they're a different color
+plot5.sig <- res5[!is.na(res5$padj) & res5$padj <= 0.05, ]
+points(plot5.sig$baseMean, plot5.sig$log2FoldChange, pch=20, cex=0.45, col="red")
+# 2 FC lines
+abline(h=c(-1,1), col="blue")
+```
+
