@@ -1347,3 +1347,64 @@ Write out differentially expressed gene list:
 ```
 comment out the code - wrote out 2026-01-06
 
+## Compare the two DEGs lists to see what's shared and what's unique
+read in the juvenile DEG list: 
+```{r}
+juvedeg <- read.table("../analyses/22-deseq2-2022/DEGlist_2022_controlVexposed_JUVENILES.tab")
+head(juvedeg)
+```
+make the rownmames into a column called "gene_id":
+```{r}
+juvedeg_new <- rownames_to_column(juvedeg, var = "gene_id")
+head(juvedeg_new)
+```
+
+read in the adult DEG list: 
+```{r}
+aduldeg <- read.table("../analyses/22-deseq2-2022/DEGlist_2022_controlVexposed_ADULTS.tab")
+head(aduldeg)
+```
+make rownames a column called "gene_id"
+```{r}
+aduldeg_new <- rownames_to_column(aduldeg, var = "gene_id")
+head(aduldeg_new)
+```
+get what is shared: 
+```{r}
+# Count the number of common values in the 'ID' column
+common_ids <- intersect(juvedeg_new$gene_id, aduldeg_new$gene_id)
+count_common <- length(common_ids)
+
+# Print the result
+print(count_common)
+```
+
+1652 are shared 
+
+Find the number of gene_id s unique to juveniles: 
+```{r}
+# Find rows in df1 where the 'id' value is not in df2
+unmatched_rows <- anti_join(juvedeg_new, aduldeg_new, by = "gene_id")
+
+# Count the number of unique 'id' values in the result
+unique_count <- n_distinct(unmatched_rows$gene_id)
+
+print(unique_count)
+
+```
+3215 unique to juveniles 
+
+find the number of gene_id s unique to adults: 
+```{r}
+# Find rows in adults where the 'id' value is not in juveniles
+unmatched_rows_adul <- anti_join(aduldeg_new, juvedeg_new, by = "gene_id")
+
+# Count the number of unique 'id' values in the result
+unique_count_adul <- n_distinct(unmatched_rows_adul$gene_id)
+
+print(unique_count_adul)
+
+```
+1205 unque to adults 
+
+
