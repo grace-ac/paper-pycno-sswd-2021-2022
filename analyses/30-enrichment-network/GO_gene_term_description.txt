@@ -1,0 +1,489 @@
+term	geneID	description
+GO:0043161	g3209	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g11585	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g22030	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g22031	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g17771	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g17770	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g10308	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g14363	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g9857	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g2687	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g12645	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g15347	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g19466	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g21244	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g4233	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g1447	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g13779	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g13778	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g10578	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g19475	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g16729	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g2520	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g15362	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g12733	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g387	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g4190	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g15513	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g12914	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g12913	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g18476	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g6193	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g12528	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g8525	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g19889	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g17254	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g1579	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g143	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g3645	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g20953	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g14365	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g23479	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g23478	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g6489	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g5983	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g13964	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g17328	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g17977	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g12673	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g388	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g17329	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g13000	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g6442	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g11179	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g11649	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g23285	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g14607	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g15512	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g5001	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g16728	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g703	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g8908	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g5143	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g6607	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g10579	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g5002	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g14871	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g642	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g16612	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g23546	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g17367	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g16413	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g19544	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g15882	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g1435	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g12053	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g1377	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g14478	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g11907	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g15858	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g1920	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g22417	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g9945	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g23854	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0043161	g23853	proteasome-mediated ubiquitin-dependent protein catabolic process
+GO:0002181	g17927	cytoplasmic translation
+GO:0002181	g16116	cytoplasmic translation
+GO:0002181	g509	cytoplasmic translation
+GO:0002181	g13448	cytoplasmic translation
+GO:0002181	g19012	cytoplasmic translation
+GO:0002181	g6297	cytoplasmic translation
+GO:0002181	g18183	cytoplasmic translation
+GO:0002181	g11895	cytoplasmic translation
+GO:0002181	g21139	cytoplasmic translation
+GO:0002181	g16934	cytoplasmic translation
+GO:0002181	g10421	cytoplasmic translation
+GO:0002181	g20594	cytoplasmic translation
+GO:0002181	g16170	cytoplasmic translation
+GO:0002181	g13994	cytoplasmic translation
+GO:0002181	g10949	cytoplasmic translation
+GO:0002181	g18210	cytoplasmic translation
+GO:0002181	g11209	cytoplasmic translation
+GO:0002181	g1094	cytoplasmic translation
+GO:0002181	g4288	cytoplasmic translation
+GO:0002181	g20093	cytoplasmic translation
+GO:0002181	g23112	cytoplasmic translation
+GO:0002181	g6599	cytoplasmic translation
+GO:0002181	g17311	cytoplasmic translation
+GO:0002181	g22950	cytoplasmic translation
+GO:0002181	g9309	cytoplasmic translation
+GO:0006508	g5273	proteolysis
+GO:0006508	g21210	proteolysis
+GO:0006508	g19177	proteolysis
+GO:0006508	g8609	proteolysis
+GO:0006508	g4204	proteolysis
+GO:0006508	g23544	proteolysis
+GO:0006508	g1147	proteolysis
+GO:0006508	g655	proteolysis
+GO:0006508	g11371	proteolysis
+GO:0006508	g619	proteolysis
+GO:0006508	g782	proteolysis
+GO:0006508	g11277	proteolysis
+GO:0006508	g17979	proteolysis
+GO:0006508	g21154	proteolysis
+GO:0006508	g17554	proteolysis
+GO:0006508	g11952	proteolysis
+GO:0006508	g21781	proteolysis
+GO:0006508	g6596	proteolysis
+GO:0006508	g21337	proteolysis
+GO:0006508	g24087	proteolysis
+GO:0006508	g11276	proteolysis
+GO:0006508	g11275	proteolysis
+GO:0006508	g15115	proteolysis
+GO:0006508	g19768	proteolysis
+GO:0006508	g2362	proteolysis
+GO:0006508	g21155	proteolysis
+GO:0006508	g12170	proteolysis
+GO:0006508	g12172	proteolysis
+GO:0006508	g13659	proteolysis
+GO:0006508	g11915	proteolysis
+GO:0006508	g1360	proteolysis
+GO:0006508	g623	proteolysis
+GO:0006508	g3140	proteolysis
+GO:0006508	g10615	proteolysis
+GO:0006508	g7863	proteolysis
+GO:0006508	g2743	proteolysis
+GO:0006508	g14081	proteolysis
+GO:0006508	g23741	proteolysis
+GO:0006508	g19534	proteolysis
+GO:0006508	g22159	proteolysis
+GO:0006508	g16613	proteolysis
+GO:0006508	g11953	proteolysis
+GO:0006508	g18353	proteolysis
+GO:0006508	g22787	proteolysis
+GO:0006508	g20362	proteolysis
+GO:0006508	g3194	proteolysis
+GO:0006508	g9438	proteolysis
+GO:0006508	g22664	proteolysis
+GO:0006508	g18370	proteolysis
+GO:0006508	g14385	proteolysis
+GO:0006508	g16692	proteolysis
+GO:0006508	g17386	proteolysis
+GO:0006508	g23188	proteolysis
+GO:0006508	g8177	proteolysis
+GO:0006508	g23157	proteolysis
+GO:0006508	g22259	proteolysis
+GO:0006508	g3728	proteolysis
+GO:0006508	g16700	proteolysis
+GO:0006508	g13001	proteolysis
+GO:0006508	g19847	proteolysis
+GO:0006508	g16695	proteolysis
+GO:0006508	g16696	proteolysis
+GO:0006508	g13110	proteolysis
+GO:0006508	g12053	proteolysis
+GO:0006508	g22168	proteolysis
+GO:0006508	g24128	proteolysis
+GO:0006508	g19175	proteolysis
+GO:0006508	g22022	proteolysis
+GO:0006508	g23156	proteolysis
+GO:0006508	g17596	proteolysis
+GO:0006508	g6127	proteolysis
+GO:0006508	g21415	proteolysis
+GO:0006508	g15976	proteolysis
+GO:0006508	g18371	proteolysis
+GO:0006508	g1331	proteolysis
+GO:0006508	g9282	proteolysis
+GO:0006508	g19541	proteolysis
+GO:0006508	g1917	proteolysis
+GO:0006508	g4026	proteolysis
+GO:0006508	g16352	proteolysis
+GO:0006508	g12190	proteolysis
+GO:0006508	g1886	proteolysis
+GO:0006508	g19379	proteolysis
+GO:0006508	g2881	proteolysis
+GO:0006508	g9401	proteolysis
+GO:0006508	g23743	proteolysis
+GO:0006508	g21444	proteolysis
+GO:0006508	g19283	proteolysis
+GO:0006508	g15465	proteolysis
+GO:0006508	g6415	proteolysis
+GO:0006508	g5241	proteolysis
+GO:0006508	g291	proteolysis
+GO:0006508	g9657	proteolysis
+GO:0006508	g12017	proteolysis
+GO:0006508	g18940	proteolysis
+GO:0006508	g19004	proteolysis
+GO:0006508	g2494	proteolysis
+GO:0006508	g5619	proteolysis
+GO:0006508	g2495	proteolysis
+GO:0006508	g21051	proteolysis
+GO:0006508	g11370	proteolysis
+GO:0006508	g20679	proteolysis
+GO:0006508	g22261	proteolysis
+GO:0006508	g852	proteolysis
+GO:0006508	g3879	proteolysis
+GO:0006508	g19176	proteolysis
+GO:0006508	g18941	proteolysis
+GO:0006508	g12673	proteolysis
+GO:0006508	g22658	proteolysis
+GO:0006508	g22659	proteolysis
+GO:0006508	g22260	proteolysis
+GO:0006508	g9283	proteolysis
+GO:0006508	g14920	proteolysis
+GO:0006508	g21824	proteolysis
+GO:0006508	g3626	proteolysis
+GO:0006508	g3583	proteolysis
+GO:0006508	g16353	proteolysis
+GO:0006508	g10440	proteolysis
+GO:0006508	g5188	proteolysis
+GO:0006508	g1564	proteolysis
+GO:0006508	g19543	proteolysis
+GO:0006508	g19685	proteolysis
+GO:0006508	g15116	proteolysis
+GO:0006508	g3861	proteolysis
+GO:0006508	g21414	proteolysis
+GO:0006508	g18966	proteolysis
+GO:0006508	g12171	proteolysis
+GO:0006508	g3207	proteolysis
+GO:0006508	g15068	proteolysis
+GO:0006508	g7450	proteolysis
+GO:0006508	g10298	proteolysis
+GO:0006508	g21604	proteolysis
+GO:0006508	g14554	proteolysis
+GO:0006508	g6237	proteolysis
+GO:0006508	g6550	proteolysis
+GO:0006508	g6234	proteolysis
+GO:0006508	g17537	proteolysis
+GO:0006508	g5810	proteolysis
+GO:0006508	g18232	proteolysis
+GO:0006508	g23546	proteolysis
+GO:0006508	g23767	proteolysis
+GO:0006508	g21351	proteolysis
+GO:0006508	g5494	proteolysis
+GO:0006508	g8819	proteolysis
+GO:0006508	g21822	proteolysis
+GO:0006508	g18939	proteolysis
+GO:0006508	g14507	proteolysis
+GO:0006508	g11906	proteolysis
+GO:0006508	g13145	proteolysis
+GO:0006508	g1332	proteolysis
+GO:0006508	g2736	proteolysis
+GO:0006508	g23189	proteolysis
+GO:0006511	g11249	ubiquitin-dependent protein catabolic process
+GO:0006511	g11585	ubiquitin-dependent protein catabolic process
+GO:0006511	g14231	ubiquitin-dependent protein catabolic process
+GO:0006511	g19157	ubiquitin-dependent protein catabolic process
+GO:0006511	g15763	ubiquitin-dependent protein catabolic process
+GO:0006511	g15764	ubiquitin-dependent protein catabolic process
+GO:0006511	g14363	ubiquitin-dependent protein catabolic process
+GO:0006511	g11648	ubiquitin-dependent protein catabolic process
+GO:0006511	g10576	ubiquitin-dependent protein catabolic process
+GO:0006511	g19466	ubiquitin-dependent protein catabolic process
+GO:0006511	g19656	ubiquitin-dependent protein catabolic process
+GO:0006511	g12077	ubiquitin-dependent protein catabolic process
+GO:0006511	g2851	ubiquitin-dependent protein catabolic process
+GO:0006511	g21244	ubiquitin-dependent protein catabolic process
+GO:0006511	g17979	ubiquitin-dependent protein catabolic process
+GO:0006511	g2814	ubiquitin-dependent protein catabolic process
+GO:0006511	g21625	ubiquitin-dependent protein catabolic process
+GO:0006511	g19475	ubiquitin-dependent protein catabolic process
+GO:0006511	g16729	ubiquitin-dependent protein catabolic process
+GO:0006511	g11424	ubiquitin-dependent protein catabolic process
+GO:0006511	g1423	ubiquitin-dependent protein catabolic process
+GO:0006511	g15362	ubiquitin-dependent protein catabolic process
+GO:0006511	g14809	ubiquitin-dependent protein catabolic process
+GO:0006511	g4190	ubiquitin-dependent protein catabolic process
+GO:0006511	g18476	ubiquitin-dependent protein catabolic process
+GO:0006511	g6193	ubiquitin-dependent protein catabolic process
+GO:0006511	g3038	ubiquitin-dependent protein catabolic process
+GO:0006511	g3351	ubiquitin-dependent protein catabolic process
+GO:0006511	g1093	ubiquitin-dependent protein catabolic process
+GO:0006511	g10192	ubiquitin-dependent protein catabolic process
+GO:0006511	g19294	ubiquitin-dependent protein catabolic process
+GO:0006511	g21198	ubiquitin-dependent protein catabolic process
+GO:0006511	g11349	ubiquitin-dependent protein catabolic process
+GO:0006511	g18018	ubiquitin-dependent protein catabolic process
+GO:0006511	g19281	ubiquitin-dependent protein catabolic process
+GO:0006511	g23238	ubiquitin-dependent protein catabolic process
+GO:0006511	g14365	ubiquitin-dependent protein catabolic process
+GO:0006511	g23479	ubiquitin-dependent protein catabolic process
+GO:0006511	g23478	ubiquitin-dependent protein catabolic process
+GO:0006511	g9683	ubiquitin-dependent protein catabolic process
+GO:0006511	g13964	ubiquitin-dependent protein catabolic process
+GO:0006511	g8506	ubiquitin-dependent protein catabolic process
+GO:0006511	g17328	ubiquitin-dependent protein catabolic process
+GO:0006511	g12673	ubiquitin-dependent protein catabolic process
+GO:0006511	g17329	ubiquitin-dependent protein catabolic process
+GO:0006511	g11179	ubiquitin-dependent protein catabolic process
+GO:0006511	g11649	ubiquitin-dependent protein catabolic process
+GO:0006511	g16116	ubiquitin-dependent protein catabolic process
+GO:0006511	g2493	ubiquitin-dependent protein catabolic process
+GO:0006511	g11856	ubiquitin-dependent protein catabolic process
+GO:0006511	g16728	ubiquitin-dependent protein catabolic process
+GO:0006511	g8908	ubiquitin-dependent protein catabolic process
+GO:0006511	g5143	ubiquitin-dependent protein catabolic process
+GO:0006511	g21739	ubiquitin-dependent protein catabolic process
+GO:0006511	g22170	ubiquitin-dependent protein catabolic process
+GO:0006511	g4809	ubiquitin-dependent protein catabolic process
+GO:0006511	g11157	ubiquitin-dependent protein catabolic process
+GO:0006511	g21569	ubiquitin-dependent protein catabolic process
+GO:0006511	g14871	ubiquitin-dependent protein catabolic process
+GO:0006511	g13596	ubiquitin-dependent protein catabolic process
+GO:0006511	g12805	ubiquitin-dependent protein catabolic process
+GO:0006511	g15765	ubiquitin-dependent protein catabolic process
+GO:0006511	g16612	ubiquitin-dependent protein catabolic process
+GO:0006511	g6283	ubiquitin-dependent protein catabolic process
+GO:0006511	g8682	ubiquitin-dependent protein catabolic process
+GO:0006511	g23788	ubiquitin-dependent protein catabolic process
+GO:0006511	g14478	ubiquitin-dependent protein catabolic process
+GO:0006511	g9753	ubiquitin-dependent protein catabolic process
+GO:0006511	g22410	ubiquitin-dependent protein catabolic process
+GO:0006511	g9303	ubiquitin-dependent protein catabolic process
+GO:0006511	g15594	ubiquitin-dependent protein catabolic process
+GO:0006511	g6469	ubiquitin-dependent protein catabolic process
+GO:0007229	g9994	integrin-mediated signaling pathway
+GO:0007229	g8609	integrin-mediated signaling pathway
+GO:0007229	g758	integrin-mediated signaling pathway
+GO:0007229	g14363	integrin-mediated signaling pathway
+GO:0007229	g11877	integrin-mediated signaling pathway
+GO:0007229	g10318	integrin-mediated signaling pathway
+GO:0007229	g20017	integrin-mediated signaling pathway
+GO:0007229	g20847	integrin-mediated signaling pathway
+GO:0007229	g9995	integrin-mediated signaling pathway
+GO:0007229	g4022	integrin-mediated signaling pathway
+GO:0007229	g9829	integrin-mediated signaling pathway
+GO:0007229	g18407	integrin-mediated signaling pathway
+GO:0007229	g9859	integrin-mediated signaling pathway
+GO:0007229	g15377	integrin-mediated signaling pathway
+GO:0007229	g15375	integrin-mediated signaling pathway
+GO:0007229	g18233	integrin-mediated signaling pathway
+GO:0007229	g21604	integrin-mediated signaling pathway
+GO:0007229	g5240	integrin-mediated signaling pathway
+GO:0007229	g9996	integrin-mediated signaling pathway
+GO:0007229	g19546	integrin-mediated signaling pathway
+GO:0007229	g68	integrin-mediated signaling pathway
+GO:0007229	g63	integrin-mediated signaling pathway
+GO:0007229	g23499	integrin-mediated signaling pathway
+GO:0007229	g759	integrin-mediated signaling pathway
+GO:0007229	g1433	integrin-mediated signaling pathway
+GO:0007229	g11607	integrin-mediated signaling pathway
+GO:0007229	g19545	integrin-mediated signaling pathway
+GO:0033209	g19565	tumor necrosis factor-mediated signaling pathway
+GO:0033209	g8414	tumor necrosis factor-mediated signaling pathway
+GO:0033209	g11617	tumor necrosis factor-mediated signaling pathway
+GO:0033209	g22658	tumor necrosis factor-mediated signaling pathway
+GO:0033209	g22659	tumor necrosis factor-mediated signaling pathway
+GO:0033209	g24037	tumor necrosis factor-mediated signaling pathway
+GO:0033209	g19544	tumor necrosis factor-mediated signaling pathway
+GO:0033209	g24035	tumor necrosis factor-mediated signaling pathway
+GO:0033209	g22024	tumor necrosis factor-mediated signaling pathway
+GO:0033209	g14241	tumor necrosis factor-mediated signaling pathway
+GO:0033209	g7808	tumor necrosis factor-mediated signaling pathway
+GO:0033209	g21675	tumor necrosis factor-mediated signaling pathway
+GO:0033209	g18411	tumor necrosis factor-mediated signaling pathway
+GO:0033209	g18407	tumor necrosis factor-mediated signaling pathway
+GO:0033209	g13957	tumor necrosis factor-mediated signaling pathway
+GO:0033209	g5983	tumor necrosis factor-mediated signaling pathway
+GO:0033209	g20747	tumor necrosis factor-mediated signaling pathway
+GO:0033209	g2565	tumor necrosis factor-mediated signaling pathway
+GO:0042742	g3209	defense response to bacterium
+GO:0042742	g12481	defense response to bacterium
+GO:0042742	g24110	defense response to bacterium
+GO:0042742	g2563	defense response to bacterium
+GO:0042742	g12643	defense response to bacterium
+GO:0042742	g16630	defense response to bacterium
+GO:0042742	g17238	defense response to bacterium
+GO:0042742	g2677	defense response to bacterium
+GO:0042742	g16346	defense response to bacterium
+GO:0042742	g4581	defense response to bacterium
+GO:0042742	g6741	defense response to bacterium
+GO:0042742	g15687	defense response to bacterium
+GO:0042742	g580	defense response to bacterium
+GO:0042742	g21381	defense response to bacterium
+GO:0042742	g1388	defense response to bacterium
+GO:0042742	g21382	defense response to bacterium
+GO:0042742	g2565	defense response to bacterium
+GO:0042742	g20837	defense response to bacterium
+GO:0042742	g6234	defense response to bacterium
+GO:0042742	g17537	defense response to bacterium
+GO:0042742	g20844	defense response to bacterium
+GO:0042742	g11900	defense response to bacterium
+GO:0042742	g2468	defense response to bacterium
+GO:0042742	g16225	defense response to bacterium
+GO:0042742	g15854	defense response to bacterium
+GO:0042742	g7488	defense response to bacterium
+GO:0042742	g12365	defense response to bacterium
+GO:0042742	g14045	defense response to bacterium
+GO:0006412	g7750	translation
+GO:0006412	g9231	translation
+GO:0006412	g22178	translation
+GO:0006412	g655	translation
+GO:0006412	g21796	translation
+GO:0006412	g3214	translation
+GO:0006412	g23633	translation
+GO:0006412	g18183	translation
+GO:0006412	g15800	translation
+GO:0006412	g22795	translation
+GO:0006412	g17083	translation
+GO:0006412	g2420	translation
+GO:0006412	g22835	translation
+GO:0006412	g9254	translation
+GO:0006412	g15065	translation
+GO:0006412	g11852	translation
+GO:0006412	g1094	translation
+GO:0006412	g8522	translation
+GO:0006412	g4651	translation
+GO:0006412	g702	translation
+GO:0006412	g17251	translation
+GO:0006412	g10281	translation
+GO:0006412	g6532	translation
+GO:0006412	g23727	translation
+GO:0006412	g6599	translation
+GO:0006412	g6606	translation
+GO:0006412	g18493	translation
+GO:0006412	g14704	translation
+GO:0006412	g22950	translation
+GO:0006412	g22899	translation
+GO:0006412	g17568	translation
+GO:0006412	g15019	translation
+GO:0006412	g19029	translation
+GO:0006412	g23830	translation
+GO:0006412	g3841	translation
+GO:0006412	g16116	translation
+GO:0006412	g9336	translation
+GO:0006412	g509	translation
+GO:0006412	g19012	translation
+GO:0006412	g75	translation
+GO:0006412	g20898	translation
+GO:0006412	g16934	translation
+GO:0006412	g20480	translation
+GO:0006412	g8490	translation
+GO:0006412	g4123	translation
+GO:0006412	g5860	translation
+GO:0006412	g7952	translation
+GO:0006412	g13426	translation
+GO:0006412	g13994	translation
+GO:0006412	g10949	translation
+GO:0006412	g23759	translation
+GO:0006412	g2162	translation
+GO:0006412	g20481	translation
+GO:0006412	g18210	translation
+GO:0006412	g18429	translation
+GO:0006412	g8184	translation
+GO:0006412	g15011	translation
+GO:0006412	g4288	translation
+GO:0006412	g20093	translation
+GO:0006412	g16424	translation
+GO:0006412	g23112	translation
+GO:0006412	g17311	translation
+GO:0006412	g5593	translation
+GO:0006412	g18494	translation
+GO:0097352	g4218	autophagosome maturation
+GO:0097352	g12900	autophagosome maturation
+GO:0097352	g19019	autophagosome maturation
+GO:0097352	g12129	autophagosome maturation
+GO:0097352	g19020	autophagosome maturation
+GO:0097352	g2075	autophagosome maturation
+GO:0097352	g19769	autophagosome maturation
+GO:0097352	g14647	autophagosome maturation
+GO:0097352	g1872	autophagosome maturation
+GO:0097352	g2401	autophagosome maturation
+GO:0097352	g20584	autophagosome maturation
+GO:0097352	g3344	autophagosome maturation
+GO:0097352	g1447	autophagosome maturation
+GO:0097352	g14648	autophagosome maturation
+GO:0097352	g9303	autophagosome maturation
+GO:0097352	g21630	autophagosome maturation
+GO:0097352	g14682	autophagosome maturation
+GO:0097352	g17176	autophagosome maturation
