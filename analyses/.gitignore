@@ -21,3 +21,5 @@
 20-hisat2/2022/*gtf
 20-hisat2/2022/*sorted.bam.bai
 20-hisat2/2022/*hisat.out
+06-BLAST/_blastout_sort.tab
+06-BLAST/blastout
