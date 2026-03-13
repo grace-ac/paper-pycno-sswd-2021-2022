@@ -5,6 +5,24 @@ date: "2025-11-17"
 ---
 rmd to create a cnetwork plot of the top9 enriched biological processes from the list of shared DEGs
 
+```{r}
+#install.packages("tidyverse")
+```
+
+```{r}
+#if (!require("BiocManager", quietly = TRUE))
+#    install.packages("BiocManager")
+
+#BiocManager::install("clusterProfiler")
+```
+
+
+```{r}
+library(tidyverse)
+library(dplyr)
+```
+
+
 https://yulab-smu.top/biomedical-knowledge-mining-book/enrichplot.html
 
 Figure will be:
@@ -18,22 +36,212 @@ It’s very likely that the functional processes identified with DAVID have shar
 sessionInfo()
 ```
 
+
+
 ```{r}
-if (!require("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install(version = "3.16")
+#if (!require("BiocManager", quietly = TRUE))
+#    install.packages("BiocManager")
+
+#BiocManager::install("enrichplot")
 ```
 
 ```{r}
-if (!require("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
-BiocManager::install("enrichplot")
+library(enrichplot)
+library(clusterProfiler)
 ```
 
 ```{r}
-install.packages("ggtree")
+browseVignettes("enrichplot")
 ```
+
+```{r}
+library(DOSE)
+data(geneList)
+de <- names(geneList)[abs(geneList) > 2]
+
+edo <- enrichDGN(de)
+```
+
+
+
+```{r}
+library(enrichplot)
+barplot(edo, showCategory=20) 
+```
+
+```{r}
+edo2 <- gseDO(geneList)
+dotplot(edo, showCategory=30) + ggtitle("dotplot for ORA")
+dotplot(edo2, showCategory=30) + ggtitle("dotplot for GSEA")
+```
+
+
+```{r}
+## convert gene ID to Symbol
+#edox <- setReadable(edo, 'org.Hs.eg.db', 'ENTREZID')
+p1 <- cnetplot(edo, foldChange=geneList)
+## categorySize can be scaled by 'pvalue' or 'geneNum'
+p2 <- cnetplot(edo, categorySize="pvalue", foldChange=geneList)
+p3 <- cnetplot(edo, foldChange=geneList, circular = TRUE, colorEdge = TRUE) 
+cowplot::plot_grid(p1, p2, p3, ncol=3, labels=LETTERS[1:3], rel_widths=c(.8, .8, 1.2))
+```
+```{r}
+head(geneList)
+```
+row 1 --> gene ID
+row 2 --> log2 fold change 
+
+##################
+https://www.google.com/search?q=how+to+use+enricher+in+clusterprofiler&oq=how+to+use+enricher+in+clusterprofiler&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRifBTIHCAQQIRifBTIHCAUQIRifBTIHCAYQIRifBTIHCAcQIRifBTIHCAgQIRifBTIHCAkQIRifBdIBCDUxMjRqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8 
+
+
+```{r}
+genelist <- read.delim("../analyses/30-enrichment-network/gene_list.txt")
+```
+
+make the genelist a vector
+```{r}
+genevector <- genelist$geneID
+head(genevector)
+```
+
+create mapping tables:
+```{r}
+GOgenedes <- read.delim("../analyses/30-enrichment-network/GO_gene_term_description.txt")
+          term2gene=table[, c("term", "geneID")]
+          term2desc=table[, c("term", "description")]
+```
+
+```{r}
+results <- enricher(
+  gene=genevector,
+  TERM2GENE=GOgenedes[, c("term", "geneID")],
+  TERM2NAME=GOgenedes[, c("term", "description")]
+  )
+```
+
+
+```{r}
+head(results@result$geneID)
+```
+
+
+now use enrichplot to create a network: 
+```{r}
+library(enrichplot)
+
+cnetplot(results)
+
+```
+
+trying: 
+
+```{r}
+go_df <- read.delim("../analyses/30-enrichment-network/GO_gene_term_description.txt", header = TRUE)
+```
+
+```{r}
+TERM2GENE <- go_df[, c("term", "geneID")]
+TERM2NAME <- unique(go_df[, c("term", "description")])
+```
+
+```{r}
+genes_of_interest <- genelist$geneID   # replace with your vector
+```
+
+
+```{r}
+library(clusterProfiler)
+
+results <- enricher(
+    gene        = genes_of_interest,
+    TERM2GENE   = TERM2GENE,
+    TERM2NAME   = TERM2NAME
+)
+
+```
+
+```{r}
+head(results@result$geneID)
+
+```
+
+```{r}
+head(results@result[, c("ID","Description","Count","geneID")])
+
+```
+
+```{r}
+class(results)
+
+```
+```{r}
+nrow(results@result)
+head(results@result$geneID)
+
+```
+
+
+```{r}
+enrichplot::cnetplot(results, showCategory = 20)
+
+```
+
+
+
+```{r}
+keep <- results@result$geneID != "." &
+        results@result$geneID != "" &
+        !is.na(results@result$geneID)
+
+res2 <- results[keep, ]   # use [ , ] on the object, not @result directly
+
+library(enrichplot)
+cnetplot(res2, showCategory = min(20, nrow(res2@result)))
+
+```
+
+
+
+```{r}
+library(enrichplot)
+
+cnetplot(results, showCategory = 20)
+
+```
+
+
+If you also want fold-change coloring:
+fc <- setNames(my_table$log2FC, my_table$geneID)
+
+cnetplot(results, foldChange = fc, showCategory = 20)
+
+```{r}
+go_df <- read.delim("../analyses/30-enrichment-network/GO_gene_term_description.txt", header = TRUE)
+
+TERM2GENE <- go_df[, c("term", "geneID")]
+TERM2NAME <- unique(go_df[, c("term", "description")])
+
+```
+
+```{r}
+library(clusterProfiler)
+
+results <- enricher(
+    gene        = genes_of_interest,
+    TERM2GENE   = TERM2GENE,
+    TERM2NAME   = TERM2NAME
+)
+
+```
+
+```{r}
+head(results@result$geneID)
+
+
+```
+
+
 
 
 

@@ -31,18 +31,51 @@ Goal: plots of the terms, x-axis is counts and color is benjamini value.
 
 
 ```{r}
-
 # Basic barplot
 p <- ggplot(data=top9, aes(x=Fold.Enrichment, y=Term, fill=Count)) +
   geom_bar(stat="identity")+theme_minimal()
 p
 
-# Rename y-axis:
-
+top9$binned_value <- cut(top9$Count, breaks = c(10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150), 
+                        labels = c("10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "110", "120", "130", "140"))
 
 # Horizontal bar plot
 p + coord_flip()
 ```
+
+```{r}
+ggplot(data=top9, aes(x=Fold.Enrichment, y=Term, fill=binned_value)) +
+  geom_bar(stat="identity")+theme_minimal() +
+  labs(x = "Fold Enrichment", y = "Gene Ontology Biological Process") +
+  labs(fill = "Gene Count") +
+  scale_fill_brewer(palette = "Blues")
+```
+
+
+library(ggplot2)
+
+
+```{r}
+# Sample data
+df <- data.frame(
+  value = rnorm(100, mean = 50, sd = 10)
+)
+```
+
+```{r}
+# Create bins for the 'value' variable
+df$binned_value <- cut(df$value, breaks = c(20, 40, 60, 80), 
+                        labels = c("Low", "Medium", "High"))
+
+# Create the bar plot with fill based on binned_value
+ggplot(df, aes(x = binned_value, fill = binned_value)) +
+  geom_bar() +
+  labs(title = "Barplot with Binned Fill Color",
+       x = "Value Bins",
+       y = "Count")
+```
+
+
 
 # Make a Venn Diagram of the DEGs for 2021, 2022, and the overlap... is this just numbers??
 
