@@ -8,6 +8,12 @@ Rmd to make visualizations for paper.
 https://yulab-smu.top/biomedical-knowledge-mining-book/enrichplot.html 
 
 ```{r}
+#install.packages("vistime")
+#install.packages("cowplot")
+```
+
+
+```{r}
 library(ggplot2)
 library(tidyverse)
 library(dplyr)
@@ -256,6 +262,8 @@ plot_combined
 ### Save plot
 ggplot2::ggsave(plot_combined, file = "../analyses/26-visualizations/ExpA_disease-progression-phenotype-timeline.pdf", dpi=300, height=4, width=7, units="in")
 ```
+
+
 
 # Disease Progression Timeline for Experiment B 
 
@@ -1104,5 +1112,101 @@ plot_combined
 ```
 
 
+###########
+# 2026-06-12
+Make new timelines with the same x-axis for all (Day 1 -19) 
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
 
+
+## For Adult SSWD Challenge Experiment (2021)
+
+
+load in data
+```{r}
+data <- read.csv("../analyses/26-visualizations/expA-phenotype-data-for-figure.csv")
+head(data)
+```
+
+```{r}
+data$start <- as.Date(data$start)
+data$end <- as.Date(data$end)
+data$Sample_Date <- as.Date(data$Sample_Date)
+```
+
+
+```{r}
+ggplot(data,
+       aes(x = start,
+           xend = end,
+           y = Sample_ID,
+           yend = Sample_ID,
+           color = Disease_Sign)) +
+  geom_segment(linewidth = 6) +
+  scale_x_date(limits = as.Date(c("2021-10-05", "2021-10-23"))) +
+  theme_bw()
+```
+```{r}
+library(dplyr)
+
+# identify individuals that are ALWAYS Healthy
+always_healthy <- data %>%
+  group_by(Sample_ID) %>%
+  summarise(all_healthy = all(Disease_Sign == "Healthy")) %>%
+  arrange(desc(all_healthy))
+```
+
+```{r}
+ordered_ids <- always_healthy %>%
+  arrange(desc(all_healthy), Sample_ID) %>%
+  pull(Sample_ID)
+
+data$Sample_ID <- factor(data$Sample_ID, levels = rev(unique(ordered_ids)))
+```
+
+```{r}
+ggplot(data,
+       aes(x = start,
+           xend = end,
+           y = Sample_ID,
+           yend = Sample_ID,
+           color = Disease_Sign)) +
+
+  geom_segment(linewidth = 4) +
+
+  scale_x_date(
+    limits = as.Date(c("2021-10-05", "2021-10-23"))
+  ) +
+
+  labs(y = "Sample ID") +
+
+  theme_bw()
+```
+save plot as object so that it can be saved to github repo
+```{r}
+adultsswd <- ggplot(data,
+       aes(x = start,
+           xend = end,
+           y = Sample_ID,
+           yend = Sample_ID,
+           color = Disease_Sign)) +
+
+  geom_segment(linewidth = 4) +
+
+  scale_x_date(
+    limits = as.Date(c("2021-10-05", "2021-10-23"))
+  ) +
+
+  labs(y = "Sample ID") +
+
+  theme_bw()
+```
+
+
+```{r}
+### Save plot
+ggplot2::ggsave(adultsswd, file = "../analyses/26-visualizations/AdultSSWDChallenge_disease-progression-phenotype-timeline.pdf", dpi=300, height=4, width=7, units="in")
+```
 
