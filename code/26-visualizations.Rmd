@@ -1309,4 +1309,99 @@ agesswd
 saved 2026-06-12
 WILL ADD SAMPLING POINTS IN PHOTOSHOP LATER! 
 
+## Age Class SSWD CHallenge Timeline for ALL Exposed Juveniles and Adult stars - not just those sampled:
+load in the data
+```{r}
+databExJ <- read.csv("../analyses/26-visualizations/expB_datafor_timeline_juveniles_exposed_all.csv")
+head(databExJ)
+```
+
+```{r}
+databExJ$start <- as.Date(databExJ$start)
+databExJ$end <- as.Date(databExJ$end)
+databExJ$Sample_Date <- as.Date(databExJ$Sample_Date)
+```
+
+```{r}
+ggplot(databExJ,
+       aes(x = start,
+           xend = end,
+           y = Sample_ID,
+           yend = Sample_ID,
+           color = Disease_Sign)) +
+  geom_segment(linewidth = 4) +
+  scale_x_date(limits = as.Date(c("2022-06-21", "2022-07-08"))) +
+  theme_bw()
+```
+
+```{r}
+library(dplyr)
+
+# identify individuals that are ALWAYS Healthy
+always_healthybExJ <- databExJ %>%
+  group_by(Sample_ID) %>%
+  summarise(all_healthy = all(Disease_Sign == "Healthy")) %>%
+  arrange(desc(all_healthy))
+```
+
+```{r}
+ordered_idsbExJ <- always_healthybExJ %>%
+  arrange(desc(all_healthy), Sample_ID) %>%
+  pull(Sample_ID)
+
+databExJ$Sample_ID <- factor(databExJ$Sample_ID, levels = rev(unique(ordered_idsbExJ)))
+```
+
+```{r}
+ggplot(databExJ,
+       aes(x = start,
+           xend = end,
+           y = Sample_ID,
+           yend = Sample_ID,
+           color = Disease_Sign)) +
+
+  geom_segment(linewidth = 4) +
+
+  scale_x_date(
+    limits = as.Date(c("2022-06-21", "2022-07-08"))
+  ) +
+
+  labs(y = "Sample ID") +
+
+  theme_bw()
+```
+
+save plot as object so that it can be saved to github repo and add the x-axis dates as labels 
+
+```{r}
+ageJuvesswd <- ggplot(databExJ,
+       aes(x = start,
+           xend = end,
+           y = Sample_ID,
+           yend = Sample_ID,
+           color = Disease_Sign)) +
+
+  geom_segment(linewidth = 6) +
+
+  scale_x_date(
+    limits = as.Date(c("2022-06-21", "2022-07-08")),
+    breaks = seq(as.Date("2022-06-21"),
+                 as.Date("2022-07-08"),
+                 by = "1 day")
+  ) +
+
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ageJuvesswd
+```
+
+```{r}
+### Save plot
+#ggplot2::ggsave(ageJuvesswd, file = "../analyses/26-visualizations/AgeClassSSWDChallenge_disease-progression-phenotype-timeline_ExposedJuvenilesOnly.pdf", dpi=300, height=4, width=7, units="in")
+```
+saved 2026-06-12
+WILL ADD SAMPLING POINTS IN PHOTOSHOP LATER! 
+
+
 
