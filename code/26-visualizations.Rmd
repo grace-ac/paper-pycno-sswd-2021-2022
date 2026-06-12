@@ -1240,7 +1240,7 @@ ggplot(datab,
            yend = Sample_ID,
            color = Disease_Sign)) +
   geom_segment(linewidth = 4) +
-  scale_x_date(limits = as.Date(c("2022-06-21", "2022-07-08"))) +
+  scale_x_date(limits = as.Date(c("2022-06-21", "2022-07-09"))) +
   theme_bw()
 ```
 ```{r}
@@ -1272,7 +1272,7 @@ ggplot(datab,
   geom_segment(linewidth = 4) +
 
   scale_x_date(
-    limits = as.Date(c("2022-06-21", "2022-07-08"))
+    limits = as.Date(c("2022-06-21", "2022-07-09"))
   ) +
 
   labs(y = "Sample ID") +
@@ -1292,9 +1292,9 @@ agesswd <- ggplot(datab,
   geom_segment(linewidth = 6) +
 
   scale_x_date(
-    limits = as.Date(c("2022-06-21", "2022-07-08")),
+    limits = as.Date(c("2022-06-21", "2022-07-09")),
     breaks = seq(as.Date("2022-06-21"),
-                 as.Date("2022-07-08"),
+                 as.Date("2022-07-09"),
                  by = "1 day")
   ) +
 
@@ -1332,7 +1332,7 @@ ggplot(databExJ,
            yend = Sample_ID,
            color = Disease_Sign)) +
   geom_segment(linewidth = 4) +
-  scale_x_date(limits = as.Date(c("2022-06-21", "2022-07-08"))) +
+  scale_x_date(limits = as.Date(c("2022-06-21", "2022-07-09"))) +
   theme_bw()
 ```
 
@@ -1365,7 +1365,7 @@ ggplot(databExJ,
   geom_segment(linewidth = 4) +
 
   scale_x_date(
-    limits = as.Date(c("2022-06-21", "2022-07-08"))
+    limits = as.Date(c("2022-06-21", "2022-07-09"))
   ) +
 
   labs(y = "Sample ID") +
@@ -1386,9 +1386,9 @@ ageJuvesswd <- ggplot(databExJ,
   geom_segment(linewidth = 6) +
 
   scale_x_date(
-    limits = as.Date(c("2022-06-21", "2022-07-08")),
+    limits = as.Date(c("2022-06-21", "2022-07-09")),
     breaks = seq(as.Date("2022-06-21"),
-                 as.Date("2022-07-08"),
+                 as.Date("2022-07-09"),
                  by = "1 day")
   ) +
 
