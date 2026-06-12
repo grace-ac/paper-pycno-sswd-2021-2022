@@ -1208,11 +1208,105 @@ adultsswd <- ggplot(data,
 ```
 
 
+
 ```{r}
 ### Save plot
 #ggplot2::ggsave(adultsswd, file = "../analyses/26-visualizations/AdultSSWDChallenge_disease-progression-phenotype-timeline.pdf", dpi=300, height=4, width=7, units="in")
 ```
 saved 2026-06-12
+WILL ADD SAMPLING POINTS IN PHOTOSHOP LATER! 
 
 ## Age Class Challenge timelines
+load in the data
+```{r}
+datab <- read.csv("../analyses/26-visualizations/expB-phenotype-data-for-figure.csv")
+head(datab)
+```
+
+
+```{r}
+datab$start <- as.Date(datab$start)
+datab$end <- as.Date(datab$end)
+datab$Sample_Date <- as.Date(datab$Sample_Date)
+```
+
+```{r}
+ggplot(datab,
+       aes(x = start,
+           xend = end,
+           y = Sample_ID,
+           yend = Sample_ID,
+           color = Disease_Sign)) +
+  geom_segment(linewidth = 4) +
+  scale_x_date(limits = as.Date(c("2022-06-21", "2022-07-08"))) +
+  theme_bw()
+```
+```{r}
+library(dplyr)
+
+# identify individuals that are ALWAYS Healthy
+always_healthyb <- datab %>%
+  group_by(Sample_ID) %>%
+  summarise(all_healthy = all(Disease_Sign == "Healthy")) %>%
+  arrange(desc(all_healthy))
+```
+
+```{r}
+ordered_idsb <- always_healthyb %>%
+  arrange(desc(all_healthy), Sample_ID) %>%
+  pull(Sample_ID)
+
+datab$Sample_ID <- factor(datab$Sample_ID, levels = rev(unique(ordered_idsb)))
+```
+
+```{r}
+ggplot(datab,
+       aes(x = start,
+           xend = end,
+           y = Sample_ID,
+           yend = Sample_ID,
+           color = Disease_Sign)) +
+
+  geom_segment(linewidth = 4) +
+
+  scale_x_date(
+    limits = as.Date(c("2022-06-21", "2022-07-08"))
+  ) +
+
+  labs(y = "Sample ID") +
+
+  theme_bw()
+```
+save plot as object so that it can be saved to github repo and add the x-axis dates as labels 
+
+```{r}
+agesswd <- ggplot(datab,
+       aes(x = start,
+           xend = end,
+           y = Sample_ID,
+           yend = Sample_ID,
+           color = Disease_Sign)) +
+
+  geom_segment(linewidth = 6) +
+
+  scale_x_date(
+    limits = as.Date(c("2022-06-21", "2022-07-08")),
+    breaks = seq(as.Date("2022-06-21"),
+                 as.Date("2022-07-08"),
+                 by = "1 day")
+  ) +
+
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+agesswd
+```
+
+```{r}
+### Save plot
+#ggplot2::ggsave(agesswd, file = "../analyses/26-visualizations/AgeClassSSWDChallenge_disease-progression-phenotype-timeline.pdf", dpi=300, height=4, width=7, units="in")
+```
+saved 2026-06-12
+WILL ADD SAMPLING POINTS IN PHOTOSHOP LATER! 
+
 
