@@ -1213,7 +1213,7 @@ adultsswd
 
 ```{r}
 ### Save plot
-ggplot2::ggsave(adultsswd, file = "../analyses/26-visualizations/AdultSSWDChallenge_disease-progression-phenotype-timeline.pdf", dpi=300, height=4, width=7, units="in")
+#ggplot2::ggsave(adultsswd, file = "../analyses/26-visualizations/AdultSSWDChallenge_disease-progression-phenotype-timeline.pdf", dpi=300, height=4, width=7, units="in")
 ```
 saved 2026-06-12
 WILL ADD SAMPLING POINTS IN PHOTOSHOP LATER! 
@@ -1299,7 +1299,7 @@ agesswd <- ggplot(datab,
   ) +
 
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+   theme(axis.text.x = element_text(angle = 45, hjust = 1), axis.text.y = element_text(size=14) )
 
 agesswd
 ```
