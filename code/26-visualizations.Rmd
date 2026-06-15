@@ -1603,6 +1603,8 @@ read in the data:
 tabledata <- read.csv("../analyses/26-visualizations/Table1_genes_and_functionalgroups.csv")
 tabledata
 ```
+
+
 ```{r}
 # Replace periods in all column names with spaces
 names(tabledata) <- gsub("\\.", " ", names(tabledata))
@@ -1615,7 +1617,8 @@ names(tabledata) <- gsub("\\.", " ", names(tabledata))
 ```{r}
 # Install and load the package
 #install.packages("flextable")
-#library(flextable)
+library(flextable)
+library(dplyr)
 
 # Create a standard academic APA-style table
 my_table <- flextable(head(tabledata)) %>%
@@ -1624,6 +1627,8 @@ my_table <- flextable(head(tabledata)) %>%
 
 my_table
 ```
+
+
 Now format so that everything is formatted to the left and not center: 
 ```{r}
 my_table <- my_table %>%
@@ -1641,11 +1646,12 @@ my_table <- my_table %>%
 my_table
 ```
 
-Now save the table as a figure: 
+Save table as a picture: 
 ```{r}
-# Save the table as a Word document
-save_as_image(x = my_table, path = "../analyses/26-visualizations/Table1_genes_functionalgroups.png", width = 6, height = 4, units = "in", res = 300)
+
 ```
-Save 2026-06-14
+
+
+
 
 
