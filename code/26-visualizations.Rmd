@@ -1598,6 +1598,8 @@ adultsswd / agesswd / ageJuvesswd / ageAdultsswd + plot_layout(guides = "collect
 
 # 2026-06-15 --> Make a table of important genes 
 
+https://github.com/davidgohel/flextable/issues/381 
+
 read in the data:
 ```{r}
 tabledata <- read.csv("../analyses/26-visualizations/Table1_genes_and_functionalgroups.csv")
@@ -1610,7 +1612,6 @@ tabledata
 names(tabledata) <- gsub("\\.", " ", names(tabledata))
 
 ```
-
 
 
 
@@ -1646,9 +1647,9 @@ my_table <- my_table %>%
 my_table
 ```
 
-Save table as a picture: 
-```{r}
 
+```{r}
+save_as_image(my_table, path = "../analyses/26-visualizations/Table1_genes_and_functionalgroups.png")
 ```
 
 
