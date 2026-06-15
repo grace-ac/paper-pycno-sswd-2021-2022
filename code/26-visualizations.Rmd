@@ -1223,8 +1223,18 @@ adultsswd <- ggplot(data,
            yend = Sample_ID,
            color = Disease_Sign)) +
 
+
   geom_segment(linewidth = 6) +
 
+  geom_point(
+    aes(x = Sample_Date, y = Sample_ID),
+    inherit.aes = FALSE,
+    shape = 21,
+    fill = "black",
+    color = "black",
+    stroke = 0.8,
+    size = 2
+  ) +
   scale_x_date(
     limits = as.Date(c("2021-10-05", "2021-10-23")),
     breaks = seq(as.Date("2021-10-05"),
@@ -1252,7 +1262,7 @@ adultsswd
 #ggplot2::ggsave(adultsswd, file = "../analyses/26-visualizations/AdultSSWDChallenge_disease-progression-phenotype-timeline.pdf", dpi=300, height=4, width=7, units="in")
 ```
 saved 2026-06-14
-WILL ADD SAMPLING POINTS IN PHOTOSHOP LATER! 
+
 
 
 ## Age Class Challenge timelines
@@ -1327,6 +1337,15 @@ agesswd <- ggplot(datab,
            color = Disease_Sign)) +
 
   geom_segment(linewidth = 6) +
+    geom_point(
+    aes(x = Sample_Date, y = Sample_ID),
+    inherit.aes = FALSE,
+    shape = 21,
+    fill = "black",
+    color = "black",
+    stroke = 0.8,
+    size = 2
+  ) +
 
   scale_x_date(
     limits = as.Date(c("2022-06-21", "2022-07-09")),
@@ -1354,7 +1373,7 @@ agesswd
 #ggplot2::ggsave(agesswd, file = "../analyses/26-visualizations/AgeClassSSWDChallenge_disease-progression-phenotype-timeline.pdf", dpi=300, height=4, width=7, units="in")
 ```
 saved 2026-06-14
-WILL ADD SAMPLING POINTS IN PHOTOSHOP LATER! 
+
 
 ## Age Class SSWD CHallenge Timeline for ALL Exposed Juveniles and Adult stars - not just those sampled:
 load in the data
@@ -1558,6 +1577,23 @@ ageAdultsswd
 ```
 saved 2026-06-14
 WILL ADD SAMPLING POINTS IN PHOTOSHOP LATER! 
+
+## Now let's combine all those figures into one using `patchwork`: 
+Need to have the figures saved as objects 
+
+The order will be: 
+A: adultsswd    
+B: agesswd     
+C: ageJuvesswd    
+D: ageAdultsswd     
+
+```{r}
+install.packages("patchwork")
+library(patchwork)
+
+adultsswd / agesswd / ageJuvesswd / ageAdultsswd + plot_layout(guides = "collect") & theme(legend.position = "bottom")
+
+```
 
 
 
