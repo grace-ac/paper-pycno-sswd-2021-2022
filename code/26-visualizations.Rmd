@@ -1120,6 +1120,19 @@ library(tidyverse)
 library(ggplot2)
 ```
 
+Set colors:
+```{r}
+scale_color_manual(
+  values = c(
+    "Healthy" = "#66c2a5",
+    "Arm twist" = "#8da0cb",
+    "Arm autotomy" = "#fc8d62",
+    "Mortality" = "#e78ac3"
+  )
+)
+```
+
+
 
 ## For Adult SSWD Challenge Experiment (2021)
 
@@ -1146,6 +1159,14 @@ ggplot(data,
            color = Disease_Sign)) +
   geom_segment(linewidth = 6) +
   scale_x_date(limits = as.Date(c("2021-10-05", "2021-10-23"))) +
+   scale_color_manual(
+    values = c(
+      "Healthy" = "#fecca2",
+      "ArmTwist" = "#da826a",
+      "ArmDrop" = "#9c2e06",
+      "Mortality" = "#695850"#695850
+    )
+  ) +
   theme_bw()
 ```
 ```{r}
@@ -1181,6 +1202,14 @@ ggplot(data,
   ) +
 
   labs(y = "Sample ID") +
+  scale_color_manual(
+    values = c(
+      "Healthy" = "#fecca2",
+      "ArmTwist" = "#da826a",
+      "ArmDrop" = "#9c2e06",
+      "Mortality" = "#695850"#695850
+    )
+  ) +
 
   theme_bw()
 ```
@@ -1202,7 +1231,14 @@ adultsswd <- ggplot(data,
                  as.Date("2021-10-23"),
                  by = "1 day")
   ) +
-
+   scale_color_manual(
+    values = c(
+      "Healthy" = "#fecca2",
+      "ArmTwist" = "#da826a",
+      "ArmDrop" = "#9c2e06",
+      "Mortality" = "#695850"#695850
+    )
+  ) +
   theme_bw() +
    theme(axis.text.x = element_text(angle = 45, hjust = 1), axis.text.y = element_text(size=14) )
 
@@ -1215,8 +1251,9 @@ adultsswd
 ### Save plot
 #ggplot2::ggsave(adultsswd, file = "../analyses/26-visualizations/AdultSSWDChallenge_disease-progression-phenotype-timeline.pdf", dpi=300, height=4, width=7, units="in")
 ```
-saved 2026-06-12
+saved 2026-06-14
 WILL ADD SAMPLING POINTS IN PHOTOSHOP LATER! 
+
 
 ## Age Class Challenge timelines
 load in the data
@@ -1297,6 +1334,14 @@ agesswd <- ggplot(datab,
                  as.Date("2022-07-09"),
                  by = "1 day")
   ) +
+   scale_color_manual(
+    values = c(
+      "Healthy" = "#fecca2",
+      "ArmTwist" = "#da826a",
+      "ArmDrop" = "#9c2e06",
+      "Mortality" = "#695850"#695850
+    )
+  ) +
 
   theme_bw() +
    theme(axis.text.x = element_text(angle = 45, hjust = 1), axis.text.y = element_text(size=14) )
@@ -1308,7 +1353,7 @@ agesswd
 ### Save plot
 #ggplot2::ggsave(agesswd, file = "../analyses/26-visualizations/AgeClassSSWDChallenge_disease-progression-phenotype-timeline.pdf", dpi=300, height=4, width=7, units="in")
 ```
-saved 2026-06-12
+saved 2026-06-14
 WILL ADD SAMPLING POINTS IN PHOTOSHOP LATER! 
 
 ## Age Class SSWD CHallenge Timeline for ALL Exposed Juveniles and Adult stars - not just those sampled:
@@ -1391,6 +1436,14 @@ ageJuvesswd <- ggplot(databExJ,
                  as.Date("2022-07-09"),
                  by = "1 day")
   ) +
+   scale_color_manual(
+    values = c(
+      "Healthy" = "#fecca2",
+      "ArmTwist" = "#da826a",
+      "ArmDrop" = "#9c2e06",
+      "Mortality" = "#695850"#695850
+    )
+  ) +
 
   theme_bw() +
    theme(axis.text.x = element_text(angle = 45, hjust = 1), axis.text.y = element_text(size=14) )
@@ -1402,7 +1455,7 @@ ageJuvesswd
 ### Save plot
 #ggplot2::ggsave(ageJuvesswd, file = "../analyses/26-visualizations/AgeClassSSWDChallenge_disease-progression-phenotype-timeline_ExposedJuvenilesOnly.pdf", dpi=300, height=4, width=7, units="in")
 ```
-saved 2026-06-12
+saved 2026-06-14
 WILL ADD SAMPLING POINTS IN PHOTOSHOP LATER! 
 
 ## Age Class SSDW Challenge Timeline for ALL Exposed Adults - not just those sampled:
@@ -1484,6 +1537,14 @@ ageAdultsswd <- ggplot(databExA,
                  as.Date("2022-07-09"),
                  by = "1 day")
   ) +
+   scale_color_manual(
+    values = c(
+      "Healthy" = "#fecca2",
+      "ArmTwist" = "#da826a",
+      "ArmDrop" = "#9c2e06",
+      "Mortality" = "#695850"#695850
+    )
+  ) +
 
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1), axis.text.y = element_text(size=14) )
@@ -1495,7 +1556,7 @@ ageAdultsswd
 ### Save plot
 #ggplot2::ggsave(ageAdultsswd, file = "../analyses/26-visualizations/AgeClassSSWDChallenge_disease-progression-phenotype-timeline_ExposedAdultsOnly.pdf", dpi=300, height=4, width=7, units="in")
 ```
-saved 2026-06-12
+saved 2026-06-14
 WILL ADD SAMPLING POINTS IN PHOTOSHOP LATER! 
 
 
