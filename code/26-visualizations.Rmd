@@ -1747,7 +1747,17 @@ NOw let's save the table
 ```{r}
 #save_as_image(table1_flextable, path = "../analyses/26-visualizations/Table1_experiment_results.png")
 ```
-Save 2026-06-16 -- then i converted to PDF and uploaded an image of it into the document. 
+
+
+Save 2026-06-16 -- 
+
+
+save as a docx:
+```{r}
+save_as_docx(table1_flextable, path = "../analyses/26-visualizations/Table1_experiment_results.docx")
+```
+
+2026-06-15 --> then i converted to PDF and uploaded an image of it into the document. 
 
 
 
