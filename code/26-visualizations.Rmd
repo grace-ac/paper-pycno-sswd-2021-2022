@@ -1651,6 +1651,108 @@ my_table
 ```{r}
 save_as_image(my_table, path = "../analyses/26-visualizations/Table1_genes_and_functionalgroups.png")
 ```
+Save 2026-06-14 -- then i converted to PDF and uploaded an image of it into the document. 
+
+## Make Table 1 into a nicer R style table 
+
+```{r}
+# Define vectors
+Experiment <- c(rep("Adult SSWD Challenge", 2), rep("Age Class SSWD Challenge", 4))
+Treatment.Groups <- c("Exposed", "Control", "Adult Exposed", "Juvenile Exposed", "Adult Control", "Juvenile Control")
+Individuals.Per.Treatment <- c("8", "8", "9", "10", "15", "15")
+Proportion.Mortality <- c("0.75", "0", "1", "1", "0", "0")
+Number.of.Individuals.Sequenced.with.RNASeq <- c("8", "8", "3", "3", "3", "3")
+
+# Create dataframe
+table1df <- data.frame(
+  Experiment = Experiment,
+  Treatment.Groups = Treatment.Groups,
+  Individuals.Per.Treatment = Individuals.Per.Treatment,
+  Proportion.Mortality = Proportion.Mortality,
+  Number.of.Individuals.Sequenced.with.RNASeq = Number.of.Individuals.Sequenced.with.RNASeq
+)
+
+print(table1df)
+
+```
+
+Now let's make the column titles a bit nicer by replacing periods with spaces:
+```{r}
+names(table1df) <- gsub("\\.", " ", names(table1df))
+
+```
+
+```{r}
+table1df %>%
+  as_grouped_data(groups = "Experiment") %>% 
+  as_tibble()
+```
+
+
+
+Make a publication-ready table of tabledf using `flextable` package: 
+```{r}
+# Create a standard academic APA-style table
+table1_flextable <- flextable(table1df) %>%
+  theme_apa() %>% # Applies standard APA 7th edition formatting
+  autofit()       # Automatically adjusts column widths to fit content
+table1_flextable
+```
+
+
+Now let's make the table look nicer by aligning text to the left and making the header row bold:
+```{r}
+table1_flextable <- table1_flextable %>%
+  align(align = "left", part = "all") %>% # Align all text to the left
+  bold(part = "header") # Make header row bold
+table1_flextable
+```
+Now let's make the first column (Experiment) have a bit of padding on the left so that it looks nicer:
+```{r}
+table1_flextable <- table1_flextable %>%
+  padding(padding.left = 10, part = "all") # Add left padding to all cells
+table1_flextable
+```
+Merge the flextable cells vertically in the "Experiment" column:
+```{r}
+table1_flextable <- table1_flextable %>%
+  merge_v(j = "Experiment") # Merge cells vertically in the "Experiment" column
+table1_flextable
+```
+
+Now let's make it a little prettier by spacing out the columns better and centering the text in the columns (except for the first column which we want left-aligned): 
+```{r}
+table1_flextable <- table1_flextable %>%
+  autofit() %>% # Automatically adjust column widths to fit content
+  align(align = "center", part = "all") %>% # Center text in all columns
+  align(align = "left", j = "Experiment", part = "all") # Left-align text in the "Experiment" column
+table1_flextable
+```
+install officer package to create a line between the two experiments:
+```{r}
+#install.packages("officer")
+```
+
+
+Now let's add a horizontal line between the two experiments to make it clearer:
+```{r}
+library(officer)
+my_border <- fp_border(color = "black", width = 1)
+table1_flextable <- table1_flextable %>%
+  hline(i = c(2), part = "body", border = my_border) # Add horizontal line after the second row
+table1_flextable
+```
+NOw let's save the table 
+
+```{r}
+#save_as_image(table1_flextable, path = "../analyses/26-visualizations/Table1_experiment_results.png")
+```
+Save 2026-06-16 -- then i converted to PDF and uploaded an image of it into the document. 
+
+
+
+
+
 
 
 
