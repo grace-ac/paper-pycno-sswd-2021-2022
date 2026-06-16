@@ -1742,14 +1742,22 @@ table1_flextable <- table1_flextable %>%
   hline(i = c(2), part = "body", border = my_border) # Add horizontal line after the second row
 table1_flextable
 ```
-NOw let's save the table 
-
+Make the font size larger:
 ```{r}
-#save_as_image(table1_flextable, path = "../analyses/26-visualizations/Table1_experiment_results.png")
+table1_flextable <- table1_flextable %>%
+  fontsize(size = 14, part = "all") 
+table1_flextable
 ```
 
 
-Save 2026-06-16 -- 
+NOw let's save the table 
+
+```{r}
+save_as_image(table1_flextable, path = "../analyses/26-visualizations/Table1_experiment_results.png")
+```
+
+
+Save 2026-06-16 
 
 
 save as a docx:
@@ -1757,7 +1765,9 @@ save as a docx:
 save_as_docx(table1_flextable, path = "../analyses/26-visualizations/Table1_experiment_results.docx")
 ```
 
-2026-06-15 --> then i converted to PDF and uploaded an image of it into the document. 
+2026-06-15 
+
+
 
 
 
